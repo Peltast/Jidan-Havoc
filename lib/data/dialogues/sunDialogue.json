@@ -1,0 +1,158 @@
+{
+
+    "SunHeartwoodDialogueDeath": {
+        "context": "story", "style": "default",
+        "statements": [
+
+            "Ah, so you came after all.",
+            "...",
+            "Kind of disappointing.",
+
+            "Who are you?",
+
+            "I am what many call the Sun.  I am what holds this world together.",
+            "Those roots had been keeping me down here against my will.  Thank you for clearing them.",
+            "But to be honest, I've grown fond of my cell.  It's very comfortable down here, don't you think?",
+
+            "...I don't understand.",
+
+            "Oh, I know.  It's a lot to process, I'm sure.",
+            "But did you really come here to understand?",
+            "Or did you come here for a proper ending?",
+
+            "...",
+
+            "You had a dream.",
+            "Lying under a broken tree.  A shadowy figure was approaching you, but you didn't feel threatened.",
+            "You felt...relieved.",
+            "And then...",
+            "Well.  You've finally reached your destination.  Why don't you take a rest?"
+
+        ]
+    },   
+    "SunHeartwoodDialogue": {
+        "context": "story", "style": "default",
+        "statements": [
+
+            "Ah, so you came after all.",
+            "...",
+            "Intriguing.",
+
+            "Who are you?",
+
+            "Didn't I already tell you?  I'm Teddy!",
+            "...Heh.  I guess you know that's not true.",
+            "Many have taken to calling me the Sun.  That's about as true as any other lie I could give you.",
+            "I'm surprised you cleared all of the roots like I asked.  You kept me guessing, didn't you?",
+
+            "You make it sound like you didn't care what I did either way.",
+
+            "It's true that the roots had me trapped down here.  But I'm in no rush to leave.",
+            "As it turns out, I can control things from down here just fine.",
+            "It was only a matter of time before I found a way out...you just helped speed things up.",
+
+            "So, how do we escape from here, then?",
+
+            "Oh...well, this is awkward.",
+            "I know you went out of your way to help me, but there isn't any way out of here.",
+            "And I'm not interested in leaving, anyway.",
+
+            "So...what?  That's it?  We just stay here forever?",
+
+            "Sounds good to me, personally.",
+            "But I guess if you're really determined on leaving...I guess there is always a way out.",
+            "You know what I'm talking about, don't you?",
+            "It's what brought you here in the very beginning.",
+            "I can help you out with that.  But ultimately, the decision is yours."
+            
+        ]
+    },
+
+
+    "SunRiftDialogueDefault": {
+        "context": "story", "style": "default",
+        "statements": [
+
+            "I was afriad I would find you here.",
+            "You're really serious about leaving, aren't you?",
+            "Do you really want to go back out there?  Don't you remember what happened?",
+            "Oh, that's right, you don't.  How convenient for you.",
+
+            "You're right...I don't remember.  I don't know why I'm here.",
+            "But that doesn't change the fact that I never wanted to be here in the first place!",
+            "You keep bringing up things I have no memory of...what the hell is it to you?",
+            "You're the last person I would ever trust.  As far as I'm concerned, this is all your fault!",
+
+            "Heheh...even if you refuse to face the truth, you can't escape it.",
+            "There is no way to enter this place unless someone wills it.  That is a fact.",
+            "You're just going through buyer's remorse.  But you already made your decision.",
+
+            "That goes against the fact that everyone here is trying to escape, but can't.",
+
+            "They want to escape, but they have no idea what that means.  Just like you.",
+            "You can't remember why you are here?  Fine.  I'll tell you, though I'm sure you won't understand.",
+            "...",
+            "You remember running away from home...this is a fiction.  You were kicked out.",
+            "But it wasn't from a physical home.  You know that, right?  You were kicked out of your body.",
+            
+            "What the hell are you talking about?",
+
+            "You were very split on something.  There was something that was tearing you up inside.",
+            "And eventually, you broke.  Literally.  One half remained at 'home'.  And you were kicked out.",
+            "With nothing left, you did what many others do.  You sought an end.",
+            "An understanding voice to ferry you over the river.  Reassurance that it would be okay, that you could disappear into nothing.",
+            "But you know, I'm sick of telling comfortable lies to weaklings like you.",
+
+            "......",
+            "I don't know what the hell you're talking about.",
+            "But if I was having some problem out there, I can work on it.  If something is broken, I'll fix it.",
+            "I don't want to disappear.  I don't belong here.  I want to go home!",
+
+            "Sadly for you, it's not that simple.  Here or there, you are now in a state of limbo that can't be escaped.",
+            "Take it from someone with firsthand experience...there's no going back to the way things were.",
+            "But all that's irrelevant, because I'd prefer you stay here and keep me company.",
+            "We may have our differences, but things are more interesting with you around.",
+
+            "So your plan is to just...stay here?",
+            "There isn't anything outside for you, either?  You don't even want to try?",
+
+            "Are you crazy?  Leave, and abandon everything that I've accomplished?",
+            "Look around.  This whole place...have you seen anything like it?  Do you have any idea what it means?",
+            "...Of course not.  All of you...so desperate to go back to the life that mistreated you, that left you with absolutely nothing...",
+            "And others that came here clamoring for a different escape, desperate for an end...literally begging for death.",
+            "When you're standing on the fountain of youth.  Immortality.  Eternal fucking life.",
+
+            "So, that's your angle?  You want to play god in some weird pocket dimension forever?",
+
+            "Well, when you put it like that...duh?",
+            "I get that this is all very new for you, so you haven't really caught up on what this really means.",
+            "Back when I had been kicked out, imprisoned, demeaned in every way...I thought it was over.",
+            "But over time, I realized I had been given the greatest gift ever.",
+            "They put me in a cage to keep me isolated.  They didn't expect me to bring others into that cage.",
+            "And thanks to people like you, I've turned that cage into a veritable tree of life.",
+            "...You know, somewhere out there is my other self.  A pale, weak imitation of me.",
+            "He's going to lead a shitty, boring life.  Knowing him, he'll probably be miserable for most of it.",
+            "And then he's going to die.",
+            "And I'll still be here, more powerful than ever.  Playing god, like you said.",
+            "Maybe he'll end up here after he dies, and we can meet again - wouldn't that be perfect?",
+            
+            "Well, I'm glad everything's worked out so well for you.  But I still need to get home.",
+            "So move aside.",
+
+            "Heh...like I said.  You haven't had time to process all of this.",
+            "You're being overly emotional.  Take some time and think about it logically.",
+            
+            "I'm not going to ask again.",
+
+            "Well, if you think you can get me to move, I welcome you to try.",
+            "A virtual god of his own creation, versus...some little girl from who-the-fuck-cares.",
+            "Come on, then.  Let's see if there's anything behind that bark.",
+            "I'll give you the first shot.",
+            "But after that...there won't be any turning back.",
+            "You may not like the ending you get."
+
+
+        ]
+    }
+
+}

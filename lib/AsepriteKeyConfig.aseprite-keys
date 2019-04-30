@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<keyboard version="1">
+    <commands>
+        <key command="AdvancedMode" shortcut="F" removed="true" />
+        <key command="AdvancedMode" shortcut="Alt+F" />
+        <key command="SnapToGrid" shortcut="Shift+S" removed="true" />
+        <key command="SelectTile" shortcut="Shift+S" />
+    </commands>
+    <tools>
+        <key tool="rectangular_marquee" shortcut="M" />
+        <key tool="rectangular_marquee" shortcut="S" />
+    </tools>
+    <quicktools>
+        <key tool="eyedropper" shortcut="Alt" />
+        <key tool="eyedropper" shortcut="C" />
+        <key tool="paint_bucket" shortcut="F" />
+    </quicktools>
+    <actions />
+</keyboard>

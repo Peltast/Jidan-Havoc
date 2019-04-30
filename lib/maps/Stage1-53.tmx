@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="World3Tiles" tilewidth="32" tileheight="32" tilecount="135">
+  <image source="../sprites/World3Tiles.png" width="480" height="288"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAMBKGD7995PYaCq6aqqqqqqvroAaw2EsE=
+  </data>
+ </layer>
+</map>

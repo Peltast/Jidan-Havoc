@@ -1,0 +1,52 @@
+
+
+{
+    "DregsBG": {
+        "centerXaxis": true,
+        "props": [
+            {
+                "sprite": "DregsBGLayer1", "size": "1120,1120", "location": "0,130", "zPos":"600",
+                "parallaxDistX": 0.9, "parallaxDistY": 0.95
+            }, {
+                "sprite": "DregsBGLayer2", "size": "1120,1120", "location": "0,90", "zPos":"400",
+                "parallaxDistX": 0.9, "parallaxDistY": 0.85
+            }, {
+                "sprite": "DregsBGLayer3", "size": "1120,1120", "location": "0,100", "zPos":"200",
+                "parallaxDistX": 0.9, "parallaxDistY": 0.8
+            }, {
+                "sprite": "DregsBGLayer4", "size": "1120,1120", "location": "0,160",
+                "parallaxDistX": 0.9, "parallaxDistY": 0.7
+            }
+        ]
+    },
+    "DregsBG2": {
+        "centerXaxis": true,
+        "props": [
+            {
+                "sprite": "DregsBGLayer1", "size": "1120,1120", "location": "0,-170",
+                "parallaxDistX": 0.9, "parallaxDistY": 0.95
+            }, {
+                "sprite": "DregsBGLayer2", "size": "1120,1120", "location": "0,-170",
+                "parallaxDistX": 0.9, "parallaxDistY": 0.85
+            }, {
+                "sprite": "DregsBGLayer3", "size": "1120,1120", "location": "0,-160",
+                "parallaxDistX": 0.9, "parallaxDistY": 0.8
+            }, {
+                "sprite": "DregsBGLayer4", "size": "1120,1120", "location": "0,-100",
+                "parallaxDistX": 0.9, "parallaxDistY": 0.7
+            }
+        ]
+    },
+
+    "TraumaBG" : {
+        "shapes": [
+            {
+                "size": "max", "shape": "rectangle", "color": "#444444"
+            }
+        ]
+    }
+
+
+
+
+}

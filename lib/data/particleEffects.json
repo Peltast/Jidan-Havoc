@@ -1,0 +1,311 @@
+{
+    "ScreenWrapEffect": {
+        "screenWrap": true,
+        "randomSpawn": true,
+        "foreground": true,
+        "areaSpansMap": true,
+        "numOfParticles": 40,
+
+        "particles": [{
+            "lifeSpan": "-1",
+            "mass": "1", "size": "2,2",
+            "color": "#494d7e",
+            "usesPhysics": false,
+            "startVelocity": "0,0", "targetVelocity": "random", "acceleration": "1, 1", "maxSpeed": "1"
+        }]
+    },
+    "ExplosionEffect": {
+        "oneOff" : true,
+        "numOfParticles": 200,
+
+        "particles": [{
+            "lifeSpan": "10~80",
+            "mass": "1", "size": "2,2",
+            "usesPhysics": false,
+            "startVelocity": "random", "targetVelocity": "0,0", "acceleration": ".10,.10", "maxSpeed": "5~15"
+        }]
+    },
+    "SpriteExplosionEffect": {
+        "oneOff" : true,
+        "numOfParticles": 50,
+
+        "particles": [{
+            "sprite": "ShardOfLove",
+            "frames": { "width": 36, "height": 54, "regX": 0, "regY": 0, "count": 8 },
+            "animations": "{ \"idle\": [0, 7, \"idle\", 0.2] }",
+            "defaultAnimation": "idle", "randomStartFrame": true,
+
+            "lifeSpan": "60~120",
+            "mass": "1", "size": "2,2",
+            "usesPhysics": false,
+            "startVelocity": "random", "targetVelocity": "0,0", "acceleration": ".10,.10", "maxSpeed": "5~25"
+        }]
+    },
+
+    "PlayerAttractEffect": {
+        "numOfParticles": 100,
+        "randomSpawn": true,
+        "effectArea": "256,256", "effectAreaAlignment": "center",
+        
+        "attraction": "player",
+        "physics": {
+            "gConstant": 5, "frictionStrength": 5, "distanceFloor": 48, "distanceCeiling": 128
+        },
+        "particles": [{
+            "lifeSpan": "-1",
+            "mass": "1~10", "size": "4,4",
+            "color": "#f2d3ab",
+            "usesPhysics": true,
+            "startVelocity": "0,0", "targetVelocity": "0,0", "acceleration": "1,1", "maxSpeed": "3.5"
+        }]
+    },
+    "PlayerRepulseEffect": {
+        "numOfParticles": 100,
+        "randomSpawn": true,
+        "effectArea": "128,128", "effectAreaAlignment": "center",
+        
+        "repulsion": "player",
+        "physics": {
+            "gConstant": 2, "frictionStrength": 10, "distanceFloor": 48, "distanceCeiling": 1200
+        },
+        "particles": [
+            {
+                "lifeSpan": "-1",
+                "mass": "2", "size": "4,4", "color": "#c69fa5",
+                "usesPhysics": true,
+                "acceleration": "1,1", "maxSpeed": "3.5"
+            }, {
+                "lifeSpan": "-1",
+                "mass": "4", "size": "4,4", "color": "#8b6d9c",
+                "usesPhysics": true,
+                "acceleration": "1,1", "maxSpeed": "3.5"
+            }
+        ]
+    },
+    "ParticleAttractEffect": {
+        "numOfParticles": 30,
+        "randomSpawn": true,
+        "effectArea": "128,128", "effectAreaAlignment": "center",
+        
+        "attraction": "particles",
+        "physics": {
+            "gConstant": 5, "frictionStrength": 5, "distanceFloor": 48, "distanceCeiling": 128
+        },
+        "particles": [
+            {
+                "lifeSpan": "-1",
+                "mass": "2", "shape": "circle", "size": "2,2", "color": "#8b6d9c",
+                "usesPhysics": true,
+                "acceleration": "1,1", "maxSpeed": "3.5"
+            }, {
+                "lifeSpan": "-1",
+                "mass": "6", "shape": "circle", "size": "4,4", "color": "#c69fa5",
+                "usesPhysics": true,
+                "acceleration": "1,1", "maxSpeed": "3.5"
+            }, {
+                "lifeSpan": "-1",
+                "mass": "12", "shape": "circle", "size": "8,8", "color": "#ffffff",
+                "usesPhysics": true,
+                "acceleration": "1,1", "maxSpeed": "3.5"
+            }
+        ]
+    },
+
+
+
+    
+    
+
+    "PaintAreaEffect": {
+        "oneOff": true,
+        "spawnGrid": "4,4", "spawnGridCellSize": 4,
+        "minimumCells": "2",
+        "effectAreaOrigin": "0,0",
+        
+        "repulsion": "player",
+        "physics": {
+            "gConstant": 1.2, "frictionStrength": 25, "distanceFloor": 24, "distanceCeiling": 1200
+        },
+        "particles": [
+            {
+                "lifeSpan": "120",
+                "mass": "2", "size": "4,4", "color": "#272744",
+                "usesPhysics": true,
+                "acceleration": "1,1", "maxSpeed": "5"
+            }, {
+                "lifeSpan": "120",
+                "mass": "1.8", "size": "4,4", "color": "#272744",
+                "usesPhysics": true,
+                "acceleration": "1,1", "maxSpeed": "5"
+            }, {
+                "lifeSpan": "120",
+                "mass": "1.6", "size": "4,4", "color": "#272744",
+                "usesPhysics": true,
+                "acceleration": "1,1", "maxSpeed": "5"
+            }, {
+                "lifeSpan": "120",
+                "mass": "1.9", "size": "4,4", "color": "#272744",
+                "usesPhysics": true,
+                "acceleration": "1,1", "maxSpeed": "5"
+            }
+        ]
+    },
+
+    "WispEffect": {
+        "numOfParticles": 8,
+        "randomSpawn": true, "spawnInterval": 20,
+        "effectArea": "20,4", "effectAreaOrigin": "2,0",
+
+        "particles": [{
+            "lifeSpan": "180~240",
+            "mass": "1", "size": "2,2", "color": "#8b6d9c",
+            "usesPhysics": false,
+            "startVelocity": "0,-.8", "targetVelocity": "0,-0.2", "acceleration": ".10,.10", "maxSpeed": "15"
+        }, {
+            "lifeSpan": "180~240",
+            "mass": "1", "size": "3,3", "color": "#8b6d9c",
+            "usesPhysics": false,
+            "startVelocity": "0,-.8", "targetVelocity": "0,-0.2", "acceleration": ".10,.10", "maxSpeed": "15"
+        }]
+    },
+
+
+    "DregsSoot": {
+        "randomSpawn": true,
+        "screenWrap": true, "foreground": true, "areaSpansMap": true,
+        "numOfParticles": 200,
+        "parallaxDistX": 0, "parallaxDistY": 1.06,
+
+        "simpleForces": [{
+            "deltaVelocity": "-0.3~0.3,0", "durationRange": "320~640", "intervalRange": "300~900"
+        }],
+        "particles": [{
+            "lifeSpan": "-1",
+            "mass": "1", "size": "2,2", "color": "#494d7e", "usesPhysics": false,
+            "startVelocity": "0,0", "targetVelocity": "-0.2~0.2,0.2~0.4", "acceleration": "1, 1", "maxSpeed": "1"
+        },{
+            "lifeSpan": "-1",
+            "mass": "1", "size": "2,2", "color": "#494d7e", "usesPhysics": false,
+            "startVelocity": "0,0", "targetVelocity": "-0.2~0.2,0.2~0.4", "acceleration": "1, 1", "maxSpeed": "1"
+        },{
+            "lifeSpan": "-1",
+            "mass": "1", "size": "4,4", "color": "#272744", "usesPhysics": false,
+            "startVelocity": "0,0", "targetVelocity": "-0.2~0.2,0.2~0.3", "acceleration": "1, 1", "maxSpeed": "0.4"
+        }]
+    },
+    
+    
+    "AtriumSandLight": {
+        "randomSpawn": true,
+        "screenWrap": true, "foreground": true, "areaSpansMap": true,
+        "numOfParticles": 200,
+        "parallaxDistX": 0, "parallaxDistY": 1.06,
+
+        "simpleForces": [{
+            "deltaVelocity": "-0.3,0~0.3,0", "durationRange": "320~640", "intervalRange": "500~900"
+        }],
+        "particles": [{
+            "lifeSpan": "-1",
+            "mass": "1", "size": "2,2", "color": "#c69fa5", "usesPhysics": false,
+            "startVelocity": "0,0", "targetVelocity": "-0.7~-0.4,0.2~0.4", "acceleration": "1, 1", "maxSpeed": "10"
+        },{
+            "lifeSpan": "-1",
+            "mass": "1", "size": "4,4", "color": "#c69fa5", "usesPhysics": false,
+            "startVelocity": "0,0", "targetVelocity": "-0.6~-0.3,0.2~0.3", "acceleration": "1, 1", "maxSpeed": "10"
+        }]
+    },
+    "AtriumSandMedium": {
+        "randomSpawn": true,
+        "screenWrap": true, "foreground": true, "areaSpansMap": true,
+        "numOfParticles": 300,
+        "parallaxDistX": 0, "parallaxDistY": 1.06,
+
+        "simpleForces": [{
+            "deltaVelocity": "-1.6,0~1.6,0", "durationRange": "320~640", "intervalRange": "500~900"
+        }],
+        "particles": [{
+            "lifeSpan": "-1",
+            "mass": "1", "size": "2,2", "color": "#c69fa5", "usesPhysics": false,
+            "startVelocity": "0,0", "targetVelocity": "-10~-8,0.2~0.4", "acceleration": "1, 1", "maxSpeed": "100"
+        },{
+            "lifeSpan": "-1",
+            "mass": "1", "size": "4,4", "color": "#c69fa5", "usesPhysics": false,
+            "startVelocity": "0,0", "targetVelocity": "-8~-6,0.2~0.3", "acceleration": "1, 1", "maxSpeed": "100"
+        }]
+    },
+    "AtriumSandHeavy": {
+        "randomSpawn": true,
+        "screenWrap": true, "foreground": true, "areaSpansMap": true,
+        "numOfParticles": 400,
+        "parallaxDistX": 0, "parallaxDistY": 1.06,
+
+        "simpleForces": [{
+            "deltaVelocity": "-5,0~5,0", "durationRange": "260~540", "intervalRange": "300~600"
+        }],
+        "particles": [{
+            "lifeSpan": "-1",
+            "mass": "1", "size": "4,4", "color": "#c69fa5", "usesPhysics": false,
+            "startVelocity": "0,0", "targetVelocity": "-30~-24,-0.2~0.4", "acceleration": "1, 1", "maxSpeed": "100"
+        },{
+            "lifeSpan": "-1",
+            "mass": "1", "size": "6,6", "color": "#c69fa5", "usesPhysics": false,
+            "startVelocity": "0,0", "targetVelocity": "-24~-18,-0.1~0.3", "acceleration": "1, 1", "maxSpeed": "100"
+        }]
+    },
+    "AtriumSandLull": {
+        "randomSpawn": true,
+        "screenWrap": true, "foreground": true, "areaSpansMap": true,
+        "numOfParticles": 200,
+        "parallaxDistX": 0, "parallaxDistY": 1.06,
+
+        "simpleForces": [{
+            "deltaVelocity": "-0.1,0~0.1,0", "durationRange": "480~720", "intervalRange": "700~1200"
+        }],
+        "particles": [{
+            "lifeSpan": "-1",
+            "mass": "1", "size": "2,2", "color": "#c69fa5", "usesPhysics": false,
+            "startVelocity": "0,0", "targetVelocity": "-0.4~-0.1,0.2~0.4", "acceleration": "1, 1", "maxSpeed": "1"
+        },{
+            "lifeSpan": "-1",
+            "mass": "1", "size": "4,4", "color": "#c69fa5", "usesPhysics": false,
+            "startVelocity": "0,0", "targetVelocity": "-0.3~-0.0,0.2~0.3", "acceleration": "1, 1", "maxSpeed": "1"
+        }]
+    },
+
+
+    "Hallucination": {
+        "oneOff": true,
+        "spawnGrid": "32,32", "spawnGridCellSize": 8, "minimumCells": "2",
+        "effectAreaOrigin": "0,0",
+        "physics": {
+            "gConstant": 1.2, "frictionStrength": 25, "distanceFloor": 24, "distanceCeiling": 1200
+        },
+        "particles": [
+            {
+                "lifeSpan": "50", "tween": "expand",
+                "mass": "2", "shape": "random", "size": "8,8", "color": "random",
+                "usesPhysics": true,
+                "acceleration": "1,1", "maxSpeed": "5"
+            }
+        ]
+    },
+    "HallucinationEnd": {
+        "oneOff": true,
+        "spawnGrid": "32,32", "spawnGridCellSize": 8, "minimumCells": "2",
+        "effectAreaOrigin": "0,0",
+        "physics": {
+            "gConstant": 1.2, "frictionStrength": 25, "distanceFloor": 24, "distanceCeiling": 1200
+        },
+        "particles": [
+            {
+                "lifeSpan": "50", "tween": "shrink",
+                "mass": "2", "shape": "random", "size": "8,8", "color": "random",
+                "usesPhysics": true,
+                "acceleration": "1,1", "maxSpeed": "5"
+            }
+        ]
+    }
+
+
+
+}

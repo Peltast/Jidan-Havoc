@@ -1,0 +1,279 @@
+{
+
+
+    "TextStyle": {
+        "default" : {
+            "orientation": "top"
+        },
+
+        "Ria" : {
+            "orientation" : "bottom"
+        }
+
+    },
+
+
+    "Prologue": {
+        "context" : "story",
+        "style": "Ria",
+        "statements": [
+            "I ran away from home.",
+            "I had to get away.",
+            "I had to escape before they ruined everything.",
+            "I have no idea where to go from here.  But...",
+            "Somehow, I feel completely at peace.  Like everything will work itself out.",
+            "...",
+            "The feeling reminds me of a dream I had once.",
+            "I was lying under a broken tree.",
+            "There was a shadowy figure slowly approaching me, but I couldn't move at all.",
+            "I saw the knife in their hand, but for some reason I didn't feel threatened.",
+            "I felt...relieved.",
+            "And then everything became...",
+            "It all just...",
+            "......",
+            "I can't remember what happened next, for some reason.",
+            "But when I woke up, I felt like a different person."
+        ]
+    },
+
+    "TeddyIntro": {
+        "context": "story",
+        "style": "default",
+
+        "altStyle": "Ria",
+        "altStatements": [3, 7, 12, 15, 20],
+
+        "statements": [
+            "Hi there!",
+            "We don't often get visitors like you.  In fact, I'd say this is a first.",
+            "You're not dead at all, are you?  I don't know if you could tell, but...you're a long way from home!",
+                "Are you...another ghost?",
+            "Me, a ghost?  That would be silly.  Look at me!  I'm a teddy bear!",
+            "But you can just call me 'Teddy' for short.",
+            "I don't often get company.  At least, not the kind that can hold a conversation.  What's your name?",
+                "What is this place?  How do I get out of here?",
+            "Not much for small talk, huh?  Oh well.  Let's see...",
+            "...Hmm...",
+            "Interesting.  The reading seems to be pretty clear.",
+            "You were kicked out, huh?  Abandoned?  Tough break.  But don't worry, you're in good company here.",
+                "...I wasn't kicked out.  I ran away from home.",
+            "Oh...we're all friends here.  So, you don't have to lie to me.",
+            "There's also no point in trying.  I can read you like a book.  I probably know you better than you know yourself!",
+                "If you're just a teddy bear, you won't feel anything if I rip out your stuffing, right?",
+            "...Haha.",
+            "I know why they kicked you out.  I know what you tried to do.",
+            "It's fitting that you ended up here.  You could say it's karma...",
+            "...Ria.",
+                "...Who are you?",
+            "I told you.  I'm Teddy!",
+            "Listen, I'll let your little outburst slide.  We can still be friends.",
+            "I'm sure you're very upset and confused, and you have a lot of questions...and I have answers!",
+            "But I can't just hand them out for free.  I need some help too.",
+            "There are these glowing orbs scattered around - you might have seen one on your way here.",
+            "Bring them here, and place them on the overgrown roots of this dead tree.",
+            "For each orb you bring, I'll answer a single question of yours.",
+            "Maybe that sounds stingy, but you know what they say - knowledge is power!",
+            "And good luck getting any straight answers from the locals.  They're as aimless as you...or worse.",
+            "So really, this is a pretty special deal!  A real once in a 'life'-time opportunity.",
+            "Talk to you later, new friend!  And good luck!"
+        ]
+    },
+    "TeddyIntro2": {
+        "context": "story",
+        "style": "default",
+
+        "statements": [
+            "Come back to me when you've gotten rid of some of these roots."
+        ]
+    },
+    "TeddyQuestion1": {
+        "context": "story",
+        "style": "default",
+
+        "altStyle": "Ria",
+        "altStatements": [2, 13],
+
+        "statements": [
+            "Oh, so you managed to clear some of the roots away already?  Good job.",
+            "Well, I'm a bear of my word.  Ask a question, and I'll answer it as best I can.",
+            "What is this place?  Am I in purgatory?",
+            "Hmm...technically that's two questions, but I'll let it slide this time.",
+            "First off, no - this isn't purgatory.  At least, not in the literal sense.  But I guess it's not too far off either.",
+            "It seems like this used to be the site of a powerful medium - someone who could commune with spirits.",
+            "Y'see, ghosts are just so needy...they have to spill their guts to someone that can listen, in order to move on.",
+            "But that medium is gone now.  Maybe they got tired of all that listening, and ditched them!",
+            "Somehow, though, the ghosts haven't gotten the hint.",
+            "They still show up - but now, there's nobody to hear their sob stories.  So they don't move on.  They just...wait.",
+            "Over time, they've flooded this place, and even...shaped it.  As they slowly burn themselves out, they mold together.",
+            "Gross, I know.  I guess nothing is eternal - even the afterlife.  But this is just unnatural!",
+            "If it were up to me, I'd be rid of them.  Just give them all the boot!",
+            "How would that happen?",
+            "No idea.  But...",
+            "Maybe if you can find a way to help them leave this place, you can find a way out for yourself, too.",
+            "Just some food for thought."
+        ]
+    },
+    "TeddyQuestion1,2": {
+        "context": "story",
+        "style": "default",
+
+        "statements": [
+            "I've given you your answer.  You know what to do if you have other questions."
+        ]
+    },
+    "TeddyQuestion2": {
+        "context": "story",
+        "style": "default",
+
+        "altStyle": "Ria",
+        "altStatements": [2],
+
+        "statements": [
+            "Ah...I can feel the tree weakening.  Just like I thought.",
+            "You get another question.  Think carefully about what you want to ask.",
+            "...If I'm alive, how did I end up in this place for ghosts?",
+            "Good choice.",
+            "You may have noticed this already, but you're, uh...floating.",
+            "You also have a strange affinity with the ghosts here.  You can see them, interact with them...manipulate them.",
+            "Those are not things that ordinary living people can do.",
+            "You've probably heard of an 'out of body experience', right?  Well, I think you used astral projection to get here.",
+            "To use simpler words, your spirit left its body and came here.",
+            "I've seen it before, but...nothing like this.  You've managed to move so far from your body, and for such a long time...",
+            "And yet, you don't seem to be aware that it happened.  You did all of that without even trying!",
+            "It's miraculous, but you should be a little worried.  Your body is still out there somewhere.  An empty shell.",
+            "And of course, it still needs to do things like eat, drink...you know.  People things.",
+            "As much as I enjoy your company, this isn't where you belong.  If you don't return to your body before it's too late, well...",
+            "You'll find that there isn't much to return to.",
+            "...Oh, yeah.  One last thing.",
+            "...It may have crossed your mind by now that this is all a dream, or something.",
+            "Well, it's not.  It's real.  If you come to harm here, or anywhere else, well...that's permanent.",
+            "Of course, you're talking to a teddy bear right now, so I'd understand if you don't believe me.",
+            "Just keep going, and you'll know the truth for sure."
+        ]
+    },
+    "TeddyQuestion2,2": {
+        "context": "story",
+        "style": "default",
+
+        "statements": [
+            "You don't have time to waste hanging around here.",
+            "Remember - as long as you're here, your actual body is empty.  Comatose, most likely.",
+            "You need to get back, while there's still a home to return to."
+        ]
+    },
+
+    "TeddyQuestion3": {
+        "context": "story",
+        "style": "default",
+
+        "altStyle": "Ria",
+        "altStatements": [2, 10],
+
+        "statements": [
+            "More than halfway there.  Very good.  I was right about you.",
+            "Well, you know the drill.",
+            "Why do you want to bring these orbs back here?",
+            "As you can see, this tree seems to have a strong reaction to them.  Its roots recoil at their touch.",
+            "Earlier, I said the ghosts give this place form.  While that's true...I don't think it's the whole story.",
+            "This tree, and its network of roots, are holding this place together.  At least, at the center.",
+            "But curiously, there's some presence underneath.  The other ghosts around here can sense it, too.",
+            "I think...buried under this tree, we'll find the source.  The beacon that's calling the dead here.",
+            "If you can get rid of that, the integrity of this place would collapse, and escape should be possible.",
+            "But to get there, you'll have to pry this tree off, finger by finger.",
+            "What is this tree doing here?  What makes it so important?",
+            "That's more than one question.",
+            "...But I'll indulge you.  In fact, I'll ask you some questions of my own.",
+            "Those orbs seem almost purposely scattered around.  Hidden.  And given how they specifically react to this tree...",
+            "...It's as if they're the keys to a lock.",
+            "But what is this tree keeping locked underground?  And...why?",
+            "Well, that's for you to piece together."
+        ]
+    },
+
+    "Sun": {
+        "context": "story",
+        "style": "default",
+        "statements": [
+            "You know, I have so much to thank you for.",
+            "I spent such a long time here, completely alone...thinking that there was nothing else like me.",
+            "That I would be trapped here forever.",
+            "But...you changed everything.",
+            "Because of you, I learned that I am not unique.",
+            "Even ordinary, pathetic people like you can split themselves and become powerful.",
+            "Here I thought it was a punishment, a prison...but it was the opposite.  I was set free.",
+            "Finally, there's nothing holding me back.  There's so much I can do.",
+            "Do you know what grants power over spirits?  It's a rapport with them.",
+            "Here, you were special...because this place is overflowing with the weak.  Those who gave up.",
+            "You fit right in.  You understand them, because you're just one step removed from them.",
+            "But me...I have a gift.  I don't need to have something in common with you to understand you.",
+            "I could see through every thought and emotion you had from the moment I first met you.",
+            "...",
+            "So...you understand what I'm saying, right?",
+            "This place...I have total control over it.  Every spirit that has made its way here, every rotten soul...",
+            "Including yours."
+        ]
+    },
+
+    "GuideIntro": {
+        "context": "story",
+        "statements": [
+            "Another one lured into the dregs, is it?",
+            "Poor little moth.  Can't reach the fire from here.",
+            "...But you're different.  You might open a way out, for a change.",
+            "Our interests may be connected then.  So here, I'll share what I know.",
+            "We're standing in the hub of a giant wheel, but most of the spokes have broken.  Now only three remain.",
+            "Beyond, in every direction, there are...ruins?  Hard to say what it all was...",
+            "Too much ground to cover.  Easy to get lost.  Many have left to explore, and never returned.",
+            "Finding your way backward will be just as important as finding your way forward.",
+            "There are these odd spirits that connect the space between them...but they are stuck here, useless to me.",
+            "If you can manipulate them...use them as your thread through this place.",
+            "And anything else you find...could be your thread.  No telling how far this place stretches.",
+            "If there is, in fact, any end to it at all..."
+        ]
+    },
+
+    "SproutHealth": {
+        "context": "story",
+        "statements": [
+            "for years we have been fed poison",
+            "but we remain in wait for a change of heart",
+            "offer a token of love, and extend your righteousness"
+        ]
+    },
+    "SproutInv": {
+        "context": "story",
+        "statements": [
+            "for years we have been fed poison",
+            "but we remain in wait for a change of heart",
+            "offer a token of love, and extend your benevolence"
+        ]
+    },
+    "SproutSpirit": {
+        "context": "story",
+        "statements": [
+            "for years we have been fed poison",
+            "but we remain in wait for a change of heart",
+            "offer a token of love, and extend your wisdom"
+        ]
+    },
+    "SproutShard": {
+        "context": "story", "style": "Ria",
+        "statements": [
+            "This stalk has a very unsettling appearance.",
+            "Something about it feels very familiar.",
+            "It seems...to be attracted to the ghosts around here."
+        ]
+    },
+
+
+
+    "Demo": {
+        "context": "map",
+        "default": "i am somewhere",
+        
+        "Intro1": "this is the starting area",
+        "Intro4": "this is the end of the tutorial section",
+        "Intro2": "i am in Intro2"
+    }
+
+}

@@ -1,0 +1,12 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+span {
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Equipment";
+    src: url("EquipmentPro.otf");
+}

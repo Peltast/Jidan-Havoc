@@ -1,0 +1,116 @@
+{
+
+    "OutsetWestGuide": {
+        "context": "story", "style": "default",
+        "statements": [
+            "I tried to leave west of here...",
+            "But there were just endless hallways.  As far as the eye could see...",
+            "I couldn't find my way through."
+        ]
+    },
+    "OutsetSouthGuide": {
+        "context": "story", "style": "default",
+        "statements": [
+            "I tried to leave south of here...",
+            "But it was just a desert.  I walked around, but there was nothing there.",
+            "It was depressing, so I came back here."
+        ]
+    },
+    "OutsetEastGuide": {
+        "context": "story", "style": "default",
+        "statements": [
+            "I tried to leave east of here...",
+            "But I couldn't see any way forward.  It was too dark.",
+            "Maybe I was missing something.  Oh well."
+        ]
+    },
+    
+    "OutsetCenterWriter": {
+        "context": "story", "style": "default",
+        "statements": [
+            "Ooooo...",
+            "I didn't get to finish my book.  And I worked so hard on it...",
+            "But at least I won't have to worry about the deadline anymore.",
+            "...",
+            "Look, I'm just trying to keep a sense of humor about all this, okay?"
+        ]
+    },
+    "OutsetRiftHint": {
+        "context": "story", "style": "default",
+        "statements": [
+            "I've heard about a settlement of ghosts to the far north of here.",
+            "But the short route to get there collapsed.",
+            "The only ways to get there now are really dangerous."
+        ]
+    },
+    "OutsetRiftHint2": {
+        "context": "story", "style": "default",
+        "statements": [
+            "Oh, it's dangerous out there?",
+            "What's the worst that could happen?  We're already dead!"
+        ]
+    },
+
+    
+    "DregsLore": {
+        "context": "story", "style": "default",
+        "statements": [
+            "I've been granted a vision...",
+            "Souls from all over, being pulled through a rift.",
+            "Given new purpose, unable to pass away, they shuffle all around us.",
+            "But to what end?  What ties them to this place?",
+            "Underground...a bright core, radiating energy."
+        ]
+    },
+    "DregsIntro": {
+        "context": "story", "style": "default",
+        "statements": [
+            "can't go on much longer"
+        ]
+    },
+    "DregsIntro2": {
+        "context": "story", "style": "default",
+        "statements": [
+            "who am I", "where am I", "what is happening"
+        ]
+    },
+    "DregsIntro3": {
+        "context": "story", "style": "default",
+        "statements": [
+            "when", "will", "it", "end"
+        ]
+    },
+    "DregsTeeth": {
+        "context": "story", "style": "default",
+        "statements": [
+            "they spread everywhere",
+            "tearing this place apart"
+        ]
+    },
+    "DregsTeeth2": {
+        "context": "story", "style": "default",
+        "statements": [
+            "they are hungry",
+            "but they do not feed"
+        ]
+    },
+    "DregsOrb": {
+        "context": "story", "style": "default",
+        "statements": [
+            "her warmth is still here"
+        ]
+    },
+    "DregsOrb2": {
+        "context": "story", "style": "default",
+        "statements": [
+            "is it for the Sun"
+        ]
+    },
+    "DregsOrb3": {
+        "context": "story", "style": "default",
+        "statements": [
+            "the teeth cannot approach it"
+        ]
+    }
+
+}

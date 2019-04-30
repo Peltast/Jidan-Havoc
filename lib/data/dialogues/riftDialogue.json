@@ -1,0 +1,256 @@
+{
+
+    "RiftGuard": {
+        "context": "story", "style": "default",
+        "statements": [
+            "Hold on there.",
+            "Not just anyone can pass through here.  We have this place on firm lockdown.",
+            "Hmm...",
+            "I guess you seem okay.  You're certainly different from the other riffraff around here."
+        ],
+        "statements2": [
+            "...I don't think I could really stop you from entering, anyway."
+        ]
+    },
+    
+    "RiftGreeter": {
+        "context": "story", "style": "default",
+        "statements": [
+            "Hey!  Welcome to our little settlement here.",
+            "It's nice to see a fresh face.  You seem pretty lively, still.",
+            "Make yourself at home here."
+        ],
+        "statements2": [
+            "What's that?  It doesn't really look like a town?",
+            "Well, we're dead.  We don't really need houses or...anything, I guess.",
+            "Some good company is all we can hope for.",
+            "Others have used the mountain caves above as make-shift homes, though..."
+        ]
+    },
+    
+    "RiftResidentHeartwood": {
+        "context": "story", "style": "default",
+        "statements": [
+            "Hey there, friend.  You must have had to come pretty far to get here, huh?",
+            "You're braver than me.  After the road connection us to the Heartwood collapsed, well...",
+            "Most of us gave up on any contact with the outside."
+        ],
+        "statements2": [
+            "What's the Heartwood?",
+            "South of here, there's a big tree, with roots sprawling every which way.",
+            "A bunch of us took to calling that whole area the Heartwood as a short hand.",
+            "It used to be close to here, but now it make as well be on the other side of the world.",
+            "Er...does this place even have sides?  I guess I assumed it was flat..."
+        ]
+    },
+    "RiftResidentName": {
+        "context": "story", "style": "default",
+        "statements": [
+            "Hey, you're not from around here, huh?  Nice to meet ya!  Welcome to the Rift!"
+        ],
+        "statements2": [
+            "We started calling this place the Rift, on account of, well...",
+            "If you climb up the mountains, and keep climbing, and then climb some more...",
+            "You can reach a point where you're able to look over the edge of the world!",
+            "But it's all torn to pieces.  As if a giant ripped the world apart, and we're standing on one side."
+        ]
+    },
+    "RiftResidentProphet": {
+        "context": "story", "style": "default",
+        "statements": [
+            "Hmm...you seem alright.",
+            "You're the first one from outside here in a long time, but something about you...seems safe.",
+            "Don't be offended.  We're suspicious of everything from outside the Rift.",
+            "It's because of wisdom that the Prophet gave us."
+        ],
+        "statements2": [
+            "The prophet is a ghost that has been here longer than any one of us.",
+            "And yet, while over time other ghosts tend to...deteriorate...the Prophet is incredibly wise.",
+            "They remain on one of the mountain peaks above, and will give counsel to anyone who asks."
+        ]
+    },
+    "RiftResidentProphecy": {
+        "context": "story", "style": "default",
+        "statements": [
+            "I remember the last time we made the trip up to the Prophet for advice.",
+            "It was when the road to the Heartwood fell apart.  It sent some of us into a panic.",
+            "We weren't sure if it was a sign of things to come, or what to do...so we asked the Prophet."
+        ],
+        "statements2": [
+            "The Prophet gave us advice that was as clear as day.",
+            "This world is hostile, and agents from the outside seek to use us to their own ends...",
+            "The Rift is our safe haven.  It's best if we stick together here.  There are fates worse than death, after all."
+        ]
+    },
+
+    "RiftShopkeeper": {
+        "context": "story", "style": "default",
+        "statements": [
+            "Well, hello there!  Is there anything that catches your eye?",
+            "Don't be shy, if there's something you're interested in, I'm sure we can come to an agreement."
+        ],
+        "statements2": [
+            "...Yes, I know that I'm dead.",
+            "...All of this is just debris and junk.",
+            "Even if it wasn't, there's no currency to use, either."
+        ],
+        "statements3": [
+            "I used to be a shopkeeper when I was alive.",
+            "It's just nice to pretend."
+        ]
+    },
+    "RiftInnkeeper": {
+        "context": "story", "style": "default",
+        "statements": [
+            "Hi!  Would you like to spend the night here?  A room for one?"
+        ],
+        "statements2": [
+            "I don't get much business.",
+            "Probably because ghosts don't need to sleep.",
+            "Maybe I should rethink this whole thing..."
+        ]
+    },
+
+    "RiftMountainGuard": {
+        "context": "story", "style": "default",
+        "statements": [
+            "Heading up the mountain, eh?",
+            "It's a pretty safe area, so there's nothing to watch out for.",
+            "Just make sure you don't get lost or anything."
+        ],
+        "statements2": [
+            "There are more of us up in the mountain caves.",
+            "Feel free to ignore them.  They're a weird bunch.  Probably lost their minds.",
+            "I'm here to make sure they don't try anything stupid."
+        ],
+        "statements3": [
+            "Who would choose to live in some weird mountain caves by themselves?"
+        ]
+    },
+    
+
+    "RiftMountainTraveler": {
+        "context": "story", "style": "default",
+        "statements": [
+            "I came here just to take in the sights, but I got a little turned around.",
+            "As far as I know, there are three major mountain peaks in the Rift.",
+            "One of them is where the Prophet resides.  The others...I don't think we've explored them too well."
+        ],
+        "statements2": [
+            "The tallest peak in the Rift...people say that it's the entrance to this place.  Where we all fell from.",
+            "But I haven't seen it for myself.  I don't know if you can actually reach it from here.",
+            "The higher you travel these mountains, the harder it gets to continue.  I've never made it that far."
+        ],
+        "statements3": [
+            "A gate to the outside...I wonder what it looks like up close.",
+            "It's not like you can just jump back out though, right?"
+        ]
+    },
+    
+    "RiftCaveDweller": {
+        "context": "story", "style": "default",
+        "statements": [
+            "Well, well...it's a fresh face.",
+            "What led you up here?  Perhaps you're just the curious sort?",
+            "Yes, you'd have to be, to come to such an insignificant cavern."
+        ],
+        "statements2": [
+            "Sorry, there's no hidden treasure here.  No secrets that I'm keeping from everybody.",
+            "Though since you bothered to stop by, I'll at least tell you this.",
+            "You may have heard how the road to the Heartwood collapsed?",
+            "Well, it wasn't the first time the land around here shifted.  Far from it.",
+            "It's like the ground has a mind of its own, shifting whenever it feels uncomfortable, or something."
+        ],
+        "statements3": [
+            "There's so much we don't know about this world...",
+            "And yet we've all decided to just stay here, and let things sort themselves out.",
+            "Well, what does it matter, I guess?  We've already died..."
+        ]
+    },
+
+    "RiftCaveSkeptic": {
+        "context": "story", "style": "default",
+        "statements": [
+            "Hmm.  An outsider.",
+            "They let you into the Rift?  I'm surprised."
+        ],
+        "statements2": [
+            "Those down at the base of the mountain have some weird aversion to anything from outside.",
+            "Like, they have built this mountain up as some kind of barrier from danger.",
+            "But it's more like a prison."
+        ]
+    },
+    "RiftCaveProphecy": {
+        "context": "story", "style": "default",
+        "statements": [
+            "Some of us have decided to leave the others at the base of the mountain in protest.",
+            "They refuse to see reason or budge.  They'd prefer to stay here and rot for all eternity.",
+            "We're ghosts!  We're already dead!  Why should we be afraid of going out and exploring?!"
+        ],
+        "statements2": [
+            "Some time ago, I reached the Prophet on my own.",
+            "They told me all about the world here.  How it spreads in every direction, and has so many wonders...",
+            "A maze of hallways that go on forever.  A vast desert that echoes with the sounds of spirits.  A place wreathed in darkness...",
+            "They told me that the only way to escape this world was to explore these locations, and find the power they contain."
+        ],
+        "statements3": [
+            "I told the others what the Prophet told me...but not all of them want to listen.",
+            "They've become so comfortable, they'd rather stay in one place, no matter the cost."
+        ]
+    },
+    
+    "RiftCaveCaretaker": {
+        "context": "story", "style": "default",
+        "statements": [
+            "Hello there.  Welcome to my little dugout.",
+            "I don't really have anything, but, stay as long as you like."
+        ],
+        "statements2": [
+            "Over there is a friend of mine.",
+            "I was lost in the area outside of the Rift, and he helped bring me to this little settlement of kindred...spirits.",
+            "But lately...he hasn't been doing very well."
+        ],
+        "statements3": [
+            "It started very slowly, but it seems to be accelerating.",
+            "His mind...his personality...they're not what they used to be.",
+            "He was there when I needed help.  I want to repay him, but I don't know what to do...",
+            "When he was alive, he was a teacher.  His name was...",
+            "...",
+            "I can't seem to remember it right now."
+        ],
+        "statements4": [
+            "I'm sure it'll come back to me any moment now..."
+        ]
+    },
+    "RiftCaveHospice": {
+        "context": "story", "style": "default",
+        "statements": [
+            "where am I",
+            "I need to get back home"
+        ]
+    },
+
+    
+    "RiftProphet": {
+        "context": "story", "style": "default",
+        "statements": [
+            "You have traveled far, young one.",
+            "Do you seek knowledge?  I have been here since the beginning, and have learned much over time.",
+            "Now, listen carefully, for I will not repeat myself.",
+            "......Ria.",
+            "You have been thrown from home, and you struggle to fight your way back.",
+            "You are very self reliant.  You put so much pressure on yourself this way.",
+            "But, you are here because of a personal failing.  And you have not committed to learning what that is.",
+            "It is past time that you take responsibility.",
+            "If you continue to ignore the truth and press on alone, you will remain stuck.",
+            "There is another here who is like you...perhaps they have already asked for your help.",
+            "If you ignore them for selfish reasons, you are sealing your own fate."
+        ],
+        "statements2": [
+            "..."
+        ]
+    }
+    
+    
+
+}

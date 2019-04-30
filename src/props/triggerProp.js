@@ -1,0 +1,40 @@
+define("TriggerProp", ['Prop', 'GameObject'], function(Prop, GameObject) {
+
+    class TriggerProp extends Prop {
+
+        constructor(location, size, spriteSheetImg, data) {
+            super(location, size, true, spriteSheetImg, data);
+
+            this.collidingWithPlayer = false;
+            this.animated = false;
+            this.collisionCount = 0;
+            this.lastTickCount = 0;
+        }
+        initializeSprite() {
+            this.sprite.gotoAndStop("idle");
+            this.sprite.x = this.location.X;
+            this.sprite.y = this.location.Y;
+        }
+        
+        updateProp() {
+            
+            if (this.collidingWithPlayer && !this.animated) {
+                this.animated = true;
+                this.sprite.gotoAndStop("active");
+                
+                var sound = new Howl({
+                    src: [soundRoot + this.sound],
+                    volume: 1,
+                }).play();
+            }
+        }
+        
+        handleInteraction(player) {
+            this.collidingWithPlayer = true;
+        }
+
+    }
+
+    return TriggerProp;
+
+});
