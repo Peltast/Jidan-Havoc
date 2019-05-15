@@ -2,8 +2,8 @@ define("Enemy", ['Actor'], function(Actor) {
 
     class Enemy extends Actor {
 
-        constructor(maxSpeed, acceleration, deceleration, actorSize, spriteData, enemyData) {
-            super(maxSpeed, acceleration, deceleration, actorSize, spriteData, enemyData);
+        constructor(actorSize, spriteData, enemyData) {
+            super(actorSize, spriteData, enemyData);
             
             this.pathXAxis = enemyData.xAxis;
             this.pathDirection = enemyData.startDirection;

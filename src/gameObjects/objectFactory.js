@@ -178,7 +178,7 @@ define("ObjectFactory", [
                 spriteData = this.getSpriteData(enemyMapData, enemyListData);
             spriteData["defaultAnimation"] = enemyData["startDirection"];
 
-            var newEnemy = new Enemy(enemySpeed, enemyAcc, enemyDec, enemySize, spriteData, enemyData);
+            var newEnemy = new Enemy(enemySize, spriteData, enemyData);
             newEnemy.location = this.getObjectLocation(enemyMapData);
 
             return newEnemy;

@@ -20,9 +20,7 @@ define("GameObject", ['Point'], function(Point) {
                 this.initiateSprite();
             }
             if (objData) {
-                this.fakeSpriteData = objData["fakeSpriteData"];
-                if (this.fakeSpriteData)
-                    this.initiateFakeSprite();
+                
             }
         }
         loadSpriteData(spriteData) {
@@ -73,40 +71,6 @@ define("GameObject", ['Point'], function(Point) {
             if (this.spriteRandomFrameStart)
                 this.randomizeAnimationFrame();
         }
-        initiateFakeSprite() {
-            if (this.spriteContainer.contains(this.fakeSprite))
-                this.spriteContainer.removeChild(this.fakeSprite);
-            
-            var fakeFrames = this.fakeSpriteData["frames"] ? this.fakeSpriteData["frames"] : {"width": this.spriteSize.X, "height": this.spriteSize.Y, "regX": 0, "regY": 0};
-            var fakeAnimations = this.fakeSpriteData["animations"] ? this.fakeSpriteData["animations"] : { idle: 0 };
-            var fakeDefaultAnim = this.fakeSpriteData["fakeAnimation"] ? this.fakeSpriteData["fakeAnimation"] : this.fakeSpriteData["defaultAnimation"];
-            this.fakePosition = this.fakeSpriteData["spritePosition"] ? this.fakeSpriteData["spritePosition"] : new Point(0,0);
-            this.fakeSize = this.fakeSpriteData["spriteSize"] ? this.fakeSpriteData["spriteSize"] : this.spriteSize;
-
-            var fakeSheet = new createjs.SpriteSheet({
-                "images": [this.fakeSpriteData["spriteImage"]],
-                "frames": fakeFrames,
-                animations: fakeAnimations
-            });
-            this.fakeSprite = new createjs.Sprite(fakeSheet);
-            this.sprite.alpha = 0;
-            
-            if (fakeDefaultAnim && fakeAnimations[fakeDefaultAnim]) {
-                var startAnimation = fakeAnimations[fakeDefaultAnim];
-                
-                if (startAnimation.length > 0)
-                    this.fakeSprite.gotoAndPlay(fakeDefaultAnim);
-                else
-                    this.fakeSprite.gotoAndStop(fakeDefaultAnim);
-            }
-            this.isFakeOn = true;
-            this.spriteContainer.addChild(this.fakeSprite);
-            this.fakeSprite.x = -this.fakePosition.X;
-            this.fakeSprite.y = -this.fakePosition.Y;
-            this.spriteContainer.x = this.location.X;
-            this.spriteContainer.y = this.location.Y;
-            this.spriteContainer.setBounds(this.fakePosition.X, this.fakePosition.Y, this.fakeSize.X, this.fakeSize.Y + this.zPos);
-        }
         randomizeAnimationFrame() {
             
             var frameRange = this.spriteSheet.getNumFrames(this.sprite.currentAnimation);
@@ -116,41 +80,11 @@ define("GameObject", ['Point'], function(Point) {
             }
         }
         
-        isFakeState() {
-            if (!this.fakeSprite)
-                return false;
-            else
-                return this.isFakeOn;
-        }
-        swapFakeSprite() {
-            if (!this.fakeSprite)
-                return;
-                
-            if (!this.isFakeOn) {
-                this.fakeSprite.alpha = 1;
-                this.sprite.alpha = 0;
-            }
-            else {
-                this.fakeSprite.alpha = 0;
-                this.sprite.alpha = 1;
-            }
-            this.isFakeOn = !this.isFakeOn;
-        }
         getObjectDisplaySize() {
-            if (!this.fakeSpriteData)
-                return this.spriteSize.get();
-            else if (this.fakeSprite.alpha == 1)
-                return this.fakeSize.get();
-            else
-                return this.spriteSize.get();
+            return this.spriteSize.get();
         }
         getObjectDisplayPos() {
-            if (!this.fakeSpriteData)
-                return this.spritePosition.get();
-            else if (this.fakeSprite.alpha == 1)
-                return this.fakePosition.get();
-            else
-                return this.spritePosition.get();
+            return this.spritePosition.get();
         }
     
         checkCollision(otherObject, checkPassable) {

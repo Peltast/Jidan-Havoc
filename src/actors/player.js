@@ -1,69 +1,49 @@
-define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem'], function(Actor, Tile, Prop, Enemy, Point, ParticleSystem) {
+define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', 'ActorController'], 
+    function (Actor, Tile, Prop, Enemy, Point, ParticleSystem, ActorController) {
 
     class Player extends Actor {
 
         constructor() {
             var playerSpriteData = {
                 "spriteImage": gameAssets["Player"],
-                "spriteCollision": new Point(24, 20),
+                "spriteCollision": new Point(24, 28),
                 "spriteSize": new Point(32, 36),
-                "spritePosition": new Point(4, 16)
+                "spritePosition": new Point(4, 8)
             };
-            super(2.5, 1, 1, playerSpriteData["spriteSize"], playerSpriteData);
+            super(playerSpriteData["spriteCollision"], playerSpriteData);
 
-            this.mass = 100;
-            
-            this.UIcolorNeutral = "#f2d3ab";
-            this.UIcolorFail = "#b44440";
-            this.UIcolorSuccess = "#6dffe4";
-            this.UIstatus = -1;
-
+            this.mass = 1;
             this.respawnStatus = -1;
             this.warpStatus = -1;
             this.frozen = false;
             this.warpPoint = null;
 
-            this.state = "";
-            this.priorState = "";
-
             this.maxHealth = 2;
             this.currentHealth = 2;
             this.maxIFrames = 60;
             this.iFrames = 0;
-            this.regenWaitTime = 60;
-            this.regenCountdown;
 
             this.resetWaitTime = 30;
             this.resetCountdown = 0;
-
-            this.learnedAbilities = [];
-            this.abilityState = "";
-
-            this.runSpeed = 3.5;
-            this.sprintSpeed = 5;
-            this.sprintWindup = 20;
-            this.dashSpeed = 20;
-            this.dashDistance = 4;
-            this.dashTimer = 0;
-            this.dashCost = 40;
 
             this.interactionRange = tileSize / 2;
             this.interactionOrigin = new Point();
 
             this.initInteractionElements();
 
-            this.particleEffects = [];
+            this.addHitbox(24, -8, 10, 36, this.location);
+            this.addHurtbox(0, 0, 24, 28, this.location);
         }
         initiateSprite() {
             var spriteSheet = new createjs.SpriteSheet({
                 "images": [this.spriteSheetImg],
                 "frames": {"width": this.spriteSize.X, "height": this.spriteSize.Y, "regX": 0, "regY": 0, "count": 208},
                 animations: {
-                    right: [0, 2, "right", .2],
-                    left: [7, 9, "left", .2],
+                    right: [0, 2, "right", .1],
+                    left: [7, 9, "left", .1],
 
-                    rightWalk: [14, 17, "rightWalk", .2],
-                    leftWalk: [21, 24, "leftWalk", .2],
+                    rightWalk: [14, 17, "rightWalk", .1],
+                    leftWalk: [21, 24, "leftWalk", .1],
                     
                     rightJump: 28, rightFall: 29,
                     leftJump: 30, leftFall: 31,
@@ -75,7 +55,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem'], 
             });
 
             this.sprite = new createjs.Sprite(spriteSheet);
-            this.sprite.gotoAndPlay("down");
+            this.sprite.gotoAndPlay("right");
             this.sprite.x = this.location.X - this.spritePosition.X;
             this.sprite.y = this.location.Y - this.spritePosition.Y;
             this.spriteContainer.addChild(this.sprite);
@@ -109,12 +89,6 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem'], 
                     break;
                 case "right":
                     this.goingRight = isMoving;
-                    break;
-                case "up":
-                    this.goingUp = isMoving;
-                    break;
-                case "down":
-                    this.goingDown = isMoving;
                     break;
             }
         }
@@ -170,9 +144,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem'], 
                     this.spriteContainer.alpha = 1;
             }
         }
-        updateSpecialAbilities() {
-            
-        }
+        updateSpecialAbilities() { }
 
         updateState() {
 
@@ -189,7 +161,24 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem'], 
                 else 
                     this.state = "Walk";
             }
+        }
 
+        setPlayerJump() {
+            if (this.controller.currentJumps <= 0 || this.jumpHeld)
+                return;
+            
+            this.velocity.Y = -this.controller.jumpVelocity;
+            this.controller.currentJumps -= 1;
+            
+            this.state = "Jump";
+            this.onGround = false;
+            this.goingUp = true;
+
+            this.jumpHeld = true;
+        }
+        releasePlayerJump() {
+            this.goingUp = false;
+            this.jumpHeld = false;
         }
 
         interact() {
@@ -267,56 +256,6 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem'], 
             
         }
 
-        beginSprint() {
-            this.setFrozen(true);
-            this.maxSpeed = this.sprintSpeed;
-            this.abilityState = "sprint";
-            this.state = "Dash";
-            switch (this.orientation) {
-                case "left":
-                    this.goingLeft = true;
-                    break;
-                case "right":
-                    this.goingRight = true;
-                    break;
-                case "down":
-                    this.goingDown = true;
-                    break;
-                case "up":
-                    this.goingUp = true;
-                    break;
-            }
-        }
-        endSprint() {
-            this.setFrozen(false);
-            this.maxSpeed = this.baseSpeed;
-            this.goingLeft = false;
-            this.goingRight = false;
-            this.goingUp = false;
-            this.goingDown = false;
-
-            this.sprintWindup = 20;
-            this.abilityState = "";
-            this.state = "";
-        }
-
-        beginDash() {
-            this.state = "WraithDash";
-            this.abilityState = "dash";
-            this.controlsLocked = true;
-            this.passable = true;
-            
-            this.maxSpeed = this.dashSpeed;
-            this.targetVelocity.setMagnitude(this.dashSpeed);
-        }
-        endDash() {
-            this.state = "";
-            this.abilityState = "";
-            this.controlsLocked = false;
-            this.passable = false;
-            this.maxSpeed = this.baseSpeed;
-        }
-
         handleCollisions() {
             if (this.passable)
                 return;
@@ -351,8 +290,6 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem'], 
             if (b) {
                 this.goingLeft = false;
                 this.goingRight = false;
-                this.goingUp = false;
-                this.goingDown = false;
             }
         }
 

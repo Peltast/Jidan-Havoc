@@ -3,6 +3,7 @@ require.config({
     paths: {
 
       "point" : "src/gameObjects/point",
+      "collisionBox" : "src/gameObjects/collisionBox",
       "gameObject" : "src/gameObjects/gameObject",
       "objectFactory": "src/gameObjects/objectFactory",
 
@@ -20,6 +21,7 @@ require.config({
       "particle": "src/effects/particle",
       "particleSystem": "src/effects/particleSystem",
 
+      "actorController": "src/actors/actorController",
       "enemy": "src/actors/enemy",
       "player": "src/actors/player",
 
@@ -31,11 +33,11 @@ require.config({
   
 requirejs(['point'], function() {
 
-    requirejs(['gameObject', 'levelParser', 'particle', 'healthBar'], function() {
+    requirejs(['gameObject', 'collisionBox', 'levelParser', 'particle', 'healthBar'], function() {
 
         requirejs(['tile', 'actor', 'prop', 'transition', 'particleSystem', 'dialogueBox'], function() {
 
-            requirejs(['switchProp', 'triggerProp', 'enemy'], function() {
+            requirejs(['switchProp', 'triggerProp', 'enemy', 'actorController'], function() {
 
                 requirejs(['player', 'objectFactory'], function() {
 

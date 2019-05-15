@@ -212,41 +212,30 @@ require(
             case 39: //right arrow
                 player.setActorDirection("right", true);
                 break;
-            case 83: //s
-                player.setActorDirection("down", true);
-                break;
-            case 40: // down arrow
-                player.setActorDirection("down", true);
-                break;
+                
             case 65: //a
                 player.setActorDirection("left", true);
                 break;
             case 37: // left arrow
                 player.setActorDirection("left", true);
                 break;
+                
             case 87: //w
-                player.setActorDirection("up", true);
+                player.setPlayerJump();
                 break;
             case 38: // up arrow
-                player.setActorDirection("up", true);
+                player.setPlayerJump();
+                break;
+            case 32: // space
+                player.setPlayerJump();
                 break;
 
-            case 32: // space
-                player.drawPlacementTile();
-                break;
-            case 74: // j
-                player.drawPlacementTile();
-                break;
-            case 88: // x
-                player.drawPlacementTile();
-                break;
-                
-            case 82: // r
-                player.holdReset();
-                break;
-            case 16: // shift
-                player.pressSpecial();
-                break;
+            // case 82: // r
+            //     player.holdReset();
+            //     break;
+            // case 16: // shift
+            //     player.pressSpecial();
+            //     break;
     
         }
     }
@@ -261,61 +250,43 @@ require(
             case 39: //right arrow
                 player.setActorDirection("right", false);
                 break;
-            case 83: // s
-                player.setActorDirection("down", false);
-                break;
-            case 40: // down arrow
-                player.setActorDirection("down", false);
-                break;
+                
             case 65: // a
                 player.setActorDirection("left", false);
                 break;
             case 37: // left arrow
                 player.setActorDirection("left", false);
                 break;
+
             case 87: // w
-                player.setActorDirection("up", false);
+                player.releasePlayerJump();
                 break;
             case 38: // up arrow
-                player.setActorDirection("up", false);
+                player.releasePlayerJump();
                 break;
-            
-            case 49: // 1
-                player.changeSpiritSelection(-1);
-                break;
-            case 50: // 2
-                player.changeSpiritSelection(1);
-                break;
-
             case 32: // space
-                player.moveSpirit();
-                break;
-            case 74: // j
-                player.moveSpirit();
-                break;
-            case 88: // x
-                player.moveSpirit();
+                player.releasePlayerJump();
                 break;
                 
-            case 82: // r
-                player.releaseReset();
-                break;
-            case 16: // shift
-                player.releaseSpecial();
-                break;
+            // case 82: // r
+            //     player.releaseReset();
+            //     break;
+            // case 16: // shift
+            //     player.releaseSpecial();
+            //     break;
 
-            case 69:  // e
-                if (currentStatement === null)
-                    player.interact();
-                else 
-                    progressDialogueBox();
-                break;
-            case 90: // z
-                if (currentStatement === null)
-                    player.interact();
-                else
-                    progressDialogueBox();
-                break;
+            // case 69:  // e
+            //     if (currentStatement === null)
+            //         player.interact();
+            //     else 
+            //         progressDialogueBox();
+            //     break;
+            // case 90: // z
+            //     if (currentStatement === null)
+            //         player.interact();
+            //     else
+            //         progressDialogueBox();
+            //     break;
 
         }
     }
