@@ -6,9 +6,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
         constructor() {
             var playerSpriteData = {
                 "spriteImage": gameAssets["Player"],
-                "spriteCollision": new Point(24, 28),
+                "spriteCollision": new Point(20, 28),
                 "spriteSize": new Point(32, 36),
-                "spritePosition": new Point(4, 8)
+                "spritePosition": new Point(6, 8)
             };
             super(playerSpriteData["spriteCollision"], playerSpriteData);
 
@@ -32,7 +32,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             this.initInteractionElements();
 
             this.addHitbox(24, -8, 10, 36, this.location);
-            this.addHurtbox(0, 0, 24, 28, this.location);
+            this.addHurtbox(0, 0, 20, 28, this.location);
         }
         initiateSprite() {
             var spriteSheet = new createjs.SpriteSheet({
@@ -48,9 +48,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
                     rightJump: 28, rightFall: 29,
                     leftJump: 30, leftFall: 31,
 
-                    downDeath: [32, 46, "finished", .6], upDeath: [48, 62, "finished", .6],
-                    rightDeath: [64, 78, "finished", .6], leftDeath: [80, 94, "finished", .6],
-                    finished: 111
+                    leftDeath: [63, 66, "finished", .2], rightDeath: [63, 66, "finished", .2],
+                    
+                    finished: 4
                 }
             });
 
@@ -147,24 +147,31 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
         updateSpecialAbilities() { }
 
         updateState() {
+            this.enactNewState();
 
+            if (this.frozen)
+                return;
+
+            else if (this.state === "" || this.state === "Walk") {
+                if (this.targetVelocity.X == 0 && this.targetVelocity.Y == 0)
+                    this.state = "";
+                else 
+                    this.state = "Walk";
+            }
+            else if (this.state === "Jump" && this.velocity.Y > 0)
+                this.state = "Fall";
+        }
+        enactNewState() {
             if (this.priorOrientation !== this.orientation || this.priorState !== this.state) {
                 this.priorOrientation = this.orientation;
                 this.priorState = this.state;
 
                 this.sprite.gotoAndPlay(this.orientation + this.state);
             }
-
-            if (this.state === "" || this.state === "Walk") {
-                if (this.targetVelocity.X == 0 && this.targetVelocity.Y == 0)
-                    this.state = "";
-                else 
-                    this.state = "Walk";
-            }
         }
 
-        setPlayerJump() {
-            if (this.controller.currentJumps <= 0 || this.jumpHeld)
+        jumpHold() {
+            if (this.controller.currentJumps <= 0 || this.jumpHeld || this.frozen)
                 return;
             
             this.velocity.Y = -this.controller.jumpVelocity;
@@ -176,9 +183,21 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
 
             this.jumpHeld = true;
         }
-        releasePlayerJump() {
+        jumpRelease() {
             this.goingUp = false;
             this.jumpHeld = false;
+        }
+
+        attack() {
+            if (this.frozen)
+                return;
+            
+            if (this.onGround) {
+                
+            }
+            else {
+
+            }
         }
 
         interact() {
@@ -322,38 +341,42 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             }
         }
 
-        takeDamage(damageSource) {
-            if (this.iFrames > 0) {
-                return;
-            }
+        takeDamage() {
+            this.respawnPlayer();
+        }
 
-            player.currentHealth -= 1;
-            healthBar.takeDamage();
+        // takeDamage(damageSource) {
+        //     if (this.iFrames > 0) {
+        //         return;
+        //     }
+
+        //     player.currentHealth -= 1;
+        //     healthBar.takeDamage();
                 
-            if (player.currentHealth <= 0) {
-                this.respawnPlayer();
-                this.iFrames = this.maxIFrames;
-                player.currentHealth = player.maxHealth;
-                healthBar.updateHealthBar();
-            }
-            else {
-                this.knockbackPlayer(damageSource);
-            }
-        }
-        knockbackPlayer(damageSource) {
-            this.spriteContainer.alpha = .5;
-            this.iFrames = this.maxIFrames;
+        //     if (player.currentHealth <= 0) {
+        //         this.respawnPlayer();
+        //         this.iFrames = this.maxIFrames;
+        //         player.currentHealth = player.maxHealth;
+        //         healthBar.updateHealthBar();
+        //     }
+        //     else {
+        //         this.knockbackPlayer(damageSource);
+        //     }
+        // }
+        // knockbackPlayer(damageSource) {
+        //     this.spriteContainer.alpha = .5;
+        //     this.iFrames = this.maxIFrames;
 
-            var collision = this.getCollisionVector(damageSource);
-            var knockbackAngle = Math.atan2(collision.Y, collision.X);
-            var knockbackForce = new Point( Math.cos(knockbackAngle), Math.sin(knockbackAngle) );
-            knockbackForce.normalize();
-            knockbackForce.multiply(new Point(15, 15));
+        //     var collision = this.getCollisionVector(damageSource);
+        //     var knockbackAngle = Math.atan2(collision.Y, collision.X);
+        //     var knockbackForce = new Point( Math.cos(knockbackAngle), Math.sin(knockbackAngle) );
+        //     knockbackForce.normalize();
+        //     knockbackForce.multiply(new Point(15, 15));
             
-            this.velocity.add(knockbackForce);
-            this.updatePosition(true);
-            this.updatePosition(false);
-        }
+        //     this.velocity.add(knockbackForce);
+        //     this.updatePosition(true);
+        //     this.updatePosition(false);
+        // }
 
         respawnPlayer() {
             if (this.respawnStatus >= 0)
@@ -369,16 +392,12 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             if (this.sprite.currentAnimation != "finished" && this.sprite.currentAnimation != "warpFinished")
                 return;
             else if (this.respawnStatus == 0) {
-                this.respawnStatus = 1;
-                this.orientation = "";
-                this.state = "rebirth";
-                transition = {map: currentCheckpoint.map, location: currentCheckpoint.location};
-            }
-            else if (this.respawnStatus == 1) {
                 this.respawnStatus = -1;
-                this.orientation = "down";
+                this.orientation = "right";
                 this.state = "";
                 this.setFrozen(false);
+
+                transition = {map: currentCheckpoint.map, location: currentCheckpoint.location};
             }
         }
 

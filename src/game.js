@@ -193,8 +193,10 @@ require(
             else if (player.location.X <= 0)
                 player.location.X = 0;
 
-            if (player.location.Y + player.size.Y >= totalMapSize.Y)
+            if (player.location.Y + player.size.Y >= totalMapSize.Y) {
                 player.location.Y = totalMapSize.Y - player.size.Y;
+                player.takeDamage();
+            }
             else if (player.location.Y <= 0)
                 player.location.Y = 0;
         }
@@ -221,21 +223,22 @@ require(
                 break;
                 
             case 87: //w
-                player.setPlayerJump();
+                player.jumpHold();
                 break;
             case 38: // up arrow
-                player.setPlayerJump();
+                player.jumpHold();
                 break;
             case 32: // space
-                player.setPlayerJump();
+                player.jumpHold();
+                break;
+            case 16: // shift
+                player.jumpHold();
                 break;
 
             // case 82: // r
             //     player.holdReset();
             //     break;
-            // case 16: // shift
-            //     player.pressSpecial();
-            //     break;
+            
     
         }
     }
@@ -259,18 +262,30 @@ require(
                 break;
 
             case 87: // w
-                player.releasePlayerJump();
+                player.jumpRelease();
                 break;
             case 38: // up arrow
-                player.releasePlayerJump();
+                player.jumpRelease();
                 break;
             case 32: // space
-                player.releasePlayerJump();
+                player.jumpRelease();
                 break;
-                
-            // case 82: // r
-            //     player.releaseReset();
-            //     break;
+            case 16: // shift
+                player.jumpRelease();
+                break;
+
+
+            case 84: // t
+                currentLevel.toggleHitboxDisplay();
+                break;
+            case 82: // r
+                player.respawnPlayer();
+                break;
+
+            case 74: // j
+                player.attack();
+                break;
+
             // case 16: // shift
             //     player.releaseSpecial();
             //     break;

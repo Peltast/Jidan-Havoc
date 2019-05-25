@@ -10,9 +10,8 @@ define("CollisionBox", ['Point'], function(Point) {
 
             this.testShape = new createjs.Shape();
             this.testShape.graphics.beginFill(this.type == "hitBox" ? "#dd0000" : "#333333").drawRect(x, y, width, height);
-            this.testShape.alpha = .6;
+            this.testShape.alpha = 0;
         }
-        //https://youtu.be/EA7UQOYskas
 
         get() {
             return new CollisionBox(this.location.X, this.location.Y, this.size.X, this.size.Y);
@@ -65,6 +64,10 @@ define("CollisionBox", ['Point'], function(Point) {
             var otherCenter = new Point(otherBox.getX() + otherBox.size.X / 2, otherBox.getY() + otherBox.size.Y / 2);
 
             return new Point(objectCenter.X - otherCenter.X, objectCenter.Y - otherCenter.Y);
+        }
+
+        toggleDisplay() {
+            this.testShape.alpha = this.testShape.alpha > 0 ? 0 : 0.5;
         }
 
     }

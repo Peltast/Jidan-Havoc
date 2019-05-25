@@ -272,6 +272,12 @@ define("Level", [
                 index += 1;
             }
         }
+
+        toggleHitboxDisplay() {
+            this.actors.forEach((actor) => {
+                actor.toggleHitboxDisplays();
+            });
+        }
         
 
         updateLevel() {
@@ -341,6 +347,19 @@ define("Level", [
             player.location = new Point(location.X, location.Y);
         }
 
+
+        checkHitboxCollisions(hurtBox) {
+            var collisions = [];
+            this.actors.forEach((actor) => {
+                actor.hitBoxes.forEach((hitBox) => {
+                    if (hurtBox.intersects(hitBox))
+                        collisions.push(hitBox);
+                })
+            })
+
+            return collisions;
+        }
+
         checkInteractionCollisions(x, y, width, height, checkPassable = true) {
             var collisions = [];
             for (let i = 0; i < this.actors.length; i++) {
@@ -353,6 +372,7 @@ define("Level", [
             }
             return collisions;
         }
+        
         checkObjectCollisionsByRect(x, y, width, height, checkPassable = true) {
             var collisions = [];
             collisions = this.addCollisionsFromObjectTypeByRect(this.props, checkPassable, collisions, x, y, width, height);

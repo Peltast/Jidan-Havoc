@@ -12,19 +12,16 @@ define("ActorController", ['Point'], function(Point) {
             this.maxRunSpeed = 4;
             this.jumpHeight = 80;
             this.shortJumpHeight = 16;
-            this.timeToJumpApex = 30;
+            this.timeToJumpApex = 28;
             
-            this.maxJumps = 1;
-            this.currentJumps = 1;
+            this.maxJumps = 2;
+            this.currentJumps = this.maxJumps;
             
             this.gravity = (2 * this.jumpHeight) / Math.pow(this.timeToJumpApex, 2);
             this.shortJumpVelocity = Math.sqrt(2 * this.gravity * this.shortJumpHeight);
             this.jumpVelocity = this.gravity * this.timeToJumpApex;
             this.glideVelocity = Math.sqrt(2 * this.gravity * this.glideHeight);
             this.maxGravity = this.gravity * 60;
-
-            console.log(this.gravity);
-            console.log(this.jumpVelocity);
         }
 
         updateSpeed(actor) {
@@ -38,7 +35,7 @@ define("ActorController", ['Point'], function(Point) {
             if (Math.abs(actor.velocity.X) <= .01) {
                 actor.velocity.X = 0;
             }
-            else if (actor.targetVelocity.X == 0 && !actor.goingLeft && !actor.goingRight && Math.abs(actor.velocity.X) <= 0.025) {
+            else if (actor.targetVelocity.X == 0 && !actor.goingLeft && !actor.goingRight && Math.abs(actor.velocity.X) <= 0.03) {
                 actor.velocity.X = 0;
             }
         }

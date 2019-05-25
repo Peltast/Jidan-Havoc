@@ -67,6 +67,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
                 this.location.Y += this.velocity.Y;
 
             this.location = new Point(Math.floor(this.location.X * 100) / 100, Math.floor(this.location.Y * 100) / 100);
+            this.checkHurtbox();
             this.handleCollisions();
 
             var collisions = currentLevel.checkObjectCollisions(this);
@@ -143,7 +144,6 @@ function(       GameObject, Point, CollisionBox, ActorController) {
         }
         
         setGrounded() {
-            // console.log("grounded");
             this.velocity.Y = this.controller.gravity;
             
             this.onGround = true;
@@ -151,7 +151,6 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             this.state = "";
         }
         setUnGrounded() {
-            // console.log("UNgrounded");
             this.onGround = false;
             if (this.controller.currentJumps > 0)
                 this.controller.currentJumps -= 1;
@@ -195,6 +194,20 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             }
         }
 
+        checkHurtbox() {
+            var collisions = [];
+            for (let i = 0; i < this.hurtBoxes.length; i++) {
+                collisions = collisions.concat(currentLevel.checkHitboxCollisions(this.hurtBoxes[i]));
+            }
+
+            if (collisions.length > 0) {
+                this.takeDamage();
+            }
+        }
+        takeDamage() {
+            // Hook for player/enemies to implement behavior when damaged
+        }
+
         addHitbox(x, y, width, height, origin) {
             var hitbox = new CollisionBox(true, x, y, width, height);
             hitbox.origin = origin;
@@ -202,7 +215,6 @@ function(       GameObject, Point, CollisionBox, ActorController) {
 
             if (hitbox.testShape)
                 this.spriteContainer.addChild(hitbox.testShape);
-            console.log(hitbox);
         }
         addHurtbox(x, y, width, height, origin) {
             var hurtbox = new CollisionBox(false, x, y, width, height);
@@ -227,6 +239,14 @@ function(       GameObject, Point, CollisionBox, ActorController) {
 
             if (this.spriteContainer.contains(hurtbox.testShape))
                 this.spriteContainer.removeChild(hurtbox.testShape);
+        }
+        toggleHitboxDisplays() {
+            this.hitBoxes.forEach((hitbox) => {
+                hitbox.toggleDisplay();
+            });
+            this.hurtBoxes.forEach((hurtbox) => {
+                hurtbox.toggleDisplay();
+            });
         }
 
 
