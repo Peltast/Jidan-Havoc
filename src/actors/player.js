@@ -1,5 +1,5 @@
-define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', 'ActorController'], 
-    function (Actor, Tile, Prop, Enemy, Point, ParticleSystem, ActorController) {
+define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', 'ActorController', 'Attack'], 
+    function (Actor, Tile, Prop, Enemy, Point, ParticleSystem, ActorController, Attack) {
 
     class Player extends Actor {
 
@@ -33,6 +33,11 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
 
             this.addHitbox(24, -8, 10, 36, this.location);
             this.addHurtbox(0, 0, 20, 28, this.location);
+
+            this.aerialAttack = new Attack("", "aerialAttack", "aerialRecovery");
+            console.log(this.aerialAttack);
+
+            this.currentAttack = null;
         }
         initiateSprite() {
             var spriteSheet = new createjs.SpriteSheet({
@@ -131,6 +136,8 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             this.updateImmunity();
             this.updateSpecialAbilities();
 
+            if (this.currentAttack)
+                this.updateAttack();
             if (this.respawnStatus >= 0)
                 this.updateRespawn();
             else if (this.warpStatus >= 0)
@@ -146,20 +153,18 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
         }
         updateSpecialAbilities() { }
 
+        updateAttack() {
+
+            if (!this.currentAttack.updateAttack())
+                this.currentAttack = null;
+        }
+
         updateState() {
             this.enactNewState();
 
-            if (this.frozen)
-                return;
+            if (!this.frozen)
+                this.setMotionState();
 
-            else if (this.state === "" || this.state === "Walk") {
-                if (this.targetVelocity.X == 0 && this.targetVelocity.Y == 0)
-                    this.state = "";
-                else 
-                    this.state = "Walk";
-            }
-            else if (this.state === "Jump" && this.velocity.Y > 0)
-                this.state = "Fall";
         }
         enactNewState() {
             if (this.priorOrientation !== this.orientation || this.priorState !== this.state) {
@@ -169,13 +174,23 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
                 this.sprite.gotoAndPlay(this.orientation + this.state);
             }
         }
+        setMotionState() {
+            if (this.state === "" || this.state === "Walk") {
+                if (this.targetVelocity.X == 0 && this.targetVelocity.Y == 0)
+                    this.state = "";
+                else 
+                    this.state = "Walk";
+            }
+            else if (this.state === "Jump" && this.velocity.Y > 0)
+                this.state = "Fall";
+        }
 
         jumpHold() {
-            if (this.controller.currentJumps <= 0 || this.jumpHeld || this.frozen)
+            if (this.currentController.currentJumps <= 0 || this.jumpHeld || this.frozen)
                 return;
             
-            this.velocity.Y = -this.controller.jumpVelocity;
-            this.controller.currentJumps -= 1;
+            this.velocity.Y = -this.currentController.jumpVelocity;
+            this.currentController.currentJumps -= 1;
             
             this.state = "Jump";
             this.onGround = false;
@@ -196,7 +211,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
                 
             }
             else {
-
+                this.currentAttack = this.aerialAttack;
             }
         }
 

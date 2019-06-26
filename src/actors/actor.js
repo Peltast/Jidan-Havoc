@@ -1,6 +1,6 @@
 define("Actor", ['GameObject', 'Point', 'CollisionBox', 'ActorController'], 
 function(       GameObject, Point, CollisionBox, ActorController) {
-    
+
     class Actor extends GameObject {
 
         constructor(actorSize, spriteData, actorData) {
@@ -20,7 +20,8 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             this.priorState = "";
 
             this.controlsLocked = false;
-            this.controller = new ActorController();
+            this.defaultController = new ActorController(controllerData["default"]);
+            this.currentController = this.defaultController;
 
             this.particleEffects = [];
             this.hitBoxes = [];
@@ -40,24 +41,24 @@ function(       GameObject, Point, CollisionBox, ActorController) {
                 return;
 
             if (this.goingLeft) {
-                this.targetVelocity.X = -this.controller.maxRunSpeed;
+                this.targetVelocity.X = -this.currentController.maxRunSpeed;
                 this.orientation = "left";
             }
             else if (this.goingRight) {
-                this.targetVelocity.X = this.controller.maxRunSpeed;
+                this.targetVelocity.X = this.currentController.maxRunSpeed;
                 this.orientation = "right";
             }
             else
                 this.targetVelocity.X = -this.velocity.X;
         }
         updateSpeed() {
-            if (this.controller) {
-                this.controller.updateSpeed(this);
+            if (this.currentController) {
+                this.currentController.updateSpeed(this);
             }
             else {
                 this.velocity.add(this.targetVelocity);
-                if (this.velocity.magnitude() > this.controller.maxRunSpeed)
-                    this.velocity.setMagnitude(this.controller.maxRunSpeed);
+                if (this.velocity.magnitude() > this.currentController.maxRunSpeed)
+                    this.velocity.setMagnitude(this.currentController.maxRunSpeed);
             }
         }
         updatePosition(xAxis) {
@@ -144,16 +145,16 @@ function(       GameObject, Point, CollisionBox, ActorController) {
         }
         
         setGrounded() {
-            this.velocity.Y = this.controller.gravity;
+            this.velocity.Y = this.currentController.gravity;
             
             this.onGround = true;
-            this.controller.currentJumps = this.controller.maxJumps;
+            this.currentController.currentJumps = this.currentController.maxJumps;
             this.state = "";
         }
         setUnGrounded() {
             this.onGround = false;
-            if (this.controller.currentJumps > 0)
-                this.controller.currentJumps -= 1;
+            if (this.currentController.currentJumps > 0)
+                this.currentController.currentJumps -= 1;
             if (this.velocity.Y < 0)
                 this.state = "Jump";
             else
@@ -223,6 +224,14 @@ function(       GameObject, Point, CollisionBox, ActorController) {
 
             if (hurtbox.testShape)
                 this.spriteContainer.addChild(hurtbox.testShape);
+        }
+        addHitbox(newHitbox) {
+            if (newHitbox != null)
+                this.hitBoxes.push(newHitbox);
+        }
+        addHitbox(newHurtbox) {
+            if (newHurtbox != null)
+                this.hitBoxes.push(newHurtbox);
         }
         removeHitbox(hitbox) {
             var i = this.hitBoxes.indexOf(hitbox);

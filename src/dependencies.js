@@ -9,6 +9,7 @@ require.config({
 
       "tile": "src/levels/tile",
       "actor": "src/actors/actor",
+      "attack": "src/actors/attack",
       "prop": "src/props/prop",
       "transition": "src/levels/transition",
 
@@ -35,7 +36,7 @@ requirejs(['point'], function() {
 
     requirejs(['gameObject', 'collisionBox', 'levelParser', 'particle', 'healthBar'], function() {
 
-        requirejs(['tile', 'actor', 'prop', 'transition', 'particleSystem', 'dialogueBox'], function() {
+        requirejs(['tile', 'actor', 'attack', 'prop', 'transition', 'particleSystem', 'dialogueBox'], function() {
 
             requirejs(['switchProp', 'triggerProp', 'enemy', 'actorController'], function() {
 

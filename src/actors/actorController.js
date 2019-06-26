@@ -2,19 +2,22 @@ define("ActorController", ['Point'], function(Point) {
     
     class ActorController {
         
-        constructor () {
+        constructor(motionData) {
             
-            this.acceleration = .03;
-            this.deceleration = .12;
-            this.aerialAcc = .02;
-            this.aerialDec = .02;
+            this.staticVelocityX = motionData["staticVelocityX"];
+            this.staticVelocityY = motionData["staticVelocityY"];
+
+            this.acceleration = motionData["acceleration"];
+            this.deceleration = motionData["deceleration"];
+            this.aerialAcc = motionData["aerialAcc"];
+            this.aerialDec = motionData["aerialDec"];
             
-            this.maxRunSpeed = 4;
-            this.jumpHeight = 80;
-            this.shortJumpHeight = 16;
-            this.timeToJumpApex = 28;
+            this.maxRunSpeed = motionData["maxRunSpeed"];
+            this.jumpHeight = motionData["jumpHeight"];
+            this.shortJumpHeight = motionData["shortJumpHeight"];
+            this.timeToJumpApex = motionData["timeToJumpApex"];
             
-            this.maxJumps = 2;
+            this.maxJumps = motionData["maxJumps"];
             this.currentJumps = this.maxJumps;
             
             this.gravity = (2 * this.jumpHeight) / Math.pow(this.timeToJumpApex, 2);
@@ -26,8 +29,15 @@ define("ActorController", ['Point'], function(Point) {
 
         updateSpeed(actor) {
             
-            this.updateHorizontalSpeed(actor);
-            this.updateVerticalSpeed(actor);
+            if (this.staticVelocityX)
+                actor.velocity.X = this.staticVelocityX;
+            else
+                this.updateHorizontalSpeed(actor);
+            
+            if (this.staticVelocityY)
+                actor.velocity.Y = this.staticVelocityY;
+            else
+                this.updateVerticalSpeed(actor);
 
             actor.velocity.X = Math.round(actor.velocity.X * 1000) / 1000;
             actor.velocity.Y = Math.round(actor.velocity.Y * 1000) / 1000;

@@ -2,51 +2,120 @@ define("Attack", ['CollisionBox'], function(CollisionBox) {
     
     class Attack {
 
-        constructor(hitBox = true, x = 0, y = 0, width = 0, height = 0) {
+        constructor(startUpKey, mainKey, recoveryKey) {
+
+            this.startUpPhase = this.constructAttackPhase(startUpKey);
+            this.mainPhase = this.constructAttackPhase(mainKey);
+            this.recoveryPhase = this.constructAttackPhase(recoveryKey);
+
+            this.currentPhase = this.startUpPhase;
+        }
+        constructAttackPhase(phaseName) {
+            var phaseData = attackData[phaseName];
+            if (!phaseData)
+                return null;
             
-            this.area;
+            var phaseController;
+            var phaseHitboxes = [];
 
-            this.mainDuration;
-            this.mainState;
-            this.startupState;
-            this.startupDuration;
-            this.recoveryState;
-            this.recoveryDuration;
+            if (phaseData["controller"]) {
+                phaseController = controllerData[phaseData["controller"]];
+            }
+            if (phaseData["hitboxes"]) {
+                var phaseHitboxData = phaseData["hitboxes"];
+                phaseHitboxData.forEach((hitboxName) => {
+                    if (hitBoxData[hitboxName]) {
+                        var h = hitBoxData[hitboxName];
+                        var hitbox = new CollisionBox(true, h["x"], h["y"], h["width"], h["height"]);
+                        phaseHitboxes.push(hitbox);
+                    }
+                });   
+            }
 
-            this.altController;
-            this.spawnObject;
-
-            this.progressionStatus = 0;
-            this.progressionTimer = 0;
+            return new AttackPhase(phaseData["duration"], phaseData["animation"], phaseController, phaseHitboxes);
         }
 
-        updateAttack() {
-            if (this.progressionStatus == 0)
-                this.updateStartup();
-            else if (this.progressionStatus == 1)
-                this.updateMain();
-            else if (this.progressionStatus == 2)
-                this.updateRecovery();
+        updateAttack(hostActor) {
+            
+            if (!this.currentPhase || this.currentPhase.isFinished()) {
+                this.progressAttack(hostActor);
+                if (this.currentPhase == this.startPhase)
+                    return false;
+            }
+
+            this.currentPhase.updatePhase();
+
+            return true;
         }
-        updateStartup() {
-            progressionTimer += 1;
-            if (progressionTimer >= this.startupDuration) {
-                this.progressionTimer = 0;
-                this.progressionStatus = 1;
+        progressAttack() {
+            if (this.currentPhase == this.startUpPhase) {
+                this.currentPhase.endPhase(hostActor);
+
+                this.currentPhase = this.mainPhase;
+                this.currentPhase.startPhase(hostActor);
+            }
+            else if (this.currentPhase == this.mainPhase) {
+                this.currentPhase.endPhase(hostActor);
+
+                this.currentPhase = this.recoveryPhase;
+                this.currentPhase.startPhase(hostActor);
+            }
+            else if (this.currentPhase == this.recoveryPhase) {
+                this.currentPhase.endPhase(hostActor);
+                this.currentPhase = this.startPhase;
             }
         }
-        updateMain() {
-            progressionTimer += 1;
-            if (progressionTimer >= this.mainDuration) {
-                this.progressionTimer = 0;
-                this.progressionStatus = 2;
+
+
+    }
+
+    class AttackPhase {
+
+        constructor(duration, animation, controller, hitboxes) {
+            this.duration = duration;
+            this.animation = animation;
+            this.controller = controller;
+            this.hitboxes = hitboxes;
+            // this.spawnObject = spawnObject;
+
+            this.phaseTimer = this.duration;
+        }
+
+        updatePhase() {
+            this.phaseTimer -= 1;
+        }
+
+        isFinished() {
+            return (this.phaseTimer <= 0);
+        }
+
+        startPhase(hostActor) {
+            this.phaseTimer = this.duration;
+
+            if (this.animation) {
+                hostActor.state = this.animation;
+            }
+            if (this.controller) {
+                hostActor.currentController = this.controller;
+            }
+            if (this.hitboxes) {
+                this.hitBoxes.forEach((hitbox) => {
+                    hostActor.addHitbox(hitbox);
+                });
             }
         }
-        updateRecovery() {
-            progressionTimer += 1;
-            if (progressionTimer >= this.recoveryDuration) {
-                this.progressionTimer = 0;
-                this.progressionStatus = -1;
+
+        endPhase(hostActor) {
+            if (this.animation) {
+                hostActor.state = "";
+            }
+            if (this.controller) {
+                hostActor.currentController = hostActor.defaultController;
+            }
+            if (this.hitboxes) {
+                this.hitBoxes.forEach((hitbox) => {
+                    hostActor.removeHitbox(hitbox);
+                });
             }
         }
 
