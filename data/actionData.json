@@ -1,0 +1,53 @@
+
+
+{
+    
+    "ControllerData" : {
+
+        "default": {
+            "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.02, "aerialDec": 0.02,
+            "maxRunSpeed": 4, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
+            "maxJumps": 2
+        },
+
+        "recoveryStun": {
+            "acceleration": 0, "deceleration": 0, "aerialAcc": 0, "aerialDec": 0.02,
+            "maxRunSpeed": 0, "jumpHeight": 0, "shortJumpHeight": 0, "timeToJumpApex": 0,
+            "maxJumps": 0,
+            "setAnimation": ""
+        },
+
+        "aerialAttackMain": {
+            "staticVelocityX": 0, "staticVelocityY": 8,
+            "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.02, "aerialDec": 0.02,
+            "maxRunSpeed": 0, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
+            "maxJumps": 0
+        }
+    },
+
+    
+    "HitboxData" : {
+
+        "aerialAttackMain": {
+            "x": 0, "y": 36, "width": 32, "height": 10
+        }
+
+    },
+
+    
+
+    "AttackData" : {
+
+        "aerialMain": {
+            "duration": 60, "animation": "aerialAttackMain", "controller": "aerialAttackMain", "hitBoxes": ["aerialAttackMain"]
+        },
+        "aerialRecovery": {
+            "duration": 30, "animation": "aerialAttackRecovery", "controller": "recoveryStun", "hitBoxes": []
+        }
+        
+    }
+
+
+
+
+}

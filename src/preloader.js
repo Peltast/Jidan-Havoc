@@ -10,7 +10,7 @@ var gameScale;
 // Preloader variables
 var soundRoot = "./lib/sounds/";
 var imageRoot = "./lib/images/";
-var dialogueRoot = "./lib/data/dialogues/";
+var dialogueRoot = "./data/dialogues/";
 var imageManifest;
 var soundManifest;
 var assetLoader;
@@ -32,6 +32,12 @@ var startingMap;
 var dialogueLibrary = {};
 var particleEffectLibrary = {};
 var backgroundLibrary = {};
+
+var actionLibrary = {};
+var controllerData;
+var hitBoxData;
+var attackData;
+
 var gameAssets = {};
 var mapData = {};
 var tileData = {};
@@ -93,7 +99,7 @@ function init() {
     dialogueList = [];
 
     totalMapsInGame = mapList.length;
-    totalFilesInGame = dialogueList.length + tileList.length + 3; // dialogue.json, particleEffects.json, backgrounds.json
+    totalFilesInGame = dialogueList.length + tileList.length + 4; // actionData.json, dialogue.json, particleEffects.json, backgrounds.json
     startingMap = "DevRoom";
 
     assetLoader = new createjs.LoadQueue(false);
@@ -122,9 +128,10 @@ function handleAssetsLoaded(event) {
         assetsLoaded += 1;
     }
     
-    loadFile("./lib/data/particleEffects.json?v=", particleEffectLibrary);
-    loadFile("./lib/data/backgrounds.json?v=", backgroundLibrary);
-    loadFile("./lib/data/dialogue.json?v=", dialogueLibrary);
+    loadFile("./data/actionData.json?v=", actionLibrary);
+    loadFile("./data/particleEffects.json?v=", particleEffectLibrary);
+    loadFile("./data/backgrounds.json?v=", backgroundLibrary);
+    loadFile("./data/dialogue.json?v=", dialogueLibrary);
     for (let d = 0; d < dialogueList.length; d++) {
         loadFile(dialogueRoot + dialogueList[d], dialogueLibrary);
     }

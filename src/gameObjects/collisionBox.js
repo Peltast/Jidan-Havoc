@@ -25,6 +25,10 @@ define("CollisionBox", ['Point'], function(Point) {
         }
 
         intersects(otherBox) {
+            if (!(otherBox instanceof CollisionBox)) {
+                console.log("Collision tried to intersect with non-collision object " + otherBox);
+                return;
+            }
 
             if (
                 otherBox.getX() < this.getX() + this.size.X && 

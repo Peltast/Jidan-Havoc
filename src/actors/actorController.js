@@ -25,6 +25,12 @@ define("ActorController", ['Point'], function(Point) {
             this.jumpVelocity = this.gravity * this.timeToJumpApex;
             this.glideVelocity = Math.sqrt(2 * this.gravity * this.glideHeight);
             this.maxGravity = this.gravity * 60;
+
+            this.setAnimation = motionData["setAnimation"];
+        }
+
+        reset() {
+            this.currentJumps = this.maxJumps;
         }
 
         updateSpeed(actor) {

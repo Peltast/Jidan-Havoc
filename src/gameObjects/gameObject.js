@@ -1,46 +1,4 @@
 define("GameObject", ['Point'], function(Point) {
-    
-
-    var controllerData = {
-
-        "default": {
-            "acceleration": .03, "deceleration": .12, "aerialAcc": .02, "aerialDec": .02,
-            "maxRunSpeed": 4, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
-            "maxJumps": 2
-        },
-
-        "recoveryStun": {
-            "acceleration": 0, "deceleration": 0, "aerialAcc": 0, "aerialDec": .02,
-            "maxRunSpeed": 0, "jumpHeight": 0, "shortJumpHeight": 0, "timeToJumpApex": 0,
-            "maxJumps": 0
-        },
-
-        "aerialAttackMain": {
-            "staticVelocityX": 0, "staticVelocityY": 4,
-            "acceleration": .03, "deceleration": .12, "aerialAcc": .02, "aerialDec": .02,
-            "maxRunSpeed": 4, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
-            "maxJumps": 0
-        }
-    }
-
-    var hitboxData = {
-
-        "aerialAttackMain": {
-            "x": 0, "y": 36, "width": 32, "height": 10
-        }
-
-    }
-
-    var attackData = {
-
-        "aerialMain": {
-            "duration": 100, "animation": "aerialAttackMain", "controller": "aerialAttackMain", "hitBoxes": ["aerialAttackMain"]
-        },
-        "aerialRecovery": {
-            "duration": 200, "animation": "aerialAttackRecovery", "controller": "recoveryStun", "hitBoxes": []
-        }
-        
-    }
 
     class GameObject {
         

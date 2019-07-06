@@ -31,11 +31,10 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
 
             this.initInteractionElements();
 
-            this.addHitbox(24, -8, 10, 36, this.location);
-            this.addHurtbox(0, 0, 20, 28, this.location);
+            this.addHitbox(null, 24, -8, 10, 36, this.location);
+            this.addHurtbox(null, 0, 0, 20, 28, this.location);
 
-            this.aerialAttack = new Attack("", "aerialAttack", "aerialRecovery");
-            console.log(this.aerialAttack);
+            this.aerialAttack = new Attack("", "aerialMain", "aerialRecovery");
 
             this.currentAttack = null;
         }
@@ -155,8 +154,10 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
 
         updateAttack() {
 
-            if (!this.currentAttack.updateAttack())
+            if (!this.currentAttack.updateAttack(this)) {
                 this.currentAttack = null;
+                this.currentController.reset();
+            }
         }
 
         updateState() {
@@ -165,6 +166,8 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             if (!this.frozen)
                 this.setMotionState();
 
+            if (this.currentController.setAnimation)
+                this.setControllerState();
         }
         enactNewState() {
             if (this.priorOrientation !== this.orientation || this.priorState !== this.state) {
@@ -184,6 +187,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             else if (this.state === "Jump" && this.velocity.Y > 0)
                 this.state = "Fall";
         }
+        setControllerState() {
+            this.state = this.currentController.setAnimation;
+        }
 
         jumpHold() {
             if (this.currentController.currentJumps <= 0 || this.jumpHeld || this.frozen)
@@ -197,6 +203,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             this.goingUp = true;
 
             this.jumpHeld = true;
+
         }
         jumpRelease() {
             this.goingUp = false;
@@ -206,13 +213,17 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
         attack() {
             if (this.frozen)
                 return;
-            
+            console.log("BEGIN attack");
+            if (this.currentAttack)
+                this.currentAttack.active = false;
+
             if (this.onGround) {
-                
+                return;
             }
             else {
                 this.currentAttack = this.aerialAttack;
             }
+            this.currentAttack.beginAttack(this);
         }
 
         interact() {
@@ -397,6 +408,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             if (this.respawnStatus >= 0)
                 return;
             
+            if (this.currentAttack)
+                this.currentAttack.endAttack();
+
             this.respawnStatus = 0;
             this.state = "Death";
             this.setFrozen(true);

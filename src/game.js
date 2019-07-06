@@ -30,6 +30,9 @@ require(
     var gameUI;
 
     function beginGame(startMapName) {
+        controllerData = actionLibrary["ControllerData"];
+        hitBoxData = actionLibrary["HitboxData"];
+        attackData = actionLibrary["AttackData"];
 
         objectFactory = new ObjectFactory(this.name);
         player = new Player();
@@ -72,7 +75,7 @@ require(
     function createUI() {
         gameUI = new createjs.Container();
 
-        healthBar = new HealthBar();
+        // healthBar = new HealthBar();
         // gameUI.addChild(healthBar.healthBarContainer);
 
         return gameUI;
@@ -113,7 +116,7 @@ require(
     }
     function updateUI() {
 
-        healthBar.updateAlpha();
+        // healthBar.updateAlpha();
         updateDialogueBox();
     }
     function updateDialogueBox() {

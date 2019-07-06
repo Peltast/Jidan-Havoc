@@ -209,29 +209,35 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             // Hook for player/enemies to implement behavior when damaged
         }
 
-        addHitbox(x, y, width, height, origin) {
-            var hitbox = new CollisionBox(true, x, y, width, height);
-            hitbox.origin = origin;
-            this.hitBoxes.push(hitbox);
+        addHitbox(hitboxObj, x, y, width, height, origin) {
+            var hitbox;
+            if (hitboxObj) {
+                hitbox = hitboxObj;
+            }
+            else {
+                var hitbox = new CollisionBox(true, x, y, width, height);
+                hitbox.origin = origin;
+            }
 
+            this.hitBoxes.push(hitbox);
+            
             if (hitbox.testShape)
                 this.spriteContainer.addChild(hitbox.testShape);
         }
-        addHurtbox(x, y, width, height, origin) {
-            var hurtbox = new CollisionBox(false, x, y, width, height);
-            hurtbox.origin = origin;
+        addHurtbox(hurtboxObj, x, y, width, height, origin) {
+            var hurtbox;
+            if (hurtboxObj) { 
+                hurtbox = hurtboxObj;
+            }
+            else {
+                var hurtbox = new CollisionBox(false, x, y, width, height);
+                hurtbox.origin = origin;
+            }
+
             this.hurtBoxes.push(hurtbox);
 
             if (hurtbox.testShape)
                 this.spriteContainer.addChild(hurtbox.testShape);
-        }
-        addHitbox(newHitbox) {
-            if (newHitbox != null)
-                this.hitBoxes.push(newHitbox);
-        }
-        addHitbox(newHurtbox) {
-            if (newHurtbox != null)
-                this.hitBoxes.push(newHurtbox);
         }
         removeHitbox(hitbox) {
             var i = this.hitBoxes.indexOf(hitbox);

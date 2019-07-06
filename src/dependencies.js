@@ -34,11 +34,11 @@ require.config({
   
 requirejs(['point'], function() {
 
-    requirejs(['gameObject', 'collisionBox', 'levelParser', 'particle', 'healthBar'], function() {
+    requirejs(['gameObject', 'collisionBox', 'actorController', 'levelParser', 'particle', 'healthBar'], function() {
 
         requirejs(['tile', 'actor', 'attack', 'prop', 'transition', 'particleSystem', 'dialogueBox'], function() {
 
-            requirejs(['switchProp', 'triggerProp', 'enemy', 'actorController'], function() {
+            requirejs(['switchProp', 'triggerProp', 'enemy'], function() {
 
                 requirejs(['player', 'objectFactory'], function() {
 

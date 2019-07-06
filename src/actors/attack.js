@@ -1,14 +1,15 @@
-define("Attack", ['CollisionBox'], function(CollisionBox) {
+define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, ActorController) {
     
     class Attack {
 
         constructor(startUpKey, mainKey, recoveryKey) {
+            this.active = false;
 
             this.startUpPhase = this.constructAttackPhase(startUpKey);
             this.mainPhase = this.constructAttackPhase(mainKey);
             this.recoveryPhase = this.constructAttackPhase(recoveryKey);
 
-            this.currentPhase = this.startUpPhase;
+            this.currentPhase = this.startUpPhase ? this.startUpPhase : this.mainPhase;
         }
         constructAttackPhase(phaseName) {
             var phaseData = attackData[phaseName];
@@ -16,13 +17,15 @@ define("Attack", ['CollisionBox'], function(CollisionBox) {
                 return null;
             
             var phaseController;
+            var phaseControllerData;
             var phaseHitboxes = [];
 
             if (phaseData["controller"]) {
-                phaseController = controllerData[phaseData["controller"]];
+                phaseControllerData = controllerData[phaseData["controller"]];
+                phaseController = new ActorController(phaseControllerData);
             }
-            if (phaseData["hitboxes"]) {
-                var phaseHitboxData = phaseData["hitboxes"];
+            if (phaseData["hitBoxes"]) {
+                var phaseHitboxData = phaseData["hitBoxes"];
                 phaseHitboxData.forEach((hitboxName) => {
                     if (hitBoxData[hitboxName]) {
                         var h = hitBoxData[hitboxName];
@@ -35,11 +38,19 @@ define("Attack", ['CollisionBox'], function(CollisionBox) {
             return new AttackPhase(phaseData["duration"], phaseData["animation"], phaseController, phaseHitboxes);
         }
 
+        beginAttack(hostActor) {
+            this.active = true;
+            this.currentPhase.startPhase(hostActor);
+        }
+        endAttack(hostActor) {
+            this.active = false;
+            this.currentPhase.endPhase(hostActor);
+        }
         updateAttack(hostActor) {
             
-            if (!this.currentPhase || this.currentPhase.isFinished()) {
+            if (this.currentPhase ? this.currentPhase.isFinished() : true) {
                 this.progressAttack(hostActor);
-                if (this.currentPhase == this.startPhase)
+                if (!this.active)
                     return false;
             }
 
@@ -47,22 +58,31 @@ define("Attack", ['CollisionBox'], function(CollisionBox) {
 
             return true;
         }
-        progressAttack() {
-            if (this.currentPhase == this.startUpPhase) {
+        progressAttack(hostActor) {
+
+            if (!this.currentPhase) {
+                this.currentPhase = this.startUpPhase ? this.startUpPhase : this.mainPhase;
+            }
+
+            else if (this.currentPhase == this.startUpPhase) {
                 this.currentPhase.endPhase(hostActor);
 
                 this.currentPhase = this.mainPhase;
                 this.currentPhase.startPhase(hostActor);
             }
             else if (this.currentPhase == this.mainPhase) {
+                console.log("main phase ended");
                 this.currentPhase.endPhase(hostActor);
 
-                this.currentPhase = this.recoveryPhase;
+                this.currentPhase = this.recoveryPhase ? this.recoveryPhase : null;
                 this.currentPhase.startPhase(hostActor);
             }
             else if (this.currentPhase == this.recoveryPhase) {
+                console.log("recovery phase ended");
                 this.currentPhase.endPhase(hostActor);
-                this.currentPhase = this.startPhase;
+                this.currentPhase = this.startUpPhase ? this.startUpPhase : this.mainPhase;
+
+                this.active = false;
             }
         }
 
@@ -96,10 +116,11 @@ define("Attack", ['CollisionBox'], function(CollisionBox) {
                 hostActor.state = this.animation;
             }
             if (this.controller) {
+                console.log(this.controller);
                 hostActor.currentController = this.controller;
             }
             if (this.hitboxes) {
-                this.hitBoxes.forEach((hitbox) => {
+                this.hitboxes.forEach((hitbox) => {
                     hostActor.addHitbox(hitbox);
                 });
             }
@@ -113,7 +134,7 @@ define("Attack", ['CollisionBox'], function(CollisionBox) {
                 hostActor.currentController = hostActor.defaultController;
             }
             if (this.hitboxes) {
-                this.hitBoxes.forEach((hitbox) => {
+                this.hitboxes.forEach((hitbox) => {
                     hostActor.removeHitbox(hitbox);
                 });
             }
