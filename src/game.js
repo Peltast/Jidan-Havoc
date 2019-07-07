@@ -237,6 +237,10 @@ require(
             case 16: // shift
                 player.jumpHold();
                 break;
+                
+            case 74: // j
+                player.attack();
+                break;
 
             // case 82: // r
             //     player.holdReset();
@@ -286,7 +290,7 @@ require(
                 break;
 
             case 74: // j
-                player.attack();
+                // player.attack();
                 break;
 
             // case 16: // shift

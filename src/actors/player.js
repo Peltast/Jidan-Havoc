@@ -1,5 +1,5 @@
-define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', 'ActorController', 'Attack', 'SlamAttack'], 
-    function (Actor, Tile, Prop, Enemy, Point, ParticleSystem, ActorController, Attack, SlamAttack) {
+define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', 'SlamAttack', 'ChargeAttack'], 
+    function (Actor, Tile, Prop, Enemy, Point, ParticleSystem, SlamAttack, ChargeAttack) {
 
     class Player extends Actor {
 
@@ -35,6 +35,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             this.addHurtbox(null, 4, 4, 18, 24, this.location);
 
             this.aerialAttack = new SlamAttack("", "aerialMain", "aerialRecovery");
+            this.groundAttack = new ChargeAttack("groundWindup", "groundMain", "");
 
             this.currentAttack = null;
         }
@@ -54,8 +55,11 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
 
                     leftDeath: [24, 27, "finished", .2], rightDeath: [24, 27, "finished", .2],
 
-                    leftSlam: [30, 34, "leftSlam", .25], rightSlam: [30, 34, "rightSlam", .25],
-                    leftSlamStun: [36, 37, "leftSlamStun", .1], rightSlamStun: [38, 39, "rightSlamStun", .1],
+                    leftSlam: [30, 34, "leftSlam", .25], leftSlamStun: [36, 37, "leftSlamStun", .1], 
+                    rightSlam: [30, 34, "rightSlam", .25], rightSlamStun: [38, 39, "rightSlamStun", .1],
+
+                    rightChargeWindup: [22, 23, "finished", .05], rightCharge: [42, 46, "rightCharge", .25],
+                    leftChargeWindup: [28, 29, "finished", .05], leftCharge: [48, 52, "leftCharge", .25],
                     
                     finished: 11
                 }

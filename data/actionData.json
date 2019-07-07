@@ -13,16 +13,21 @@
         "recoveryStun": {
             "acceleration": 0, "deceleration": 0, "aerialAcc": 0, "aerialDec": 0.02,
             "maxRunSpeed": 0, "jumpHeight": 0, "shortJumpHeight": 0, "timeToJumpApex": 0,
-            "maxJumps": 0,
-            "setAnimation": "SlamStun"
+            "maxJumps": 0
         },
 
         "aerialAttackMain": {
             "staticVelocityX": 0, "staticVelocityY": 8,
             "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.02, "aerialDec": 0.02,
             "maxRunSpeed": 0, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
-            "maxJumps": 0,
-            "setAnimation": "Slam"
+            "maxJumps": 0
+        },
+        
+        "groundAttackMainRight": {
+            "staticVelocityX": 5,
+            "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.02, "aerialDec": 0.02,
+            "maxRunSpeed": 0, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
+            "maxJumps": 0
         }
     },
 
@@ -31,6 +36,13 @@
 
         "aerialAttackMain": {
             "x": -4, "y": 36, "width": 32, "height": 10
+        },
+
+        "groundAttackMainLeft": {
+            "x": -10, "y": 4, "width": 10, "height": 36
+        },
+        "groundAttackMainRight": {
+            "x": 32, "y": 4, "width": 10, "height": 36
         }
 
     },
@@ -40,10 +52,17 @@
     "AttackData" : {
 
         "aerialMain": {
-            "duration": 60, "animation": "aerialAttackMain", "controller": "aerialAttackMain", "hitBoxes": ["aerialAttackMain"]
+            "duration": 60, "animation": "Slam", "controller": "aerialAttackMain", "hitBoxes": ["aerialAttackMain"]
         },
         "aerialRecovery": {
-            "duration": 30, "animation": "aerialAttackRecovery", "controller": "recoveryStun", "hitBoxes": []
+            "duration": 30, "animation": "SlamStun", "controller": "recoveryStun", "hitBoxes": []
+        },
+
+        "groundWindup": {
+            "duration": 10, "animation": "ChargeWindup", "controller": "recoveryStun", "hitBoxes": []
+        },
+        "groundMain": {
+            "duration": 30, "animation": "Charge", "controller": "groundAttackMain", "hitBoxes": ["groundAttackMain"]
         }
         
     }

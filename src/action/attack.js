@@ -10,7 +10,11 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             this.recoveryPhase = this.constructAttackPhase(recoveryKey);
 
             this.currentPhase = this.startUpPhase ? this.startUpPhase : this.mainPhase;
+
+            this.initAttack();
         }
+        initAttack() { }
+
         constructAttackPhase(phaseName) {
             var phaseData = attackData[phaseName];
             if (!phaseData)
@@ -112,12 +116,13 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
         startPhase(hostActor) {
             this.phaseTimer = this.duration;
 
-            if (this.animation) {
-                hostActor.state = this.animation;
-            }
             if (this.controller) {
                 console.log(this.controller);
                 hostActor.currentController = this.controller;
+            }
+            if (this.animation) {
+                hostActor.state = this.animation;
+                hostActor.currentController.setAnimation = this.animation;
             }
             if (this.hitboxes) {
                 this.hitboxes.forEach((hitbox) => {

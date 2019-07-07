@@ -27,6 +27,7 @@ require.config({
 
       "attack": "src/action/attack",
       "slamAttack": "src/action/slamAttack",
+      "chargeAttack": "src/action/chargeAttack",
 
       "level": "src/levels/level",
       "levelParser": "src/levels/levelParser",
@@ -40,7 +41,7 @@ requirejs(['point'], function() {
 
         requirejs(['tile', 'actor', 'attack', 'prop', 'transition', 'particleSystem', 'dialogueBox'], function() {
 
-            requirejs(['switchProp', 'triggerProp', 'enemy', 'slamAttack'], function() {
+            requirejs(['switchProp', 'triggerProp', 'enemy', 'slamAttack', 'chargeAttack'], function() {
 
                 requirejs(['player', 'objectFactory'], function() {
 
