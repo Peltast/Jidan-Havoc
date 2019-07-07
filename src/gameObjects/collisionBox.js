@@ -8,9 +8,10 @@ define("CollisionBox", ['Point'], function(Point) {
             this.size = new Point(width, height);
             this.origin = new Point(0, 0);
 
-            this.testShape = new createjs.Shape();
-            this.testShape.graphics.beginFill(this.type == "hitBox" ? "#dd0000" : "#333333").drawRect(x, y, width, height);
-            this.testShape.alpha = 0;
+            this.collisionDisplay = new createjs.Shape();
+            this.collisionDisplay.graphics.beginFill(this.type == "hitBox" ? "#dd0000" : "#333333").drawRect(x, y, width, height);
+            this.collisionDisplay.alpha = 0;
+            this.isVisible = false;
         }
 
         get() {
@@ -71,7 +72,12 @@ define("CollisionBox", ['Point'], function(Point) {
         }
 
         toggleDisplay() {
-            this.testShape.alpha = this.testShape.alpha > 0 ? 0 : 0.5;
+            this.collisionDisplay.alpha = this.collisionDisplay.alpha > 0 ? 0 : 0.5;
+            this.isVisible = !this.isVisible;
+        }
+        setVisible(v) {
+            this.collisionDisplay.alpha = v ? 0.5 : 0;
+            this.isVisible = v;
         }
 
     }

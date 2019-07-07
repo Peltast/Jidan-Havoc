@@ -1,14 +1,14 @@
-define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', 'ActorController', 'Attack'], 
-    function (Actor, Tile, Prop, Enemy, Point, ParticleSystem, ActorController, Attack) {
+define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', 'ActorController', 'Attack', 'SlamAttack'], 
+    function (Actor, Tile, Prop, Enemy, Point, ParticleSystem, ActorController, Attack, SlamAttack) {
 
     class Player extends Actor {
 
         constructor() {
             var playerSpriteData = {
                 "spriteImage": gameAssets["Player"],
-                "spriteCollision": new Point(20, 28),
-                "spriteSize": new Point(32, 36),
-                "spritePosition": new Point(6, 8)
+                "spriteCollision": new Point(24, 30),
+                "spriteSize": new Point(40, 44),
+                "spritePosition": new Point(8, 10)
             };
             super(playerSpriteData["spriteCollision"], playerSpriteData);
 
@@ -31,10 +31,10 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
 
             this.initInteractionElements();
 
-            this.addHitbox(null, 24, -8, 10, 36, this.location);
-            this.addHurtbox(null, 0, 0, 20, 28, this.location);
+            // this.addHitbox(null, 24, -8, 10, 36, this.location);
+            this.addHurtbox(null, 4, 4, 18, 24, this.location);
 
-            this.aerialAttack = new Attack("", "aerialMain", "aerialRecovery");
+            this.aerialAttack = new SlamAttack("", "aerialMain", "aerialRecovery");
 
             this.currentAttack = null;
         }
@@ -44,17 +44,20 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
                 "frames": {"width": this.spriteSize.X, "height": this.spriteSize.Y, "regX": 0, "regY": 0, "count": 208},
                 animations: {
                     right: [0, 2, "right", .1],
-                    left: [7, 9, "left", .1],
+                    left: [3, 5, "left", .1],
 
-                    rightWalk: [14, 17, "rightWalk", .1],
-                    leftWalk: [21, 24, "leftWalk", .1],
+                    rightWalk: [6, 9, "rightWalk", .1],
+                    leftWalk: [12, 15, "leftWalk", .1],
                     
-                    rightJump: 28, rightFall: 29,
-                    leftJump: 30, leftFall: 31,
+                    leftJum: 18, rightJump: 19,
+                    leftFall: 20, rightFall: 21,
 
-                    leftDeath: [63, 66, "finished", .2], rightDeath: [63, 66, "finished", .2],
+                    leftDeath: [24, 27, "finished", .2], rightDeath: [24, 27, "finished", .2],
+
+                    leftSlam: [30, 34, "leftSlam", .25], rightSlam: [30, 34, "rightSlam", .25],
+                    leftSlamStun: [36, 37, "leftSlamStun", .1], rightSlamStun: [38, 39, "rightSlamStun", .1],
                     
-                    finished: 4
+                    finished: 11
                 }
             });
 
@@ -170,6 +173,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
                 this.setControllerState();
         }
         enactNewState() {
+            // console.log(this.priorOrientation + ", " + this.orientation + "  -  " + this.priorState + ", " + this.state);
             if (this.priorOrientation !== this.orientation || this.priorState !== this.state) {
                 this.priorOrientation = this.orientation;
                 this.priorState = this.state;
@@ -203,7 +207,6 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             this.goingUp = true;
 
             this.jumpHeld = true;
-
         }
         jumpRelease() {
             this.goingUp = false;
@@ -408,8 +411,11 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             if (this.respawnStatus >= 0)
                 return;
             
-            if (this.currentAttack)
-                this.currentAttack.endAttack();
+            if (this.currentAttack) {
+                this.currentAttack.endAttack(this);
+                this.currentController.reset();
+                this.currentAttack = null;
+            }
 
             this.respawnStatus = 0;
             this.state = "Death";

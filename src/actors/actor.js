@@ -15,7 +15,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             this.onGround = false;
             
             this.priorOrientation = "";
-            this.orientation = "down";
+            this.orientation = "right";
             this.state = "";
             this.priorState = "";
 
@@ -23,6 +23,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             this.defaultController = new ActorController(controllerData["default"]);
             this.currentController = this.defaultController;
 
+            this.displayCollision = false;
             this.particleEffects = [];
             this.hitBoxes = [];
             this.hurtBoxes = [];
@@ -218,11 +219,10 @@ function(       GameObject, Point, CollisionBox, ActorController) {
                 var hitbox = new CollisionBox(true, x, y, width, height);
                 hitbox.origin = origin;
             }
+            hitbox.setVisible(this.displayCollision);
 
             this.hitBoxes.push(hitbox);
-            
-            if (hitbox.testShape)
-                this.spriteContainer.addChild(hitbox.testShape);
+            this.spriteContainer.addChild(hitbox.collisionDisplay);
         }
         addHurtbox(hurtboxObj, x, y, width, height, origin) {
             var hurtbox;
@@ -233,29 +233,28 @@ function(       GameObject, Point, CollisionBox, ActorController) {
                 var hurtbox = new CollisionBox(false, x, y, width, height);
                 hurtbox.origin = origin;
             }
+            hurtbox.setVisible(this.displayCollision);
 
             this.hurtBoxes.push(hurtbox);
-
-            if (hurtbox.testShape)
-                this.spriteContainer.addChild(hurtbox.testShape);
+            this.spriteContainer.addChild(hurtbox.collisionDisplay);
         }
         removeHitbox(hitbox) {
             var i = this.hitBoxes.indexOf(hitbox);
             if (i >= 0)
                 this.hitBoxes.splice(i, 1);
 
-            if (this.spriteContainer.contains(hitbox.testShape))
-                this.spriteContainer.removeChild(hitbox.testShape);
+            this.spriteContainer.removeChild(hitbox.collisionDisplay);
         }
         removeHurtbox(hurtbox) {
             var i = this.hurtBoxes.indexOf(hurtbox);
             if (i >= 0)
                 this.hurtBoxes.splice(i, 1);
 
-            if (this.spriteContainer.contains(hurtbox.testShape))
-                this.spriteContainer.removeChild(hurtbox.testShape);
+            this.spriteContainer.removeChild(hurtbox.collisionDisplay);
         }
         toggleHitboxDisplays() {
+            this.displayCollision = !this.displayCollision;
+
             this.hitBoxes.forEach((hitbox) => {
                 hitbox.toggleDisplay();
             });

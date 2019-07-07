@@ -121,6 +121,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             }
             if (this.hitboxes) {
                 this.hitboxes.forEach((hitbox) => {
+                    console.log(hitbox);
                     hostActor.addHitbox(hitbox);
                 });
             }
