@@ -27,6 +27,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             this.particleEffects = [];
             this.hitBoxes = [];
             this.hurtBoxes = [];
+            this.currentAttack = null;
         }
 
         updateActor() {
@@ -34,6 +35,10 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             this.updateSpeed();
             this.updatePosition(true);
             this.updatePosition(false);
+
+            this.updateAttack();
+            this.updateState();
+
             this.updateParticleEffects();
         }
         
@@ -52,6 +57,52 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             else
                 this.targetVelocity.X = -this.velocity.X;
         }
+
+        updateAttack() {
+            if (!this.currentAttack)
+                return;
+
+            if (!this.currentAttack.updateAttack(this)) {
+                this.currentAttack = null;
+                this.currentController.reset();
+            }
+        }
+        updateState() {
+            
+            if (!this.frozen)
+                this.setMotionState();
+            if (this.currentController.setAnimation)
+                this.setControllerState();
+
+            this.enactNewState();
+        }
+        enactNewState() {
+            // console.log(this.priorOrientation + ", " + this.orientation + "  -  " + this.priorState + ", " + this.state);
+            if (this.priorOrientation !== this.orientation || this.priorState !== this.state) {
+                this.priorOrientation = this.orientation;
+                this.priorState = this.state;
+
+                var animation = this.orientation + this.state;
+                if (this.currentController.setAnimation)
+                    animation = this.state;
+
+                this.sprite.gotoAndPlay(animation);
+            }
+        }
+        setMotionState() {
+            if (this.state === "" || this.state === "Walk") {
+                if (this.targetVelocity.X == 0 && this.targetVelocity.Y == 0)
+                    this.state = "";
+                else 
+                    this.state = "Walk";
+            }
+            else if (this.state === "Jump" && this.velocity.Y > 0)
+                this.state = "Fall";
+        }
+        setControllerState() {
+            this.state = this.currentController.setAnimation;
+        }
+
         updateSpeed() {
             if (this.currentController) {
                 this.currentController.updateSpeed(this);
@@ -225,6 +276,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
                 hitbox.origin = origin;
             }
             hitbox.setVisible(this.displayCollision);
+            hitbox.parentObject = this;
 
             this.hitBoxes.push(hitbox);
             this.spriteContainer.addChild(hitbox.collisionDisplay);
@@ -239,6 +291,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
                 hurtbox.origin = origin;
             }
             hurtbox.setVisible(this.displayCollision);
+            hurtbox.parentObject = this;
 
             this.hurtBoxes.push(hurtbox);
             this.spriteContainer.addChild(hurtbox.collisionDisplay);

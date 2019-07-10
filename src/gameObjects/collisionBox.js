@@ -12,6 +12,7 @@ define("CollisionBox", ['Point'], function(Point) {
             this.collisionDisplay.graphics.beginFill(this.type == "hitBox" ? "#dd0000" : "#333333").drawRect(x, y, width, height);
             this.collisionDisplay.alpha = 0;
             this.isVisible = false;
+            this.parentObject = null;
         }
 
         get() {

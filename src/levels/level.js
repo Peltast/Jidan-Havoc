@@ -352,7 +352,7 @@ define("Level", [
             var collisions = [];
             this.actors.forEach((actor) => {
                 actor.hitBoxes.forEach((hitBox) => {
-                    if (hurtBox.intersects(hitBox))
+                    if (hitBox.parentObject !== actor && hurtBox.intersects(hitBox))
                         collisions.push(hitBox);
                 })
             })

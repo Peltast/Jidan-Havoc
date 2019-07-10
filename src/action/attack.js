@@ -116,7 +116,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             this.phaseTimer = this.duration;
 
             if (this.controller) {
-                console.log(this.controller);
+                // console.log(this.controller);
                 hostActor.setController(this.controller);
             }
             if (this.animation) {
@@ -132,7 +132,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             if (this.directional) {
                 phaseAnimation = (hostActor.orientation === "left" ? "left" : "right") + this.animation;
             }
-            console.log(phaseAnimation);
+            // console.log(phaseAnimation);
             hostActor.state = phaseAnimation;
             hostActor.currentController.setAnimation = phaseAnimation;
         }

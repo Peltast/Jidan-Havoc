@@ -126,24 +126,15 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
         updateActor() {
             this.updatePlayer();
 
-            this.updateDirection();
-            this.updateSpeed();
-            this.updatePosition(true);
-            this.updatePosition(false);
-
-            this.updateState();
+            super.updateActor();
             this.updateInteractionCursor();
-
-            this.updateParticleEffects();
         }
 
         updatePlayer() {
 
             this.updateImmunity();
             this.updateSpecialAbilities();
-
-            if (this.currentAttack)
-                this.updateAttack();
+            
             if (this.respawnStatus >= 0)
                 this.updateRespawn();
             else if (this.warpStatus >= 0)
@@ -159,49 +150,6 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
         }
         updateSpecialAbilities() { }
 
-        updateAttack() {
-
-            if (!this.currentAttack.updateAttack(this)) {
-                this.currentAttack = null;
-                this.currentController.reset();
-            }
-        }
-
-        updateState() {
-            
-            if (!this.frozen)
-                this.setMotionState();
-            if (this.currentController.setAnimation)
-                this.setControllerState();
-
-            this.enactNewState();
-        }
-        enactNewState() {
-            // console.log(this.priorOrientation + ", " + this.orientation + "  -  " + this.priorState + ", " + this.state);
-            if (this.priorOrientation !== this.orientation || this.priorState !== this.state) {
-                this.priorOrientation = this.orientation;
-                this.priorState = this.state;
-
-                var animation = this.orientation + this.state;
-                if (this.currentController.setAnimation)
-                    animation = this.state;
-
-                this.sprite.gotoAndPlay(animation);
-            }
-        }
-        setMotionState() {
-            if (this.state === "" || this.state === "Walk") {
-                if (this.targetVelocity.X == 0 && this.targetVelocity.Y == 0)
-                    this.state = "";
-                else 
-                    this.state = "Walk";
-            }
-            else if (this.state === "Jump" && this.velocity.Y > 0)
-                this.state = "Fall";
-        }
-        setControllerState() {
-            this.state = this.currentController.setAnimation;
-        }
 
         jumpHold() {
             if (this.jumpHeld || this.frozen)

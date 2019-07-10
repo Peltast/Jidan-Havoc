@@ -67,7 +67,7 @@
             "duration": 10, "animation": "ChargeWindup", "controller": "recoveryStun", "hitBoxes": [], "directional": true
         },
         "groundMain": {
-            "duration": 15, "animation": "Charge", "controller": "groundAttackMain", "hitBoxes": [], "directional": true
+            "duration": 15, "animation": "Charge", "controller": "groundAttackMain", "hitBoxes": ["groundAttackMain"], "directional": true
         },
         "groundMainSlide": {
             "duration": 50, "animation": "ChargeSlide", "controller": "groundAttackSlide", "hitBoxes": [], "directional": true
