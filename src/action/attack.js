@@ -2,15 +2,14 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
     
     class Attack {
 
-        constructor(startUpKey, mainKey, recoveryKey) {
+        constructor(phases) {
             this.active = false;
+            this.phases = [];
 
-            this.startUpPhase = this.constructAttackPhase(startUpKey);
-            this.mainPhase = this.constructAttackPhase(mainKey);
-            this.recoveryPhase = this.constructAttackPhase(recoveryKey);
-
-            this.currentPhase = this.startUpPhase ? this.startUpPhase : this.mainPhase;
-
+            phases.forEach((phase) => {
+                this.phases.push(this.constructAttackPhase(phase));
+            });
+            
             this.initAttack();
         }
         initAttack() { }
@@ -39,11 +38,16 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
                 });   
             }
 
-            return new AttackPhase(phaseData["duration"], phaseData["animation"], phaseController, phaseHitboxes);
+            return new AttackPhase(phaseData["duration"], phaseData["animation"], phaseController, phaseHitboxes, phaseData["directional"]);
         }
 
         beginAttack(hostActor) {
+            if (this.phases.length <= 0)
+                return;
+
             this.active = true;
+            this.currentIndex = 0;
+            this.currentPhase = this.phases[this.currentIndex];
             this.currentPhase.startPhase(hostActor);
         }
         endAttack(hostActor) {
@@ -64,38 +68,32 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
         }
         progressAttack(hostActor) {
 
-            if (!this.currentPhase) {
-                this.currentPhase = this.startUpPhase ? this.startUpPhase : this.mainPhase;
-            }
+            this.currentPhase.endPhase(hostActor);
 
-            else if (this.currentPhase == this.startUpPhase) {
-                this.currentPhase.endPhase(hostActor);
-
-                this.currentPhase = this.mainPhase;
+            var origin = this.currentIndex;
+            this.setNextPhase();
+            console.log("Progress attack from " + origin + " to " + this.currentIndex);
+            if (this.currentIndex <= origin)
+                this.endAttack(hostActor);
+            else
                 this.currentPhase.startPhase(hostActor);
-            }
-            else if (this.currentPhase == this.mainPhase) {
-                console.log("main phase ended");
-                this.currentPhase.endPhase(hostActor);
-
-                this.currentPhase = this.recoveryPhase ? this.recoveryPhase : null;
-                this.currentPhase.startPhase(hostActor);
-            }
-            else if (this.currentPhase == this.recoveryPhase) {
-                console.log("recovery phase ended");
-                this.currentPhase.endPhase(hostActor);
-                this.currentPhase = this.startUpPhase ? this.startUpPhase : this.mainPhase;
-
-                this.active = false;
-            }
         }
+        setNextPhase() {
+            if (this.currentIndex >= this.phases.length - 1)
+                this.currentIndex = 0;
+            else
+                this.currentIndex += 1;
+            this.currentPhase = this.phases[this.currentIndex];
 
+            if (!this.currentPhase)
+                this.setNextPhase();
+        }
 
     }
 
     class AttackPhase {
 
-        constructor(duration, animation, controller, hitboxes) {
+        constructor(duration, animation, controller, hitboxes, directional) {
             this.duration = duration;
             this.animation = animation;
             this.controller = controller;
@@ -103,6 +101,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             // this.spawnObject = spawnObject;
 
             this.phaseTimer = this.duration;
+            this.directional = directional;
         }
 
         updatePhase() {
@@ -121,15 +120,30 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
                 hostActor.currentController = this.controller;
             }
             if (this.animation) {
-                hostActor.state = this.animation;
-                hostActor.currentController.setAnimation = this.animation;
+                this.addPhaseAnimation(hostActor);
             }
             if (this.hitboxes) {
-                this.hitboxes.forEach((hitbox) => {
-                    console.log(hitbox);
-                    hostActor.addHitbox(hitbox);
-                });
+                this.addPhaseHitboxes(hostActor);
             }
+        }
+
+        addPhaseAnimation(hostActor) {
+            var phaseAnimation = this.animation;
+            if (this.directional) {
+                phaseAnimation = (hostActor.orientation === "left" ? "left" : "right") + this.animation;
+            }
+            console.log(phaseAnimation);
+            hostActor.state = phaseAnimation;
+            hostActor.currentController.setAnimation = phaseAnimation;
+        }
+
+        addPhaseHitboxes(hostActor) {
+            this.hitboxes.forEach((hitbox) => {
+                if (this.directional) {
+                    hitbox.x = hostActor.orientation === "left" ? -hitbox.width : hostActor.size.X;
+                }
+                hostActor.addHitbox(hitbox);
+            });
         }
 
         endPhase(hostActor) {

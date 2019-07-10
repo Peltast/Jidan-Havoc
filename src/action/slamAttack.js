@@ -2,8 +2,8 @@ define("SlamAttack", ['Attack', 'CollisionBox', 'ActorController'], function(Att
     
     class SlamAttack extends Attack {
 
-        constructor(startUpKey, mainKey, recoveryKey) {
-            super(startUpKey, mainKey, recoveryKey);
+        constructor(phases) {
+            super(phases);
         }
         
         updateAttack(hostActor) {
@@ -14,7 +14,7 @@ define("SlamAttack", ['Attack', 'CollisionBox', 'ActorController'], function(Att
                     return false;
             }
 
-            if (this.currentPhase === this.mainPhase && hostActor.onGround) {
+            if (this.currentIndex == 0 && hostActor.onGround) {
                 this.progressAttack(hostActor);
             }
 

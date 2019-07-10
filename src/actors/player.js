@@ -34,8 +34,8 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             // this.addHitbox(null, 24, -8, 10, 36, this.location);
             this.addHurtbox(null, 4, 4, 18, 24, this.location);
 
-            this.aerialAttack = new SlamAttack("", "aerialMain", "aerialRecovery");
-            this.groundAttack = new ChargeAttack("groundWindup", "groundMain", "");
+            this.aerialAttack = new SlamAttack(["aerialMain", "aerialRecovery"]);
+            this.groundAttack = new ChargeAttack(["groundWindup", "groundMain"]);
 
             this.currentAttack = null;
         }
@@ -50,16 +50,16 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
                     rightWalk: [6, 9, "rightWalk", .1],
                     leftWalk: [12, 15, "leftWalk", .1],
                     
-                    leftJum: 18, rightJump: 19,
+                    leftJump: 18, rightJump: 19,
                     leftFall: 20, rightFall: 21,
 
                     leftDeath: [24, 27, "finished", .2], rightDeath: [24, 27, "finished", .2],
 
-                    leftSlam: [30, 34, "leftSlam", .25], leftSlamStun: [36, 37, "leftSlamStun", .1], 
-                    rightSlam: [30, 34, "rightSlam", .25], rightSlamStun: [38, 39, "rightSlamStun", .1],
+                    Slam: [30, 34, "leftSlam", .25],
+                    leftSlamStun: [36, 37, "leftSlamStun", .1], rightSlamStun: [38, 39, "rightSlamStun", .1],
 
-                    rightChargeWindup: [22, 23, "finished", .05], rightCharge: [42, 46, "rightCharge", .25],
-                    leftChargeWindup: [28, 29, "finished", .05], leftCharge: [48, 52, "leftCharge", .25],
+                    rightChargeWindup: [22, 23, "rightChargeWindup", .01], rightCharge: [42, 46, "rightCharge", .25],
+                    leftChargeWindup: [28, 29, "finished", .01], leftCharge: [48, 52, "leftCharge", .25],
                     
                     finished: 11
                 }
@@ -182,7 +182,11 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
                 this.priorOrientation = this.orientation;
                 this.priorState = this.state;
 
-                this.sprite.gotoAndPlay(this.orientation + this.state);
+                var animation = this.orientation + this.state;
+                if (this.currentController.setAnimation)
+                    animation = this.state;
+
+                this.sprite.gotoAndPlay(animation);
             }
         }
         setMotionState() {
@@ -225,7 +229,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
                 this.currentAttack.active = false;
 
             if (this.onGround) {
-                return;
+                this.currentAttack = this.groundAttack;
             }
             else {
                 this.currentAttack = this.aerialAttack;

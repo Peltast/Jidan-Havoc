@@ -23,7 +23,7 @@
             "maxJumps": 0
         },
         
-        "groundAttackMainRight": {
+        "groundAttackMain": {
             "staticVelocityX": 5,
             "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.02, "aerialDec": 0.02,
             "maxRunSpeed": 0, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
@@ -41,8 +41,8 @@
         "groundAttackMainLeft": {
             "x": -10, "y": 4, "width": 10, "height": 36
         },
-        "groundAttackMainRight": {
-            "x": 32, "y": 4, "width": 10, "height": 36
+        "groundAttackMain": {
+            "x": 0, "y": 4, "width": 10, "height": 36
         }
 
     },
@@ -55,14 +55,14 @@
             "duration": 60, "animation": "Slam", "controller": "aerialAttackMain", "hitBoxes": ["aerialAttackMain"]
         },
         "aerialRecovery": {
-            "duration": 30, "animation": "SlamStun", "controller": "recoveryStun", "hitBoxes": []
+            "duration": 30, "animation": "SlamStun", "controller": "recoveryStun", "hitBoxes": [], "directional": true
         },
 
         "groundWindup": {
-            "duration": 10, "animation": "ChargeWindup", "controller": "recoveryStun", "hitBoxes": []
+            "duration": 30, "animation": "ChargeWindup", "controller": "recoveryStun", "hitBoxes": [], "directional": true
         },
         "groundMain": {
-            "duration": 30, "animation": "Charge", "controller": "groundAttackMain", "hitBoxes": ["groundAttackMain"]
+            "duration": 30, "animation": "Charge", "controller": "groundAttackMain", "hitBoxes": [], "directional": true
         }
         
     }

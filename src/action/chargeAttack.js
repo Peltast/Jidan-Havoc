@@ -2,22 +2,22 @@ define("ChargeAttack", ['Attack', 'CollisionBox', 'ActorController'], function(A
     
     class ChargeAttack extends Attack {
 
-        constructor(startUpKey, mainKey, recoveryKey) {
-            super(startUpKey, mainKey, recoveryKey);
+        constructor(phases) {
+            super(phases);
 
         }
         initAttack() {
-
+            this.mainPhase = this.phases[1];
             this.chargeSpeed = this.mainPhase.controller.staticVelocityX;
         }
         
         beginAttack(hostActor) {
-            this.active = true;
-            this.currentPhase.startPhase(hostActor);
+            this.setOrientation(hostActor.orientation);
+            super.beginAttack(hostActor);
         }
 
         setOrientation(orientation) {
-            if (orientation === "left") 
+            if (orientation === "left")
                 this.mainPhase.controller.staticVelocityX = -this.chargeSpeed;
             else
                 this.mainPhase.controller.staticVelocityX = this.chargeSpeed;
