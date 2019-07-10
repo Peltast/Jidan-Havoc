@@ -13,7 +13,7 @@
         "recoveryStun": {
             "acceleration": 0, "deceleration": 0, "aerialAcc": 0, "aerialDec": 0.02,
             "maxRunSpeed": 0, "jumpHeight": 0, "shortJumpHeight": 0, "timeToJumpApex": 0,
-            "maxJumps": 0
+            "maxJumps": 0, "acceptInput": false
         },
 
         "aerialAttackMain": {
@@ -24,10 +24,15 @@
         },
         
         "groundAttackMain": {
-            "staticVelocityX": 5,
+            "staticVelocityX": 5, "forceY": -1.3,
             "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.02, "aerialDec": 0.02,
-            "maxRunSpeed": 0, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
-            "maxJumps": 0
+            "maxRunSpeed": 0, "jumpHeight": 50, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 40,
+            "maxJumps": 0, "acceptInput": false
+        },
+        "groundAttackSlide": {
+            "acceleration": 0.03, "deceleration": 0.06, "aerialAcc": 0.02, "aerialDec": 0.02,
+            "maxRunSpeed": 4, "jumpHeight": 50, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 40,
+            "maxJumps": 0, "acceptInput": false
         }
     },
 
@@ -55,14 +60,17 @@
             "duration": 60, "animation": "Slam", "controller": "aerialAttackMain", "hitBoxes": ["aerialAttackMain"]
         },
         "aerialRecovery": {
-            "duration": 30, "animation": "SlamStun", "controller": "recoveryStun", "hitBoxes": [], "directional": true
+            "duration": 50, "animation": "SlamStun", "controller": "recoveryStun", "hitBoxes": [], "directional": true
         },
 
         "groundWindup": {
-            "duration": 30, "animation": "ChargeWindup", "controller": "recoveryStun", "hitBoxes": [], "directional": true
+            "duration": 10, "animation": "ChargeWindup", "controller": "recoveryStun", "hitBoxes": [], "directional": true
         },
         "groundMain": {
-            "duration": 30, "animation": "Charge", "controller": "groundAttackMain", "hitBoxes": [], "directional": true
+            "duration": 15, "animation": "Charge", "controller": "groundAttackMain", "hitBoxes": [], "directional": true
+        },
+        "groundMainSlide": {
+            "duration": 50, "animation": "ChargeSlide", "controller": "groundAttackSlide", "hitBoxes": [], "directional": true
         }
         
     }

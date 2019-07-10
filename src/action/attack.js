@@ -72,7 +72,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
 
             var origin = this.currentIndex;
             this.setNextPhase();
-            console.log("Progress attack from " + origin + " to " + this.currentIndex);
+            
             if (this.currentIndex <= origin)
                 this.endAttack(hostActor);
             else
@@ -117,7 +117,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
 
             if (this.controller) {
                 console.log(this.controller);
-                hostActor.currentController = this.controller;
+                hostActor.setController(this.controller);
             }
             if (this.animation) {
                 this.addPhaseAnimation(hostActor);
@@ -151,7 +151,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
                 hostActor.state = "";
             }
             if (this.controller) {
-                hostActor.currentController = hostActor.defaultController;
+                hostActor.setController(hostActor.defaultController);
             }
             if (this.hitboxes) {
                 this.hitboxes.forEach((hitbox) => {

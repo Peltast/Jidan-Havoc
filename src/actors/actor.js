@@ -21,7 +21,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
 
             this.controlsLocked = false;
             this.defaultController = new ActorController(controllerData["default"]);
-            this.currentController = this.defaultController;
+            this.setController(this.defaultController);
 
             this.displayCollision = false;
             this.particleEffects = [];
@@ -41,11 +41,11 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             if (this.controlsLocked)
                 return;
 
-            if (this.goingLeft) {
+            if (this.goingLeft && this.currentController.acceptInput) {
                 this.targetVelocity.X = -this.currentController.maxRunSpeed;
                 this.orientation = "left";
             }
-            else if (this.goingRight) {
+            else if (this.goingRight && this.currentController.acceptInput) {
                 this.targetVelocity.X = this.currentController.maxRunSpeed;
                 this.orientation = "right";
             }
@@ -145,6 +145,11 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             return maxDistance;
         }
         
+        setController(newController) {
+            this.currentController = newController;
+            this.currentController.init(this);
+        }
+
         setGrounded() {
             this.velocity.Y = this.currentController.gravity;
             

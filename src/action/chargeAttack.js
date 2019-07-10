@@ -31,6 +31,11 @@ define("ChargeAttack", ['Attack', 'CollisionBox', 'ActorController'], function(A
                     return false;
             }
 
+            if (this.currentIndex == 2 && !hostActor.onGround) {
+                this.currentPhase.phaseTimer = this.currentPhase.duration;
+                return true;
+            }
+
             this.currentPhase.updatePhase();
 
             return true;

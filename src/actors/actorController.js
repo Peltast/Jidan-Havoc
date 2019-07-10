@@ -3,9 +3,6 @@ define("ActorController", ['Point'], function(Point) {
     class ActorController {
         
         constructor(motionData) {
-            
-            this.staticVelocityX = motionData["staticVelocityX"];
-            this.staticVelocityY = motionData["staticVelocityY"];
 
             this.acceleration = motionData["acceleration"];
             this.deceleration = motionData["deceleration"];
@@ -16,6 +13,7 @@ define("ActorController", ['Point'], function(Point) {
             this.jumpHeight = motionData["jumpHeight"];
             this.shortJumpHeight = motionData["shortJumpHeight"];
             this.timeToJumpApex = motionData["timeToJumpApex"];
+            this.gCoefficient = motionData["gCoefficient"] ? motionData["gCoefficient"] : 60;
             
             this.maxJumps = motionData["maxJumps"];
             this.currentJumps = this.maxJumps;
@@ -24,13 +22,26 @@ define("ActorController", ['Point'], function(Point) {
             this.shortJumpVelocity = Math.sqrt(2 * this.gravity * this.shortJumpHeight);
             this.jumpVelocity = this.gravity * this.timeToJumpApex;
             this.glideVelocity = Math.sqrt(2 * this.gravity * this.glideHeight);
-            this.maxGravity = this.gravity * 60;
+            this.maxGravity = this.gravity * this.gCoefficient;
+            
+            this.staticVelocityX = motionData["staticVelocityX"];
+            this.staticVelocityY = motionData["staticVelocityY"];
+            
+            var forceX = motionData["forceX"] ? motionData["forceX"] : 0;
+            var forceY = motionData["forceY"] ? motionData["forceY"] : 0;
+            this.force = new Point(forceX, forceY);
 
+            this.acceptInput = motionData["acceptInput"] != null ? motionData["acceptInput"] : true;
             this.setAnimation = motionData["setAnimation"];
         }
 
         reset() {
             this.currentJumps = this.maxJumps;
+        }
+
+        init(actor) {
+
+            actor.velocity.add(this.force);
         }
 
         updateSpeed(actor) {

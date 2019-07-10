@@ -18,6 +18,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             this.frozen = false;
             this.warpPoint = null;
 
+            this.addHurtbox(null, 4, 4, 18, 24, this.location);
             this.maxHealth = 2;
             this.currentHealth = 2;
             this.maxIFrames = 60;
@@ -28,14 +29,10 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
 
             this.interactionRange = tileSize / 2;
             this.interactionOrigin = new Point();
-
             this.initInteractionElements();
 
-            // this.addHitbox(null, 24, -8, 10, 36, this.location);
-            this.addHurtbox(null, 4, 4, 18, 24, this.location);
-
             this.aerialAttack = new SlamAttack(["aerialMain", "aerialRecovery"]);
-            this.groundAttack = new ChargeAttack(["groundWindup", "groundMain"]);
+            this.groundAttack = new ChargeAttack(["groundWindup", "groundMain", "groundMainSlide"]);
 
             this.currentAttack = null;
         }
@@ -60,6 +57,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
 
                     rightChargeWindup: [22, 23, "rightChargeWindup", .01], rightCharge: [42, 46, "rightCharge", .25],
                     leftChargeWindup: [28, 29, "finished", .01], leftCharge: [48, 52, "leftCharge", .25],
+
+                    rightChargeSlide: [54, 58, "rightChargeSlideFinished", .15], rightChargeSlideFinished: 58,
+                    leftChargeSlide: [60, 64, "leftChargeSlideFinished", .15], leftChargeSlideFinished: 64,
                     
                     finished: 11
                 }
@@ -168,13 +168,13 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
         }
 
         updateState() {
-            this.enactNewState();
-
+            
             if (!this.frozen)
                 this.setMotionState();
-
             if (this.currentController.setAnimation)
                 this.setControllerState();
+
+            this.enactNewState();
         }
         enactNewState() {
             // console.log(this.priorOrientation + ", " + this.orientation + "  -  " + this.priorState + ", " + this.state);
@@ -204,7 +204,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
         }
 
         jumpHold() {
-            if (this.currentController.currentJumps <= 0 || this.jumpHeld || this.frozen)
+            if (this.jumpHeld || this.frozen)
+                return;
+            else if (!this.currentController.acceptInput || this.currentController.currentJumps <= 0)
                 return;
             
             this.velocity.Y = -this.currentController.jumpVelocity;
@@ -222,12 +224,10 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
         }
 
         attack() {
-            if (this.frozen)
+            if (this.frozen || this.currentAttack ? this.currentAttack.active : false)
                 return;
-            console.log("BEGIN attack");
-            if (this.currentAttack)
-                this.currentAttack.active = false;
 
+            console.log("BEGIN attack");
             if (this.onGround) {
                 this.currentAttack = this.groundAttack;
             }
