@@ -55,7 +55,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             this.currentPhase.endPhase(hostActor);
         }
         updateAttack(hostActor) {
-            
+
             if (this.currentPhase ? this.currentPhase.isFinished() : true) {
                 this.progressAttack(hostActor);
                 if (!this.active)
@@ -105,6 +105,8 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
         }
 
         updatePhase() {
+            // if (this.animation === "Knockback")
+            //     console.log(this.phaseTimer);
             this.phaseTimer -= 1;
         }
 
@@ -116,8 +118,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             this.phaseTimer = this.duration;
 
             if (this.controller) {
-                // console.log(this.controller);
-                hostActor.setController(this.controller);
+                this.setAttackController(hostActor);
             }
             if (this.animation) {
                 this.addPhaseAnimation(hostActor);
@@ -125,6 +126,13 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             if (this.hitboxes) {
                 this.addPhaseHitboxes(hostActor);
             }
+        }
+
+        setAttackController(hostActor) {
+            if (this.directional) {
+                this.controller.flipDirectionalProperties(hostActor.orientation);
+            }
+            hostActor.setController(this.controller);
         }
 
         addPhaseAnimation(hostActor) {
@@ -140,7 +148,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
         addPhaseHitboxes(hostActor) {
             this.hitboxes.forEach((hitbox) => {
                 if (this.directional) {
-                    hitbox.x = hostActor.orientation === "left" ? -hitbox.width : hostActor.size.X;
+                    hitbox.location.X = hostActor.orientation === "left" ? -hitbox.size.X : hostActor.size.X;
                 }
                 hostActor.addHitbox(hitbox);
             });

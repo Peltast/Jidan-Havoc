@@ -21,15 +21,17 @@ define("ActorController", ['Point'], function(Point) {
             this.gravity = (2 * this.jumpHeight) / Math.pow(this.timeToJumpApex, 2);
             this.shortJumpVelocity = Math.sqrt(2 * this.gravity * this.shortJumpHeight);
             this.jumpVelocity = this.gravity * this.timeToJumpApex;
-            this.glideVelocity = Math.sqrt(2 * this.gravity * this.glideHeight);
             this.maxGravity = this.gravity * this.gCoefficient;
             
-            this.staticVelocityX = motionData["staticVelocityX"];
-            this.staticVelocityY = motionData["staticVelocityY"];
+            this.originStaticVelX = motionData["staticVelocityX"];
+            this.originStaticVelY = motionData["staticVelocityY"];
+            this.staticVelocityX = this.originStaticVelX;
+            this.staticVelocityY = this.originStaticVelY;
             
             var forceX = motionData["forceX"] ? motionData["forceX"] : 0;
             var forceY = motionData["forceY"] ? motionData["forceY"] : 0;
-            this.force = new Point(forceX, forceY);
+            this.originalForce = new Point(forceX, forceY);
+            this.force = this.originalForce.get();
 
             this.acceptInput = motionData["acceptInput"] != null ? motionData["acceptInput"] : true;
             this.setAnimation = motionData["setAnimation"];
@@ -40,7 +42,6 @@ define("ActorController", ['Point'], function(Point) {
         }
 
         init(actor) {
-
             actor.velocity.add(this.force);
         }
 
@@ -89,6 +90,13 @@ define("ActorController", ['Point'], function(Point) {
                 if (!actor.goingUp && actor.velocity.Y < -this.shortJumpVelocity)
                     actor.velocity.Y = -this.shortJumpVelocity;
             }
+        }
+
+        flipDirectionalProperties(direction) {
+            if (this.originStaticVelX)
+                this.staticVelocityX = (direction === "left") ? -this.originStaticVelX : this.originStaticVelX;
+            if (this.originalForce)
+                this.force.X = (direction === "left") ? -this.originalForce.X : this.originalForce.X;
         }
 
 

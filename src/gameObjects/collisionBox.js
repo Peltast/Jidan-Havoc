@@ -77,8 +77,13 @@ define("CollisionBox", ['Point'], function(Point) {
             this.isVisible = !this.isVisible;
         }
         setVisible(v) {
+            this.drawCollisionDisplay();
             this.collisionDisplay.alpha = v ? 0.5 : 0;
             this.isVisible = v;
+        }
+        drawCollisionDisplay() {
+            this.collisionDisplay = new createjs.Shape();
+            this.collisionDisplay.graphics.beginFill(this.type == "hitBox" ? "#dd0000" : "#333333").drawRect(this.location.X, this.location.Y, this.size.X, this.size.Y);
         }
 
     }

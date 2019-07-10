@@ -4,23 +4,38 @@ define("ChargeAttack", ['Attack', 'CollisionBox', 'ActorController'], function(A
 
         constructor(phases) {
             super(phases);
-
         }
         initAttack() {
             this.mainPhase = this.phases[1];
+            this.slidePhase = this.phases[2];
+            this.knockbackPhase = this.constructAttackPhase("chargeKnockback");
+
             this.chargeSpeed = this.mainPhase.controller.staticVelocityX;
+            this.knockbackSpeed = this.knockbackPhase.controller.staticVelocityX;
         }
         
         beginAttack(hostActor) {
-            this.setOrientation(hostActor.orientation);
+            this.phases[2] = this.slidePhase;
             super.beginAttack(hostActor);
         }
 
-        setOrientation(orientation) {
-            if (orientation === "left")
-                this.mainPhase.controller.staticVelocityX = -this.chargeSpeed;
-            else
-                this.mainPhase.controller.staticVelocityX = this.chargeSpeed;
+        // setOrientation(orientation) {
+        //     if (orientation === "left") {
+        //         this.mainPhase.controller.staticVelocityX = -this.chargeSpeed;
+        //         this.knockbackPhase.controller.staticVelocityX = -this.knockbackSpeed;
+        //     }
+        //     else {
+        //         this.mainPhase.controller.staticVelocityX = this.chargeSpeed;
+        //         this.knockbackPhase.controller.staticVelocityX = this.knockbackSpeed;
+        //     }
+        // }
+
+        beginKnockback(player) {
+            if (this.currentPhase !== this.mainPhase)
+                return;
+
+            this.phases[2] = this.knockbackPhase;
+            this.progressAttack(player);
         }
 
         updateAttack(hostActor) {
@@ -31,7 +46,7 @@ define("ChargeAttack", ['Attack', 'CollisionBox', 'ActorController'], function(A
                     return false;
             }
 
-            if (this.currentIndex == 2 && !hostActor.onGround) {
+            if (this.currentPhase == this.slidePhase && !hostActor.onGround) {
                 this.currentPhase.phaseTimer = this.currentPhase.duration;
                 return true;
             }

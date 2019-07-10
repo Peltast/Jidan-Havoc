@@ -147,6 +147,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             if (xAxis) {
                 this.location.X += collisionDistance;
                 this.velocity.X = 0;
+                this.handleHorizontalCollision();
             }
             else
                 this.location.Y += collisionDistance;
@@ -175,6 +176,9 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             }
 
             return this.getFarthestCollisionVectors(collisionDistances);
+        }
+        handleHorizontalCollision() {
+            // Hook for extended classes to have unique behavior when colliding on the x-axis
         }
 
         getFarthestCollisions(distances) {

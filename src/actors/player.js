@@ -32,7 +32,8 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             this.initInteractionElements();
 
             this.aerialAttack = new SlamAttack(["aerialMain", "aerialRecovery"]);
-            this.groundAttack = new ChargeAttack(["groundWindup", "groundMain", "groundMainSlide"]);
+            this.chargeAttack = new ChargeAttack(["chargeWindup", "chargeMain", "chargeSlide"]);
+            this.chargeAttackWeak = new ChargeAttack(["chargeWindupWeak", "chargeMainWeak", "chargeSlideWeak"]);
 
             this.currentAttack = null;
         }
@@ -53,13 +54,14 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
                     leftDeath: [24, 27, "finished", .2], rightDeath: [24, 27, "finished", .2],
 
                     Slam: [30, 34, "leftSlam", .25],
-                    leftSlamStun: [36, 37, "leftSlamStun", .1], rightSlamStun: [38, 39, "rightSlamStun", .1],
+                    leftSlamStun: [36, 37, "leftSlamStun", .08], rightSlamStun: [38, 39, "rightSlamStun", .08],
 
                     rightChargeWindup: [22, 23, "rightChargeWindup", .01], rightCharge: [42, 46, "rightCharge", .25],
                     leftChargeWindup: [28, 29, "finished", .01], leftCharge: [48, 52, "leftCharge", .25],
 
-                    rightChargeSlide: [54, 58, "rightChargeSlideFinished", .15], rightChargeSlideFinished: 58,
-                    leftChargeSlide: [60, 64, "leftChargeSlideFinished", .15], leftChargeSlideFinished: 64,
+                    rightChargeSlide: [54, 58, "rightChargeSlideFinished", .2], rightChargeSlideFinished: 58,
+                    leftChargeSlide: [60, 64, "leftChargeSlideFinished", .2], leftChargeSlideFinished: 64,
+                    rightKnockback: [66, 67, "rightKnockback", .16], leftKnockback: [68, 69, "leftKnockback", .16],
                     
                     finished: 11
                 }
@@ -134,7 +136,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
 
             this.updateImmunity();
             this.updateSpecialAbilities();
-            
+
             if (this.respawnStatus >= 0)
                 this.updateRespawn();
             else if (this.warpStatus >= 0)
@@ -175,14 +177,21 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             if (this.frozen || this.currentAttack ? this.currentAttack.active : false)
                 return;
 
-            console.log("BEGIN attack");
-            if (this.onGround) {
-                this.currentAttack = this.groundAttack;
+            if (this.goingLeft || this.goingRight) {
+                this.currentAttack = this.chargeAttack;
             }
-            else {
+            else if (!this.onGround) {
                 this.currentAttack = this.aerialAttack;
             }
+            else {
+                this.currentAttack = this.chargeAttackWeak;
+            }
             this.currentAttack.beginAttack(this);
+        }
+        handleHorizontalCollision() {
+            if (this.currentAttack == this.chargeAttack || this.currentAttack == this.chargeAttackWeak) {
+                this.currentAttack.beginKnockback(this);
+            }
         }
 
         interact() {
