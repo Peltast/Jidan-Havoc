@@ -34,6 +34,7 @@ define("ActorController", ['Point'], function(Point) {
             this.force = this.originalForce.get();
 
             this.acceptInput = motionData["acceptInput"] != null ? motionData["acceptInput"] : true;
+            this.inheritJumps = motionData["inheritJumps"] != null ? motionData["inheritJumps"] : true;
             this.setAnimation = motionData["setAnimation"];
         }
 
@@ -43,6 +44,9 @@ define("ActorController", ['Point'], function(Point) {
 
         init(actor) {
             actor.velocity.add(this.force);
+            
+            if (this.inheritJumps && actor.currentController)
+                this.currentJumps = Math.min(this.maxJumps, actor.currentController.currentJumps);
         }
 
         updateSpeed(actor) {

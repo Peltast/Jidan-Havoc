@@ -38,7 +38,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
                 });   
             }
 
-            return new AttackPhase(phaseData["duration"], phaseData["animation"], phaseController, phaseHitboxes, phaseData["directional"]);
+            return new AttackPhase(phaseData["duration"], phaseData["animation"], phaseController, phaseHitboxes, phaseData["directional"], phaseData["aerial"]);
         }
 
         beginAttack(hostActor) {
@@ -61,6 +61,8 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
                 if (!this.active)
                     return false;
             }
+            if (this.currentPhase.aerial && hostActor.onGround)
+                this.progressAttack(hostActor);
 
             this.currentPhase.updatePhase();
 
@@ -93,7 +95,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
 
     class AttackPhase {
 
-        constructor(duration, animation, controller, hitboxes, directional) {
+        constructor(duration, animation, controller, hitboxes, directional, aerial) {
             this.duration = duration;
             this.animation = animation;
             this.controller = controller;
@@ -102,11 +104,10 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
 
             this.phaseTimer = this.duration;
             this.directional = directional;
+            this.aerial = aerial;
         }
 
         updatePhase() {
-            // if (this.animation === "Knockback")
-            //     console.log(this.phaseTimer);
             this.phaseTimer -= 1;
         }
 
@@ -140,7 +141,6 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             if (this.directional) {
                 phaseAnimation = (hostActor.orientation === "left" ? "left" : "right") + this.animation;
             }
-            // console.log(phaseAnimation);
             hostActor.state = phaseAnimation;
             hostActor.currentController.setAnimation = phaseAnimation;
         }

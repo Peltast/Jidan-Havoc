@@ -1,5 +1,5 @@
-define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', 'SlamAttack', 'ChargeAttack'], 
-    function (Actor, Tile, Prop, Enemy, Point, ParticleSystem, SlamAttack, ChargeAttack) {
+define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', 'Attack', 'ChargeAttack'], 
+    function (Actor, Tile, Prop, Enemy, Point, ParticleSystem, Attack, ChargeAttack) {
 
     class Player extends Actor {
 
@@ -31,9 +31,10 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             this.interactionOrigin = new Point();
             this.initInteractionElements();
 
-            this.aerialAttack = new SlamAttack(["aerialMain", "aerialRecovery"]);
+            this.aerialAttack = new Attack(["aerialMain", "aerialRecovery"]);
             this.chargeAttack = new ChargeAttack(["chargeWindup", "chargeMain", "chargeSlide"]);
             this.chargeAttackWeak = new ChargeAttack(["chargeWindupWeak", "chargeMainWeak", "chargeSlideWeak"]);
+            this.releaseFlip = new Attack(["releaseFlip"]);
 
             this.currentAttack = null;
         }
@@ -62,6 +63,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
                     rightChargeSlide: [54, 58, "rightChargeSlideFinished", .2], rightChargeSlideFinished: 58,
                     leftChargeSlide: [60, 64, "leftChargeSlideFinished", .2], leftChargeSlideFinished: 64,
                     rightKnockback: [66, 67, "rightKnockback", .16], leftKnockback: [68, 69, "leftKnockback", .16],
+
+                    rightFlip: { frames: [72, 73, 74, 75, 76, 76, 77, 77], next: "rightFlipFinished", speed: 0.2 }, rightFlipFinished: 77,
+                    leftFlip: { frames: [78, 79, 80, 81, 82, 82, 83, 83], next: "leftFlipFinished", speed: 0.2 }, leftFlipFinished: 83,
                     
                     finished: 11
                 }
@@ -159,6 +163,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             else if (!this.currentController.acceptInput || this.currentController.currentJumps <= 0)
                 return;
             
+            if (this.currentAttack == this.releaseFlip)
+                this.currentAttack.endAttack(this);
+
             this.velocity.Y = -this.currentController.jumpVelocity;
             this.currentController.currentJumps -= 1;
             
@@ -174,7 +181,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
         }
 
         attack() {
-            if (this.frozen || this.currentAttack ? this.currentAttack.active : false)
+            if (!this.isAbleToAttack())
                 return;
 
             if (this.goingLeft || this.goingRight) {
@@ -192,6 +199,23 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             if (this.currentAttack == this.chargeAttack || this.currentAttack == this.chargeAttackWeak) {
                 this.currentAttack.beginKnockback(this);
             }
+        }
+
+        release() {
+            if (!this.isAbleToAttack())
+                return;
+            
+            if (this.jumpHeld)
+                this.jumpRelease();
+            this.currentAttack = this.releaseFlip;
+            this.currentAttack.beginAttack(this);
+        }
+
+        isAbleToAttack() {
+            if (this.frozen || this.currentAttack ? this.currentAttack.active : false)
+                return false;
+            else
+                return true;
         }
 
         interact() {

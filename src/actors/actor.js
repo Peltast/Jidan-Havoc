@@ -201,8 +201,8 @@ function(       GameObject, Point, CollisionBox, ActorController) {
         }
         
         setController(newController) {
+            newController.init(this);
             this.currentController = newController;
-            this.currentController.init(this);
         }
 
         setGrounded() {

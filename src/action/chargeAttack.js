@@ -19,17 +19,6 @@ define("ChargeAttack", ['Attack', 'CollisionBox', 'ActorController'], function(A
             super.beginAttack(hostActor);
         }
 
-        // setOrientation(orientation) {
-        //     if (orientation === "left") {
-        //         this.mainPhase.controller.staticVelocityX = -this.chargeSpeed;
-        //         this.knockbackPhase.controller.staticVelocityX = -this.knockbackSpeed;
-        //     }
-        //     else {
-        //         this.mainPhase.controller.staticVelocityX = this.chargeSpeed;
-        //         this.knockbackPhase.controller.staticVelocityX = this.knockbackSpeed;
-        //     }
-        // }
-
         beginKnockback(player) {
             if (this.currentPhase !== this.mainPhase)
                 return;
