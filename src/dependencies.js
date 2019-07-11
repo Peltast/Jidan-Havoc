@@ -23,6 +23,7 @@ require.config({
 
       "actorController": "src/actors/actorController",
       "enemy": "src/actors/enemy",
+      "enemyBehavior": "src/ai/enemyBehavior",
       "player": "src/actors/player",
 
       "attack": "src/action/attack",
@@ -38,7 +39,7 @@ requirejs(['point'], function() {
 
     requirejs(['gameObject', 'collisionBox', 'actorController', 'levelParser', 'particle', 'healthBar'], function() {
 
-        requirejs(['tile', 'actor', 'attack', 'prop', 'transition', 'particleSystem', 'dialogueBox'], function() {
+        requirejs(['tile', 'actor', 'attack', 'prop', 'transition', 'particleSystem', 'dialogueBox', 'enemyBehavior'], function() {
 
             requirejs(['switchProp', 'triggerProp', 'enemy', 'chargeAttack'], function() {
 

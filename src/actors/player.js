@@ -100,14 +100,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             else if (currentStatement != null)
                 return;
             
-            switch (direction) {
-                case "left":
-                    this.goingLeft = isMoving;
-                    break;
-                case "right":
-                    this.goingRight = isMoving;
-                    break;
-            }
+            super.setActorDirection(direction, isMoving);
         }
 
         addParticleEffect(effectName) {

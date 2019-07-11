@@ -32,8 +32,22 @@ define("ObjectFactory", [
             },
             "defaultAnimation": "inactive", "active": false,
             "spriteCollision": new Point(24, 24), "spriteSize": new Point(40, 64), "spritePos": new Point(8, 40)
-        }
+        },
         
+        "chasingEnemy": {
+            "sprite": "ChasingEnemy", "behavior": "chase",
+            "frames": { "width": 40, "height": 46, "regX": 0, "regY": 0, "count": 12 },
+            "animations": {
+                left: [0, 1, "leftIdle", .15], right: [2, 3, "rightIdle", .15],
+                leftWalk: [4, 5, "leftWalk", .17], rightWalk: [6, 7, "rightWalk", .17],
+                leftDeath: [8, 9, "leftDeath", .2], rightDeath: [10, 11, "rightDeath", .2]
+            },
+            "defaultAnimation": "leftIdle",
+            "spriteCollision": new Point(22, 32), "spriteSize": new Point(40, 46), "spritePos": new Point(8, 10)
+
+        }
+
+
     }
 
     var objectList = 
@@ -157,28 +171,17 @@ define("ObjectFactory", [
         }
 
         createNewEnemy(enemyMapData) {
-            var enemyListData = npcList["Parasite"];
+            var enemyType = this.getMapProperty(enemyMapData.properties, "enemyType");
+            if (!enemyType)
+                return;
+            var enemyListData = npcList[enemyType];
 
-            var enemySpeed = this.getObjectProperty(enemyMapData, enemyListData, "speed", "int", 2);
-            var enemyAcc = this.getObjectProperty(enemyMapData, enemyListData, "acceleration", "float", 1);
-            var enemyDec = this.getObjectProperty(enemyMapData, enemyListData, "deceleration", "float", 1);
-            var enemySize = new Point(tileSize * .8, tileSize * .8);
-            var enemyData = {
-                "startX" : enemyMapData.x,
-                "startY" : enemyMapData.y - tileSize,
-                "xAxis" : this.getMapProperty(enemyMapData.properties, "xAxis"),
-                "startDirection" : this.getMapProperty(enemyMapData.properties, "startDirection"),
-                "length" : this.getMapProperty(enemyMapData.properties, "pathLength") * tileSize,
-                "spriteData": this.getMapProperty(enemyMapData.properties, "spriteData")
-            }
-            var spriteData;
-            if (enemyData["spriteData"])
-                spriteData = this.getSpriteDataFromString(enemyData["spriteData"]);
-            if (!spriteData)
-                spriteData = this.getSpriteData(enemyMapData, enemyListData);
-            spriteData["defaultAnimation"] = enemyData["startDirection"];
+            var enemyData = this.getObjectData(enemyMapData, enemyListData, 
+                [ "behavior" ]
+            );
+            var spriteData = this.getSpriteData(enemyMapData, enemyListData);
 
-            var newEnemy = new Enemy(enemySize, spriteData, enemyData);
+            var newEnemy = new Enemy(spriteData["spriteCollision"], spriteData, enemyData);
             newEnemy.location = this.getObjectLocation(enemyMapData);
 
             return newEnemy;
