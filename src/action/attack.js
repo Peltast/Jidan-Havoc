@@ -38,9 +38,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
                 });   
             }
 
-            return new AttackPhase(
-                phaseData["duration"], phaseData["animation"], phaseController, phaseHitboxes,
-                phaseData["directional"], phaseData["aerial"], phaseData["immune"]);
+            return new AttackPhase(phaseController, phaseHitboxes, phaseData);
         }
 
         beginAttack(hostActor) {
@@ -93,21 +91,26 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
                 this.setNextPhase();
         }
 
+        isInCombo() {
+            return this.phases[this.currentIndex].comboPiece;
+        }
+
     }
 
     class AttackPhase {
 
-        constructor(duration, animation, controller, hitboxes, directional, aerial, immune) {
-            this.duration = duration;
-            this.animation = animation;
+        constructor(controller, hitboxes, phaseData) {
+
             this.controller = controller;
             this.hitboxes = hitboxes;
-            // this.spawnObject = spawnObject;
 
+            this.duration = phaseData["duration"];
             this.phaseTimer = this.duration;
-            this.directional = directional;
-            this.aerial = aerial;
-            this.immune = immune;
+            this.animation = phaseData["animation"];
+            this.directional = phaseData["directional"];
+            this.aerial = phaseData["aerial"];
+            this.immune = phaseData["immune"];
+            this.comboPiece = phaseData["comboPiece"];
         }
 
         updatePhase() {

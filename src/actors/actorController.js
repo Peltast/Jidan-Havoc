@@ -13,7 +13,7 @@ define("ActorController", ['Point'], function(Point) {
             this.jumpHeight = motionData["jumpHeight"];
             this.shortJumpHeight = motionData["shortJumpHeight"];
             this.timeToJumpApex = motionData["timeToJumpApex"];
-            this.gCoefficient = motionData["gCoefficient"] ? motionData["gCoefficient"] : 60;
+            this.gCoefficient = motionData["gCoefficient"] != undefined ? motionData["gCoefficient"] : 60;
             
             this.maxJumps = motionData["maxJumps"];
             this.currentJumps = this.maxJumps;
@@ -33,6 +33,7 @@ define("ActorController", ['Point'], function(Point) {
             this.originalForce = new Point(forceX, forceY);
             this.force = this.originalForce.get();
 
+            this.resetVelocity = motionData["resetVelocity"] != null ? motionData["resetVelocity"] : false;
             this.acceptInput = motionData["acceptInput"] != null ? motionData["acceptInput"] : true;
             this.inheritJumps = motionData["inheritJumps"] != null ? motionData["inheritJumps"] : true;
             this.setAnimation = motionData["setAnimation"];
@@ -45,6 +46,8 @@ define("ActorController", ['Point'], function(Point) {
         init(actor) {
             actor.velocity.add(this.force);
             
+            if (this.resetVelocity)
+                actor.velocity = new Point(0, 0);
             if (this.inheritJumps && actor.currentController)
                 this.currentJumps = Math.min(this.maxJumps, actor.currentController.currentJumps);
         }
@@ -88,8 +91,7 @@ define("ActorController", ['Point'], function(Point) {
             if (!actor.onGround) {
                 
                 actor.velocity.Y += this.gravity;
-                if (actor.velocity.Y > this.maxGravity)
-                    actor.velocity.Y = this.maxGravity;
+                actor.velocity.Y = Math.min(actor.velocity.Y, this.maxGravity);
                     
                 if (!actor.goingUp && actor.velocity.Y < -this.shortJumpVelocity)
                     actor.velocity.Y = -this.shortJumpVelocity;

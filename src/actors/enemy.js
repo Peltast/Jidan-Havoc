@@ -1,4 +1,4 @@
-define("Enemy", ['Actor', 'EnemyBehavior'], function(Actor, EnemyBehavior) {
+define("Enemy", ['Actor', 'EnemyBehavior', 'ActorController'], function(Actor, EnemyBehavior, ActorController) {
 
     const DeathState = { "Alive" : 0, "Dying": 1, "Dead": 2};
 
@@ -14,6 +14,7 @@ define("Enemy", ['Actor', 'EnemyBehavior'], function(Actor, EnemyBehavior) {
             this.deathAnimation = enemyData["deathAnimation"] ? enemyData["deathAnimation"] : "";
             this.deathTimer = enemyData["deathTimer"] ? enemyData["deathTimer"] : 0;
             this.deathStatus = DeathState.Alive;
+            this.deathController = new ActorController(controllerData["gravityFree"]);
 
             this.initEnemy();
         }
@@ -40,7 +41,9 @@ define("Enemy", ['Actor', 'EnemyBehavior'], function(Actor, EnemyBehavior) {
                 this.deathStatus = DeathState.Dying;
 
                 this.hitBoxes = [];
+                this.passable = true;
                 this.setFrozen(true);
+                this.setController(this.deathController);
             }
         }
         updateDeath() {
