@@ -22,6 +22,7 @@ define("Level", [
             this.mapTransitions = [];
             this.objects = [];
 
+            this.totalMapSize = new Point(this.mapSize.X * tileSize * gameScale, this.mapSize.Y * tileSize * gameScale);
             this.tileDisplayRange = Math.ceil((stageWidth) / tileSize);
             this.tileDisplayAnchor = new Point(0, 0);
 
@@ -284,6 +285,7 @@ define("Level", [
             this.updateTileDisplay();
 
             this.actors.forEach((actor) => {
+                this.checkActorScreenBounds(actor);
                 actor.updateActor();
             })
             this.props.forEach((prop) => {
@@ -298,6 +300,35 @@ define("Level", [
             this.backgroundLayer.sortChildren(this.ZsortFunction);
             this.spriteLayer.sortChildren(this.ZsortFunction);
         }
+        checkActorScreenBounds(actor) {
+
+            if (currentLevel.levelScreenWrap) {
+                if (actor.location.X >= this.totalMapSize.X)
+                    actor.location.X = actor.size.X;
+                else if (actor.location.X + actor.size.X <= 0)
+                    actor.location.X = this.totalMapSize.X - actor.size.X;
+
+                if (actor.location.Y >= this.totalMapSize.Y)
+                    actor.location.Y = actor.size.Y;
+                else if (actor.location.Y + actor.size.Y <= 0)
+                    actor.location.Y = this.totalMapSize.Y - actor.size.Y;
+            }
+            else {
+                
+                if (actor.location.X + actor.size.X >= this.totalMapSize.X)
+                    actor.location.X = this.totalMapSize.X - actor.size.X;
+                else if (actor.location.X <= 0)
+                    actor.location.X = 0;
+
+                if (actor.location.Y + actor.size.Y >= this.totalMapSize.Y) {
+                    actor.location.Y = this.totalMapSize.Y - actor.size.Y;
+                    actor.takeDamage();
+                }
+                else if (actor.location.Y <= 0)
+                    actor.location.Y = 0;
+            }
+        }
+
         startUpLevel() {
             
         }
@@ -350,12 +381,13 @@ define("Level", [
 
         checkHitboxCollisions(hurtBox) {
             var collisions = [];
+            
             this.actors.forEach((actor) => {
                 actor.hitBoxes.forEach((hitBox) => {
-                    if (hitBox.parentObject !== actor && hurtBox.intersects(hitBox))
+                    if (hurtBox.parentObject !== actor && hurtBox.intersects(hitBox))
                         collisions.push(hitBox);
                 })
-            })
+            });
 
             return collisions;
         }

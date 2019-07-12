@@ -9,13 +9,18 @@
             "maxRunSpeed": 4, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
             "maxJumps": 2, "inheritJumps": true
         },
+        "chaseController": {
+            "acceleration": 0.2, "deceleration": 0.2, "aerialAcc": 0.02, "aerialDec": 0.02,
+            "maxRunSpeed": 2, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
+            "maxJumps": 2, "inheritJumps": true
+        },
 
         "recoveryStun": {
             "acceleration": 0, "deceleration": 0, "aerialAcc": 0, "aerialDec": 0.02,
             "maxRunSpeed": 0, "jumpHeight": 0, "shortJumpHeight": 0, "timeToJumpApex": 28,
             "maxJumps": 0, "acceptInput": false
         },
-
+        
         "aerialAttackMain": {
             "staticVelocityX": 0, "staticVelocityY": 8,
             "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.02, "aerialDec": 0.02,
@@ -80,37 +85,47 @@
     "AttackData" : {
 
         "aerialMain": {
-            "duration": 60, "animation": "Slam", "controller": "aerialAttackMain", "hitBoxes": ["aerialAttackMain"], "aerial": true
+            "duration": 60, "animation": "Slam", "controller": "aerialAttackMain", "hitBoxes": ["aerialAttackMain"], 
+            "aerial": true, "immune": true
         },
         "aerialRecovery": {
-            "duration": 50, "animation": "SlamStun", "controller": "aerialStun", "hitBoxes": [], "directional": true
+            "duration": 50, "animation": "SlamStun", "controller": "aerialStun", "hitBoxes": [], 
+            "directional": true
         },
 
         "chargeWindup": {
-            "duration": 20, "animation": "ChargeWindup", "controller": "recoveryStun", "hitBoxes": [], "directional": true
+            "duration": 20, "animation": "ChargeWindup", "controller": "recoveryStun", "hitBoxes": [], 
+            "directional": true
         },
         "chargeMain": {
-            "duration": 15, "animation": "Charge", "controller": "chargeAttack", "hitBoxes": ["chargeAttack"], "directional": true
+            "duration": 15, "animation": "Charge", "controller": "chargeAttack", "hitBoxes": ["chargeAttack"], 
+            "directional": true, "immune": true
         },
         "chargeSlide": {
-            "duration": 50, "animation": "ChargeSlide", "controller": "chargeAttackSlide", "hitBoxes": [], "directional": true
+            "duration": 50, "animation": "ChargeSlide", "controller": "chargeAttackSlide", "hitBoxes": [], 
+            "directional": true
         },
         
         "chargeWindupWeak": {
-            "duration": 10, "animation": "ChargeWindup", "controller": "recoveryStun", "hitBoxes": [], "directional": true
+            "duration": 10, "animation": "ChargeWindup", "controller": "recoveryStun", "hitBoxes": [], 
+            "directional": true
         },
         "chargeMainWeak": {
-            "duration": 15, "animation": "Charge", "controller": "chargeAttackWeak", "hitBoxes": ["chargeAttack"], "directional": true
+            "duration": 15, "animation": "Charge", "controller": "chargeAttackWeak", "hitBoxes": ["chargeAttack"],
+            "directional": true, "immune": true
         },
         "chargeSlideWeak": {
-            "duration": 50, "animation": "ChargeSlide", "controller": "chargeAttackSlide", "hitBoxes": [], "directional": true
+            "duration": 50, "animation": "ChargeSlide", "controller": "chargeAttackSlide", "hitBoxes": [], 
+            "directional": true
         },
         "chargeKnockback": {
-            "duration": 50, "animation": "Knockback", "controller": "chargeKnockback", "hitBoxes": [], "directional": true
+            "duration": 50, "animation": "Knockback", "controller": "chargeKnockback", "hitBoxes": [], 
+            "directional": true
         },
 
         "releaseFlip": {
-            "duration": 50, "animation": "Flip", "controller": "releaseFlip", "hitBoxes": [], "directional": true, "aerial": true
+            "duration": 50, "animation": "Flip", "controller": "releaseFlip", "hitBoxes": [],
+            "directional": true, "aerial": true
         }
         
     }

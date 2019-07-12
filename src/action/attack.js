@@ -38,7 +38,9 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
                 });   
             }
 
-            return new AttackPhase(phaseData["duration"], phaseData["animation"], phaseController, phaseHitboxes, phaseData["directional"], phaseData["aerial"]);
+            return new AttackPhase(
+                phaseData["duration"], phaseData["animation"], phaseController, phaseHitboxes,
+                phaseData["directional"], phaseData["aerial"], phaseData["immune"]);
         }
 
         beginAttack(hostActor) {
@@ -95,7 +97,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
 
     class AttackPhase {
 
-        constructor(duration, animation, controller, hitboxes, directional, aerial) {
+        constructor(duration, animation, controller, hitboxes, directional, aerial, immune) {
             this.duration = duration;
             this.animation = animation;
             this.controller = controller;
@@ -105,6 +107,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             this.phaseTimer = this.duration;
             this.directional = directional;
             this.aerial = aerial;
+            this.immune = immune;
         }
 
         updatePhase() {
@@ -126,6 +129,9 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             }
             if (this.hitboxes) {
                 this.addPhaseHitboxes(hostActor);
+            }
+            if (this.immune) {
+                hostActor.isImmune = this.immune;
             }
         }
 
@@ -166,6 +172,8 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
                     hostActor.removeHitbox(hitbox);
                 });
             }
+            if (this.immune)
+                hostActor.isImmune = false;
         }
 
     }

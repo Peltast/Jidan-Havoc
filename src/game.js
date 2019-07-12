@@ -198,7 +198,6 @@ require(
 
             if (player.location.Y + player.size.Y >= totalMapSize.Y) {
                 player.location.Y = totalMapSize.Y - player.size.Y;
-                player.takeDamage();
             }
             else if (player.location.Y <= 0)
                 player.location.Y = 0;
@@ -244,11 +243,6 @@ require(
             case 75: // k
                 player.release();
                 break;
-
-            // case 82: // r
-            //     player.holdReset();
-            //     break;
-            
     
         }
     }

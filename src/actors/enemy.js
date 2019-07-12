@@ -1,87 +1,59 @@
 define("Enemy", ['Actor', 'EnemyBehavior'], function(Actor, EnemyBehavior) {
 
-    class Enemy extends Actor {
+    const DeathState = { "Alive" : 0, "Dying": 1, "Dead": 2};
 
+    class Enemy extends Actor {
+        
         constructor(actorSize, spriteData, enemyData) {
             super(actorSize, spriteData, enemyData);
-            
-            // this.pathXAxis = enemyData.xAxis;
-            // this.pathDirection = enemyData.startDirection;
-            // this.pathStart = (enemyData.xAxis === "true") ? enemyData.startX : enemyData.startY;
-            // this.pathLength = enemyData.length;
-
-            // if (this.pathXAxis === "true") {
-            //     this.goingLeft = (this.pathDirection === "left");
-            //     this.goingRight = !this.goingLeft;
-            // }
-            // else {
-            //     this.goingUp = (this.pathDirection === "up");
-            //     this.goingDown = !this.goingUp;
-            // }
 
             if (enemyData["behavior"])
                 this.enemyBehavior = new EnemyBehavior(this, enemyData["behavior"]);
+            
+            this.damageOnTouch = enemyData["damageOnTouch"] ? enemyData["damageOnTouch"] : true;
+            this.deathAnimation = enemyData["deathAnimation"] ? enemyData["deathAnimation"] : "";
+            this.deathTimer = enemyData["deathTimer"] ? enemyData["deathTimer"] : 0;
+            this.deathStatus = DeathState.Alive;
+
+            this.initEnemy();
+        }
+        initEnemy() {
+            
+            if (this.damageOnTouch)
+                this.addHitbox(null, -3, -3, this.size.X + 6, this.size.Y + 6);
+            this.addHurtbox(null, -3, -3, this.size.X + 6, this.size.Y + 6);
         }
         
         updateActor() {
-            // this.updatePathProgress();
 
             if (this.enemyBehavior)
                 this.enemyBehavior.updateBehavior();
+            if (this.deathStatus !== DeathState.Alive)
+                this.updateDeath();
 
             super.updateActor();
         }
 
-        // updatePathProgress() {
-        //     var currentProgress = (this.pathXAxis === "true") ? this.location.X : this.location.Y;
-            
-        //     if (Math.abs(currentProgress - this.pathStart) > this.pathLength)
-        //         this.switchDirections();
-        //         this.updateSpeed();
-        // }
+        takeDamage() {
+            if (this.deathStatus === DeathState.Alive) { 
+                this.state = this.deathAnimation;
+                this.deathStatus = DeathState.Dying;
 
-        // updatePositionOnCollision(collisions, xAxis) {
-        //     var collisionDistances = [];
-        //     for (let i = 0; i < collisions.length; i++) {
-        //         if (collisions[i] instanceof Actor)
-        //             collisions[i].handleCollidedBy(this);
-        //         collisionDistances.push(collisions[i].getCollisionDistance(this, xAxis));
-        //     }
-
-        //     var collisionDistance = this.getFarthestCollisions(collisionDistances);
-
-        //     if (xAxis)
-        //         this.location.X += collisionDistance;
-        //     else
-        //         this.location.Y += collisionDistance;
-
-        //     this.switchDirections();
-        //     this.updateSpeed();
-        // }
-
-        // switchDirections() {
-
-        //     if (this.pathXAxis === "true") {
-        //         this.pathDirection = (this.pathDirection === "left") ? "right" : "left";
-        //     }
-        //     else {
-        //         this.pathDirection = (this.pathDirection === "up") ? "down" : "up";
-        //     }
-        //     this.sprite.gotoAndPlay(this.pathDirection);
-            
-        //     this.setPathVelocity();
-        // }
-        // setPathVelocity() {
-        //     if (this.pathXAxis === "true") {
-        //         this.goingLeft = (this.pathDirection === "left");
-        //         this.goingRight = !this.goingLeft;
-        //     }
-        //     else {
-        //         this.goingUp = (this.pathDirection === "up");
-        //         this.goingDown = !this.goingUp;
-        //     }
-        //     this.updateDirection();
-        // }
+                this.hitBoxes = [];
+                this.setFrozen(true);
+            }
+        }
+        updateDeath() {
+            if (this.deathStatus === DeathState.Dying) {
+                if (this.deathTimer > 0)
+                    this.deathTimer -= 1;
+                else
+                    this.deathStatus = DeathState.Dead;
+            }
+            else if (this.deathStatus === DeathState.Dead) {
+                currentLevel.removeActor(this);
+            }
+        }
 
     }
     

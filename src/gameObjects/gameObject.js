@@ -2,7 +2,7 @@ define("GameObject", ['Point'], function(Point) {
 
     class GameObject {
         
-        constructor (location, size, passable, spriteData, objData) {
+        constructor (location, size, passable, spriteData) {
             this.location = location;
             this.size = size;
             this.passable = passable;
@@ -18,9 +18,6 @@ define("GameObject", ['Point'], function(Point) {
             if (spriteData) {
                 this.loadSpriteData(spriteData);
                 this.initiateSprite();
-            }
-            if (objData) {
-                
             }
         }
         loadSpriteData(spriteData) {

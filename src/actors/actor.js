@@ -4,7 +4,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
     class Actor extends GameObject {
 
         constructor(actorSize, spriteData, actorData) {
-            super(new Point(0, 0), actorSize, false, spriteData, actorData);
+            super(new Point(0, 0), actorSize, false, spriteData);
 
             this.velocity = new Point(0, 0);
             this.targetVelocity = new Point(0, 0);
@@ -18,16 +18,24 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             this.orientation = "right";
             this.state = "";
             this.priorState = "";
-
             this.controlsLocked = false;
-            this.defaultController = new ActorController(controllerData["default"]);
-            this.setController(this.defaultController);
 
             this.displayCollision = false;
             this.particleEffects = [];
             this.hitBoxes = [];
             this.hurtBoxes = [];
+            this.isImmune = false;
             this.currentAttack = null;
+
+            this.initActorData(actorData);
+        }
+        initActorData(actorData) {
+
+            if (actorData["controller"])
+                this.defaultController = new ActorController(controllerData[actorData["controller"]]);
+            else
+                this.defaultController = new ActorController(controllerData["default"]);
+            this.setController(this.defaultController);
         }
 
         updateActor() {
@@ -139,7 +147,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
         }
         handleCollidedBy(actor) {
             // Hook into situations when collided by another actor during their own update.
-            // Useful when one actor is stationary, and therefore won't detect the collision in their own update.
+            // Useful when one actor is stationary, and therefore won't detect the collision in their own update cycle.
         }
         updatePositionOnCollision(collisions, xAxis) {
             var collisionDistance = this.getCollisionDistanceByAxis(collisions, xAxis);
@@ -221,6 +229,15 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             else
                 this.state = "Fall";
         }
+        
+        setFrozen(b) {
+            this.frozen = b;
+
+            if (b) {
+                this.goingLeft = false;
+                this.goingRight = false;
+            }
+        }
 
         collideWithObject(object) {
             var collisionX = object.getCollisionDistance(this, true);
@@ -230,6 +247,9 @@ function(       GameObject, Point, CollisionBox, ActorController) {
         }
 
         setActorDirection(direction, isMoving) {
+            if (this.frozen)
+                return;
+
             switch (direction) {
                 case "left":
                     this.goingLeft = isMoving;
@@ -257,6 +277,9 @@ function(       GameObject, Point, CollisionBox, ActorController) {
         }
 
         checkHurtbox() {
+            if (this.isImmune)
+                return;
+
             var collisions = [];
             for (let i = 0; i < this.hurtBoxes.length; i++) {
                 collisions = collisions.concat(currentLevel.checkHitboxCollisions(this.hurtBoxes[i]));
@@ -270,14 +293,13 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             // Hook for player/enemies to implement behavior when damaged
         }
 
-        addHitbox(hitboxObj, x, y, width, height, origin) {
+        addHitbox(hitboxObj, x, y, width, height) {
             var hitbox;
             if (hitboxObj) {
                 hitbox = hitboxObj;
             }
             else {
                 var hitbox = new CollisionBox(true, x, y, width, height);
-                hitbox.origin = origin;
             }
             hitbox.setVisible(this.displayCollision);
             hitbox.parentObject = this;
@@ -285,14 +307,13 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             this.hitBoxes.push(hitbox);
             this.spriteContainer.addChild(hitbox.collisionDisplay);
         }
-        addHurtbox(hurtboxObj, x, y, width, height, origin) {
+        addHurtbox(hurtboxObj, x, y, width, height) {
             var hurtbox;
             if (hurtboxObj) { 
                 hurtbox = hurtboxObj;
             }
             else {
                 var hurtbox = new CollisionBox(false, x, y, width, height);
-                hurtbox.origin = origin;
             }
             hurtbox.setVisible(this.displayCollision);
             hurtbox.parentObject = this;

@@ -35,14 +35,14 @@ define("ObjectFactory", [
         },
         
         "chasingEnemy": {
-            "sprite": "ChasingEnemy", "behavior": "chase",
+            "sprite": "ChasingEnemy", "damageOnTouch": true, "behavior": "chase", "controller": "chaseController",
             "frames": { "width": 40, "height": 46, "regX": 0, "regY": 0, "count": 12 },
             "animations": {
-                left: [0, 1, "leftIdle", .15], right: [2, 3, "rightIdle", .15],
+                left: [0, 1, "leftIdle", .13], right: [2, 3, "rightIdle", .13],
                 leftWalk: [4, 5, "leftWalk", .17], rightWalk: [6, 7, "rightWalk", .17],
                 leftDeath: [8, 9, "leftDeath", .2], rightDeath: [10, 11, "rightDeath", .2]
             },
-            "defaultAnimation": "leftIdle",
+            "defaultAnimation": "leftIdle", "deathAnimation": "Death", "deathTimer": 30,
             "spriteCollision": new Point(22, 32), "spriteSize": new Point(40, 46), "spritePos": new Point(8, 10)
 
         }
@@ -177,7 +177,7 @@ define("ObjectFactory", [
             var enemyListData = npcList[enemyType];
 
             var enemyData = this.getObjectData(enemyMapData, enemyListData, 
-                [ "behavior" ]
+                [ "damageOnTouch", "behavior", "controller", "deathAnimation", "deathTimer" ]
             );
             var spriteData = this.getSpriteData(enemyMapData, enemyListData);
 

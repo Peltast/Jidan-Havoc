@@ -6,7 +6,6 @@ define("CollisionBox", ['Point'], function(Point) {
             this.type = hitBox ? "hitBox" : "hurtBox";
             this.location = new Point(x, y);
             this.size = new Point(width, height);
-            this.origin = new Point(0, 0);
 
             this.collisionDisplay = new createjs.Shape();
             this.collisionDisplay.graphics.beginFill(this.type == "hitBox" ? "#dd0000" : "#333333").drawRect(x, y, width, height);
@@ -20,10 +19,10 @@ define("CollisionBox", ['Point'], function(Point) {
         }
 
         getX() {
-            return this.location.X + this.origin.X;
+            return this.location.X + this.parentObject.location.X;
         }
         getY() {
-            return this.location.Y + this.origin.Y;
+            return this.location.Y + this.parentObject.location.Y;
         }
 
         intersects(otherBox) {
