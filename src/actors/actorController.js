@@ -34,6 +34,7 @@ define("ActorController", ['Point'], function(Point) {
             this.force = this.originalForce.get();
 
             this.resetVelocity = motionData["resetVelocity"] != null ? motionData["resetVelocity"] : false;
+            this.resetVerticalVel = motionData["resetVerticalVel"] != null ? motionData["resetVerticalVel"] : false;
             this.acceptInput = motionData["acceptInput"] != null ? motionData["acceptInput"] : true;
             this.inheritJumps = motionData["inheritJumps"] != null ? motionData["inheritJumps"] : true;
             this.setAnimation = motionData["setAnimation"];
@@ -44,10 +45,14 @@ define("ActorController", ['Point'], function(Point) {
         }
 
         init(actor) {
-            actor.velocity.add(this.force);
             
             if (this.resetVelocity)
                 actor.velocity = new Point(0, 0);
+            else if (this.resetVerticalVel)
+                actor.velocity.Y = 0;
+                
+            actor.velocity.add(this.force);
+
             if (this.inheritJumps && actor.currentController)
                 this.currentJumps = Math.min(this.maxJumps, actor.currentController.currentJumps);
         }

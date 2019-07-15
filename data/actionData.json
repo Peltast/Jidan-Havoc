@@ -68,6 +68,12 @@
             "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.015, "aerialDec": 0.015,
             "maxRunSpeed": 2, "jumpHeight": 50, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 30,
             "maxJumps": 2, "inheritJumps": true
+        },
+        "comboFlip": {
+            "forceY": -3,
+            "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.015, "aerialDec": 0.015,
+            "maxRunSpeed": 2, "jumpHeight": 50, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 20,
+            "maxJumps": 2, "inheritJumps": true,  "resetVerticalVel": true
         }
 
     },
@@ -133,7 +139,7 @@
             "directional": true, "aerial": true
         },
         "comboFlip": {
-            "duration": 50, "animation": "FrontFlip", "controller": "releaseFlip", "hitBoxes": [],
+            "duration": 50, "animation": "FrontFlip", "controller": "comboFlip", "hitBoxes": [],
             "directional": true, "aerial": true
         }
         

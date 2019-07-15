@@ -11,6 +11,8 @@ define("EnemyBehavior", ['Point'], function(Point) {
         updateBehavior() {
 
             switch (this.type) {
+                case "sleeping":
+                    break;
                 case "chase": 
                     this.updateChaseAI();
                     break;

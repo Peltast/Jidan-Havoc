@@ -15,7 +15,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             this.onGround = false;
             
             this.priorOrientation = "";
-            this.orientation = "right";
+            this.orientation = actorData["orientation"] ? actorData["orientation"] : "right";
             this.state = "";
             this.priorState = "";
             this.controlsLocked = false;
@@ -224,10 +224,6 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             this.onGround = false;
             if (this.currentController.currentJumps > 0)
                 this.currentController.currentJumps -= 1;
-            if (this.velocity.Y < 0)
-                this.state = "Jump";
-            else
-                this.state = "Fall";
         }
         
         setFrozen(b) {

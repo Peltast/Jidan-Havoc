@@ -34,6 +34,17 @@ define("ObjectFactory", [
             "spriteCollision": new Point(24, 24), "spriteSize": new Point(40, 64), "spritePos": new Point(8, 40)
         },
         
+        "sleepingEnemy": {
+            "sprite": "SleepingEnemy", "damageOnTouch": true, "behavior": "stationary", "controller": "default",
+            "frames": { "width": 44, "height": 36, "regX": 0, "regY": 0, "count": 12 },
+            "animations": {
+                left: [0, 3, "leftIdle", .05], right: [4, 7, "rightIdle", .05],
+                leftDeath: [8, 9, "leftDeath", .2], rightDeath: [10, 11, "rightDeath", .2]
+            },
+            "defaultAnimation": "leftIdle", "deathAnimation": "Death", "deathTimer": 30,
+            "spriteCollision": new Point(26, 20), "spriteSize": new Point(44, 36), "spritePos": new Point(8, 12)
+
+        },
         "chasingEnemy": {
             "sprite": "ChasingEnemy", "damageOnTouch": true, "behavior": "chase", "controller": "chaseController",
             "frames": { "width": 40, "height": 46, "regX": 0, "regY": 0, "count": 12 },
@@ -177,7 +188,7 @@ define("ObjectFactory", [
             var enemyListData = npcList[enemyType];
 
             var enemyData = this.getObjectData(enemyMapData, enemyListData, 
-                [ "damageOnTouch", "behavior", "controller", "deathAnimation", "deathTimer" ]
+                [ "damageOnTouch", "behavior", "controller", "orientation", "defaultAnimation", "deathAnimation", "deathTimer" ]
             );
             var spriteData = this.getSpriteData(enemyMapData, enemyListData);
 

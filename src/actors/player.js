@@ -179,6 +179,16 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             this.goingUp = false;
             this.jumpHeld = false;
         }
+        
+        setUnGrounded() {
+            super.setUnGrounded();
+
+            if (this.velocity.Y < 0)
+                this.state = "Jump";
+            else
+                this.state = "Fall";
+        }
+        
 
         attack() {
             if (!this.isAbleToAttack())

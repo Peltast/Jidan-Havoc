@@ -15,7 +15,7 @@ define("Enemy", ['Actor', 'EnemyBehavior', 'ActorController'], function(Actor, E
             this.deathTimer = enemyData["deathTimer"] ? enemyData["deathTimer"] : 0;
             this.deathStatus = DeathState.Alive;
             this.deathController = new ActorController(controllerData["gravityFree"]);
-
+            
             this.initEnemy();
         }
         initEnemy() {

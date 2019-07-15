@@ -77,7 +77,7 @@ function init() {
 
         {src: "actors/Player.png", id: "Player"},
 
-        {src: "actors/ChasingEnemy.png", id: "ChasingEnemy"},
+        {src: "actors/SleepingEnemy.png", id: "SleepingEnemy"}, {src: "actors/ChasingEnemy.png", id: "ChasingEnemy"},
 
         {src: "ui/Cursor.png", id: "Cursor"},
         {src: "ui/HealthSlot.png", id: "HealthSlot"}, 
