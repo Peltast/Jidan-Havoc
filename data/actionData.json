@@ -6,74 +6,80 @@
 
         "default": {
             "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.02, "aerialDec": 0.02,
-            "maxRunSpeed": 4, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
+            "maxSpeed": 4, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
+            "maxJumps": 2, "inheritJumps": true
+        },
+
+        "flyingDefault": {
+            "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.02, "aerialDec": 0.02,
+            "maxSpeed": 4, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
+            "maxJumps": 2, "inheritJumps": true, "isFlying": true
+        },
+
+        "paceController": {
+            "acceleration": 0.2, "deceleration": 0.2, "aerialAcc": 0.02, "aerialDec": 0.02,
+            "maxSpeed": 1, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
             "maxJumps": 2, "inheritJumps": true
         },
         "chaseController": {
             "acceleration": 0.2, "deceleration": 0.2, "aerialAcc": 0.02, "aerialDec": 0.02,
-            "maxRunSpeed": 2, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
+            "maxSpeed": 2, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
             "maxJumps": 2, "inheritJumps": true
         },
 
         "recoveryStun": {
             "acceleration": 0, "deceleration": 0, "aerialAcc": 0, "aerialDec": 0.02,
-            "maxRunSpeed": 0, "jumpHeight": 0, "shortJumpHeight": 0, "timeToJumpApex": 28,
+            "maxSpeed": 0, "jumpHeight": 0, "shortJumpHeight": 0, "timeToJumpApex": 28,
             "maxJumps": 0, "acceptInput": false
         },
         "gravityFree": {
             "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.02, "aerialDec": 0.02,
-            "maxRunSpeed": 4, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 0,
+            "maxSpeed": 4, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 0,
             "maxJumps": 2, "inheritJumps": true, "resetVelocity": true
         },
         
         "aerialAttackMain": {
             "staticVelocityX": 0, "staticVelocityY": 8,
             "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.02, "aerialDec": 0.02,
-            "maxRunSpeed": 0, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
+            "maxSpeed": 0, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
             "maxJumps": 0
         },
         "aerialStun": {
             "forceY": -2,
             "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.02, "aerialDec": 0.02,
-            "maxRunSpeed": 1, "jumpHeight": 50, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 40,
+            "maxSpeed": 1, "jumpHeight": 50, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 40,
             "maxJumps": 0, "acceptInput": false
         },
         
         "chargeAttack": {
             "staticVelocityX": 5, "forceY": -1.3,
             "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.02, "aerialDec": 0.02,
-            "maxRunSpeed": 0, "jumpHeight": 50, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 40,
+            "maxSpeed": 0, "jumpHeight": 50, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 40,
             "maxJumps": 0, "acceptInput": false
         },
         "chargeAttackWeak": {
             "staticVelocityX": 3, "forceY": -1.3,
             "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.02, "aerialDec": 0.02,
-            "maxRunSpeed": 0, "jumpHeight": 50, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 40,
+            "maxSpeed": 0, "jumpHeight": 50, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 40,
             "maxJumps": 0, "acceptInput": false
         },
         "chargeAttackSlide": {
             "acceleration": 0.03, "deceleration": 0.08, "aerialAcc": 0.02, "aerialDec": 0.01,
-            "maxRunSpeed": 4, "jumpHeight": 50, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 40,
+            "maxSpeed": 4, "jumpHeight": 50, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 40,
             "maxJumps": 0, "acceptInput": false
         },
         "chargeKnockback" : {
             "forceX": -2, "forceY": -1.8,
             "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.02, "aerialDec": 0.02,
-            "maxRunSpeed": 4, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
+            "maxSpeed": 4, "jumpHeight": 80, "shortJumpHeight": 18, "timeToJumpApex": 28,
             "maxJumps": 0, "acceptInput": false
         },
         
         "releaseFlip": {
             "forceY": -15,
             "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.015, "aerialDec": 0.015,
-            "maxRunSpeed": 2, "jumpHeight": 50, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 30,
+            "maxSpeed": 2, "jumpHeight": 50, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 30,
             "maxJumps": 2, "inheritJumps": true
-        },
-        "comboFlip": {
-            "forceY": -3,
-            "acceleration": 0.03, "deceleration": 0.12, "aerialAcc": 0.015, "aerialDec": 0.015,
-            "maxRunSpeed": 2, "jumpHeight": 50, "shortJumpHeight": 18, "timeToJumpApex": 28, "gCoefficient": 20,
-            "maxJumps": 2, "inheritJumps": true,  "resetVerticalVel": true
         }
 
     },
@@ -139,7 +145,7 @@
             "directional": true, "aerial": true
         },
         "comboFlip": {
-            "duration": 50, "animation": "FrontFlip", "controller": "comboFlip", "hitBoxes": [],
+            "duration": 50, "animation": "FrontFlip", "controller": "releaseFlip", "hitBoxes": [],
             "directional": true, "aerial": true
         }
         

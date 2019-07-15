@@ -35,7 +35,7 @@ define("ObjectFactory", [
         },
         
         "sleepingEnemy": {
-            "sprite": "SleepingEnemy", "damageOnTouch": true, "behavior": "stationary", "controller": "default",
+            "sprite": "SleepingEnemy", "damageOnTouch": true, "behavior": "Stationary", "controller": "default",
             "frames": { "width": 44, "height": 36, "regX": 0, "regY": 0, "count": 12 },
             "animations": {
                 left: [0, 3, "leftIdle", .05], right: [4, 7, "rightIdle", .05],
@@ -43,10 +43,22 @@ define("ObjectFactory", [
             },
             "defaultAnimation": "leftIdle", "deathAnimation": "Death", "deathTimer": 30,
             "spriteCollision": new Point(26, 20), "spriteSize": new Point(44, 36), "spritePos": new Point(8, 12)
-
         },
+
+        "dustBunny": {
+            "sprite": "DustBunny", "damageOnTouch": true, "controller": "paceController", "behavior": "Pacing", "horizontal": true,
+            "frames": { "width": 40, "height": 50, "regX": 0, "regY": 0, "count": 20 },
+            "animations": {
+                left: [0, 1, "leftIdle", .1], right: [5, 6, "rightIdle", .1],
+                leftWalk: [0, 4, "leftWalk", .17], rightWalk: [5, 9, "rightWalk", .17],
+                leftDeath: [10, 12, "leftDeath", .2], rightDeath: [15, 17, "rightDeath", .2]
+            },
+            "defaultAnimation": "leftIdle", "deathAnimation": "Death", "deathTimer": 30,
+            "spriteCollision": new Point(22, 32), "spriteSize": new Point(40, 50), "spritePos": new Point(8, 14)
+        },
+
         "chasingEnemy": {
-            "sprite": "ChasingEnemy", "damageOnTouch": true, "behavior": "chase", "controller": "chaseController",
+            "sprite": "ChasingEnemy", "damageOnTouch": true, "behavior": "Chase", "controller": "chaseController",
             "frames": { "width": 40, "height": 46, "regX": 0, "regY": 0, "count": 12 },
             "animations": {
                 left: [0, 1, "leftIdle", .13], right: [2, 3, "rightIdle", .13],
@@ -55,7 +67,6 @@ define("ObjectFactory", [
             },
             "defaultAnimation": "leftIdle", "deathAnimation": "Death", "deathTimer": 30,
             "spriteCollision": new Point(22, 32), "spriteSize": new Point(40, 46), "spritePos": new Point(8, 10)
-
         }
 
 
@@ -187,8 +198,10 @@ define("ObjectFactory", [
                 return;
             var enemyListData = npcList[enemyType];
 
-            var enemyData = this.getObjectData(enemyMapData, enemyListData, 
-                [ "damageOnTouch", "behavior", "controller", "orientation", "defaultAnimation", "deathAnimation", "deathTimer" ]
+            var enemyData = this.getObjectData(enemyMapData, enemyListData, [ 
+                "damageOnTouch", "behavior", "controller", "orientation", "defaultAnimation", "deathAnimation", "deathTimer",
+                "horizontal", "startDirection"
+                ]
             );
             var spriteData = this.getSpriteData(enemyMapData, enemyListData);
 

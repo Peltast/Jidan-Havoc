@@ -8,8 +8,9 @@ define("ActorController", ['Point'], function(Point) {
             this.deceleration = motionData["deceleration"];
             this.aerialAcc = motionData["aerialAcc"];
             this.aerialDec = motionData["aerialDec"];
+            this.maxSpeed = motionData["maxSpeed"];
             
-            this.maxRunSpeed = motionData["maxRunSpeed"];
+            this.isFlying = motionData["isFlying"] ? motionData["isFlying"] : false;
             this.jumpHeight = motionData["jumpHeight"];
             this.shortJumpHeight = motionData["shortJumpHeight"];
             this.timeToJumpApex = motionData["timeToJumpApex"];
@@ -82,18 +83,21 @@ define("ActorController", ['Point'], function(Point) {
         updateHorizontalSpeed(actor) {
             var xAcceleration;
 
-            if (actor.onGround)
-                xAcceleration = (actor.goingLeft || actor.goingRight) ? this.acceleration : this.deceleration;
+            if (actor.onGround || this.isFlying)
+                xAcceleration = this.isActorMoving(actor) ? this.acceleration : this.deceleration;
             else
-                xAcceleration = (actor.goingLeft || actor.goingRight) ? this.aerialAcc : this.aerialDec;
+                xAcceleration = this.isActorMoving(actor) ? this.aerialAcc : this.aerialDec;
 
-            actor.velocity.X = actor.targetVelocity.X * xAcceleration + (1 - xAcceleration) * actor.velocity.X;
-            actor.velocity.X = Math.min(actor.velocity.X, this.maxRunSpeed);
-            actor.velocity.X = Math.max(actor.velocity.X, -this.maxRunSpeed);
+            actor.velocity.X = this.applyAcceleration(xAcceleration, actor.velocity.X, actor.targetVelocity.X);
         }
         updateVerticalSpeed(actor) {
 
-            if (!actor.onGround) {
+            if (this.isFlying) {
+                
+                var yAcceleration = this.isActorMoving(actor) ? this.acceleration : this.deceleration;
+                actor.velocity.Y = this.applyAcceleration(yAcceleration, actor.velocity.Y, actor.targetVelocity.Y);
+            }
+            else if (!actor.onGround) {
                 
                 actor.velocity.Y += this.gravity;
                 actor.velocity.Y = Math.min(actor.velocity.Y, this.maxGravity);
@@ -103,6 +107,14 @@ define("ActorController", ['Point'], function(Point) {
             }
         }
 
+        applyAcceleration(acc, speed, targetSpeed) {
+            var newSpeed = targetSpeed * acc + (1 - acc) * speed;
+            newSpeed = Math.min(newSpeed, this.maxSpeed);
+            newSpeed = Math.max(newSpeed, -this.maxSpeed);
+
+            return newSpeed;
+        }
+
         flipDirectionalProperties(direction) {
             if (this.originStaticVelX)
                 this.staticVelocityX = (direction === "left") ? -this.originStaticVelX : this.originStaticVelX;
@@ -110,6 +122,9 @@ define("ActorController", ['Point'], function(Point) {
                 this.force.X = (direction === "left") ? -this.originalForce.X : this.originalForce.X;
         }
 
+        isActorMoving(actor) {
+            return (actor.goingLeft || actor.goingRight || actor.goingUp || actor.goingDown);
+        }
 
     }
 

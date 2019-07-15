@@ -1,14 +1,20 @@
-define("Enemy", ['Actor', 'EnemyBehavior', 'ActorController'], function(Actor, EnemyBehavior, ActorController) {
+define("Enemy", 
+    ['Actor', 'EnemyBehavior', 'PacingBehavior', 'ActorController'], 
+    function(Actor, EnemyBehavior, PacingBehavior, ActorController) {
 
     const DeathState = { "Alive" : 0, "Dying": 1, "Dead": 2};
 
     class Enemy extends Actor {
         
-        constructor(actorSize, spriteData, enemyData) {
+        constructor(actorSize, spriteData, enemyData, aiBehavior) {
             super(actorSize, spriteData, enemyData);
 
-            if (enemyData["behavior"])
-                this.enemyBehavior = new EnemyBehavior(this, enemyData["behavior"]);
+            if (enemyData["behavior"]) {
+                if (enemyData["behavior"] === "Pacing")
+                    this.aiBehavior = new PacingBehavior(this, enemyData);
+                else
+                    this.aiBehavior = new EnemyBehavior(this, enemyData["behavior"]);
+            }
             
             this.damageOnTouch = enemyData["damageOnTouch"] ? enemyData["damageOnTouch"] : true;
             this.deathAnimation = enemyData["deathAnimation"] ? enemyData["deathAnimation"] : "";
@@ -27,12 +33,27 @@ define("Enemy", ['Actor', 'EnemyBehavior', 'ActorController'], function(Actor, E
         
         updateActor() {
 
-            if (this.enemyBehavior)
-                this.enemyBehavior.updateBehavior();
+            if (this.aiBehavior)
+                this.aiBehavior.updateBehavior();
             if (this.deathStatus !== DeathState.Alive)
                 this.updateDeath();
 
             super.updateActor();
+        }
+
+        updatePositionOnCollision(collisions, xAxis) {
+            super.updatePositionOnCollision(collisions, xAxis);
+            if (this.aiBehavior)
+                this.aiBehavior.updatePositionOnCollision(collisions, xAxis);
+        }
+
+        handleCollisions() {
+            if (this.aiBehavior)
+                this.aiBehavior.handleCollisions();
+        }
+        handleCollidedBy(actor) {
+            if (this.aiBehavior)
+                this.aiBehavior.handleCollisions(actor);
         }
 
         takeDamage() {
@@ -41,6 +62,7 @@ define("Enemy", ['Actor', 'EnemyBehavior', 'ActorController'], function(Actor, E
                 this.deathStatus = DeathState.Dying;
 
                 this.hitBoxes = [];
+                this.hurtBoxes = [];
                 this.passable = true;
                 this.setFrozen(true);
                 this.setController(this.deathController);

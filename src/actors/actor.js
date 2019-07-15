@@ -12,6 +12,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             this.goingLeft = false;
             this.goingRight = false;
             this.goingUp = false;
+            this.goingDown = false;
             this.onGround = false;
             
             this.priorOrientation = "";
@@ -55,11 +56,11 @@ function(       GameObject, Point, CollisionBox, ActorController) {
                 return;
 
             if (this.goingLeft && this.currentController.acceptInput) {
-                this.targetVelocity.X = -this.currentController.maxRunSpeed;
+                this.targetVelocity.X = -this.currentController.maxSpeed;
                 this.orientation = "left";
             }
             else if (this.goingRight && this.currentController.acceptInput) {
-                this.targetVelocity.X = this.currentController.maxRunSpeed;
+                this.targetVelocity.X = this.currentController.maxSpeed;
                 this.orientation = "right";
             }
             else
@@ -117,8 +118,8 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             }
             else {
                 this.velocity.add(this.targetVelocity);
-                if (this.velocity.magnitude() > this.currentController.maxRunSpeed)
-                    this.velocity.setMagnitude(this.currentController.maxRunSpeed);
+                if (this.velocity.magnitude() > this.currentController.maxSpeed)
+                    this.velocity.setMagnitude(this.currentController.maxSpeed);
             }
         }
         updatePosition(xAxis) {
@@ -214,6 +215,9 @@ function(       GameObject, Point, CollisionBox, ActorController) {
         }
 
         setGrounded() {
+            if (this.currentController.isFlying)
+                return;
+                
             this.velocity.Y = this.currentController.gravity;
             
             this.onGround = true;
@@ -252,6 +256,12 @@ function(       GameObject, Point, CollisionBox, ActorController) {
                     break;
                 case "right":
                     this.goingRight = isMoving;
+                    break;
+                case "up":
+                    this.goingUp = isMoving;
+                    break;
+                case "down":
+                    this.goingDown = isMoving;
                     break;
             }
         }

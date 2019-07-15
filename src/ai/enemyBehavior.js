@@ -1,24 +1,38 @@
 define("EnemyBehavior", ['Point'], function(Point) {
     
+    const Behavior = { "Stationary" : "Stationary", "Pacing": "Pacing", "Chase": "Chase"};
+
     class EnemyBehavior {
 
         constructor(hostEnemy, behaviorType) {
             
             this.hostEnemy = hostEnemy;
-            this.type = behaviorType;
+            this.type = Behavior[behaviorType];
         }
 
         updateBehavior() {
 
             switch (this.type) {
-                case "sleeping":
-                    break;
-                case "chase": 
+                case Behavior.Chase: 
                     this.updateChaseAI();
                     break;
                 default:
                     break;
             }
+        }
+        
+        updatePositionOnCollision(collisions, xAxis) {
+        
+        }
+        handleCollisions() {
+            
+        }
+        handleCollidedBy(actor) {
+            
+        }
+
+        updatePacingAI() {
+
         }
 
         updateChaseAI() {
