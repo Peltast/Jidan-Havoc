@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.3" name="World1" tilewidth="32" tileheight="32" tilecount="135" columns="15">
+<tileset version="1.2" tiledversion="1.2.4" name="World1" tilewidth="32" tileheight="32" tilecount="135" columns="15">
  <image source="../images/tiles/World1Tiles.png" width="480" height="288"/>
  <terraintypes>
   <terrain name="Ground" tile="31">
@@ -54,8 +54,9 @@
  <tile id="38" terrain="0,0,0,0"/>
  <tile id="39" terrain="0,0,0,0"/>
  <tile id="40" terrain="0,0,0,0"/>
- <tile id="41" terrain=",,,1"/>
- <tile id="43" terrain=",1,,1"/>
+ <tile id="41" terrain="0,0,0,0"/>
+ <tile id="42" terrain="0,0,0,0"/>
+ <tile id="43" terrain="0,0,0,0"/>
  <tile id="44" terrain="1,1,1,1"/>
  <tile id="45" terrain="0,,0,"/>
  <tile id="46" terrain="0,0,0,0"/>

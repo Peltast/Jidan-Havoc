@@ -317,7 +317,6 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             var fullCollisions = currentLevel.checkObjectCollisions(this, false);
 
             for (let i = 0; i < fullCollisions.length; i++) {
-
                 fullCollisions[i].handleInteraction(this);
                 
                 if (fullCollisions[i] instanceof Prop) {
@@ -328,18 +327,20 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
                     if (fullCollisions[i].fatalTile)
                         this.takeDamage(fullCollisions[i]);
                 }
-                else if (fullCollisions[i] instanceof Enemy) {
-                    if (this.currentAttack ? this.currentAttack.isInCombo() : false) {
-                        this.currentAttack.endAttack(this);
-                        this.setAttack(this.comboFlip);
-                    }
+            }
+        }
+        handleCollidedBy(actor) { }
+
+        giveDamage(damageObj) {
+            if (damageObj instanceof Enemy) {
+                if (this.currentAttack ? this.currentAttack.isInCombo() : false) {
+                    this.currentAttack.endAttack(this);
+                    this.setAttack(this.comboFlip);
                 }
             }
         }
-        handleCollidedBy(actor) {
-            // if (actor instanceof Enemy) {
-            //     this.takeDamage(actor);
-            // }
+        takeDamage(collisions) {
+            this.respawnPlayer();
         }
 
         setWarp(transition) {
@@ -369,10 +370,6 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
                 this.warpStatus = -1;
                 this.setFrozen(false);
             }
-        }
-
-        takeDamage(collisions) {
-            this.respawnPlayer();
         }
 
         /* Damage/health/knockback logic from YGttA  */

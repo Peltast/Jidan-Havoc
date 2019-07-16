@@ -38,7 +38,7 @@ define("EnemyBehavior", ['Point'], function(Point) {
         updateChaseAI() {
             var distToPlayer = new Point(this.hostEnemy.location.X - player.location.X, this.hostEnemy.location.Y - player.location.Y);
 
-            if ( Math.abs(distToPlayer.X) < tileSize * 5 && Math.abs(distToPlayer.Y) < tileSize ) {
+            if ( Math.abs(distToPlayer.X) < tileSize * 5 && Math.abs(distToPlayer.Y) < tileSize / 2 ) {
                 if (distToPlayer.X < 0) {
                     this.hostEnemy.setActorDirection("right", true);
                 }

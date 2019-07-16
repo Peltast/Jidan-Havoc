@@ -58,22 +58,23 @@ define("Enemy",
         }
 
         takeDamage(collisions) {
-            var nonEnemyDamage = false;
-            for (let i = 0; i < collisions.length; i++) {
-                if (!(collisions[i].parentObject instanceof Enemy)) {
-                    nonEnemyDamage = true;
-                    break;
+            if (collisions.length > 0) {
+                var nonEnemyDamage = false;
+                for (let i = 0; i < collisions.length; i++) {
+                    if (!(collisions[i].parentObject instanceof Enemy)) {
+                        nonEnemyDamage = true;
+                        break;
+                    }
                 }
+                if (!nonEnemyDamage)
+                    return;
             }
-            if (!nonEnemyDamage)
-                return;
 
             if (this.deathStatus === DeathState.Alive) { 
                 this.state = this.deathAnimation;
                 this.deathStatus = DeathState.Dying;
 
-                this.hitBoxes = [];
-                this.hurtBoxes = [];
+                this.clearCollisionBoxes();
                 this.passable = true;
                 this.setFrozen(true);
                 this.setController(this.deathController);

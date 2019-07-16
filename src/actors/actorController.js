@@ -102,7 +102,7 @@ define("ActorController", ['Point'], function(Point) {
                 actor.velocity.Y += this.gravity;
                 actor.velocity.Y = Math.min(actor.velocity.Y, this.maxGravity);
                     
-                if (!actor.goingUp && actor.velocity.Y < -this.shortJumpVelocity)
+                if (!actor.goingUp && actor.currentAttack === null && actor.velocity.Y < -this.shortJumpVelocity)
                     actor.velocity.Y = -this.shortJumpVelocity;
             }
         }

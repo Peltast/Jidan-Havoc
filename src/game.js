@@ -134,6 +134,12 @@ require(
         this.dialogueBox.update();
     }
     
+    function resetCurrentLevel() {
+        gameArea.removeChild(currentLevel.levelContainer);
+        currentLevel.createLevel();
+        currentLevel.spawnPlayer(player, currentCheckpoint.location);
+        setLevel(currentLevel);
+    }
     function changeLevels(newMap, newLocation) {
         var newLevel = gameWorld[newMap];
 
@@ -283,16 +289,8 @@ require(
                 currentLevel.toggleHitboxDisplay();
                 break;
             case 82: // r
-                player.respawnPlayer();
+                resetCurrentLevel();
                 break;
-
-            case 74: // j
-                // player.attack();
-                break;
-
-            // case 16: // shift
-            //     player.releaseSpecial();
-            //     break;
 
             // case 69:  // e
             //     if (currentStatement === null)

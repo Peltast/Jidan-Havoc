@@ -10,10 +10,28 @@ define("Level", [
     class Level {
 
         constructor(tileMap, objectList, mapSize, tileSets, mapName, levelData) {
+
             this.mapSize = mapSize;
             this.tileSets = tileSets;
             this.name = mapName;
             this.levelScreenWrap = false;
+
+            this.totalMapSize = new Point(this.mapSize.X * tileSize * gameScale, this.mapSize.Y * tileSize * gameScale);
+            this.tileDisplayRange = Math.ceil((stageWidth) / tileSize);
+            this.tileDisplayAnchor = new Point(0, 0);
+            this.initTilesets();
+            
+            this.levelObj = { "tiles": tileMap, "objects": objectList, "data": levelData};
+            this.createLevel();
+        }
+        initTilesets() {
+            for (var firstGID in this.tileSets) {
+                var parsedTileset = new TileSet(firstGID, this.tileSets[firstGID]);
+                this.tileSets[firstGID] = parsedTileset;
+            }
+        }
+
+        createLevel() {
 
             this.actors = [];
             this.props = [];
@@ -21,11 +39,7 @@ define("Level", [
             this.tiles = [];
             this.mapTransitions = [];
             this.objects = [];
-
-            this.totalMapSize = new Point(this.mapSize.X * tileSize * gameScale, this.mapSize.Y * tileSize * gameScale);
-            this.tileDisplayRange = Math.ceil((stageWidth) / tileSize);
-            this.tileDisplayAnchor = new Point(0, 0);
-
+            
             this.screenPosition = new Point(0, 0);
             this.levelContainer = new createjs.Container();
             this.levelContainer.snapToPixel = true;
@@ -42,19 +56,12 @@ define("Level", [
             this.levelContainer.addChild(this.spriteLayer);
             this.levelContainer.addChild(this.foregroundLayer);
             
-            this.initTileMap(tileMap);
-            this.initMapObjects(objectList);
-            this.initLevelData(levelData);
+            this.initTileMap(this.levelObj["tiles"]);
+            this.initMapObjects(this.levelObj["objects"]);
+            this.initLevelData(this.levelObj["data"]);
         }
 
-
         initTileMap(tileMap) {
-            
-            for (var firstGID in this.tileSets) {
-                var parsedTileset = new TileSet(firstGID, this.tileSets[firstGID]);
-                this.tileSets[firstGID] = parsedTileset;
-            }
-
             for (let y = 0; y < this.mapSize.Y; y++) {
                 var tileRow = [];
                 for (let x = 0; x < this.mapSize.X; x++) {
@@ -322,7 +329,7 @@ define("Level", [
 
                 if (actor.location.Y + actor.size.Y >= this.totalMapSize.Y) {
                     actor.location.Y = this.totalMapSize.Y - actor.size.Y;
-                    actor.takeDamage();
+                    actor.takeDamage([]);
                 }
                 else if (actor.location.Y <= 0)
                     actor.location.Y = 0;
@@ -384,8 +391,11 @@ define("Level", [
             
             this.actors.forEach((actor) => {
                 actor.hitBoxes.forEach((hitBox) => {
-                    if (hurtBox.parentObject !== actor && hurtBox.intersects(hitBox))
+                    if (hurtBox.parentObject !== actor && hurtBox.intersects(hitBox)) {
+                        if (hitBox.parentObject)
+                            hitBox.parentObject.giveDamage(hurtBox.parentObject);
                         collisions.push(hitBox);
+                    }
                 })
             });
 
@@ -485,7 +495,6 @@ define("Level", [
     class TileSet {
         
         constructor(firstGID, tileData) {
-            
             this.firstGID = firstGID;
             this.lastGID = parseInt(firstGID) + tileData.tiles.length;
             this.tileData = tileData;

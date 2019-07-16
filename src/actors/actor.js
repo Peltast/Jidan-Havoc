@@ -304,6 +304,9 @@ function(       GameObject, Point, CollisionBox, ActorController) {
                 this.takeDamage(collisions);
             }
         }
+        giveDamage(damageObj) {
+            
+        }
         takeDamage(collisions) {
             // Hook for player/enemies to implement behavior when damaged
         }
@@ -359,6 +362,18 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             this.hurtBoxes.forEach((hurtbox) => {
                 hurtbox.toggleDisplay();
             });
+        }
+        clearCollisionBoxes() {
+            for (let i = 0; i < this.hitBoxes.length; i++) {
+                this.spriteContainer.removeChild(this.hitBoxes[i].collisionDisplay);
+                this.hitBoxes.splice(i, 1);
+                i -= 1;
+            }
+            for (let j = 0; j < this.hurtBoxes.length; j++) {
+                this.spriteContainer.removeChild(this.hurtBoxes[j].collisionDisplay);
+                this.hurtBoxes.splice(j, 1);
+                j -= 1;
+            }
         }
 
 
