@@ -44,6 +44,17 @@ define("ObjectFactory", [
             "defaultAnimation": "leftIdle", "deathAnimation": "Death", "deathTimer": 30,
             "spriteCollision": new Point(26, 20), "spriteSize": new Point(44, 36), "spritePos": new Point(8, 12)
         },
+        "floatingBug": {
+            "sprite": "FloatingBug", "damageOnTouch": true, "controller": "flyingDefault", "behavior": "Stationary",
+            "frames": { "width": 44, "height": 40, "regX": 0, "regY": 0, "count": 16 },
+            "animations": {
+                left: [0, 3, "leftIdle", .23], right: [4, 7, "rightIdle", .23],
+                leftWalk: [0, 3, "leftWalk", .23], rightWalk: [4, 7, "rightWalk", .23],
+                leftDeath: [8, 9, "leftDeath", .2], rightDeath: [10, 11, "rightDeath", .2]
+            },
+            "defaultAnimation": "leftIdle", "deathAnimation": "Death", "deathTimer": 30,
+            "spriteCollision": new Point(28, 26), "spriteSize": new Point(44, 40), "spritePos": new Point(8, 10)
+        },
 
         "dustBunny": {
             "sprite": "DustBunny", "damageOnTouch": true, "controller": "paceController", "behavior": "Pacing", "horizontal": true,
