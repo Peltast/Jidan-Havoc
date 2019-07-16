@@ -371,7 +371,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             }
         }
 
-        takeDamage() {
+        takeDamage(collisions) {
             this.respawnPlayer();
         }
 

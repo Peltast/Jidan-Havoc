@@ -56,7 +56,17 @@ define("Enemy",
                 this.aiBehavior.handleCollisions(actor);
         }
 
-        takeDamage() {
+        takeDamage(collisions) {
+            var nonEnemyDamage = false;
+            for (let i = 0; i < collisions.length; i++) {
+                if (!(collisions[i].parentObject instanceof Enemy)) {
+                    nonEnemyDamage = true;
+                    break;
+                }
+            }
+            if (!nonEnemyDamage)
+                return;
+
             if (this.deathStatus === DeathState.Alive) { 
                 this.state = this.deathAnimation;
                 this.deathStatus = DeathState.Dying;

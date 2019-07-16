@@ -54,7 +54,18 @@ define("ObjectFactory", [
                 leftDeath: [10, 12, "leftDeath", .2], rightDeath: [15, 17, "rightDeath", .2]
             },
             "defaultAnimation": "leftIdle", "deathAnimation": "Death", "deathTimer": 30,
-            "spriteCollision": new Point(22, 32), "spriteSize": new Point(40, 50), "spritePos": new Point(8, 14)
+            "spriteCollision": new Point(22, 28), "spriteSize": new Point(40, 50), "spritePos": new Point(8, 18)
+        },
+        "flyingBat": {
+            "sprite": "FlyingBat", "damageOnTouch": true, "controller": "paceFlyingController", "behavior": "Pacing", "horizontal": false,
+            "frames": { "width": 50, "height": 44, "regX": 0, "regY": 0, "count": 16 },
+            "animations": {
+                left: [0, 3, "leftIdle", .1], right: [4, 7, "rightIdle", .1],
+                leftWalk: [0, 3, "leftWalk", .17], rightWalk: [4, 7, "rightWalk", .17],
+                leftDeath: [8, 10, "leftDeath", .2], rightDeath: [12, 14, "rightDeath", .2]
+            },
+            "defaultAnimation": "leftIdle", "deathAnimation": "Death", "deathTimer": 30,
+            "spriteCollision": new Point(28, 30), "spriteSize": new Point(50, 44), "spritePos": new Point(10, 8)
         },
 
         "chasingEnemy": {

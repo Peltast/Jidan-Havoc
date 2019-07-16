@@ -17,6 +17,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             
             this.priorOrientation = "";
             this.orientation = actorData["orientation"] ? actorData["orientation"] : "right";
+            
             this.state = "";
             this.priorState = "";
             this.controlsLocked = false;
@@ -65,6 +66,13 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             }
             else
                 this.targetVelocity.X = -this.velocity.X;
+
+            if (this.currentController.isFlying && this.currentController.acceptInput) {
+                if (this.goingUp)
+                    this.targetVelocity.Y = -this.currentController.maxSpeed;
+                else if (this.goingDown)
+                    this.targetVelocity.Y = this.currentController.maxSpeed;
+            }
         }
 
         updateAttack() {
@@ -217,7 +225,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
         setGrounded() {
             if (this.currentController.isFlying)
                 return;
-                
+
             this.velocity.Y = this.currentController.gravity;
             
             this.onGround = true;
@@ -292,10 +300,10 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             }
 
             if (collisions.length > 0) {
-                this.takeDamage();
+                this.takeDamage(collisions);
             }
         }
-        takeDamage() {
+        takeDamage(collisions) {
             // Hook for player/enemies to implement behavior when damaged
         }
 

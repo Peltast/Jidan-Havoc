@@ -51,7 +51,7 @@ define("ActorController", ['Point'], function(Point) {
                 actor.velocity = new Point(0, 0);
             else if (this.resetVerticalVel)
                 actor.velocity.Y = 0;
-                
+            
             actor.velocity.add(this.force);
 
             if (this.inheritJumps && actor.currentController)

@@ -255,6 +255,113 @@
                  "width":32,
                  "x":608,
                  "y":448
+                }, 
+                {
+                 "gid":16,
+                 "height":32,
+                 "id":22,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"flyingBat"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"left"
+                        }, 
+                        {
+                         "name":"startDirection",
+                         "type":"string",
+                         "value":"up"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":128,
+                 "y":416
+                }, 
+                {
+                 "gid":16,
+                 "height":32,
+                 "id":23,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"flyingBat"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"right"
+                        }, 
+                        {
+                         "name":"startDirection",
+                         "type":"string",
+                         "value":"up"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":352,
+                 "y":224
+                }, 
+                {
+                 "gid":16,
+                 "height":32,
+                 "id":24,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"flyingBat"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"left"
+                        }, 
+                        {
+                         "name":"startDirection",
+                         "type":"string",
+                         "value":"down"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":608,
+                 "y":256
+                }, 
+                {
+                 "gid":16,
+                 "height":32,
+                 "id":25,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"flyingBat"
+                        }, 
+                        {
+                         "name":"startDirection",
+                         "type":"string",
+                         "value":"up"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":640,
+                 "y":256
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -263,7 +370,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":22,
+ "nextobjectid":26,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",
