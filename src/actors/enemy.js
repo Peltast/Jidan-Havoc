@@ -1,6 +1,6 @@
 define("Enemy", 
-    ['Actor', 'EnemyBehavior', 'PacingBehavior', 'ActorController'], 
-    function(Actor, EnemyBehavior, PacingBehavior, ActorController) {
+    ['Point', 'Actor', 'EnemyBehavior', 'PacingBehavior', 'ActorController'], 
+    function(Point, Actor, EnemyBehavior, PacingBehavior, ActorController) {
 
     const DeathState = { "Alive" : 0, "Dying": 1, "Dead": 2};
 
@@ -76,10 +76,24 @@ define("Enemy",
 
                 this.clearCollisionBoxes();
                 this.passable = true;
-                this.setFrozen(true);
                 this.setController(this.deathController);
+
+                if (collisions.length > 0)
+                    this.knockbackEnemy(collisions[0].parentObject);
             }
         }
+
+        knockbackEnemy(damageSource) {
+            var collision = this.getCollisionVector(damageSource);
+            var knockbackAngle = Math.atan2(collision.Y, collision.X);
+            var knockbackForce = new Point( Math.cos(knockbackAngle), Math.sin(knockbackAngle) );
+
+            knockbackForce.normalize();
+            knockbackForce.multiply(new Point(5, 5));
+            
+            this.velocity.add(knockbackForce);
+        }
+
         updateDeath() {
             if (this.deathStatus === DeathState.Dying) {
                 if (this.deathTimer > 0)

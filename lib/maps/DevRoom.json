@@ -344,7 +344,7 @@
                         {
                          "name":"orientation",
                          "type":"string",
-                         "value":"right"
+                         "value":"left"
                         }],
                  "rotation":0,
                  "type":"EnemySpawn",
@@ -663,6 +663,53 @@
                  "width":32,
                  "x":2048,
                  "y":128
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":75,
+                 "name":"",
+                 "rotation":0,
+                 "type":"NPCWall",
+                 "visible":true,
+                 "width":32,
+                 "x":1760,
+                 "y":320
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":76,
+                 "name":"",
+                 "rotation":0,
+                 "type":"NPCWall",
+                 "visible":true,
+                 "width":32,
+                 "x":1888,
+                 "y":320
+                }, 
+                {
+                 "gid":61,
+                 "height":32,
+                 "id":77,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"dustBunny"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"left"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":1824,
+                 "y":320
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -671,7 +718,7 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":75,
+ "nextobjectid":78,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",

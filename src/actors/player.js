@@ -15,18 +15,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             super(playerSpriteData["spriteCollision"], playerSpriteData, {});
 
             this.respawnStatus = RespawnState.Alive;
-            this.warpStatus = -1;
             this.frozen = false;
-            this.warpPoint = null;
 
-            this.maxHealth = 2;
-            this.currentHealth = 2;
-            this.maxIFrames = 60;
-            this.iFrames = 0;
             this.addHurtbox(null, 2, 2, 22, 28);
-
-            this.resetWaitTime = 30;
-            this.resetCountdown = 0;
 
             this.interactionRange = tileSize / 2;
             this.interactionOrigin = new Point();
@@ -138,21 +129,10 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
         }
 
         updatePlayer() {
-            this.updateImmunity();
             this.updateSpecialAbilities();
 
             if (this.respawnStatus !== RespawnState.Alive)
                 this.updateRespawn();
-            else if (this.warpStatus >= 0)
-                this.updateWarp();
-        }
-        updateImmunity() {
-            if (this.iFrames > 0) {
-                this.iFrames -= 1;
-
-                if (this.iFrames === 0)
-                    this.spriteContainer.alpha = 1;
-            }
         }
         updateSpecialAbilities() { }
 
@@ -278,31 +258,6 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             }
         }
 
-
-        holdReset() {
-            if (this.resetCountdown === 0) {
-                this.state = "Reset";
-                this.setFrozen(true);
-            }
-
-            if (this.resetCountdown >= 0) {
-                this.resetCountdown += 1;
-
-                if (this.resetCountdown >= this.resetWaitTime) {
-                    this.respawnPlayer();
-                    this.resetCountdown = -1;
-                }
-            }
-        }
-        releaseReset() {
-            
-            if (this.state === "Reset")
-                this.state = "";
-
-            this.resetCountdown = 0;
-            this.setFrozen(false);
-        }
-
         pressSpecial() {
             
         }
@@ -340,39 +295,52 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             }
         }
         takeDamage(collisions) {
-            this.respawnPlayer();
+            if (this.respawnStatus === RespawnState.Alive && transition == null)
+                this.respawnPlayer();
         }
 
-        setWarp(transition) {
-            if (this.warpStatus >= 0)
-                return;
-
-            this.warpPoint = transition;
-            this.warpStatus = 0;
-            this.state = "Warp";
+        respawnPlayer() {
+            
+            if (this.currentAttack) {
+                this.currentAttack.endAttack(this);
+                this.currentController.reset();
+                this.currentAttack = null;
+            }
+            
+            this.respawnStatus = RespawnState.Respawning;
+            this.state = "Death";
+            this.enactNewState();
             this.setFrozen(true);
         }
-        updateWarp() {
-            
-            if (this.state === "Warp" && this.sprite.currentAnimation != "finished" && this.sprite.currentAnimation != "warpFinished")
+        
+        updateRespawn() {
+
+            if (this.sprite.currentAnimation != "finished")
                 return;
-            else if (this.warpStatus == 0) {
-                this.passable = false;
-                this.orientation = "";
-                this.state = "warpIn";
-                transition = this.warpPoint;
-                this.warpPoint = null;
-                this.warpStatus = 1;
-            }
-            else if (this.warpStatus == 1) {
-                this.orientation = "down";
+            else if (this.respawnStatus === RespawnState.Respawning) {
+
+                this.respawnStatus = RespawnState.Alive;
+                this.orientation = "right";
                 this.state = "";
-                this.warpStatus = -1;
                 this.setFrozen(false);
+
+                transition = {map: currentCheckpoint.map, location: currentCheckpoint.location};
             }
         }
 
+
+
         /* Damage/health/knockback logic from YGttA  */
+        
+        // updateImmunity() {
+        //     if (this.iFrames > 0) {
+        //         this.iFrames -= 1;
+
+        //         if (this.iFrames === 0)
+        //             this.spriteContainer.alpha = 1;
+        //     }
+        // }
+
         // takeDamage(damageSource) {
         //     if (this.iFrames > 0) {
         //         return;
@@ -405,36 +373,6 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
         //     this.updatePosition(true);
         //     this.updatePosition(false);
         // }
-
-        respawnPlayer() {
-            if (this.respawnStatus !== RespawnState.Alive)
-                return;
-            
-            if (this.currentAttack) {
-                this.currentAttack.endAttack(this);
-                this.currentController.reset();
-                this.currentAttack = null;
-            }
-
-            this.respawnStatus = RespawnState.Respawning;
-            this.state = "Death";
-            this.enactNewState();
-            this.setFrozen(true);
-        }
-        
-        updateRespawn() {
-
-            if (this.state === "Death" && this.sprite.currentAnimation != "finished")
-                return;
-            else if (this.respawnStatus === RespawnState.Respawning) {
-                this.respawnStatus = RespawnState.Alive;
-                this.orientation = "right";
-                this.state = "";
-                this.setFrozen(false);
-
-                transition = {map: currentCheckpoint.map, location: currentCheckpoint.location};
-            }
-        }
 
     }
     
