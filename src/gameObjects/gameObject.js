@@ -13,6 +13,9 @@ define("GameObject", ['Point'], function(Point) {
             this.mass = 1;
             this.spriteRandomFrameStart = false;
             this.randomStartCountdown = 0;
+
+            this.isNPC = false;
+            this.npcWall = false;
         
             this.spriteContainer = new createjs.Container();
             if (spriteData) {
@@ -87,14 +90,17 @@ define("GameObject", ['Point'], function(Point) {
         checkCollision(otherObject, checkPassable) {
             if (otherObject === this)
                 return false;
-            if (this.passable && checkPassable)
+            
+            if ((this.isNPC && otherObject.npcWall) || (otherObject.isNPC && this.npcWall)) 
+                var t = "";
+            else if (this.passable && checkPassable)
                 return false;
 
             if (otherObject.location.X < this.location.X + this.size.X && 
                 otherObject.location.X + otherObject.size.X > this.location.X &&
                 otherObject.location.Y < this.location.Y + this.size.Y && 
                 otherObject.location.Y + otherObject.size.Y > this.location.Y) {
-
+                
                 return true;
             }
             return false;

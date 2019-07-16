@@ -8,6 +8,7 @@ define("Enemy",
         
         constructor(actorSize, spriteData, enemyData, aiBehavior) {
             super(actorSize, spriteData, enemyData);
+            this.isNPC = true;
 
             if (enemyData["behavior"]) {
                 if (enemyData["behavior"] === "Pacing")
@@ -46,7 +47,7 @@ define("Enemy",
             if (this.aiBehavior)
                 this.aiBehavior.updatePositionOnCollision(collisions, xAxis);
         }
-
+        
         handleCollisions() {
             if (this.aiBehavior)
                 this.aiBehavior.handleCollisions();

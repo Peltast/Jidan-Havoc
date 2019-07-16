@@ -14,9 +14,6 @@ require.config({
 
       "dialogueBox" : "src/interface/dialogueBox",
       "healthBar": "src/interface/healthBar",
-      
-      "switchProp": "src/props/switchProp",
-      "triggerProp": "src/props/triggerProp",
 
       "particle": "src/effects/particle",
       "particleSystem": "src/effects/particleSystem",
@@ -42,7 +39,7 @@ requirejs(['point'], function() {
 
         requirejs(['tile', 'actor', 'attack', 'prop', 'transition', 'particleSystem', 'dialogueBox', 'pacingBehavior',], function() {
 
-            requirejs(['switchProp', 'triggerProp', 'enemy', 'chargeAttack'], function() {
+            requirejs(['enemy', 'chargeAttack'], function() {
 
                 requirejs(['player', 'objectFactory'], function() {
 

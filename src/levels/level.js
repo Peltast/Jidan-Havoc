@@ -454,8 +454,9 @@ define("Level", [
             for (let i = 0; i < objectList.length; i++) {
                 var tempObject = objectList[i];
 
-                if (tempObject.checkCollision(collider, checkPassable))
+                if (tempObject.checkCollision(collider, checkPassable)) {
                     collisions.push(tempObject);
+                }
             }
             return collisions;
         }

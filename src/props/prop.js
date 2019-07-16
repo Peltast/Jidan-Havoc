@@ -8,6 +8,7 @@ define("Prop", ['GameObject'], function(GameObject) {
             this.type = propData["type"];
             this.sound = propData["sound"];
             this.fatalProp = propData["fatal"];
+            this.visible = propData["visible"] != null ? propData["visible"] : true;
             
             this.particleEffects = [];
             this.dialogue = propData["dialogue"] ? propData["dialogue"] : null;
@@ -19,12 +20,15 @@ define("Prop", ['GameObject'], function(GameObject) {
             
             this.isForeground = propData["foreground"] ? propData["foreground"] : false;
             this.isBackground = propData["background"] ? propData["background"] : false;
-
+            this.npcWall = propData["npcWall"] ? propData["npcWall"] : false;
+            
             this.initializeSprite();
             this.attachParticleEffects(propData);
         }
         initializeSprite() {
             this.spriteContainer.setBounds(this.spritePosition.X, this.spritePosition.Y, this.spriteSize.X, this.spriteSize.Y + this.zPos);
+            if (!this.visible)
+                this.spriteContainer.alpha = 0;
         }
         randomizeAnimationFrame() {
             
@@ -98,6 +102,14 @@ define("Prop", ['GameObject'], function(GameObject) {
         
         handleInteraction(player) {
 
+        }
+        
+        checkCollision(otherObject, checkPassable) {
+
+            if (otherObject === this)
+                return false;
+
+            return super.checkCollision(otherObject, checkPassable);
         }
 
     }

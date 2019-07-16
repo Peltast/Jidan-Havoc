@@ -95,6 +95,12 @@ define("ObjectFactory", [
             "sprite": "Flower", "animations": { "idle": 0 }, "defaultAnimation": "idle",
             "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0}
         },
+        
+        "NPCWall": {
+            "type": "default", "passable": true, "visible": false, "npcWall": true,
+            "sprite": "Player", "animations": { "idle": 0 }, "defaultAnimation": "idle",
+            "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0}
+        },
 
         "Teeth": {
             "type": "default", "passable": false,
@@ -158,25 +164,28 @@ define("ObjectFactory", [
                 return this.createNewEnemy(objectMapData);
             else if (objectType === "Transition")
                 return this.createNewTransition(objectMapData);
-        }    
+        }
 
         createPropObject(objectMapData) {
             var location = this.getObjectLocation(objectMapData);
             var size = new Point(objectMapData.width, objectMapData.height);
             var propType = objectMapData.type;
-            var propName = objectMapData.name;
 
-            var prop = this.constructPropFromData(objectMapData, location, size, propType, propName);
+            var prop = this.constructPropFromData(objectMapData, location, size, propType);
             return prop;
         }
-        constructPropFromData(objectMapData, location, size, propType, propName) {
+        constructPropFromData(objectMapData, location, size, propType) {
             var newProp = null;
             var objectListData = objectList[propType];
             
             var spriteData = this.getSpriteData(objectMapData, objectListData);
             var dialogueName = this.getObjectProperty(objectMapData, objectListData, "dialogue", "string", "");
-            var propData = this.getObjectData(objectMapData, objectListData, 
-                ["type", "fakeType", "fakeAnimation", "passable", "sound", "fatal", "zPos", "parallaxDistX", "parallaxDistY", "foreground", "background", "particleEffects"]);
+            var propData = this.getObjectData(objectMapData, objectListData, [
+                "type", "visible", "fakeType", "fakeAnimation", "passable", "sound", "fatal", "zPos", 
+                "parallaxDistX", "parallaxDistY", "foreground", "background", "particleEffects",
+                "npcWall"
+            ]);
+
             propData["dialogue"] = dialogueName ? dialogueLibrary[dialogueName] : null;
             size = spriteData["spriteCollision"] ? spriteData["spriteCollision"] : size;
             propData = this.attachParticleEffects(propData);
@@ -185,19 +194,7 @@ define("ObjectFactory", [
             if (spriteData["spriteImage"] == null)
                 console.log("ERROR: No image '" + spriteData["spriteSheetImg"] + "' found for prop '" + propType + "'");
             else {
-                var propType = propData["type"];
-
-                switch (propType) {
-                    case "key":
-                        newProp = new Key(location, size, spriteData, propData, propName);
-                        break;
-                    case "door":
-                        newProp = new Door(location, size, spriteData, propData, propName);
-                        break;
-                    default:
-                        newProp = new Prop(location, size, propData["passable"], spriteData, propData);
-                        break;
-                }
+                newProp = new Prop(location, size, propData["passable"], spriteData, propData);
             }
 
             return newProp;
@@ -305,7 +302,7 @@ define("ObjectFactory", [
             var value = null;
 
             if (listData) {
-                if (listData[propertyName]) {
+                if (listData[propertyName] != null) {
                     value = listData[propertyName];
                 }
             }
@@ -315,10 +312,10 @@ define("ObjectFactory", [
                 value = mapValue;
 
                 if (propertyType === "point")
-                    value = this.parsePointValue(mapValue ? mapValue : "0,0");
+                    value = this.parsePointValue(mapValue != null ? mapValue : "0,0");
             }
             
-            return value ? value : defaultValue;
+            return value != null ? value : defaultValue;
         }
 
         getObjectLocation(objectData) {

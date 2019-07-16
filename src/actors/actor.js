@@ -141,6 +141,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             this.handleCollisions();
 
             var collisions = currentLevel.checkObjectCollisions(this);
+
             if (collisions.length > 0)
                 this.updatePositionOnCollision(collisions, xAxis);
             else if (!xAxis && this.onGround)
