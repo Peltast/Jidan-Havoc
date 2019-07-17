@@ -1,6 +1,6 @@
 require( 
-    ['Point', 'Level', 'LevelParser', 'ObjectFactory', 'Player', 'DialogueBox', 'HealthBar'], 
-    function(Point, Level, LevelParser, ObjectFactory, Player, DialogueBox, HealthBar) {
+    ['Point', 'Level', 'LevelParser', 'ObjectFactory', 'Player', 'DialogueBox'], 
+    function(Point, Level, LevelParser, ObjectFactory, Player, DialogueBox) {
 
     $(function() { 
         initGame(); 
@@ -304,19 +304,72 @@ require(
 
         }
     }
-    function progressDialogueBox() {
+    // function progressDialogueBox() {
 
-        if (this.dialogueBox.isFinished()) {
-            currentStatement = null;
-            currentDialogue = null;
-            gameUI.removeChild(this.dialogueBox.dialogueContainer);
-            this.dialogueBox.resetText();
-        }
+    //     if (this.dialogueBox.isFinished()) {
+    //         currentStatement = null;
+    //         currentDialogue = null;
+    //         gameUI.removeChild(this.dialogueBox.dialogueContainer);
+    //         this.dialogueBox.resetText();
+    //     }
 
-        this.dialogueBox.progressText();
-    }
+    //     this.dialogueBox.progressText();
+    // }
 
     //#endregion
 
+
+    class LoadBar {
+
+        constructor(progress, destination) {
+            this.progress = progress;
+            this.destination = destination;
+
+            this.barWidth = Math.round(stageWidth * .7);
+            this.barHeight = 32;
+
+            this.createBar();
+        }
+        createBar() {
+            this.loadBarContainer = new createjs.Container();
+            
+            this.barBG = new createjs.Shape();
+            this.barBG.graphics.beginFill("#272744").drawRect(0, 0, this.barWidth, this.barHeight);
+            this.barOutline = new createjs.Shape();
+            this.barOutline.graphics.setStrokeStyle(2).beginStroke("#fbf5ef").drawRect(0, 0, this.barWidth, this.barHeight);
+            this.barBG.x = this.barOutline.x = Math.round(stageWidth / 2 - this.barWidth / 2);
+            this.barBG.y = this.barOutline.y = Math.round(stageHeight * 0.6);
+            
+            this.barProgress = new createjs.Shape();
+            this.barProgress.graphics.beginFill("#6dffe4").drawRect(0, 0, this.barWidth - 16, this.barHeight - 16);
+            this.barProgress.x = this.barOutline.x + 8;
+            this.barProgress.y = this.barOutline.y + 8;
+            
+            this.barFill = new createjs.Shape();
+            this.barFill.graphics.beginFill("#6dffe4").drawRect(0, 0, this.barWidth - 16, this.barHeight - 16);
+            this.barFill.x = this.barOutline.x + 8;
+            this.barFill.y = this.barOutline.y + 8;
+            this.barFill.mask = this.barProgress;
+
+            this.percentText = new createjs.Text(Math.round(100 * this.progress / this.destination) + "%", "32px Equipment", "#6dffe4")
+            this.progressText = new createjs.Text( "(" + this.progress + " / " + this.destination + ")", "24px Equipment", "#6dffe4");
+
+            this.percentText.x = Math.round(stageWidth / 2 - this.percentText.getMeasuredWidth() / 2);
+            this.progressText.x = this.percentText.x + this.percentText.getMeasuredWidth() + 30;
+            this.percentText.y = this.barBG.y - this.percentText.getMeasuredLineHeight() - 20;
+            this.progressText.y = this.percentText.y + Math.round(this.percentText.getMeasuredLineHeight() - this.progressText.getMeasuredLineHeight());
+
+            this.loadBarContainer.addChild(this.percentText, this.progressText, this.barBG, this.barOutline, this.barProgress);
+            this.updateBarProgress(this.progress);
+        }
+
+        updateBarProgress(newProgress) {
+            this.progress = newProgress;
+
+            this.barProgress.scaleX = this.progress / this.destination;
+            this.percentText.text = Math.round(100 * this.progress / this.destination) + "%";
+            this.progressText.text = "(" + this.progress + " / " + this.destination + ")";
+        }
+    }
 
 });
