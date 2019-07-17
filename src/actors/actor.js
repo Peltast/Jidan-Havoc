@@ -94,14 +94,17 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             this.enactNewState();
         }
         enactNewState() {
-            // console.log(this.priorOrientation + ", " + this.orientation + "  -  " + this.priorState + ", " + this.state);
             if (this.priorOrientation !== this.orientation || this.priorState !== this.state) {
                 this.priorOrientation = this.orientation;
                 this.priorState = this.state;
 
                 var animation = this.orientation + this.state;
-                if (this.currentController.setAnimation)
-                    animation = this.state;
+                if (this.currentController.setAnimation) {
+                    if (this.sprite.currentAnimation === this.currentController.setAnimation || this.sprite.currentAnimation === this.currentController.setAnimation + "Finished")
+                        return;
+                    else
+                        animation = this.state;
+                }
 
                 this.sprite.gotoAndPlay(animation);
             }
@@ -305,7 +308,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             }
         }
         giveDamage(damageObj) {
-            
+
         }
         takeDamage(collisions) {
             // Hook for player/enemies to implement behavior when damaged

@@ -54,8 +54,12 @@ define("ActorController", ['Point'], function(Point) {
             
             actor.velocity.add(this.force);
 
-            if (this.inheritJumps && actor.currentController)
-                this.currentJumps = Math.min(this.maxJumps, actor.currentController.currentJumps);
+            if (this.inheritJumps && actor.currentController) {
+                if (actor.onGround)
+                    this.currentJumps = this.maxJumps;
+                else
+                    this.currentJumps = Math.min(this.maxJumps, actor.currentController.currentJumps);
+            }
         }
 
         updateSpeed(actor) {

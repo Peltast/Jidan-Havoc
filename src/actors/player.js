@@ -26,7 +26,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             this.aerialAttack = new Attack(["aerialMain", "aerialRecovery"]);
             this.chargeAttack = new ChargeAttack(["chargeWindup", "chargeMain", "chargeSlide"]);
             this.chargeAttackWeak = new ChargeAttack(["chargeWindupWeak", "chargeMainWeak", "chargeSlideWeak"]);
-            this.releaseFlip = new Attack(["releaseFlip"]);
+            this.cancelFlip = new Attack(["releaseFlip"]);
             this.comboFlip = new Attack(["comboFlip"]);
 
             this.currentAttack = null;
@@ -140,10 +140,14 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
         jumpHold() {
             if (this.jumpHeld || this.frozen)
                 return;
+            else if (this.canCancelAttack()) {
+                this.setAttack(this.cancelFlip);
+                return;
+            }
             else if (!this.currentController.acceptInput || this.currentController.currentJumps <= 0)
                 return;
             
-            if (this.currentAttack == this.releaseFlip)
+            if (this.currentAttack == this.cancelFlip)
                 this.currentAttack.endAttack(this);
 
             this.velocity.Y = -this.currentController.jumpVelocity;
@@ -158,6 +162,14 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
         jumpRelease() {
             this.goingUp = false;
             this.jumpHeld = false;
+        }
+        canCancelAttack() {
+            if (!this.currentAttack)
+                return false;
+            else if (this.currentAttack !== this.cancelFlip && (this.currentAttack.isInCombo() || this.currentAttack == this.comboFlip))
+                return true;
+            else
+                return false;
         }
         
         setUnGrounded() {
@@ -182,6 +194,8 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
                 this.setAttack(this.chargeAttackWeak);
         }
         setAttack(attack) {
+            if (this.currentAttack)
+                this.currentAttack.endAttack(this);
             this.currentAttack = attack;
             this.currentAttack.beginAttack(this);
         }
@@ -192,23 +206,13 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
             }
         }
 
-        release() {
-            if (!this.isAbleToAttack(this.releaseFlip))
-                return;
-            
-            if (this.jumpHeld)
-                this.jumpRelease();
-
-            this.setAttack(this.releaseFlip);
-        }
-
         isAbleToAttack(nextAttack) {
             if (this.frozen)
                 return false;
             else if (this.currentAttack) {
                 if (nextAttack ? this.currentAttack === nextAttack : false)
                     return false;
-                if (this.currentAttack.active && this.currentAttack !== this.releaseFlip && this.currentAttack !== this.comboFlip)
+                if (this.currentAttack.active && this.currentAttack !== this.comboFlip)
                     return false;
             }
             
@@ -289,7 +293,6 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
         giveDamage(damageObj) {
             if (damageObj instanceof Enemy) {
                 if (this.currentAttack ? this.currentAttack.isInCombo() : false) {
-                    this.currentAttack.endAttack(this);
                     this.setAttack(this.comboFlip);
                 }
             }

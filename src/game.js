@@ -246,9 +246,6 @@ require(
             case 74: // j
                 player.attack();
                 break;
-            case 75: // k
-                player.release();
-                break;
     
         }
     }
