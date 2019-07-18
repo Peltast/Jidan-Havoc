@@ -32,7 +32,6 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             this.initActorData(actorData);
         }
         initActorData(actorData) {
-
             if (actorData["controller"])
                 this.defaultController = new ActorController(controllerData[actorData["controller"]]);
             else

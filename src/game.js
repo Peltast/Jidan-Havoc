@@ -1,46 +1,97 @@
 require( 
-    ['Point', 'Level', 'LevelParser', 'ObjectFactory', 'Player', 'DialogueBox'], 
-    function(Point, Level, LevelParser, ObjectFactory, Player, DialogueBox) {
+    ['Point', 'Level', 'LevelParser', 'ObjectFactory', 'Player', 'DialogueBox', 'MainMenu'], 
+    function(Point, Level, LevelParser, ObjectFactory, Player, DialogueBox, MainMenu) {
 
-    $(function() { 
-        initGame(); 
+    const GameState = { "Preloading": "Preloading", "Preloaded": "Preloaded", "Loading": "Loading", "Loaded": "Loaded" };
+
+    $(function() {
+        gameStatus = GameState.Preloading;
+        initGame();
     });
+
+    var preloader;
+    var gameBG;
+    var gameArea;
+    var gameUI;
 
     function initGame() {
         createjs.Ticker.addEventListener("tick", updateGame);
 
         this.dialogueBox = new DialogueBox();
-        this.isPrologueActive = false;
+
+        addPreloader(loadProgress, totalGameManifest);
+    }
+
+    function addPreloader(progress, destination) {
+        preloader = new LoadBar(progress, destination);
+        stage.addChild(preloader.loadBarContainer);
+    }
+    function updatePreloader(progress) {
+        preloader.updateBarProgress(progress);
+        stage.update();
+    }
+    function addMainMenu() {
+        stage.removeChild(preloader.loadBarContainer);
+
+        mainMenu = new MainMenu();
+        stage.addChild(mainMenu.sceneContainer);
+        stage.addChild(mainMenu.menuContainer);
     }
         
     function updateGame() {
-        if (!finishedLoading())
+
+        if (!finishedLoading()) {
+            updatePreloader(totalMapsLoaded + totalFilesLoaded + assetsLoaded);
             return;
-        else if (!gameStarted) {
-            gameStarted = true;
-            console.log("STARTING GAME");
-            beginGame(startingMap);
+        }
+        else if (gameStatus === GameState.Preloading) {
+            gameStatus = GameState.Preloaded;
+            mapDataKeys = Object.keys(mapData);
+            addMainMenu();
+        }
+        else if (gameStatus === GameState.Loading) {
+            if (totalMapsParsed < mapDataKeys.length)
+                loadWorld();
+            else
+                beginGame(startingMap);
+        }
+        else if (gameStatus === GameState.Loaded) {
+            updateGameMap();
         }
 
-        updateGameMap();
+        stage.update();
     }
     
-    var gameBG;
-    var gameArea;
-    var gameUI;
+    var totalMapsParsed = -1;
+    var mapDataKeys;
+    function loadWorld() {
 
-    function beginGame(startMapName) {
+        if (totalMapsParsed < 0) {
+            beginLoadingWorld();
+            totalMapsParsed = 0;
+        }
+        
+        var areaName = mapDataKeys[totalMapsParsed];
+        var area = createLevel(areaName);
+        gameWorld[areaName] = area;
+
+        totalMapsParsed += 1;
+        updatePreloader(totalMapsParsed);
+    }
+    function beginLoadingWorld() {
+        addPreloader(totalMapsParsed, mapDataKeys.length);
+
         controllerData = actionLibrary["ControllerData"];
         hitBoxData = actionLibrary["HitboxData"];
         attackData = actionLibrary["AttackData"];
-
         objectFactory = new ObjectFactory(this.name);
         player = new Player();
-        
-        for (var mapName in mapData) {
-            var area = createLevel(mapName);
-            gameWorld[mapName] = area;
-        }
+    }
+
+    function beginGame(startMapName) {
+        stage.removeChild(mainMenu.sceneContainer);
+        stage.removeChild(mainMenu.menuContainer);
+        gameStatus = GameState.Loaded;
         
         gameBG = new createjs.Shape();
         gameBG.graphics.beginFill("#000000").drawRect(0, 0, stageWidth, stageHeight);
@@ -99,8 +150,6 @@ require(
     }
 
     function updateGameMap() {
-        if (this.isPrologueActive)
-            updatePrologue();
 
         if (transition != null) {
             changeLevels(transition.map, transition.location);
@@ -111,8 +160,6 @@ require(
         checkScreenwrap();
         centerScreen();
         currentLevel.updateLevel();
-
-        stage.update();
     }
     function updateUI() {
 
@@ -236,14 +283,23 @@ require(
             case 38: // up arrow
                 player.jumpHold();
                 break;
+            case 13: // enter
+                player.jumpHold();
+                break;
             case 32: // space
                 player.jumpHold();
                 break;
+
             case 16: // shift
-                player.jumpHold();
+                player.attack();
                 break;
-                
             case 74: // j
+                player.attack();
+                break;
+            case 69: // e
+                player.attack();
+                break;
+            case 90: // z
                 player.attack();
                 break;
     
@@ -272,6 +328,9 @@ require(
                 player.jumpRelease();
                 break;
             case 38: // up arrow
+                player.jumpRelease();
+                break;
+            case 13: // enter
                 player.jumpRelease();
                 break;
             case 32: // space

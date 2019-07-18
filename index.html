@@ -19,9 +19,18 @@
     
     <script src="./src/dependencies.js?v=1.0"></script>
 
+    <script>
+        function preventUseOfDefaultKeys(event) {
+            if (event.keyCode == 32) // spacebar
+            {
+                event.preventDefault();
+            }
+        }
+    </script>
+
 </head>
 
-<body style="background-color: #000000; margin: 0px;">
+<body style="background-color: #000000; margin: 0px;" onkeydown="preventUseOfDefaultKeys(event);" >
     <div style="width: 100%; text-align: center;">
         <canvas id="gameCanvas" width="640" height="480" style="background-color:#000000;"></canvas>
     </div>

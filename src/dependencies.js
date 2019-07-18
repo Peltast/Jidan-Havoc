@@ -12,7 +12,8 @@ require.config({
       "prop": "src/props/prop",
       "transition": "src/levels/transition",
 
-      "dialogueBox" : "src/interface/dialogueBox",
+      "mainMenu": "src/interface/mainMenu",
+      "dialogueBox": "src/interface/dialogueBox",
       "healthBar": "src/interface/healthBar",
 
       "particle": "src/effects/particle",
@@ -33,7 +34,7 @@ require.config({
     }
 });
   
-requirejs(['point'], function() {
+requirejs(['point', 'mainMenu'], function() {
 
     requirejs(['gameObject', 'collisionBox', 'actorController', 'levelParser', 'particle', 'healthBar', 'enemyBehavior'], function() {
 

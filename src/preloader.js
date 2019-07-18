@@ -25,6 +25,11 @@ var totalMapsInGame = 0;
 var totalFilesLoaded = 0;
 var totalFilesInGame = 0;
 
+var totalGameManifest;
+var loadProgress = 0;
+var gameStatus;
+
+var mainMenu;
 var gameStarted = false;
 var startingMap;
 
@@ -80,6 +85,10 @@ function init() {
         {src: "actors/SleepingEnemy.png", id: "SleepingEnemy"}, {src: "actors/ChasingEnemy.png", id: "ChasingEnemy"},
         {src: "actors/DustBunny.png", id: "DustBunny"}, {src: "actors/FlyingBat.png", id: "FlyingBat"}, {src: "actors/FloatingBug.png", id: "FloatingBug"},
 
+        {src: "ui/MenuSplash.png", id: "MenuSplash"}, {src: "ui/MenuTitle.png", id: "MenuTitle"}, {src: "ui/MenuSandbox.png", id: "MenuSandbox"},
+        {src: "ui/MenuPlay.png", id: "MenuPlay"}, {src: "ui/MenuInstructions.png", id: "MenuInstructions"},
+        {src: "ui/PlayerInstructions.png", id: "PlayerInstructions"},
+        
         {src: "ui/Cursor.png", id: "Cursor"},
         {src: "ui/HealthSlot.png", id: "HealthSlot"}, 
         {src: "ui/HealthPoint.png", id: "HealthPoint"},
@@ -105,6 +114,8 @@ function init() {
     totalFilesInGame = dialogueList.length + tileList.length + 4; // actionData.json, dialogue.json, particleEffects.json, backgrounds.json
     startingMap = "DevRoom";
 
+    totalGameManifest = imageManifest.length + soundManifest.length + totalFilesInGame;
+
     assetLoader = new createjs.LoadQueue(false);
     assetLoader.addEventListener("complete", handleAssetsLoaded);
     loadSounds();
@@ -115,6 +126,8 @@ function init() {
         gameCanvas.focus();
     }, false);
 }
+
+
 function finishedLoading() {
     return (
         (totalMapsLoaded >= totalMapsInGame) && 
@@ -159,12 +172,6 @@ function loadSounds() {
             console.log("Loaded asset: " + soundManifest[j].src);
             assetsLoaded += 1;
         });
-    }
-}
-
-function loadLevelSeries(seriesNumber, seriesLength) {
-    for (let i = 1; i <= seriesLength; i++) {
-        loadMap("Level_" + seriesNumber + "_" + i);
     }
 }
 
