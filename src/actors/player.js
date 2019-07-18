@@ -1,5 +1,5 @@
-define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', 'Attack', 'ChargeAttack'], 
-    function (Actor, Tile, Prop, Enemy, Point, ParticleSystem, Attack, ChargeAttack) {
+define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'ParticleSystem', 'Attack', 'ChargeAttack'], 
+    function (Actor, Tile, Prop, Collectible, Enemy, Point, ParticleSystem, Attack, ChargeAttack) {
 
     const RespawnState = { "Alive": 0, "Respawning": 1 }
 
@@ -19,6 +19,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
 
             this.addHurtbox(null, 2, 2, 22, 28);
 
+            this.collectiblesGathered = 0;
             this.interactionRange = tileSize / 2;
             this.interactionOrigin = new Point();
             this.initInteractionElements();
@@ -279,6 +280,12 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Enemy', 'Point', 'ParticleSystem', '
                 fullCollisions[i].handleInteraction(this);
                 
                 if (fullCollisions[i] instanceof Prop) {
+                    if (fullCollisions[i] instanceof Collectible) {
+                        this.collectiblesGathered += 1;
+                        currentLevel.removeProp(fullCollisions[i]);
+                        console.log("Collectibles: " + this.collectiblesGathered + "/" + currentLevel.numOfCollectibles);
+                    }                    
+
                     if (fullCollisions[i].fatalProp)
                         this.takeDamage(fullCollisions[i]);
                 }

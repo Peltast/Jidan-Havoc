@@ -1,10 +1,12 @@
 define("ObjectFactory", [
 
-        'Point', 'Tile', 'Prop', 'Enemy', 'Transition', 'ParticleSystem'
+        'Point', 'Tile', 'Prop', 'Enemy', 'Transition', 'ParticleSystem',
+        'Collectible'
     ], 
 
     function(
-        Point, Tile, Prop, Enemy, Transition, ParticleSystem
+        Point, Tile, Prop, Enemy, Transition, ParticleSystem,
+        Collectible
     ) {
 
     var npcList = {
@@ -106,6 +108,12 @@ define("ObjectFactory", [
             "sprite": "Flower", "animations": { "idle": 0 }, "defaultAnimation": "idle",
             "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0}
         },
+        "Teeth": {
+            "type": "default", "passable": false,
+            "sprite": "ParasiteTeeth", "animations": { idle: [0, 6, "idle", .15] }, "defaultAnimation": "idle",
+            "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0, "count": 7}, "randomStart": "true",
+            "fatal": true
+        },
         
         "NPCWall": {
             "type": "default", "passable": true, "visible": false, "npcWall": true,
@@ -113,12 +121,13 @@ define("ObjectFactory", [
             "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0}
         },
 
-        "Teeth": {
-            "type": "default", "passable": false,
-            "sprite": "ParasiteTeeth", "animations": { idle: [0, 6, "idle", .15] }, "defaultAnimation": "idle",
-            "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0, "count": 7}, "randomStart": "true",
-            "fatal": true
+        "Jidan": {
+            "type": "collectible", "passable": true,
+            "sprite": "Jidan", "animations": { idle: [0, 5, "idle", .15 ] }, "defaultAnimation": "idle",
+            "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0},
+            "spriteCollision": new Point(16, 24), "spriteSize": new Point(32, 32), "spritePos": new Point(0, 0)
         }
+
     }
 
     class ObjectFactory {
@@ -204,6 +213,9 @@ define("ObjectFactory", [
 
             if (spriteData["spriteImage"] == null)
                 console.log("ERROR: No image '" + spriteData["spriteSheetImg"] + "' found for prop '" + propType + "'");
+            else if (propData["type"] === "collectible") {
+                newProp = new Collectible(location, size, propData["passable"], spriteData, propData);
+            }
             else {
                 newProp = new Prop(location, size, propData["passable"], spriteData, propData);
             }

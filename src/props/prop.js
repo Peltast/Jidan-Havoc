@@ -8,7 +8,7 @@ define("Prop", ['GameObject'], function(GameObject) {
             this.type = propData["type"];
             this.sound = propData["sound"];
             this.fatalProp = propData["fatal"];
-            this.visible = propData["visible"] != null ? propData["visible"] : true;
+            this.visible = (propData["visible"] || propData["visible"] === false) ? propData["visible"] : true;
             
             this.particleEffects = [];
             this.dialogue = propData["dialogue"] ? propData["dialogue"] : null;

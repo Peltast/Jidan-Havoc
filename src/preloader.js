@@ -85,6 +85,8 @@ function init() {
         {src: "actors/SleepingEnemy.png", id: "SleepingEnemy"}, {src: "actors/ChasingEnemy.png", id: "ChasingEnemy"},
         {src: "actors/DustBunny.png", id: "DustBunny"}, {src: "actors/FlyingBat.png", id: "FlyingBat"}, {src: "actors/FloatingBug.png", id: "FloatingBug"},
 
+        {src: "props/Jidan.png", id: "Jidan"},
+
         {src: "ui/MenuSplash.png", id: "MenuSplash"}, {src: "ui/MenuTitle.png", id: "MenuTitle"}, {src: "ui/MenuSandbox.png", id: "MenuSandbox"},
         {src: "ui/MenuPlay.png", id: "MenuPlay"}, {src: "ui/MenuInstructions.png", id: "MenuInstructions"},
         {src: "ui/PlayerInstructions.png", id: "PlayerInstructions"},

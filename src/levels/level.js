@@ -1,8 +1,8 @@
 define("Level", [
 
-        'Point', 'Actor', 'Prop', 'Transition', 'ParticleSystem'], 
+        'Point', 'Actor', 'Prop', 'Collectible', 'Transition', 'ParticleSystem'], 
     function (
-        Point, Actor, Prop, Transition, ParticleSystem
+        Point, Actor, Prop, Collectible, Transition, ParticleSystem
     ) {
     
     tileAnimations =  { };
@@ -39,6 +39,9 @@ define("Level", [
             this.tiles = [];
             this.mapTransitions = [];
             this.objects = [];
+
+            this.numOfCollectibles = 0;
+            player.collectiblesGathered = 0;
             
             this.screenPosition = new Point(0, 0);
             this.levelContainer = new createjs.Container();
@@ -117,8 +120,11 @@ define("Level", [
 
                 var newObject = objectFactory.createObject(objectList[i]);
                 
-                if (newObject instanceof Prop)
+                if (newObject instanceof Prop) {
+                    if (newObject instanceof Collectible)
+                        this.numOfCollectibles += 1;
                     this.addProp(newObject);
+                }
                 else if (newObject instanceof Actor)
                     this.addActor(newObject);
                 else if (newObject instanceof Transition)

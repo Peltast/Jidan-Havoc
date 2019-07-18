@@ -10,6 +10,7 @@ require.config({
       "tile": "src/levels/tile",
       "actor": "src/actors/actor",
       "prop": "src/props/prop",
+      "collectible": "src/props/collectible",
       "transition": "src/levels/transition",
 
       "mainMenu": "src/interface/mainMenu",
@@ -40,7 +41,7 @@ requirejs(['point', 'mainMenu'], function() {
 
         requirejs(['tile', 'actor', 'attack', 'prop', 'transition', 'particleSystem', 'dialogueBox', 'pacingBehavior',], function() {
 
-            requirejs(['enemy', 'chargeAttack'], function() {
+            requirejs(['enemy', 'collectible', 'chargeAttack'], function() {
 
                 requirejs(['player', 'objectFactory'], function() {
 
