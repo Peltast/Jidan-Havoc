@@ -61,8 +61,12 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
                 if (!this.active)
                     return false;
             }
-            if (this.currentPhase.aerial && hostActor.onGround)
+            if (this.currentPhase.aerial && hostActor.onGround) {
                 this.progressAttack(hostActor);
+
+                if (hostActor === player)
+                    player.playSound("StunFloor", 0.5);
+            }
 
             this.currentPhase.updatePhase();
 
@@ -132,6 +136,9 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             }
             if (this.hitboxes) {
                 this.addPhaseHitboxes(hostActor);
+
+                if (this.hitboxes.length > 0 && hostActor === player)
+                    player.playSound("Attack", 0.4);
             }
             if (this.immune) {
                 hostActor.isImmune = this.immune;
@@ -164,6 +171,8 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
         }
 
         endPhase(hostActor) {
+            this.phaseTimer = -1;
+
             if (this.animation) {
                 hostActor.state = "";
             }

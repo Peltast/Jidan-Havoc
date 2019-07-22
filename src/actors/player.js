@@ -19,6 +19,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
 
             this.addHurtbox(null, 2, 2, 22, 28);
 
+            this.footstepDistance = 32;
+            this.lastFootstep = 0;
+
             this.collectiblesGathered = 0;
             this.highestCombo = 0;
             this.comboCount = 0;
@@ -134,11 +137,22 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
 
         updatePlayer() {
             this.updateSpecialAbilities();
+            this.updateFootstep();
 
             if (this.respawnStatus !== RespawnState.Alive)
                 this.updateRespawn();
         }
         updateSpecialAbilities() { }
+
+        updateFootstep() {
+            if (this.onGround) {
+                var delta = Math.abs(this.location.X - this.lastFootstep);
+                if (delta >= this.footstepDistance) {
+                    this.playSound("Walk", 0.3);
+                    this.lastFootstep = Math.round(this.location.X);
+                }
+            }
+        }
 
 
         jumpHold() {
@@ -146,6 +160,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                 return;
             else if (this.canCancelAttack()) {
                 this.setAttack(this.cancelFlip);
+                this.playSound("ComboCancel", 0.5);
                 return;
             }
             else if (!this.currentController.acceptInput || this.currentController.currentJumps <= 0)
@@ -153,6 +168,8 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             
             if (this.currentAttack == this.cancelFlip)
                 this.currentAttack.endAttack(this);
+            
+            this.playSound( this.onGround ? "Jump" : "DoubleJump", 0.5);
 
             this.velocity.Y = -this.currentController.jumpVelocity;
             this.currentController.currentJumps -= 1;
@@ -183,6 +200,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                 this.highestCombo = Math.max(this.highestCombo, this.comboCount);
                 this.comboCount = 0;
             }
+
+            this.lastFootstep = Math.round(this.location.X);
+            this.playSound("Land", 0.5);
         }
         setUnGrounded() {
             super.setUnGrounded();
@@ -198,12 +218,16 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             if (!this.isAbleToAttack())
                 return;
 
-            if (this.goingLeft || this.goingRight)
+            if (this.goingLeft || this.goingRight) {
                 this.setAttack(this.chargeAttack);
+                this.playSound("Windup", 0.4);
+            }
             else if (!this.onGround)
                 this.setAttack(this.aerialAttack);
-            else
+            else {
                 this.setAttack(this.chargeAttackWeak);
+                this.playSound("Windup", 0.4);
+            }
         }
         setAttack(attack) {
             if (this.currentAttack)
@@ -293,6 +317,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                 if (fullCollisions[i] instanceof Prop) {
                     if (fullCollisions[i] instanceof Collectible) {
                         this.collectiblesGathered += 1;
+                        this.playSound("Collectible", .5);
                         gameStatsDisplay.updateStats();
                         currentLevel.removeProp(fullCollisions[i]);
                     }
@@ -311,17 +336,36 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
         giveDamage(damageObj) {
             if (damageObj instanceof Enemy) {
                 if (this.currentAttack ? this.currentAttack.isInCombo() : false) {
+                    this.playSound("Hit", 0.6);
+
                     this.setAttack(this.comboFlip);
                     this.comboCount += 1;
                     gameScore += 100 * this.comboCount;
+
+                    this.playComboSound();
 
                     gameStatsDisplay.updateStats();
                 }
             }
         }
+        playComboSound() {
+            if (this.comboCount >= 8)
+                this.playSound("Combo4", 0.6);
+            else if (this.comboCount >= 6)
+                this.playSound("Combo3", 0.5);
+            else if (this.comboCount >= 4)
+                this.playSound("Combo2", 0.4);
+            else if (this.comboCount >= 2)
+                this.playSound("Combo1", 0.3);
+            else
+                this.playSound("Combo1", 0.2);
+        }
+
         takeDamage(collisions) {
-            if (this.respawnStatus === RespawnState.Alive && transition == null)
+            if (this.respawnStatus === RespawnState.Alive && transition == null) {
                 this.respawnPlayer();
+                this.playSound("Death", 0.6);
+            }
         }
 
         respawnPlayer() {
@@ -353,6 +397,12 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             }
         }
 
+        playSound(soundName, vol) {
+            var soundInstance = new Howl({
+                src: [soundRoot + soundAssets[soundName]], loop: false, volume: vol
+            });
+            soundInstance.play();
+        }
 
 
         /* Damage/health/knockback logic from YGttA  */

@@ -12,10 +12,14 @@ define("ChargeAttack", ['Attack', 'CollisionBox', 'ActorController'], function(A
 
             this.chargeSpeed = this.mainPhase.controller.staticVelocityX;
             this.knockbackSpeed = this.knockbackPhase.controller.staticVelocityX;
+
+            this.hitFloor = false;
         }
         
         beginAttack(hostActor) {
             this.phases[2] = this.slidePhase;
+            this.hitFloor = false;
+            
             super.beginAttack(hostActor);
         }
 
@@ -25,12 +29,18 @@ define("ChargeAttack", ['Attack', 'CollisionBox', 'ActorController'], function(A
 
             this.phases[2] = this.knockbackPhase;
             this.progressAttack(player);
+            
+            player.playSound("StunWall", 0.6);
         }
 
         updateAttack(hostActor) {
             
             if (this.currentPhase ? this.currentPhase.isFinished() : true) {
                 this.progressAttack(hostActor);
+
+                if (this.currentPhase == this.slidePhase)
+                    player.playSound("Miss", 0.5);
+
                 if (!this.active)
                     return false;
             }
@@ -38,6 +48,10 @@ define("ChargeAttack", ['Attack', 'CollisionBox', 'ActorController'], function(A
             if (this.currentPhase == this.slidePhase && !hostActor.onGround) {
                 this.currentPhase.phaseTimer = this.currentPhase.duration;
                 return true;
+            }
+            else if (this.currentPhase == this.slidePhase && hostActor.onGround && !this.hitFloor) {
+                this.hitFloor = true;
+                player.playSound("StunFloor", 0.5);
             }
 
             this.currentPhase.updatePhase();

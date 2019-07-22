@@ -44,6 +44,7 @@ var hitBoxData;
 var attackData;
 
 var gameAssets = {};
+var soundAssets = {};
 var mapData = {};
 var tileData = {};
 
@@ -99,12 +100,15 @@ function init() {
         {src: "ui/HealthPoint.png", id: "HealthPoint"},
     ];
     soundManifest = [
-        {src: "ping1.mp3", id: "ping1"},
-        {src: "ping2.mp3", id: "ping2"},
-        {src: "ping3.mp3", id: "ping3"},
-        {src: "ping4.mp3", id: "ping4"},
-        {src: "ping5.mp3", id: "ping5"},
-        {src: "ping6.mp3", id: "ping6"}
+        {src: "Walk.wav", id: "Walk"}, {src: "Jump.wav", id: "Jump"}, {src: "DoubleJump.wav", id: "DoubleJump"}, {src: "Land.wav", id: "Land"},
+        {src: "Windup.wav", id: "Windup"}, {src: "Attack.wav", id: "Attack"}, {src: "Hit.wav", id: "Hit"}, {src: "Death.wav", id: "Death"},
+        {src: "Miss.wav", id: "Miss"}, {src: "StunFloor.wav", id: "StunFloor"}, {src: "StunWall.wav", id: "StunWall"}, 
+
+        {src: "Combo1.wav", id: "Combo1"}, {src: "Combo2.wav", id: "Combo2"}, {src: "Combo3.wav", id: "Combo3"}, {src: "Combo4.wav", id: "Combo4"},
+        {src: "ComboCancel.wav", id: "ComboCancel"},
+
+        {src: "Collectible.wav", id: "Collectible"},
+
     ];
 
     mapList = [
@@ -167,8 +171,9 @@ function handleAssetsLoaded(event) {
 }
 function loadSounds() {
     for (let j = 0; j < soundManifest.length; j++) {
+        soundAssets[soundManifest[j].id] = soundManifest[j].src + "?v=" + Math.round(1000 * Math.random(1000));
         var sound = new Howl({
-            src: [soundRoot + soundManifest[j].src],
+            src: [soundRoot + soundAssets[soundManifest[j].id]],
             loop: true,
             volume: 0,
             stereo: 0
