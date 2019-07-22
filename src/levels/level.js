@@ -1,8 +1,8 @@
 define("Level", [
 
-        'Point', 'Actor', 'Prop', 'Collectible', 'Transition', 'ParticleSystem'], 
+        'Point', 'Actor', 'Enemy', 'Prop', 'Collectible', 'Transition', 'ParticleSystem'], 
     function (
-        Point, Actor, Prop, Collectible, Transition, ParticleSystem
+        Point, Actor, Enemy, Prop, Collectible, Transition, ParticleSystem
     ) {
     
     tileAnimations =  { };
@@ -41,7 +41,10 @@ define("Level", [
             this.objects = [];
 
             this.numOfCollectibles = 0;
+            this.numOfEnemies = 0;
+            this.enemiesRemaining = 0;
             player.collectiblesGathered = 0;
+            player.highestCombo = 0;
             
             this.screenPosition = new Point(0, 0);
             this.levelContainer = new createjs.Container();
@@ -125,12 +128,17 @@ define("Level", [
                         this.numOfCollectibles += 1;
                     this.addProp(newObject);
                 }
-                else if (newObject instanceof Actor)
+                else if (newObject instanceof Actor) {
+                    if (newObject instanceof Enemy)
+                        this.numOfEnemies += 1;
                     this.addActor(newObject);
+                }
                 else if (newObject instanceof Transition)
                     this.mapTransitions.push(newObject);
 
             }
+
+            this.enemiesRemaining = this.numOfEnemies;
         }
         getObjectLocation(objectData) {
             return new Point(objectData.x, objectData.y - tileSize);
@@ -253,6 +261,8 @@ define("Level", [
                 this.actors.splice(this.actors.indexOf(oldActor), 1);
                 this.spriteLayer.removeChild(oldActor.spriteContainer);    
             }
+            if (oldActor instanceof Enemy)
+                this.enemiesRemaining -= 1;
         }
         addParticleEffect(newEffect) {
 

@@ -20,6 +20,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             this.addHurtbox(null, 2, 2, 22, 28);
 
             this.collectiblesGathered = 0;
+            this.highestCombo = 0;
+            this.comboCount = 0;
+
             this.interactionRange = tileSize / 2;
             this.interactionOrigin = new Point();
             this.initInteractionElements();
@@ -173,6 +176,14 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                 return false;
         }
         
+        setGrounded() {
+            super.setGrounded();
+
+            if (this.onGround) {
+                this.highestCombo = Math.max(this.highestCombo, this.comboCount);
+                this.comboCount = 0;
+            }
+        }
         setUnGrounded() {
             super.setUnGrounded();
 
@@ -301,6 +312,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             if (damageObj instanceof Enemy) {
                 if (this.currentAttack ? this.currentAttack.isInCombo() : false) {
                     this.setAttack(this.comboFlip);
+                    this.comboCount += 1;
                 }
             }
         }
