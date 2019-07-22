@@ -293,9 +293,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                 if (fullCollisions[i] instanceof Prop) {
                     if (fullCollisions[i] instanceof Collectible) {
                         this.collectiblesGathered += 1;
+                        gameStatsDisplay.updateStats();
                         currentLevel.removeProp(fullCollisions[i]);
-                        console.log("Collectibles: " + this.collectiblesGathered + "/" + currentLevel.numOfCollectibles);
-                    }                    
+                    }
 
                     if (fullCollisions[i].fatalProp)
                         this.takeDamage(fullCollisions[i]);
@@ -313,6 +313,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                 if (this.currentAttack ? this.currentAttack.isInCombo() : false) {
                     this.setAttack(this.comboFlip);
                     this.comboCount += 1;
+                    gameScore += 100 * this.comboCount;
+
+                    gameStatsDisplay.updateStats();
                 }
             }
         }

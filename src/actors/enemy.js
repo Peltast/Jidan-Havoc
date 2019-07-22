@@ -22,6 +22,9 @@ define("Enemy",
             this.deathTimer = enemyData["deathTimer"] ? enemyData["deathTimer"] : 0;
             this.deathStatus = DeathState.Alive;
             this.deathController = new ActorController(controllerData["gravityFree"]);
+
+            this.deathCombo;
+            this.deathScore;
             
             this.initEnemy();
         }
@@ -77,10 +80,28 @@ define("Enemy",
                 this.clearCollisionBoxes();
                 this.passable = true;
                 this.setController(this.deathController);
+                
+                currentLevel.enemiesRemaining -= 1;
+                gameStatsDisplay.updateStats();
+                this.createScoreText();
 
                 if (collisions.length > 0)
                     this.knockbackEnemy(collisions[0].parentObject);
             }
+        }
+
+        createScoreText() {
+            
+            this.deathCombo = new createjs.Text(player.comboCount + "x", "32px Equipment", "#f5f4eb");
+            this.deathScore = new createjs.Text(player.comboCount * 100, "32px Equipment", "#f5f4eb");
+            this.deathCombo.x = this.location.X;
+            this.deathCombo.y = this.location.Y - tileSize / 2;
+            this.deathScore.x = this.location.X;
+            this.deathScore.y = this.location.Y - tileSize / 2 + this.deathCombo.getMeasuredHeight() + 6;
+
+            this.deathCombo.textAlign = "center";
+            this.deathScore.textAlign = "center";
+            currentLevel.effectLayer.addChild(this.deathCombo, this.deathScore);
         }
 
         knockbackEnemy(damageSource) {
@@ -96,13 +117,28 @@ define("Enemy",
 
         updateDeath() {
             if (this.deathStatus === DeathState.Dying) {
-                if (this.deathTimer > 0)
+                if (this.deathTimer > 0) {
                     this.deathTimer -= 1;
+                    this.updateDeathScore();
+                }
                 else
                     this.deathStatus = DeathState.Dead;
             }
             else if (this.deathStatus === DeathState.Dead) {
                 currentLevel.removeActor(this);
+                currentLevel.effectLayer.removeChild(this.deathCombo, this.deathScore);
+            }
+        }
+        updateDeathScore() {
+            if (this.deathTimer % 4 == 0) {
+                if (this.deathCombo.color === "#f5f4eb") {
+                    this.deathCombo.color = "#e18d79";
+                    this.deathScore.color = "#e18d79";
+                }
+                else {
+                    this.deathCombo.color = "#f5f4eb";
+                    this.deathScore.color = "#f5f4eb";
+                }
             }
         }
 

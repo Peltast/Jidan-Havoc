@@ -1,6 +1,6 @@
 require( 
-    ['Point', 'Level', 'LevelParser', 'ObjectFactory', 'Player', 'DialogueBox', 'MainMenu'], 
-    function(Point, Level, LevelParser, ObjectFactory, Player, DialogueBox, MainMenu) {
+    ['Point', 'Level', 'LevelParser', 'ObjectFactory', 'Player', 'DialogueBox', 'MainMenu', 'StatsDisplay'], 
+    function(Point, Level, LevelParser, ObjectFactory, Player, DialogueBox, MainMenu, StatsDisplay) {
 
     const GameState = { "Preloading": "Preloading", "Preloaded": "Preloaded", "Loading": "Loading", "Loaded": "Loaded" };
 
@@ -126,6 +126,9 @@ require(
     function createUI() {
         gameUI = new createjs.Container();
 
+        gameStatsDisplay = new StatsDisplay();
+        gameUI.addChild(gameStatsDisplay.statsContainer);
+
         // healthBar = new HealthBar();
         // gameUI.addChild(healthBar.healthBarContainer);
 
@@ -144,6 +147,7 @@ require(
 
         currentLevel = level;
         currentLevel.levelContainer.scale = gameScale;
+        gameStatsDisplay.initiateStatDisplay();
 
         if (!(gameArea.contains(level.levelContainer)))
             gameArea.addChild(level.levelContainer);

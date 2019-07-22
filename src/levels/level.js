@@ -45,6 +45,7 @@ define("Level", [
             this.enemiesRemaining = 0;
             player.collectiblesGathered = 0;
             player.highestCombo = 0;
+            gameScore = 0;
             
             this.screenPosition = new Point(0, 0);
             this.levelContainer = new createjs.Container();
@@ -261,8 +262,6 @@ define("Level", [
                 this.actors.splice(this.actors.indexOf(oldActor), 1);
                 this.spriteLayer.removeChild(oldActor.spriteContainer);    
             }
-            if (oldActor instanceof Enemy)
-                this.enemiesRemaining -= 1;
         }
         addParticleEffect(newEffect) {
 

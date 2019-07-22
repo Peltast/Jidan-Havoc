@@ -60,7 +60,8 @@ var currentCheckpoint = null;
 // UI global vars
 var currentStatement = null;
 var currentDialogue = null;
-var healthBar;
+var gameStatsDisplay;
+var gameScore;
 
 
 $(function() { 
@@ -90,6 +91,8 @@ function init() {
         {src: "ui/MenuSplash.png", id: "MenuSplash"}, {src: "ui/MenuTitle.png", id: "MenuTitle"}, {src: "ui/MenuSandbox.png", id: "MenuSandbox"},
         {src: "ui/MenuPlay.png", id: "MenuPlay"}, {src: "ui/MenuInstructions.png", id: "MenuInstructions"},
         {src: "ui/PlayerInstructions.png", id: "PlayerInstructions"},
+        
+        {src: "ui/CollectibleIcon.png", id: "CollectibleIcon"},
         
         {src: "ui/Cursor.png", id: "Cursor"},
         {src: "ui/HealthSlot.png", id: "HealthSlot"}, 
