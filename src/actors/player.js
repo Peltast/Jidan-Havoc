@@ -160,7 +160,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                 return;
             else if (this.canCancelAttack()) {
                 this.setAttack(this.cancelFlip);
-                this.playSound("ComboCancel", 0.5);
+                this.playSound("ComboCancel", 0.4);
                 return;
             }
             else if (!this.currentController.acceptInput || this.currentController.currentJumps <= 0)
@@ -357,8 +357,6 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                 this.playSound("Combo2", 0.4);
             else if (this.comboCount >= 2)
                 this.playSound("Combo1", 0.3);
-            else
-                this.playSound("Combo1", 0.2);
         }
 
         takeDamage(collisions) {
@@ -393,7 +391,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                 this.state = "";
                 this.setFrozen(false);
 
-                transition = {map: currentCheckpoint.map, location: currentCheckpoint.location};
+                transition = {map: currentLevel.name, location: currentLevel.levelSpawn.location};
             }
         }
 

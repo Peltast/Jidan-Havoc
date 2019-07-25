@@ -2411,7 +2411,7 @@
  <objectgroup id="3" name="Object Layer 1">
   <object id="10" gid="2" x="1120" y="288" width="32" height="32">
    <properties>
-    <property name="type" value="PlayerSpawn"/>
+    <property name="type" value="LevelSpawn"/>
    </properties>
   </object>
   <object id="40" type="EnemySpawn" gid="76" x="1120" y="768" width="32" height="32">

@@ -91,7 +91,9 @@ define("Enemy",
         }
 
         createScoreText() {
-            
+            if (player.comboCount < 2)
+                return;
+
             this.deathCombo = new createjs.Text(player.comboCount + "x", "32px Equipment", "#f5f4eb");
             this.deathScore = new createjs.Text(player.comboCount * 100, "32px Equipment", "#f5f4eb");
             this.deathCombo.x = this.location.X;
@@ -130,6 +132,9 @@ define("Enemy",
             }
         }
         updateDeathScore() {
+            if (!this.deathCombo)
+                return;
+            
             if (this.deathTimer % 4 == 0) {
                 if (this.deathCombo.color === "#f5f4eb") {
                     this.deathCombo.color = "#e18d79";

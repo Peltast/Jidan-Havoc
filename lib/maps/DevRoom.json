@@ -27,7 +27,7 @@
                         {
                          "name":"type",
                          "type":"string",
-                         "value":"PlayerSpawn"
+                         "value":"LevelSpawn"
                         }],
                  "rotation":0,
                  "type":"",

@@ -112,7 +112,7 @@ function init() {
     ];
 
     mapList = [
-        "DevRoom"
+        "DevRoom", "Stage_1_1"
     ];
     tileList = [
         "World1"

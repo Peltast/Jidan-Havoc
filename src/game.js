@@ -103,7 +103,7 @@ require(
         stage.addChild(gameUI);
 
         var startLevel = gameWorld[startMapName];
-        startLevel.spawnPlayer(player, currentCheckpoint.location);
+        startLevel.spawnPlayer(player, startLevel.levelSpawn.location);
         setLevel(startLevel);
         
         addEventListener("keydown", onKeyDown);
@@ -188,7 +188,7 @@ require(
     function resetCurrentLevel() {
         gameArea.removeChild(currentLevel.levelContainer);
         currentLevel.createLevel();
-        currentLevel.spawnPlayer(player, currentCheckpoint.location);
+        currentLevel.spawnPlayer(player, currentLevel.levelSpawn.location);
         setLevel(currentLevel);
     }
     function changeLevels(newMap, newLocation) {

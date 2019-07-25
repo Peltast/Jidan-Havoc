@@ -21,6 +21,7 @@ define("Level", [
             this.tileDisplayAnchor = new Point(0, 0);
             this.initTilesets();
             
+            this.levelSpawn;
             this.levelObj = { "tiles": tileMap, "objects": objectList, "data": levelData};
             this.createLevel();
         }
@@ -116,9 +117,9 @@ define("Level", [
             for (let i = 0; i < objectList.length; i++) {
                 var objectType = objectFactory.getObjectProperty(objectList[i], {}, "type", "string", objectList[i].type);
                 
-                if (objectType === "PlayerSpawn") {
-                    if (currentCheckpoint == null) {
-                        currentCheckpoint = { map: this.name, location: this.getObjectLocation(objectList[i]) };
+                if (objectType === "LevelSpawn") {
+                    if (this.levelSpawn == null) {
+                        this.levelSpawn = { map: this.name, location: this.getObjectLocation(objectList[i]) };
                     }
                 }
 
