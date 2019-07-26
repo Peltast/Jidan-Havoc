@@ -115,8 +115,6 @@ function(       GameObject, Point, CollisionBox, ActorController) {
                 else 
                     this.state = "Walk";
             }
-            else if (this.state === "Jump" && this.velocity.Y > 0)
-                this.state = "Fall";
         }
         setControllerState() {
             this.state = this.currentController.setAnimation;

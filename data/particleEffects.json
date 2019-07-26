@@ -113,6 +113,35 @@
 
 
 
+    "JumpDustEffect": {
+        "oneOff" : true,
+        "numOfParticles": 5,
+
+        "particles": [{
+            "sprite": "DustParticle",
+            "frames": { "width": 12, "height": 10, "regX": 0, "regY": 0, "count": 9 },
+            "animations": "{ \"idle\": [0, 8, \"finished\", 0.2], \"finished\": 8 }", "defaultAnimation": "idle", "randomStartFrame": false,
+
+            "lifeSpan": "60~100",
+            "mass": "1", "size": "2,2", "usesPhysics": false, 
+            "startVelocity": "-0.8~0.8, -1~0.2", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+        }]
+    },
+    "FallDustEffect": {
+        "oneOff" : true,
+        "numOfParticles": 3,
+
+        "particles": [{
+            "sprite": "DustParticle",
+            "frames": { "width": 12, "height": 10, "regX": 0, "regY": 0, "count": 9 },
+            "animations": "{ \"idle\": [0, 8, \"finished\", 0.25], \"finished\": 8 }", "defaultAnimation": "idle", "randomStartFrame": false,
+
+            "lifeSpan": "40~60",
+            "mass": "1", "size": "2,2", "usesPhysics": false, 
+            "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+        }]
+    },
+
     
     
 
@@ -214,64 +243,6 @@
             "startVelocity": "0,0", "targetVelocity": "-0.6~-0.3,0.2~0.3", "acceleration": "1, 1", "maxSpeed": "10"
         }]
     },
-    "AtriumSandMedium": {
-        "randomSpawn": true,
-        "screenWrap": true, "foreground": true, "areaSpansMap": true,
-        "numOfParticles": 300,
-        "parallaxDistX": 0, "parallaxDistY": 1.06,
-
-        "simpleForces": [{
-            "deltaVelocity": "-1.6,0~1.6,0", "durationRange": "320~640", "intervalRange": "500~900"
-        }],
-        "particles": [{
-            "lifeSpan": "-1",
-            "mass": "1", "size": "2,2", "color": "#c69fa5", "usesPhysics": false,
-            "startVelocity": "0,0", "targetVelocity": "-10~-8,0.2~0.4", "acceleration": "1, 1", "maxSpeed": "100"
-        },{
-            "lifeSpan": "-1",
-            "mass": "1", "size": "4,4", "color": "#c69fa5", "usesPhysics": false,
-            "startVelocity": "0,0", "targetVelocity": "-8~-6,0.2~0.3", "acceleration": "1, 1", "maxSpeed": "100"
-        }]
-    },
-    "AtriumSandHeavy": {
-        "randomSpawn": true,
-        "screenWrap": true, "foreground": true, "areaSpansMap": true,
-        "numOfParticles": 400,
-        "parallaxDistX": 0, "parallaxDistY": 1.06,
-
-        "simpleForces": [{
-            "deltaVelocity": "-5,0~5,0", "durationRange": "260~540", "intervalRange": "300~600"
-        }],
-        "particles": [{
-            "lifeSpan": "-1",
-            "mass": "1", "size": "4,4", "color": "#c69fa5", "usesPhysics": false,
-            "startVelocity": "0,0", "targetVelocity": "-30~-24,-0.2~0.4", "acceleration": "1, 1", "maxSpeed": "100"
-        },{
-            "lifeSpan": "-1",
-            "mass": "1", "size": "6,6", "color": "#c69fa5", "usesPhysics": false,
-            "startVelocity": "0,0", "targetVelocity": "-24~-18,-0.1~0.3", "acceleration": "1, 1", "maxSpeed": "100"
-        }]
-    },
-    "AtriumSandLull": {
-        "randomSpawn": true,
-        "screenWrap": true, "foreground": true, "areaSpansMap": true,
-        "numOfParticles": 200,
-        "parallaxDistX": 0, "parallaxDistY": 1.06,
-
-        "simpleForces": [{
-            "deltaVelocity": "-0.1,0~0.1,0", "durationRange": "480~720", "intervalRange": "700~1200"
-        }],
-        "particles": [{
-            "lifeSpan": "-1",
-            "mass": "1", "size": "2,2", "color": "#c69fa5", "usesPhysics": false,
-            "startVelocity": "0,0", "targetVelocity": "-0.4~-0.1,0.2~0.4", "acceleration": "1, 1", "maxSpeed": "1"
-        },{
-            "lifeSpan": "-1",
-            "mass": "1", "size": "4,4", "color": "#c69fa5", "usesPhysics": false,
-            "startVelocity": "0,0", "targetVelocity": "-0.3~-0.0,0.2~0.3", "acceleration": "1, 1", "maxSpeed": "1"
-        }]
-    },
-
 
     "Hallucination": {
         "oneOff": true,

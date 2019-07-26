@@ -1,5 +1,5 @@
-define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'ParticleSystem', 'Attack', 'ChargeAttack'], 
-    function (Actor, Tile, Prop, Collectible, Enemy, Point, ParticleSystem, Attack, ChargeAttack) {
+define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'ParticleSystem', 'Attack', 'ChargeAttack', 'ParticleSystem'],
+    function (Actor, Tile, Prop, Collectible, Enemy, Point, ParticleSystem, Attack, ChargeAttack, ParticleSystem) {
 
     const RespawnState = { "Alive": 0, "Respawning": 1 }
 
@@ -111,6 +111,10 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
 
             this.particleEffects.push(particleSystem);
         }
+        addParticleEffectObj(effectObj) {
+            currentLevel.foregroundLayer.addChild(effectObj.particleContainer);
+            this.particleEffects.push(effectObj);
+        }
         updateParticleEffects() {
             for (let i = this.particleEffects.length - 1; i >= 0; i--) {
                 this.particleEffects[i].updateSystem();
@@ -133,6 +137,23 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                 return;
             else
                 super.updateState();
+        }
+        setMotionState() {
+
+            if (!this.onGround && this.velocity.Y > 0 && (this.sprite.currentAnimation !== "leftFlip" && this.sprite.currentAnimation !== "rightFlip" ))
+                this.state = "Fall";
+            else if (this.state === "" || this.state === "Walk") {
+                if (this.targetVelocity.X == 0 && this.targetVelocity.Y == 0)
+                    this.state = "";
+                else 
+                    this.state = "Walk";
+            }
+        }
+        enactNewState() {
+            if (!this.currentController.setAnimation && (this.sprite.currentAnimation == "leftFlip" || this.sprite.currentAnimation == "rightFlip"))
+                return;
+
+            super.enactNewState();
         }
 
         updatePlayer() {
@@ -171,13 +192,24 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             
             this.playSound( this.onGround ? "Jump" : "DoubleJump", 0.5);
 
+            if (this.onGround) {
+                this.playSound("Jump", 0.5);
+                this.state = "Jump";
+                this.onGround = false;
+
+                var jumpDust = new ParticleSystem("JumpDustEffect");
+                jumpDust.effectAreaOrigin = new Point(this.location.X, this.location.Y + (this.size.Y / 2));
+                this.addParticleEffectObj(jumpDust);
+            }
+            else {
+                this.playSound("DoubleJump", 0.4);
+                this.state = "Flip";
+            }
+
             this.velocity.Y = -this.currentController.jumpVelocity;
             this.currentController.currentJumps -= 1;
             
-            this.state = "Jump";
-            this.onGround = false;
             this.goingUp = true;
-
             this.jumpHeld = true;
         }
         jumpRelease() {
@@ -199,6 +231,12 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             if (this.onGround) {
                 this.highestCombo = Math.max(this.highestCombo, this.comboCount);
                 this.comboCount = 0;
+                
+                if (this.respawnStatus === RespawnState.Alive) {
+                    var fallDust = new ParticleSystem("FallDustEffect");
+                    fallDust.effectAreaOrigin = new Point(this.location.X, this.location.Y + (this.size.Y));
+                    this.addParticleEffectObj(fallDust);
+                }
             }
 
             this.lastFootstep = Math.round(this.location.X);
