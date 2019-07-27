@@ -111,20 +111,6 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
 
             this.particleEffects.push(particleSystem);
         }
-        addParticleEffectObj(effectObj) {
-            currentLevel.foregroundLayer.addChild(effectObj.particleContainer);
-            this.particleEffects.push(effectObj);
-        }
-        updateParticleEffects() {
-            for (let i = this.particleEffects.length - 1; i >= 0; i--) {
-                this.particleEffects[i].updateSystem();
-
-                if (this.particleEffects[i].isFinished) {
-                    currentLevel.foregroundLayer.removeChild(this.particleEffects[i].particleContainer);
-                    this.particleEffects.splice(i, 1);
-                }
-            }
-        }
 
         updateActor() {
             this.updatePlayer();
@@ -169,10 +155,23 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             if (this.onGround) {
                 var delta = Math.abs(this.location.X - this.lastFootstep);
                 if (delta >= this.footstepDistance) {
-                    this.playSound("Walk", 0.3);
-                    this.lastFootstep = Math.round(this.location.X);
+                    this.createFootstepEffect();
+                }
+                else if (delta > 10 && (this.velocity.X < -1 && this.orientation === "right" || this.velocity.X > 1 && this.orientation === "left")) {
+                    this.createFootstepEffect();
                 }
             }
+        }
+        createFootstepEffect() {
+            this.playSound("Walk", 0.3);
+            this.lastFootstep = Math.round(this.location.X);
+
+            var stepDust = new ParticleSystem("WalkDustEffect");
+            var xOrigin = this.orientation === "right" ? this.location.X : this.location.X + this.size.X;
+            stepDust.effectAreaOrigin = new Point(xOrigin, this.location.Y + this.size.Y - 8);
+            stepDust.particleData[0].startVelocity = (this.orientation === "right" ? "-1.5~-0.5" : "0.5~1.5") + ", -1~-0.2";
+
+            this.addParticleEffectObj(stepDust);
         }
 
 

@@ -1,6 +1,6 @@
 define("Enemy", 
-    ['Point', 'Actor', 'EnemyBehavior', 'PacingBehavior', 'ActorController'], 
-    function(Point, Actor, EnemyBehavior, PacingBehavior, ActorController) {
+    ['Point', 'Actor', 'EnemyBehavior', 'PacingBehavior', 'ActorController', 'ParticleSystem'], 
+    function(Point, Actor, EnemyBehavior, PacingBehavior, ActorController, ParticleSystem) {
 
     const DeathState = { "Alive" : 0, "Dying": 1, "Dead": 2};
 
@@ -44,6 +44,14 @@ define("Enemy",
 
             super.updateActor();
         }
+        
+        addParticleEffect(effectName) {
+            var particleSystem = new ParticleSystem(effectName);
+            particleSystem.effectAreaOrigin.add(this.location);
+            currentLevel.foregroundLayer.addChild(particleSystem.particleContainer);
+
+            this.particleEffects.push(particleSystem);
+        }
 
         updatePositionOnCollision(collisions, xAxis) {
             super.updatePositionOnCollision(collisions, xAxis);
@@ -85,9 +93,24 @@ define("Enemy",
                 gameStatsDisplay.updateStats();
                 this.createScoreText();
 
-                if (collisions.length > 0)
-                    this.knockbackEnemy(collisions[0].parentObject);
+                if (collisions.length > 0) {
+
+                    var knockbackForce = this.getKnockbackForce(collisions[0].parentObject);
+                    this.velocity.add(knockbackForce);
+                    this.addDamageEffect(knockbackForce);
+                }
             }
+        }
+        addDamageEffect(knockbackForce) {
+            var dmgEffect = new ParticleSystem("DamageEffect");
+            dmgEffect.effectAreaOrigin = this.location;
+            var force = new Point(Math.round(knockbackForce.X * 100) / 100, Math.round(knockbackForce.Y * 100 / 100));
+            force.divide(new Point(4, 4));
+            var altVel = (-force.X - .6) + "~" + (-force.X + .6) + ", " + (-force.Y - .6) + "~" + (-force.Y + .6);
+            console.log(altVel);
+            dmgEffect.setParticleAltVelocity(altVel);
+
+            super.addParticleEffectObj(dmgEffect);
         }
 
         createScoreText() {
@@ -106,7 +129,7 @@ define("Enemy",
             currentLevel.effectLayer.addChild(this.deathCombo, this.deathScore);
         }
 
-        knockbackEnemy(damageSource) {
+        getKnockbackForce(damageSource) {
             var collision = this.getCollisionVector(damageSource);
             var knockbackAngle = Math.atan2(collision.Y, collision.X);
             var knockbackForce = new Point( Math.cos(knockbackAngle), Math.sin(knockbackAngle) );
@@ -114,7 +137,7 @@ define("Enemy",
             knockbackForce.normalize();
             knockbackForce.multiply(new Point(5, 5));
             
-            this.velocity.add(knockbackForce);
+            return knockbackForce;
         }
 
         updateDeath() {

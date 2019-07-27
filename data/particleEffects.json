@@ -113,6 +113,19 @@
 
 
 
+    "WalkDustEffect": {
+        "oneOff" : true,
+        "numOfParticles": 3,
+
+        "particles": [{
+            "sprite": "DustParticle",
+            "frames": { "width": 12, "height": 10, "regX": 0, "regY": 0, "count": 9 },
+            "animations": "{ \"idle\": [0, 8, \"finished\", 0.2], \"finished\": 8 }", "defaultAnimation": "idle", "randomStartFrame": false,
+
+            "lifeSpan": "30~50", "mass": "1", "size": "2,2",
+            "startVelocity": "-1~-0.5, -1~-0.2", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+        }]
+    },
     "JumpDustEffect": {
         "oneOff" : true,
         "numOfParticles": 5,
@@ -122,7 +135,7 @@
             "frames": { "width": 12, "height": 10, "regX": 0, "regY": 0, "count": 9 },
             "animations": "{ \"idle\": [0, 8, \"finished\", 0.2], \"finished\": 8 }", "defaultAnimation": "idle", "randomStartFrame": false,
 
-            "lifeSpan": "60~100",
+            "lifeSpan": "60~80",
             "mass": "1", "size": "2,2", "usesPhysics": false, 
             "startVelocity": "-0.8~0.8, -1~0.2", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
         }]
@@ -140,6 +153,68 @@
             "mass": "1", "size": "2,2", "usesPhysics": false, 
             "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
         }]
+    },
+
+    "DamageEffect": {
+        "oneOff" : true,
+        "numOfParticles": 4,
+
+        "particles": [
+            {
+                "sprite": "DamageStars",
+                "frames": { "width": 28, "height": 28, "regX": 0, "regY": 0, "count": 36 }, "randomStartFrame": false,
+                "animations": "{ \"idle1\": [0, 5, \"finished1\", 0.35], \"finished1\": 5, \"idle2\": [6, 11, \"finished2\", 0.35], \"finished2\": 11, \"idle3\": [12, 17, \"finished3\", 0.35], \"finished3\": 17, \"idle4\": [18, 23, \"finished4\", 0.35], \"finished4\": 23, \"idle5\": [24, 29, \"finished5\", 0.35], \"finished5\": 29, \"idle6\": [30, 35, \"finished6\", 0.35], \"finished6\": 35 }", 
+                
+                "defaultAnimation": "idle1", 
+                "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
+                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+            },
+            {
+                "sprite": "DamageStars",
+                "frames": { "width": 28, "height": 28, "regX": 0, "regY": 0, "count": 36 }, "randomStartFrame": false,
+                "animations": "{ \"idle1\": [0, 5, \"finished1\", 0.35], \"finished1\": 5, \"idle2\": [6, 11, \"finished2\", 0.35], \"finished2\": 11, \"idle3\": [12, 17, \"finished3\", 0.35], \"finished3\": 17, \"idle4\": [18, 23, \"finished4\", 0.35], \"finished4\": 23, \"idle5\": [24, 29, \"finished5\", 0.35], \"finished5\": 29, \"idle6\": [30, 35, \"finished6\", 0.35], \"finished6\": 35 }", 
+                
+                "defaultAnimation": "idle2", 
+                "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
+                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+            },
+            {
+                "sprite": "DamageStars",
+                "frames": { "width": 28, "height": 28, "regX": 0, "regY": 0, "count": 36 }, "randomStartFrame": false,
+                "animations": "{ \"idle1\": [0, 5, \"finished1\", 0.35], \"finished1\": 5, \"idle2\": [6, 11, \"finished2\", 0.35], \"finished2\": 11, \"idle3\": [12, 17, \"finished3\", 0.35], \"finished3\": 17, \"idle4\": [18, 23, \"finished4\", 0.35], \"finished4\": 23, \"idle5\": [24, 29, \"finished5\", 0.35], \"finished5\": 29, \"idle6\": [30, 35, \"finished6\", 0.35], \"finished6\": 35 }", 
+                
+                "defaultAnimation": "idle3", 
+                "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
+                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+            },
+            {
+                "sprite": "DamageStars",
+                "frames": { "width": 28, "height": 28, "regX": 0, "regY": 0, "count": 36 }, "randomStartFrame": false,
+                "animations": "{ \"idle1\": [0, 5, \"finished1\", 0.35], \"finished1\": 5, \"idle2\": [6, 11, \"finished2\", 0.35], \"finished2\": 11, \"idle3\": [12, 17, \"finished3\", 0.35], \"finished3\": 17, \"idle4\": [18, 23, \"finished4\", 0.35], \"finished4\": 23, \"idle5\": [24, 29, \"finished5\", 0.35], \"finished5\": 29, \"idle6\": [30, 35, \"finished6\", 0.35], \"finished6\": 35 }", 
+                
+                "defaultAnimation": "idle4", 
+                "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
+                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+            },
+            {
+                "sprite": "DamageStars",
+                "frames": { "width": 28, "height": 28, "regX": 0, "regY": 0, "count": 36 }, "randomStartFrame": false,
+                "animations": "{ \"idle1\": [0, 5, \"finished1\", 0.35], \"finished1\": 5, \"idle2\": [6, 11, \"finished2\", 0.35], \"finished2\": 11, \"idle3\": [12, 17, \"finished3\", 0.35], \"finished3\": 17, \"idle4\": [18, 23, \"finished4\", 0.35], \"finished4\": 23, \"idle5\": [24, 29, \"finished5\", 0.35], \"finished5\": 29, \"idle6\": [30, 35, \"finished6\", 0.35], \"finished6\": 35 }", 
+                
+                "defaultAnimation": "idle5", 
+                "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
+                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+            },
+            {
+                "sprite": "DamageStars",
+                "frames": { "width": 28, "height": 28, "regX": 0, "regY": 0, "count": 36 }, "randomStartFrame": false,
+                "animations": "{ \"idle1\": [0, 5, \"finished1\", 0.35], \"finished1\": 5, \"idle2\": [6, 11, \"finished2\", 0.35], \"finished2\": 11, \"idle3\": [12, 17, \"finished3\", 0.35], \"finished3\": 17, \"idle4\": [18, 23, \"finished4\", 0.35], \"finished4\": 23, \"idle5\": [24, 29, \"finished5\", 0.35], \"finished5\": 29, \"idle6\": [30, 35, \"finished6\", 0.35], \"finished6\": 35 }",  
+                
+                "defaultAnimation": "idle6", 
+                "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
+                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+            }
+        ]
     },
 
     

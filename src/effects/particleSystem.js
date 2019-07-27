@@ -73,11 +73,19 @@ define("ParticleSystem", ['Point', 'Particle'], function(Point, Particle) {
                 this.updateScreenWrap(this.particles[i]);
                 this.particles[i].update();
 
-                if (this.particles[i].isDead())
+                if (this.particles[i].isDead()) {
                     this.removeParticle(this.particles[i], i);
+                    console.log(this.particleContainer.numChildren + ", " + this.particles.length);
+                }
             }
 
             this.checkFinished();
+        }
+
+        setParticleAltVelocity(altVel) {
+            for (let i = 0; i < this.particleData.length; i++) {
+                this.particleData[i]["altStartVelocity"] = altVel;
+            }
         }
 
         // #region Particle Creation

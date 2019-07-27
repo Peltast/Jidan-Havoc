@@ -33,6 +33,9 @@ define("Particle", ['Point'], function(Point) {
             this.acceleration = this.parseVector(particleData["acceleration"], new Point(1, 1));
             this.appliesPhysics = (particleData["appliesPhysics"] === true);
 
+            if (particleData["altStartVelocity"])
+                this.velocity = this.parseVelocityValue(particleData["altStartVelocity"]);
+
             this.createParticle();
         }
 

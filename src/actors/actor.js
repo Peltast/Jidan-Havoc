@@ -275,19 +275,19 @@ function(       GameObject, Point, CollisionBox, ActorController) {
             }
         }
         
-        addParticleEffect(newEffect) {
-            this.spriteContainer.addChild(newEffect.particleContainer);
-            this.particleEffects.push(newEffect);
-        }
-        removeParticleEffect(oldEffect, index) {
-            this.spriteContainer.removeChild(oldEffect);
-            this.particleEffects.splice(index, 1);
+        addParticleEffectObj(effectObj) {
+            currentLevel.foregroundLayer.addChild(effectObj.particleContainer);
+            this.particleEffects.push(effectObj);
         }
         updateParticleEffects() {
             for (let i = this.particleEffects.length - 1; i >= 0; i--) {
                 this.particleEffects[i].updateSystem();
-                if (this.particleEffects[i].isFinished)
-                    this.removeParticleEffect(this.particleEffects[i], i);
+
+                if (this.particleEffects[i].isFinished) {
+                    console.log(this.particleEffects[i].particles.length + ", " + this.particleEffects[i].isFinished);
+                    currentLevel.foregroundLayer.removeChild(this.particleEffects[i].particleContainer);
+                    this.particleEffects.splice(i, 1);
+                }
             }
         }
 
