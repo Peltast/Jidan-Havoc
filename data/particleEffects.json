@@ -150,7 +150,7 @@
             "frames": { "width": 16, "height": 16, "regX": 0, "regY": 0, "count": 5 },
             "animations": "{ \"idle\": [0, 4, \"idle\", 0.5] }", "defaultAnimation": "idle", "randomStartFrame": true,
 
-            "lifeSpan": "60~120", "fadeOut": true, "fadeOutTime": 40, "tween": "shrink",
+            "lifeSpan": "60~120", "fadeOut": true, "fadeOutTime": 60, "tween": "shrink",
             "startVelocity": "random", "targetVelocity": "-0.3~0.3,-0.3~0.3", "acceleration": ".20,.20", "maxSpeed": "5~10"
         }]
     },
@@ -180,6 +180,15 @@
             "frames": { "width": 46, "height": 40, "regX": 0, "regY": 0, "count": 8 },
             "animations": "{ \"idle\": [0, 7, \"finished\", 0.5], \"finished\": 7 }", "defaultAnimation": "idle", "randomStartFrame": false,
             "lifeSpan": "20", "startVelocity": "0,0", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+        }]
+    },
+    
+    "CancelEffect": {
+        "oneOff": true, "numOfParticles": 1,
+        "particles": [{
+            "sprite": "CancelLines", "frames": { "width": 74, "height": 54, "regX": 0, "regY": 0, "count": 7 },
+            "animations": "{ \"idle\": [0, 6, \"finished\", 0.5], \"finished\": 6 }", "defaultAnimation": "idle", "randomStartFrame": false,
+            "lifeSpan": "15", "startVelocity": "0,0", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
         }]
     },
 
@@ -236,6 +245,27 @@
             "animations": "{ \"idle\": [0, 8, \"finished\", 0.25], \"finished\": 8 }", "defaultAnimation": "idle", "randomStartFrame": false,
 
             "lifeSpan": "40~60", "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+        }]
+    },
+    
+    "DirtEffect": {
+        "oneOff" : true, "foreground": true, "numOfParticles": 6,
+
+        "particles": [{
+            "sprite": "DirtParticle",
+            "frames": { "width": 8, "height": 8, "regX": 0, "regY": 0, "count": 1 }, "animations": "{ \"idle\": 0 }", "defaultAnimation": "idle", "randomStartFrame": false,
+
+            "lifeSpan": "30~50", "startVelocity": "-2.0~-0.5, -2.0~-0.5", "targetVelocity": "0,4", "acceleration": ".02,.04", "maxSpeed": "5~15"
+        }]
+    },
+    "SlamStunEffect": {
+        "oneOff" : true, "foreground": true, "numOfParticles": 6,
+
+        "particles": [{
+            "sprite": "DirtParticle",
+            "frames": { "width": 8, "height": 8, "regX": 0, "regY": 0, "count": 1 }, "animations": "{ \"idle\": 0 }", "defaultAnimation": "idle", "randomStartFrame": false,
+
+            "lifeSpan": "30~50", "startVelocity": "-2.5~2.5, -5~-0.5", "targetVelocity": "0,4", "acceleration": ".02,.04", "maxSpeed": "5~15"
         }]
     },
 

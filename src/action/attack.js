@@ -65,7 +65,7 @@ define("Attack", ['Point', 'CollisionBox', 'ActorController', 'ParticleSystem'],
                 this.progressAttack(hostActor);
 
                 if (hostActor === player)
-                    player.playSound("StunFloor", 0.5);
+                    player.handleSlamStun();
             }
 
             this.currentPhase.updatePhase(hostActor);

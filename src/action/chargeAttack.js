@@ -34,6 +34,18 @@ define("ChargeAttack", ['Attack', 'Point', 'ParticleSystem'], function(Attack, P
             this.progressAttack(player);
             
             player.playSound("StunWall", 0.6);
+            this.addKnockbackEffect();
+        }
+        addKnockbackEffect() {
+
+            var knockbackEffect = new ParticleSystem("DirtEffect");
+            knockbackEffect.effectAreaOrigin = player.location.get();
+            knockbackEffect.effectAreaOrigin.X += player.orientation == "left" ? 0 : player.size.X;
+            
+            var altVel = (player.orientation == "left") ? "1.5~4.0,-4.0~-0.5" : "-4.0~-1.5,-4.0~-0.5";            
+            knockbackEffect.setParticleAltVelocity(altVel);
+
+            currentLevel.addParticleEffect(knockbackEffect);
         }
 
         updateAttack(hostActor) {

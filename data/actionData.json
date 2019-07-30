@@ -149,15 +149,14 @@
         },
         
         "chargeWindupWeak": {
-            "duration": 10, "animation": "ChargeWindup", "controller": "chargeWindup", "hitBoxes": [], 
+            "duration": 5, "animation": "ChargeWindup", "controller": "chargeWindup", "hitBoxes": [], 
             "directional": true
         },
         "chargeMainWeak": {
             "duration": 15, "animation": "Charge", "controller": "chargeAttackWeak", "hitBoxes": ["chargeAttack"],
             "directional": true, "immune": true, "comboPiece": true,
             "effects": [
-                { "name": "ChargeDustEffect", "direction": "horizontal", "originX": -1, "originY": 1, "randomVel": true, "distanceInterval": true },
-                { "name": "ChargeLinesEffect", "orientationBased": true, "direction": "horizontal", "originX": 0.8, "originY": -0.2, "distanceInterval": true }
+                { "name": "ChargeDustEffect", "direction": "horizontal", "originX": -1, "originY": 1, "randomVel": true, "distanceInterval": true }
             ]
         },
         "chargeSlideWeak": {
@@ -170,7 +169,7 @@
         },
 
         "releaseFlip": {
-            "duration": 100, "animation": "Flip", "controller": "releaseFlip", "hitBoxes": [],
+            "duration": 100, "animation": "CancelFlip", "controller": "releaseFlip", "hitBoxes": [],
             "directional": true, "aerial": true
         },
         "comboFlip": {

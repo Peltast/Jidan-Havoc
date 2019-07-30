@@ -71,6 +71,8 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
 
                     rightFlip: { frames: [72, 73, 74, 75, 76, 76, 77, 77], next: "rightFlipFinished", speed: 0.2 }, rightFlipFinished: 77,
                     leftFlip: { frames: [78, 79, 80, 81, 82, 82, 83, 83], next: "leftFlipFinished", speed: 0.2 }, leftFlipFinished: 83,
+                    rightCancelFlip: { frames: [72, 70, 73, 74, 75, 76, 76, 77, 77], next: "rightFlipFinished", speed: 0.2 },
+                    leftCancelFlip: { frames: [78, 71, 79, 80, 81, 82, 82, 83, 83], next: "leftFlipFinished", speed: 0.2 },
                     rightFrontFlip: [84, 89, "rightFrontFlipFinished", 0.2], rightFrontFlipFinished: 89,
                     leftFrontFlip: [90, 95, "leftFrontFlipFinished", 0.2], leftFrontFlipFinished: 95,
                     
@@ -187,6 +189,11 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             else if (this.canCancelAttack()) {
                 this.setAttack(this.cancelFlip);
                 this.playSound("ComboCancel", 0.4);
+
+                var cancelEffect = new ParticleSystem("CancelEffect");
+                cancelEffect.effectAreaOrigin = new Point(this.location.X - this.size.X, this.location.Y - this.size.Y);
+                this.addParticleEffectObj(cancelEffect);
+
                 return;
             }
             else if (!this.currentController.acceptInput || this.currentController.currentJumps <= 0)
@@ -283,6 +290,15 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             if (this.currentAttack == this.chargeAttack || this.currentAttack == this.chargeAttackWeak) {
                 this.currentAttack.beginKnockback(this);
             }
+        }
+        handleSlamStun() {
+            if (this.currentAttack == this.cancelFlip)
+                return;
+            this.playSound("StunFloor", 0.5);
+
+            var slamStunEffect = new ParticleSystem("SlamStunEffect");
+            slamStunEffect.effectAreaOrigin = new Point(this.location.X + this.size.X / 2, this.location.Y + this.size.Y);
+            currentLevel.addParticleEffect(slamStunEffect);
         }
 
         isAbleToAttack(nextAttack) {
