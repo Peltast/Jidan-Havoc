@@ -123,11 +123,14 @@ define("Attack", ['Point', 'CollisionBox', 'ActorController', 'ParticleSystem'],
                     var newEffect = {};
 
                     newEffect.name = effectData["name"];
+                    newEffect.orientationBased = effectData["orientationBased"] === true;
                     newEffect.direction = effectData["direction"];
+                    newEffect.originX = effectData["originX"];
+                    newEffect.originY = effectData["originY"];
                     newEffect.position = effectData["distanceInterval"] ? 0 : -1;
+                    newEffect.randomVel = effectData["randomVel"] === true;
                     newEffect.system = null;
 
-                    console.log(newEffect);
                     this.effects.push(newEffect);
                 }
             }
@@ -198,9 +201,17 @@ define("Attack", ['Point', 'CollisionBox', 'ActorController', 'ParticleSystem'],
             
             for (let i = 0; i < this.effects.length; i++) {
                 var effect = this.effects[i];
-                effect.system = new ParticleSystem(effect.name);
+
+                var fullName = effect.orientationBased ? hostActor.orientation + effect.name : effect.name;
+                effect.system = new ParticleSystem(fullName);
                 this.updatePhaseEffect(hostActor, effect);
-                effect.system.particleData[0].startVelocity = (hostActor.orientation === "right" ? "-1.5~0" : "0~1.5") + ", -1~-0.2";
+
+                if (effect.randomVel) {
+                    if (this.isEffectHorizontal(effect))
+                        effect.system.particleData[0].startVelocity = (hostActor.orientation === "right" ? "-1.5~0" : "0~1.5") + ", -1~-0.2";
+                    else
+                        effect.system.particleData[0].startVelocity = "-1.5~1.5,-1~-0.2";
+                }
                 
                 hostActor.addParticleEffectObj(effect.system);
             }
@@ -209,16 +220,33 @@ define("Attack", ['Point', 'CollisionBox', 'ActorController', 'ParticleSystem'],
 
             if (effect.direction && effect.system) {
                 if (effect.position >= 0) {
-                    var delta = Math.abs(hostActor.location.X - effect.position);
+                    var delta = Math.abs( (this.isEffectHorizontal(effect) ? hostActor.location.X : hostActor.location.Y) - effect.position);
                     effect.system.spawnTimer = delta;
 
                     if (delta >= effect.system.spawnInterval) {
-                        var xOrigin = hostActor.orientation === "right" ? hostActor.location.X - 24 : hostActor.location.X + hostActor.size.X + 16;
-                        effect.system.effectAreaOrigin = new Point(xOrigin, hostActor.location.Y + hostActor.size.Y / 2);
-                        effect.position = hostActor.location.X;
+                        var newOrigin = this.getEffectPosition(hostActor, effect);
+
+                        effect.system.effectAreaOrigin = newOrigin;
+                        effect.position = this.isEffectHorizontal(effect) ? hostActor.location.X : hostActor.location.Y;
                     }
                 }
             }
+        }
+        getEffectPosition(hostActor, effect) {
+            var newOrigin = new Point(hostActor.location.X, hostActor.location.Y);
+
+            if (effect.originX) {
+                var directionMod = (this.isEffectHorizontal(effect) && hostActor.orientation == "left") ? -1 : 1;
+                newOrigin.X += hostActor.size.X * effect.originX * directionMod;
+            }
+            if (effect.originY) {
+                newOrigin.Y += hostActor.size.Y * effect.originY;
+            }
+
+            return newOrigin;
+        }
+        isEffectHorizontal(e) {
+            return (e.direction == "horizontal" || e.direction == "left" || e.direction == "right");
         }
 
         endPhase(hostActor) {

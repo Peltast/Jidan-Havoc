@@ -120,7 +120,11 @@
 
         "aerialMain": {
             "duration": 60, "animation": "Slam", "controller": "aerialAttackMain", "hitBoxes": ["aerialAttackMain"], 
-            "aerial": true, "immune": true, "comboPiece": true
+            "aerial": true, "immune": true, "comboPiece": true,
+            "effects": [
+                { "name": "SlamDustEffect", "direction": "vertical", "originX": 0.3, "originY": -1, "randomVel": true, "distanceInterval": true },
+                { "name": "DownChargeLinesEffect", "direction": "vertical", "originX": -0.3, "originY": 0.2, "distanceInterval": true }
+            ]
         },
         "aerialRecovery": {
             "duration": 50, "animation": "SlamStun", "controller": "aerialStun", "hitBoxes": [], 
@@ -135,7 +139,8 @@
             "duration": 15, "animation": "Charge", "controller": "chargeAttack", "hitBoxes": ["chargeAttack"], 
             "directional": true, "immune": true, "comboPiece": true,
             "effects": [
-                { "name": "ChargeDustEffect", "direction": "horizontal", "distanceInterval": true }
+                { "name": "ChargeDustEffect", "direction": "horizontal",  "originX": -1, "originY": 1, "randomVel": true, "distanceInterval": true },
+                { "name": "ChargeLinesEffect", "orientationBased": true, "direction": "horizontal", "originX": 0.8, "originY": -0.2, "distanceInterval": true }
             ]
         },
         "chargeSlide": {
@@ -151,7 +156,8 @@
             "duration": 15, "animation": "Charge", "controller": "chargeAttackWeak", "hitBoxes": ["chargeAttack"],
             "directional": true, "immune": true, "comboPiece": true,
             "effects": [
-                { "name": "ChargeDustEffect", "direction": "horizontal", "distanceInterval": true }
+                { "name": "ChargeDustEffect", "direction": "horizontal", "originX": -1, "originY": 1, "randomVel": true, "distanceInterval": true },
+                { "name": "ChargeLinesEffect", "orientationBased": true, "direction": "horizontal", "originX": 0.8, "originY": -0.2, "distanceInterval": true }
             ]
         },
         "chargeSlideWeak": {

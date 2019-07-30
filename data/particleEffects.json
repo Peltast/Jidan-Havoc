@@ -155,22 +155,22 @@
         }]
     },
 
-    "RightChargeLinesEffect": {
+    "rightChargeLinesEffect": {
         "numOfParticles": 3, "spawnInterval": 16,
         "particles": [{
             "sprite": "DashLinesH",
             "frames": { "width": 40, "height": 46, "regX": 0, "regY": 0, "count": 16 },
-            "animations": "{ \"idle\": [0, 7, \"finished\", 0.3], \"finished\": 7 }", "defaultAnimation": "idle", "randomStartFrame": false,
-            "lifeSpan": "50", "startVelocity": "0,0", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+            "animations": "{ \"idle\": [0, 7, \"finished\", 0.5], \"finished\": 7 }", "defaultAnimation": "idle", "randomStartFrame": false,
+            "lifeSpan": "20", "startVelocity": "0,0", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
         }]
     },
-    "LeftChargeLinesEffect": {
+    "leftChargeLinesEffect": {
         "numOfParticles": 3, "spawnInterval": 16,
         "particles": [{
             "sprite": "DashLinesH",
             "frames": { "width": 40, "height": 46, "regX": 0, "regY": 0, "count": 16 },
-            "animations": "{ \"idle\": [8, 15, \"finished\", 0.3], \"finished\": 15 }", "defaultAnimation": "idle", "randomStartFrame": false,
-            "lifeSpan": "50", "startVelocity": "0,0", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+            "animations": "{ \"idle\": [8, 15, \"finished\", 0.5], \"finished\": 15 }", "defaultAnimation": "idle", "randomStartFrame": false,
+            "lifeSpan": "20", "startVelocity": "0,0", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
         }]
     },
     "DownChargeLinesEffect": {
@@ -178,11 +178,22 @@
         "particles": [{
             "sprite": "DashLinesV",
             "frames": { "width": 46, "height": 40, "regX": 0, "regY": 0, "count": 8 },
-            "animations": "{ \"idle\": [0, 7, \"finished\", 0.3], \"finished\": 7 }", "defaultAnimation": "idle", "randomStartFrame": false,
-            "lifeSpan": "50", "startVelocity": "0,0", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+            "animations": "{ \"idle\": [0, 7, \"finished\", 0.5], \"finished\": 7 }", "defaultAnimation": "idle", "randomStartFrame": false,
+            "lifeSpan": "20", "startVelocity": "0,0", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
         }]
     },
 
+    "SlamDustEffect": {
+        "numOfParticles": 100, "spawnInterval": 24,
+
+        "particles": [{
+            "sprite": "DustParticle",
+            "frames": { "width": 12, "height": 10, "regX": 0, "regY": 0, "count": 9 },
+            "animations": "{ \"idle\": [0, 8, \"finished\", 0.35], \"finished\": 8 }", "defaultAnimation": "idle", "randomStartFrame": false,
+
+            "lifeSpan": "30~50", "startVelocity": "-2.1~2.1,-2.1~0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+        }]
+    },
     "ChargeDustEffect": {
         "numOfParticles": 100, "spawnInterval": 16,
 
