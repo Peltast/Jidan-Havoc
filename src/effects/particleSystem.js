@@ -22,7 +22,7 @@ define("ParticleSystem", ['Point', 'Particle'], function(Point, Particle) {
             this.isScreenWrap = (this.effectData["screenWrap"] === true);
             this.areaSpansMap = (this.effectData["areaSpansMap"] === true);
             this.randomSpawn = (this.effectData["randomSpawn"] === true);
-            this.spawnInterval = this.effectData["spawnInterval"] ? this.effectData["spawnInterval"] : -1;
+            this.spawnInterval = this.effectData["spawnInterval"] ? this.effectData["spawnInterval"] : 0;
             this.spawnTimer = 0;
 
             this.effectArea = this.parsePointValue(this.effectData["effectArea"], new Point(stageWidth, stageHeight));
@@ -106,13 +106,21 @@ define("ParticleSystem", ['Point', 'Particle'], function(Point, Particle) {
                     }
                     this.createParticleInArea();
                 }
-                if (this.isOneOff && this.particles.length >= this.maxParticles) {
+
+                if ((this.isOneOff && this.particles.length >= this.maxParticles) || this.stopSpawning) {
                     this.reachedMaxParticles = true;
+                    this.maxParticles = 0;
                 }
             }
         }
+        stopParticleEffect() {
+            if (this.isOneOff)
+                this.reachedMaxParticles = true;
+            else
+                this.stopSpawning = true;
+        }
         checkFinished() {
-            if (this.isOneOff && this.particles.length == 0) {
+            if ( (this.isOneOff || this.stopSpawning) && this.particles.length == 0) {
                 this.isFinished = true;
             }
         }

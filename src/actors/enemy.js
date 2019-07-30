@@ -106,7 +106,7 @@ define("Enemy",
             dmgEffect.effectAreaOrigin = this.location;
             var force = new Point(Math.round(knockbackForce.X * 100) / 100, Math.round(knockbackForce.Y * 100 / 100));
             force.divide(new Point(4, 4));
-            var altVel = (-force.X - .6) + "~" + (-force.X + .6) + ", " + (-force.Y - .6) + "~" + (-force.Y + .6);
+            var altVel = (-force.X - 1) + "~" + (-force.X + 1) + ", " + (-force.Y - 1) + "~" + (-force.Y + 1);
             
             dmgEffect.setParticleAltVelocity(altVel);
             currentLevel.addParticleEffect(dmgEffect);
@@ -151,6 +151,10 @@ define("Enemy",
             else if (this.deathStatus === DeathState.Dead) {
                 currentLevel.removeActor(this);
                 currentLevel.effectLayer.removeChild(this.deathCombo, this.deathScore);
+
+                var deathEffect = new ParticleSystem("EnemyDeathEffect");
+                deathEffect.effectAreaOrigin = this.location;
+                currentLevel.addParticleEffect(deathEffect);
             }
         }
         updateDeathScore() {

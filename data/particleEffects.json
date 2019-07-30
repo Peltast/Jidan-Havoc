@@ -113,22 +113,20 @@
 
     
     "DeathEffect": {
-        "oneOff" : true, "numOfParticles": 20,
+        "oneOff" : true, "numOfParticles": 30,
 
         "particles": [{
             "sprite": "JidanBit",
             "frames": { "width": 16, "height": 16, "regX": 0, "regY": 0, "count": 5 },
             "animations": "{ \"idle\": [0, 4, \"idle\", 0.5] }", "defaultAnimation": "idle", "randomStartFrame": true,
 
-            "lifeSpan": "80~160", "tween": "shrink",
-            "mass": "1", "size": "2,2", "usesPhysics": false,
+            "lifeSpan": "80~160", "fadeOutTime": 30, "tween": "shrink",
             "startVelocity": "random", "targetVelocity": "-0.3~0.3,-0.3~0.3", "acceleration": ".15,.15", "maxSpeed": "5~10"
         }]
     },
     "RespawnEffect": {
         "oneOff" : true, "foreground": true, "numOfParticles": 64,
-        "spawnGrid": "112,112", "spawnGridCellSize": 14,
-        "minimumCells": "2", "effectAreaOrigin": "0,0",
+        "randomSpawn": true, "effectArea": "112,112", "effectAreaAlignment": "center",
 
         "attraction": "player",
         "physics": {
@@ -139,25 +137,63 @@
             "frames": { "width": 16, "height": 16, "regX": 0, "regY": 0, "count": 5 },
             "animations": "{ \"idle\": [0, 4, \"idle\", 0.5] }", "defaultAnimation": "idle", "randomStartFrame": true,
 
-            "lifeSpan": "60", "tween": "expand", "fadeOut": true, "fadeOutTime": "10",
-            "mass": "1", "size": "4,4", "startVelocity": "0,0", "targetVelocity": "0,0", "acceleration": "1,1", "maxSpeed": "3.5", "usesPhysics": true
+            "lifeSpan": "60", "tween": "expand", "fadeOut": true, "fadeOutTime": 10,
+            "mass": "1", "startVelocity": "0,0", "targetVelocity": "0,0", "acceleration": "1,1", "maxSpeed": "3.5", "usesPhysics": true
         }]
     },
 
     "CollectibleEffect": {
-        "oneOff" : true, "numOfParticles": 10,
+        "oneOff" : true, "numOfParticles": 20,
 
         "particles": [{
             "sprite": "JidanBit",
             "frames": { "width": 16, "height": 16, "regX": 0, "regY": 0, "count": 5 },
             "animations": "{ \"idle\": [0, 4, \"idle\", 0.5] }", "defaultAnimation": "idle", "randomStartFrame": true,
 
-            "lifeSpan": "60~120", "fadeOut": true, "tween": "shrink",
-            "mass": "1", "size": "2,2", "usesPhysics": false,
+            "lifeSpan": "60~120", "fadeOut": true, "fadeOutTime": 40, "tween": "shrink",
             "startVelocity": "random", "targetVelocity": "-0.3~0.3,-0.3~0.3", "acceleration": ".20,.20", "maxSpeed": "5~10"
         }]
     },
 
+    "RightChargeLinesEffect": {
+        "numOfParticles": 3, "spawnInterval": 16,
+        "particles": [{
+            "sprite": "DashLinesH",
+            "frames": { "width": 40, "height": 46, "regX": 0, "regY": 0, "count": 16 },
+            "animations": "{ \"idle\": [0, 7, \"finished\", 0.3], \"finished\": 7 }", "defaultAnimation": "idle", "randomStartFrame": false,
+            "lifeSpan": "50", "startVelocity": "0,0", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+        }]
+    },
+    "LeftChargeLinesEffect": {
+        "numOfParticles": 3, "spawnInterval": 16,
+        "particles": [{
+            "sprite": "DashLinesH",
+            "frames": { "width": 40, "height": 46, "regX": 0, "regY": 0, "count": 16 },
+            "animations": "{ \"idle\": [8, 15, \"finished\", 0.3], \"finished\": 15 }", "defaultAnimation": "idle", "randomStartFrame": false,
+            "lifeSpan": "50", "startVelocity": "0,0", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+        }]
+    },
+    "DownChargeLinesEffect": {
+        "numOfParticles": 3, "spawnInterval": 16,
+        "particles": [{
+            "sprite": "DashLinesV",
+            "frames": { "width": 46, "height": 40, "regX": 0, "regY": 0, "count": 8 },
+            "animations": "{ \"idle\": [0, 7, \"finished\", 0.3], \"finished\": 7 }", "defaultAnimation": "idle", "randomStartFrame": false,
+            "lifeSpan": "50", "startVelocity": "0,0", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+        }]
+    },
+
+    "ChargeDustEffect": {
+        "numOfParticles": 100, "spawnInterval": 16,
+
+        "particles": [{
+            "sprite": "DustParticle",
+            "frames": { "width": 12, "height": 10, "regX": 0, "regY": 0, "count": 9 },
+            "animations": "{ \"idle\": [0, 8, \"finished\", 0.3], \"finished\": 8 }", "defaultAnimation": "idle", "randomStartFrame": false,
+
+            "lifeSpan": "30~50", "startVelocity": "-2.1~2.1,-2.1~0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+        }]
+    },
     "WalkDustEffect": {
         "oneOff" : true, "numOfParticles": 3,
 
@@ -166,8 +202,7 @@
             "frames": { "width": 12, "height": 10, "regX": 0, "regY": 0, "count": 9 },
             "animations": "{ \"idle\": [0, 8, \"finished\", 0.2], \"finished\": 8 }", "defaultAnimation": "idle", "randomStartFrame": false,
 
-            "lifeSpan": "30~50", "mass": "1", "size": "2,2",
-            "startVelocity": "-1~-0.5, -1~-0.2", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+            "lifeSpan": "30~50", "startVelocity": "-1.0~-0.5, -1.0~-0.2", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
         }]
     },
     "JumpDustEffect": {
@@ -178,9 +213,7 @@
             "frames": { "width": 12, "height": 10, "regX": 0, "regY": 0, "count": 9 },
             "animations": "{ \"idle\": [0, 8, \"finished\", 0.2], \"finished\": 8 }", "defaultAnimation": "idle", "randomStartFrame": false,
 
-            "lifeSpan": "60~80",
-            "mass": "1", "size": "2,2", "usesPhysics": false, 
-            "startVelocity": "-0.8~0.8, -1~0.2", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+            "lifeSpan": "60~80", "startVelocity": "-0.8~0.8, -1.0~0.2", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
         }]
     },
     "FallDustEffect": {
@@ -191,14 +224,24 @@
             "frames": { "width": 12, "height": 10, "regX": 0, "regY": 0, "count": 9 },
             "animations": "{ \"idle\": [0, 8, \"finished\", 0.25], \"finished\": 8 }", "defaultAnimation": "idle", "randomStartFrame": false,
 
-            "lifeSpan": "40~60",
-            "mass": "1", "size": "2,2", "usesPhysics": false, 
-            "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+            "lifeSpan": "40~60", "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
         }]
     },
 
+    "EnemyDeathEffect": {
+        "oneOff" : true, "numOfParticles": 15,
+        "randomSpawn": true, "effectArea": "32,32", "effectAreaAlignment": "center",
+
+        "particles": [{
+            "sprite": "DustParticle2",
+            "frames": { "width": 16, "height": 16, "regX": 0, "regY": 0, "count": 11 },
+            "animations": "{ \"idle\": [0, 10, \"finished\", 0.4], \"finished\": 10 }", "defaultAnimation": "idle", "randomStartFrame": false,
+
+            "lifeSpan": "30~40", "startVelocity": "-0.8~0.8, -1~-0.5", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+        }]
+    },
     "DamageEffect": {
-        "oneOff" : true, "foreground": true, "numOfParticles": 5,
+        "oneOff" : true, "foreground": true, "numOfParticles": 10,
 
         "particles": [
             {
@@ -206,53 +249,42 @@
                 "frames": { "width": 28, "height": 28, "regX": 0, "regY": 0, "count": 36 }, "randomStartFrame": false,
                 "animations": "{ \"idle1\": [0, 5, \"finished1\", 0.35], \"finished1\": 5, \"idle2\": [6, 11, \"finished2\", 0.35], \"finished2\": 11, \"idle3\": [12, 17, \"finished3\", 0.35], \"finished3\": 17, \"idle4\": [18, 23, \"finished4\", 0.35], \"finished4\": 23, \"idle5\": [24, 29, \"finished5\", 0.35], \"finished5\": 29, \"idle6\": [30, 35, \"finished6\", 0.35], \"finished6\": 35 }", 
                 
-                "defaultAnimation": "idle1", 
-                "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
+                "defaultAnimation": "idle1", "lifeSpan": "20~40", "fadeOutTime": 10,
                 "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".03,.03", "maxSpeed": "10~16"
-            },
-            {
+            }, {
                 "sprite": "DamageStars",
                 "frames": { "width": 28, "height": 28, "regX": 0, "regY": 0, "count": 36 }, "randomStartFrame": false,
                 "animations": "{ \"idle1\": [0, 5, \"finished1\", 0.35], \"finished1\": 5, \"idle2\": [6, 11, \"finished2\", 0.35], \"finished2\": 11, \"idle3\": [12, 17, \"finished3\", 0.35], \"finished3\": 17, \"idle4\": [18, 23, \"finished4\", 0.35], \"finished4\": 23, \"idle5\": [24, 29, \"finished5\", 0.35], \"finished5\": 29, \"idle6\": [30, 35, \"finished6\", 0.35], \"finished6\": 35 }", 
                 
-                "defaultAnimation": "idle2", 
-                "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
+                "defaultAnimation": "idle2", "lifeSpan": "20~40", "fadeOutTime": 10,
                 "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".03,.03", "maxSpeed": "10~16"
-            },
-            {
+            }, {
                 "sprite": "DamageStars",
                 "frames": { "width": 28, "height": 28, "regX": 0, "regY": 0, "count": 36 }, "randomStartFrame": false,
                 "animations": "{ \"idle1\": [0, 5, \"finished1\", 0.35], \"finished1\": 5, \"idle2\": [6, 11, \"finished2\", 0.35], \"finished2\": 11, \"idle3\": [12, 17, \"finished3\", 0.35], \"finished3\": 17, \"idle4\": [18, 23, \"finished4\", 0.35], \"finished4\": 23, \"idle5\": [24, 29, \"finished5\", 0.35], \"finished5\": 29, \"idle6\": [30, 35, \"finished6\", 0.35], \"finished6\": 35 }", 
                 
-                "defaultAnimation": "idle3", 
-                "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
+                "defaultAnimation": "idle3", "lifeSpan": "20~40", "fadeOutTime": 10,
                 "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".03,.03", "maxSpeed": "10~16"
-            },
-            {
+            }, {
                 "sprite": "DamageStars",
                 "frames": { "width": 28, "height": 28, "regX": 0, "regY": 0, "count": 36 }, "randomStartFrame": false,
                 "animations": "{ \"idle1\": [0, 5, \"finished1\", 0.35], \"finished1\": 5, \"idle2\": [6, 11, \"finished2\", 0.35], \"finished2\": 11, \"idle3\": [12, 17, \"finished3\", 0.35], \"finished3\": 17, \"idle4\": [18, 23, \"finished4\", 0.35], \"finished4\": 23, \"idle5\": [24, 29, \"finished5\", 0.35], \"finished5\": 29, \"idle6\": [30, 35, \"finished6\", 0.35], \"finished6\": 35 }", 
                 
-                "defaultAnimation": "idle4", 
-                "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
+                "defaultAnimation": "idle4", "lifeSpan": "20~40", "fadeOutTime": 10,
                 "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".03,.03", "maxSpeed": "10~16"
-            },
-            {
+            }, {
                 "sprite": "DamageStars",
                 "frames": { "width": 28, "height": 28, "regX": 0, "regY": 0, "count": 36 }, "randomStartFrame": false,
                 "animations": "{ \"idle1\": [0, 5, \"finished1\", 0.35], \"finished1\": 5, \"idle2\": [6, 11, \"finished2\", 0.35], \"finished2\": 11, \"idle3\": [12, 17, \"finished3\", 0.35], \"finished3\": 17, \"idle4\": [18, 23, \"finished4\", 0.35], \"finished4\": 23, \"idle5\": [24, 29, \"finished5\", 0.35], \"finished5\": 29, \"idle6\": [30, 35, \"finished6\", 0.35], \"finished6\": 35 }", 
                 
-                "defaultAnimation": "idle5", 
-                "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
+                "defaultAnimation": "idle5", "lifeSpan": "20~40", "fadeOutTime": 10,
                 "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".03,.03", "maxSpeed": "10~16"
-            },
-            {
+            }, {
                 "sprite": "DamageStars",
                 "frames": { "width": 28, "height": 28, "regX": 0, "regY": 0, "count": 36 }, "randomStartFrame": false,
                 "animations": "{ \"idle1\": [0, 5, \"finished1\", 0.35], \"finished1\": 5, \"idle2\": [6, 11, \"finished2\", 0.35], \"finished2\": 11, \"idle3\": [12, 17, \"finished3\", 0.35], \"finished3\": 17, \"idle4\": [18, 23, \"finished4\", 0.35], \"finished4\": 23, \"idle5\": [24, 29, \"finished5\", 0.35], \"finished5\": 29, \"idle6\": [30, 35, \"finished6\", 0.35], \"finished6\": 35 }",  
                 
-                "defaultAnimation": "idle6", 
-                "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
+                "defaultAnimation": "idle6", "lifeSpan": "20~40", "fadeOutTime": 10,
                 "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".03,.03", "maxSpeed": "10~16"
             }
         ]

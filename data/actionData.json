@@ -133,7 +133,10 @@
         },
         "chargeMain": {
             "duration": 15, "animation": "Charge", "controller": "chargeAttack", "hitBoxes": ["chargeAttack"], 
-            "directional": true, "immune": true, "comboPiece": true
+            "directional": true, "immune": true, "comboPiece": true,
+            "effects": [
+                { "name": "ChargeDustEffect", "direction": "horizontal", "distanceInterval": true }
+            ]
         },
         "chargeSlide": {
             "duration": 50, "animation": "ChargeSlide", "controller": "chargeAttackSlide", "hitBoxes": [], 
@@ -146,7 +149,10 @@
         },
         "chargeMainWeak": {
             "duration": 15, "animation": "Charge", "controller": "chargeAttackWeak", "hitBoxes": ["chargeAttack"],
-            "directional": true, "immune": true, "comboPiece": true
+            "directional": true, "immune": true, "comboPiece": true,
+            "effects": [
+                { "name": "ChargeDustEffect", "direction": "horizontal", "distanceInterval": true }
+            ]
         },
         "chargeSlideWeak": {
             "duration": 50, "animation": "ChargeSlide", "controller": "chargeAttackSlide", "hitBoxes": [], 

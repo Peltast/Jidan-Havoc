@@ -12,9 +12,9 @@ define("Particle", ['Point'], function(Point) {
             this.location = new Point();
 
             this.shape = particleData["shape"];
-            this.size = this.parseVector(particleData["size"], new Point(1, 1));
+            this.size = particleData["size"] ? this.parseVector(particleData["size"], new Point(1, 1)) : new Point(1, 1);
             this.fadeOut = particleData["fadeOut"];
-            this.fadeOutTime = particleData["fadeOutTime"] ? this.parseRandomizableNumber(particleData["fadeOutTime"]) : -1;
+            this.fadeOutTime = particleData["fadeOutTime"] ? particleData["fadeOutTime"] : -1;
             this.color = particleData["color"] ? particleData["color"] : "#ffffff";
             if (this.color === "random") {
                 var randomColor = Math.floor(Math.random() * 6);
@@ -27,7 +27,7 @@ define("Particle", ['Point'], function(Point) {
             this.defaultAnimation = particleData["defaultAnimation"];
             this.randomStartFrame = particleData["randomStartFrame"];
 
-            this.mass = this.parseRandomizableNumber(particleData["mass"]);
+            this.mass = particleData["mass"] ? this.parseRandomizableNumber(particleData["mass"]) : 1;
             this.maxSpeed = this.parseRandomizableNumber(particleData["maxSpeed"]);
             this.velocity = this.parseVelocityValue(particleData["startVelocity"]);
             this.targetVelocity = this.parseVelocityValue(particleData["targetVelocity"]);

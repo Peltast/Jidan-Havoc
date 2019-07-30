@@ -1,4 +1,4 @@
-define("ChargeAttack", ['Attack', 'CollisionBox', 'ActorController'], function(Attack, CollisionBox, ActorController) {
+define("ChargeAttack", ['Attack', 'Point', 'ParticleSystem'], function(Attack, Point, ParticleSystem) {
     
     class ChargeAttack extends Attack {
 
@@ -22,11 +22,14 @@ define("ChargeAttack", ['Attack', 'CollisionBox', 'ActorController'], function(A
             
             super.beginAttack(hostActor);
         }
+        endAttack(hostActor) {
+            super.endAttack(hostActor);
+        }
 
         beginKnockback(player) {
             if (this.currentPhase !== this.mainPhase)
                 return;
-
+            
             this.phases[2] = this.knockbackPhase;
             this.progressAttack(player);
             
@@ -34,7 +37,7 @@ define("ChargeAttack", ['Attack', 'CollisionBox', 'ActorController'], function(A
         }
 
         updateAttack(hostActor) {
-            
+
             if (this.currentPhase ? this.currentPhase.isFinished() : true) {
                 this.progressAttack(hostActor);
 
@@ -54,7 +57,7 @@ define("ChargeAttack", ['Attack', 'CollisionBox', 'ActorController'], function(A
                 player.playSound("StunFloor", 0.5);
             }
 
-            this.currentPhase.updatePhase();
+            this.currentPhase.updatePhase(hostActor);
 
             return true;
         }

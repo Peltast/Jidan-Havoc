@@ -40,13 +40,13 @@ requirejs(['point', 'mainMenu'], function() {
 
     requirejs(['gameObject', 'collisionBox', 'actorController', 'levelParser', 'particle', 'healthBar', 'statsDisplay', 'enemyBehavior'], function() {
 
-        requirejs(['tile', 'actor', 'attack', 'prop', 'transition', 'particleSystem', 'dialogueBox', 'pacingBehavior',], function() {
+        requirejs(['tile', 'actor', 'prop', 'transition', 'particleSystem', 'dialogueBox', 'pacingBehavior',], function() {
 
-            requirejs(['enemy', 'collectible', 'chargeAttack'], function() {
+            requirejs(['enemy', 'attack', 'collectible'], function() {
 
-                requirejs(['player', 'objectFactory'], function() {
+                requirejs(['objectFactory', 'chargeAttack'], function() {
 
-                    requirejs(['level'], function() {
+                    requirejs(['player', 'level'], function() {
 
                         requirejs(['game']);
 

@@ -1,4 +1,4 @@
-define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, ActorController) {
+define("Attack", ['Point', 'CollisionBox', 'ActorController', 'ParticleSystem'], function(Point, CollisionBox, ActorController, ParticleSystem) {
     
     class Attack {
 
@@ -68,7 +68,7 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
                     player.playSound("StunFloor", 0.5);
             }
 
-            this.currentPhase.updatePhase();
+            this.currentPhase.updatePhase(hostActor);
 
             return true;
         }
@@ -115,10 +115,31 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             this.aerial = phaseData["aerial"];
             this.immune = phaseData["immune"];
             this.comboPiece = phaseData["comboPiece"];
+
+            if (phaseData["effects"]) {
+                this.effects = [];
+                for (let i = 0; i < phaseData["effects"].length; i++) {
+                    var effectData = phaseData["effects"][i];
+                    var newEffect = {};
+
+                    newEffect.name = effectData["name"];
+                    newEffect.direction = effectData["direction"];
+                    newEffect.position = effectData["distanceInterval"] ? 0 : -1;
+                    newEffect.system = null;
+
+                    console.log(newEffect);
+                    this.effects.push(newEffect);
+                }
+            }
         }
 
-        updatePhase() {
+        updatePhase(hostActor) {
             this.phaseTimer -= 1;
+
+            if (this.effects) {
+                for (let i = 0; i < this.effects.length; i++)
+                    this.updatePhaseEffect(hostActor, this.effects[i]);
+            }
         }
 
         isFinished() {
@@ -143,6 +164,9 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             if (this.immune) {
                 hostActor.isImmune = this.immune;
             }
+
+            if (this.effects)
+                this.addPhaseEffects(hostActor);
         }
 
         setAttackController(hostActor) {
@@ -170,6 +194,33 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             });
         }
 
+        addPhaseEffects(hostActor) {
+            
+            for (let i = 0; i < this.effects.length; i++) {
+                var effect = this.effects[i];
+                effect.system = new ParticleSystem(effect.name);
+                this.updatePhaseEffect(hostActor, effect);
+                effect.system.particleData[0].startVelocity = (hostActor.orientation === "right" ? "-1.5~0" : "0~1.5") + ", -1~-0.2";
+                
+                hostActor.addParticleEffectObj(effect.system);
+            }
+        }
+        updatePhaseEffect(hostActor, effect) {
+
+            if (effect.direction && effect.system) {
+                if (effect.position >= 0) {
+                    var delta = Math.abs(hostActor.location.X - effect.position);
+                    effect.system.spawnTimer = delta;
+
+                    if (delta >= effect.system.spawnInterval) {
+                        var xOrigin = hostActor.orientation === "right" ? hostActor.location.X - 24 : hostActor.location.X + hostActor.size.X + 16;
+                        effect.system.effectAreaOrigin = new Point(xOrigin, hostActor.location.Y + hostActor.size.Y / 2);
+                        effect.position = hostActor.location.X;
+                    }
+                }
+            }
+        }
+
         endPhase(hostActor) {
             this.phaseTimer = -1;
 
@@ -186,6 +237,13 @@ define("Attack", ['CollisionBox', 'ActorController'], function(CollisionBox, Act
             }
             if (this.immune)
                 hostActor.isImmune = false;
+            
+            if (this.effects) {
+                for (var i = 0; i < this.effects.length; i++) {
+                    if (this.effects[i].system)
+                        this.effects[i].system.stopParticleEffect();
+                }
+            }
         }
 
     }

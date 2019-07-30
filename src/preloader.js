@@ -89,7 +89,9 @@ function init() {
 
         {src: "props/Jidan.png", id: "Jidan"},
         
-        {src: "props/JidanBit.png", id: "JidanBit"}, {src: "props/DustParticle.png", id: "DustParticle"}, {src: "props/DamageStars.png", id: "DamageStars"},
+        {src: "props/JidanBit.png", id: "JidanBit"}, {src: "props/DamageStars.png", id: "DamageStars"},
+        {src: "props/DustParticle.png", id: "DustParticle"}, {src: "props/DustParticle2.png", id: "DustParticle2"},
+        {src: "props/DashLinesH.png", id: "DashLinesH"}, {src: "props/DashLinesV.png", id: "DashLinesV"},
 
         {src: "ui/MenuSplash.png", id: "MenuSplash"}, {src: "ui/MenuTitle.png", id: "MenuTitle"}, {src: "ui/MenuSandbox.png", id: "MenuSandbox"},
         {src: "ui/MenuPlay.png", id: "MenuPlay"}, {src: "ui/MenuInstructions.png", id: "MenuInstructions"},

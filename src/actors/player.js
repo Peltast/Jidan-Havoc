@@ -288,6 +288,8 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
         isAbleToAttack(nextAttack) {
             if (this.frozen)
                 return false;
+            else if (this.respawnStatus !== RespawnState.Alive)
+                return false;
             else if (this.currentAttack) {
                 if (nextAttack ? this.currentAttack === nextAttack : false)
                     return false;
