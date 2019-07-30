@@ -276,7 +276,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
         }
         
         addParticleEffectObj(effectObj) {
-            currentLevel.foregroundLayer.addChild(effectObj.particleContainer);
+            currentLevel.foregroundLayer.addChild(effectObj.systemContainer);
             this.particleEffects.push(effectObj);
         }
         updateParticleEffects() {
@@ -284,8 +284,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
                 this.particleEffects[i].updateSystem();
 
                 if (this.particleEffects[i].isFinished) {
-                    console.log(this.particleEffects[i].particles.length + ", " + this.particleEffects[i].isFinished);
-                    currentLevel.foregroundLayer.removeChild(this.particleEffects[i].particleContainer);
+                    currentLevel.foregroundLayer.removeChild(this.particleEffects[i].systemContainer);
                     this.particleEffects.splice(i, 1);
                 }
             }

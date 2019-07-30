@@ -1,7 +1,7 @@
-define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'ParticleSystem', 'Attack', 'ChargeAttack', 'ParticleSystem'],
-    function (Actor, Tile, Prop, Collectible, Enemy, Point, ParticleSystem, Attack, ChargeAttack, ParticleSystem) {
+define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'ParticleSystem', 'ActorController', 'Attack', 'ChargeAttack', 'ParticleSystem'],
+    function (Actor, Tile, Prop, Collectible, Enemy, Point, ParticleSystem, ActorController, Attack, ChargeAttack, ParticleSystem) {
 
-    const RespawnState = { "Alive": 0, "Respawning": 1 }
+    const RespawnState = { "Alive": 0, "Dying": 1, "Respawning": 2 }
 
     class Player extends Actor {
 
@@ -13,7 +13,11 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                 "spritePosition": new Point(8, 10)
             };
             super(playerSpriteData["spriteCollision"], playerSpriteData, {});
+            this.mass = 100;
 
+            this.deathDuration = 30;
+            this.respawnDuration = 50;
+            this.respawnTimer = 0;
             this.respawnStatus = RespawnState.Alive;
             this.frozen = false;
 
@@ -36,6 +40,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             this.cancelFlip = new Attack(["releaseFlip"]);
             this.comboFlip = new Attack(["comboFlip"]);
 
+            this.deathController = new ActorController(controllerData["frozenMidair"]);
             this.currentAttack = null;
         }
         initiateSprite() {
@@ -52,7 +57,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                     leftJump: 18, rightJump: 19,
                     leftFall: 20, rightFall: 21,
 
-                    leftDeath: [24, 27, "finished", .2], rightDeath: [24, 27, "finished", .2],
+                    leftDeath: { frames: [24, 25, 26, 27, 11], next: "leftEmpty", speed: 0.25 }, rightDeath: { frames: [24, 25, 26, 27, 11], next: "rightEmpty", speed: 0.25 },
 
                     Slam: [30, 34, "leftSlam", .25],
                     leftSlamStun: [36, 37, "leftSlamStun", .08], rightSlamStun: [38, 39, "rightSlamStun", .08],
@@ -69,6 +74,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                     rightFrontFlip: [84, 89, "rightFrontFlipFinished", 0.2], rightFrontFlipFinished: 89,
                     leftFrontFlip: [90, 95, "leftFrontFlipFinished", 0.2], leftFrontFlipFinished: 95,
                     
+                    leftEmpty: 11, rightEmpty: 11,
                     finished: 27
                 }
             });
@@ -119,7 +125,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             this.updateInteractionCursor();
         }
         updateState() {
-            if (this.respawnStatus === RespawnState.Respawning)
+            if (this.respawnStatus !== RespawnState.Alive)
                 return;
             else
                 super.updateState();
@@ -136,7 +142,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             }
         }
         enactNewState() {
-            if (!this.currentController.setAnimation && (this.sprite.currentAnimation == "leftFlip" || this.sprite.currentAnimation == "rightFlip"))
+            if (!this.currentController.setAnimation && this.respawnStatus == RespawnState.Alive && (this.sprite.currentAnimation == "leftFlip" || this.sprite.currentAnimation == "rightFlip"))
                 return;
 
             super.enactNewState();
@@ -356,6 +362,11 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                         this.collectiblesGathered += 1;
                         this.playSound("Collectible", .5);
                         gameStatsDisplay.updateStats();
+
+                        var collectibleEffect = new ParticleSystem("CollectibleEffect");
+                        collectibleEffect.effectAreaOrigin = fullCollisions[i].location;
+                        currentLevel.addParticleEffect(collectibleEffect);
+
                         currentLevel.removeProp(fullCollisions[i]);
                     }
 
@@ -410,26 +421,50 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                 this.currentController.reset();
                 this.currentAttack = null;
             }
+
+            var deathEffect = new ParticleSystem("DeathEffect");
+            deathEffect.effectAreaOrigin = this.location;
+            currentLevel.addParticleEffect(deathEffect);
             
-            this.respawnStatus = RespawnState.Respawning;
+            this.respawnStatus = RespawnState.Dying;
             this.state = "Death";
             this.enactNewState();
-            this.setFrozen(true);
+            this.setController(this.deathController);
         }
         
         updateRespawn() {
 
-            if (this.sprite.currentAnimation != "finished")
-                return;
-            else if (this.respawnStatus === RespawnState.Respawning) {
-
-                this.respawnStatus = RespawnState.Alive;
-                this.orientation = "right";
-                this.state = "";
-                this.setFrozen(false);
-
-                transition = {map: currentLevel.name, location: currentLevel.levelSpawn.location};
+            if (this.respawnTimer < this.deathDuration && this.respawnStatus === RespawnState.Dying) {
+                this.respawnTimer += 1;
+                if (this.respawnTimer >= this.deathDuration)
+                    this.deathToRespawn();
             }
+            else if (this.respawnTimer < this.respawnDuration && this.respawnStatus === RespawnState.Respawning) {
+                this.respawnTimer += 1;
+                if (this.respawnTimer >= this.respawnDuration)
+                    this.respawnToAlive();
+            }
+        }
+        deathToRespawn() {
+
+            this.respawnTimer = 0;
+            this.respawnStatus = RespawnState.Respawning;
+            transition = {map: currentLevel.name, location: currentLevel.levelSpawn.location};
+            
+            var respawnEffect = new ParticleSystem("RespawnEffect");
+            var respawnFXLocation = transition.location.get()
+            respawnFXLocation.subtract(new Point(50, 50))
+            respawnEffect.effectAreaOrigin = respawnFXLocation;
+
+            currentLevel.addParticleEffect(respawnEffect);
+        }
+        respawnToAlive() {
+            this.respawnTimer = 0;
+            this.respawnStatus = RespawnState.Alive;
+
+            this.orientation = "right";
+            this.state = "";
+            this.setController(this.defaultController);
         }
 
         playSound(soundName, vol) {

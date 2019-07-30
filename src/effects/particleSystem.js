@@ -40,7 +40,7 @@ define("ParticleSystem", ['Point', 'Particle'], function(Point, Particle) {
             this.isFinished = false;
 
             this.particles = [];
-            this.particleContainer = new createjs.Container();
+            this.systemContainer = new createjs.Container();
             this.initSimpleForces();
         }
         initSimpleForces() {
@@ -54,12 +54,12 @@ define("ParticleSystem", ['Point', 'Particle'], function(Point, Particle) {
 
         addParticle(newParticle) {    
             this.particles.push(newParticle);
-            this.particleContainer.addChild(newParticle.particleContainer);
+            this.systemContainer.addChild(newParticle.particleContainer);
         }
 
         removeParticle(oldParticle, index) {
             this.particles.splice(index, 1);
-            this.particleContainer.removeChild(oldParticle.particleContainer);
+            this.systemContainer.removeChild(oldParticle.particleContainer);
         }
 
         updateSystem() {
@@ -75,7 +75,7 @@ define("ParticleSystem", ['Point', 'Particle'], function(Point, Particle) {
 
                 if (this.particles[i].isDead()) {
                     this.removeParticle(this.particles[i], i);
-                    console.log(this.particleContainer.numChildren + ", " + this.particles.length);
+                    // console.log(this.particleContainer.numChildren + ", " + this.particles.length);
                 }
             }
 
@@ -249,12 +249,12 @@ define("ParticleSystem", ['Point', 'Particle'], function(Point, Particle) {
         updateParallax() {
             
             if (this.parallaxDistX !== 0) {
-                this.particleContainer.x = 
+                this.systemContainer.x = 
                     Math.round(this.effectAreaOrigin.X) 
                     - (currentLevel.screenPosition.X * (1 - this.parallaxDistX));
             }
             if (this.parallaxDistY !== 0) {
-                this.particleContainer.y = 
+                this.systemContainer.y = 
                     Math.round(this.effectAreaOrigin.Y)
                     - (currentLevel.screenPosition.Y * (1 - this.parallaxDistY));
             }            

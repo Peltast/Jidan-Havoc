@@ -48,7 +48,7 @@ define("Prop", ['GameObject'], function(GameObject) {
         }
 
         addParticleEffect(newEffect) {
-            this.spriteContainer.addChild(newEffect.particleContainer);
+            this.spriteContainer.addChild(newEffect.systemContainer);
             this.particleEffects.push(newEffect);
         }
         removeParticleEffect(oldEffect, index) {

@@ -48,7 +48,7 @@ define("Enemy",
         addParticleEffect(effectName) {
             var particleSystem = new ParticleSystem(effectName);
             particleSystem.effectAreaOrigin.add(this.location);
-            currentLevel.foregroundLayer.addChild(particleSystem.particleContainer);
+            currentLevel.foregroundLayer.addChild(particleSystem.systemContainer);
 
             this.particleEffects.push(particleSystem);
         }
@@ -107,10 +107,9 @@ define("Enemy",
             var force = new Point(Math.round(knockbackForce.X * 100) / 100, Math.round(knockbackForce.Y * 100 / 100));
             force.divide(new Point(4, 4));
             var altVel = (-force.X - .6) + "~" + (-force.X + .6) + ", " + (-force.Y - .6) + "~" + (-force.Y + .6);
-            console.log(altVel);
+            
             dmgEffect.setParticleAltVelocity(altVel);
-
-            super.addParticleEffectObj(dmgEffect);
+            currentLevel.addParticleEffect(dmgEffect);
         }
 
         createScoreText() {

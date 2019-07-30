@@ -111,11 +111,55 @@
         ]
     },
 
+    
+    "DeathEffect": {
+        "oneOff" : true, "numOfParticles": 20,
 
+        "particles": [{
+            "sprite": "JidanBit",
+            "frames": { "width": 16, "height": 16, "regX": 0, "regY": 0, "count": 5 },
+            "animations": "{ \"idle\": [0, 4, \"idle\", 0.5] }", "defaultAnimation": "idle", "randomStartFrame": true,
+
+            "lifeSpan": "80~160", "tween": "shrink",
+            "mass": "1", "size": "2,2", "usesPhysics": false,
+            "startVelocity": "random", "targetVelocity": "-0.3~0.3,-0.3~0.3", "acceleration": ".15,.15", "maxSpeed": "5~10"
+        }]
+    },
+    "RespawnEffect": {
+        "oneOff" : true, "foreground": true, "numOfParticles": 64,
+        "spawnGrid": "112,112", "spawnGridCellSize": 14,
+        "minimumCells": "2", "effectAreaOrigin": "0,0",
+
+        "attraction": "player",
+        "physics": {
+            "gConstant": 5, "frictionStrength": 5, "distanceFloor": 48, "distanceCeiling": 128
+        },
+        "particles": [{
+            "sprite": "JidanBit",
+            "frames": { "width": 16, "height": 16, "regX": 0, "regY": 0, "count": 5 },
+            "animations": "{ \"idle\": [0, 4, \"idle\", 0.5] }", "defaultAnimation": "idle", "randomStartFrame": true,
+
+            "lifeSpan": "60", "tween": "expand", "fadeOut": true, "fadeOutTime": "10",
+            "mass": "1", "size": "4,4", "startVelocity": "0,0", "targetVelocity": "0,0", "acceleration": "1,1", "maxSpeed": "3.5", "usesPhysics": true
+        }]
+    },
+
+    "CollectibleEffect": {
+        "oneOff" : true, "numOfParticles": 10,
+
+        "particles": [{
+            "sprite": "JidanBit",
+            "frames": { "width": 16, "height": 16, "regX": 0, "regY": 0, "count": 5 },
+            "animations": "{ \"idle\": [0, 4, \"idle\", 0.5] }", "defaultAnimation": "idle", "randomStartFrame": true,
+
+            "lifeSpan": "60~120", "fadeOut": true, "tween": "shrink",
+            "mass": "1", "size": "2,2", "usesPhysics": false,
+            "startVelocity": "random", "targetVelocity": "-0.3~0.3,-0.3~0.3", "acceleration": ".20,.20", "maxSpeed": "5~10"
+        }]
+    },
 
     "WalkDustEffect": {
-        "oneOff" : true,
-        "numOfParticles": 3,
+        "oneOff" : true, "numOfParticles": 3,
 
         "particles": [{
             "sprite": "DustParticle",
@@ -127,8 +171,7 @@
         }]
     },
     "JumpDustEffect": {
-        "oneOff" : true,
-        "numOfParticles": 5,
+        "oneOff" : true, "numOfParticles": 5,
 
         "particles": [{
             "sprite": "DustParticle",
@@ -141,8 +184,7 @@
         }]
     },
     "FallDustEffect": {
-        "oneOff" : true,
-        "numOfParticles": 3,
+        "oneOff" : true, "numOfParticles": 3,
 
         "particles": [{
             "sprite": "DustParticle",
@@ -156,8 +198,7 @@
     },
 
     "DamageEffect": {
-        "oneOff" : true,
-        "numOfParticles": 4,
+        "oneOff" : true, "foreground": true, "numOfParticles": 5,
 
         "particles": [
             {
@@ -167,7 +208,7 @@
                 
                 "defaultAnimation": "idle1", 
                 "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
-                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".03,.03", "maxSpeed": "10~16"
             },
             {
                 "sprite": "DamageStars",
@@ -176,7 +217,7 @@
                 
                 "defaultAnimation": "idle2", 
                 "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
-                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".03,.03", "maxSpeed": "10~16"
             },
             {
                 "sprite": "DamageStars",
@@ -185,7 +226,7 @@
                 
                 "defaultAnimation": "idle3", 
                 "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
-                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".03,.03", "maxSpeed": "10~16"
             },
             {
                 "sprite": "DamageStars",
@@ -194,7 +235,7 @@
                 
                 "defaultAnimation": "idle4", 
                 "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
-                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".03,.03", "maxSpeed": "10~16"
             },
             {
                 "sprite": "DamageStars",
@@ -203,7 +244,7 @@
                 
                 "defaultAnimation": "idle5", 
                 "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
-                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".03,.03", "maxSpeed": "10~16"
             },
             {
                 "sprite": "DamageStars",
@@ -212,7 +253,7 @@
                 
                 "defaultAnimation": "idle6", 
                 "lifeSpan": "20~40", "mass": "1", "size": "2,2", "usesPhysics": false, 
-                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".02,.02", "maxSpeed": "5~15"
+                "startVelocity": "-1.6~1.6, -0.4~-0.1", "targetVelocity": "0,0", "acceleration": ".03,.03", "maxSpeed": "10~16"
             }
         ]
     },

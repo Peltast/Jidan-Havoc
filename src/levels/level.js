@@ -267,17 +267,17 @@ define("Level", [
         addParticleEffect(newEffect) {
 
             if (newEffect.isForegroundEffect)
-                this.foregroundLayer.addChild(newEffect.particleContainer);
+                this.foregroundLayer.addChild(newEffect.systemContainer);
             else
-                this.effectLayer.addChild(newEffect.particleContainer);
+                this.effectLayer.addChild(newEffect.systemContainer);
             this.particleEffects.push(newEffect);
         }
         removeParticleEffect(oldEffect, index) {
 
             if (oldEffect.isForegroundEffect)
-                this.foregroundLayer.removeChild(oldEffect.particleContainer);
+                this.foregroundLayer.removeChild(oldEffect.systemContainer);
             else
-                this.effectLayer.removeChild(oldEffect.particleContainer);
+                this.effectLayer.removeChild(oldEffect.systemContainer);
             this.particleEffects.splice(index, 1);
         }
         removeParticleEffectsOfType(typeName, number) {
