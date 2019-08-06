@@ -249,7 +249,7 @@
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":1792,
+                 "x":1824,
                  "y":288
                 }, 
                 {
@@ -261,7 +261,7 @@
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":1856,
+                 "x":1888,
                  "y":352
                 }, 
                 {
@@ -359,6 +359,24 @@
                  "width":32,
                  "x":1408,
                  "y":192
+                }, 
+                {
+                 "gid":2,
+                 "height":32,
+                 "id":162,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"destination",
+                         "type":"string",
+                         "value":"Stage_1_2"
+                        }],
+                 "rotation":0,
+                 "type":"Transition",
+                 "visible":true,
+                 "width":32,
+                 "x":1952,
+                 "y":352
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -367,7 +385,7 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":161,
+ "nextobjectid":163,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",
@@ -376,19 +394,6 @@
         {
          "firstgid":1,
          "source":"..\/tiles\/World1.tsx"
-        }, 
-        {
-         "columns":6,
-         "firstgid":136,
-         "image":"..\/..\/..\/your-guide-to-the-afterlife\/lib\/images\/ObjectTileSet.png",
-         "imageheight":96,
-         "imagewidth":192,
-         "margin":0,
-         "name":"ObjectTileSet",
-         "spacing":0,
-         "tilecount":18,
-         "tileheight":32,
-         "tilewidth":32
         }],
  "tilewidth":32,
  "type":"map",

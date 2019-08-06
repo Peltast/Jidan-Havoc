@@ -87,7 +87,7 @@ function init() {
         {src: "actors/SleepingEnemy.png", id: "SleepingEnemy"}, {src: "actors/ChasingEnemy.png", id: "ChasingEnemy"},
         {src: "actors/DustBunny.png", id: "DustBunny"}, {src: "actors/FlyingBat.png", id: "FlyingBat"}, {src: "actors/FloatingBug.png", id: "FloatingBug"},
 
-        {src: "props/Jidan.png", id: "Jidan"},
+        {src: "props/Jidan.png", id: "Jidan"}, {src: "props/Transition.png", id: "Transition"},
         
         {src: "props/JidanBit.png", id: "JidanBit"}, {src: "props/DamageStars.png", id: "DamageStars"},
         {src: "props/DustParticle.png", id: "DustParticle"}, {src: "props/DustParticle2.png", id: "DustParticle2"}, {src: "props/DirtParticle.png", id: "DirtParticle"},
@@ -116,18 +116,18 @@ function init() {
     ];
 
     mapList = [
-        "DevRoom", "Stage_1_1"
+        "DevRoom"
     ];
     tileList = [
         "World1"
     ];
     dialogueList = [];
 
-    totalMapsInGame = mapList.length;
+    totalMapsInGame = mapList.length + 3 + 5;
     totalFilesInGame = dialogueList.length + tileList.length + 4; // actionData.json, dialogue.json, particleEffects.json, backgrounds.json
-    startingMap = "DevRoom";
+    startingMap = "Stage_2_2";
 
-    totalGameManifest = imageManifest.length + soundManifest.length + totalFilesInGame;
+    totalGameManifest = imageManifest.length + soundManifest.length + totalFilesInGame + totalMapsInGame;
 
     assetLoader = new createjs.LoadQueue(false);
     assetLoader.addEventListener("complete", handleAssetsLoaded);
@@ -157,19 +157,22 @@ function handleAssetsLoaded(event) {
         assetsLoaded += 1;
     }
     
+    loadMapSeries(1, 3);
+    loadMapSeries(2, 5);
+
+    for (let j = 0; j < mapList.length; j++) {
+        loadMap(mapList[j]);
+    }
+    for (let t = 0; t < tileList.length; t++) {
+        loadTileset(tileList[t]);
+    }
+
     loadFile("./data/actionData.json?v=", actionLibrary);
     loadFile("./data/particleEffects.json?v=", particleEffectLibrary);
     loadFile("./data/backgrounds.json?v=", backgroundLibrary);
     loadFile("./data/dialogue.json?v=", dialogueLibrary);
     for (let d = 0; d < dialogueList.length; d++) {
         loadFile(dialogueRoot + dialogueList[d], dialogueLibrary);
-    }
-
-    for (let t = 0; t < tileList.length; t++) {
-        loadTileset(tileList[t]);
-    }
-    for (let j = 0; j < mapList.length; j++) {
-        loadMap(mapList[j]);
     }
 
 }
@@ -198,6 +201,12 @@ function loadFile(filePath, fileLibrary) {
         totalFilesLoaded += 1;
         console.log(filePath + " failed to load"); 
     });
+}
+function loadMapSeries(seriesNum, numOfLevels) {
+    for (var i = 1; i <= numOfLevels; i++) {
+        var mapName = "Stage_" + seriesNum + "_" + i;
+        loadMap(mapName);
+    }
 }
 function loadMap(mapName) {
     $.getJSON("./lib/maps/" + mapName + ".json?v=" +  (new Date()).getTime(), function(data) {

@@ -147,6 +147,10 @@ require(
 
         currentLevel = level;
         currentLevel.levelContainer.scale = gameScale;
+        
+        player.collectiblesGathered = 0;
+        player.highestCombo = 0;
+        gameScore = 0;
         gameStatsDisplay.initiateStatDisplay();
 
         if (!(gameArea.contains(level.levelContainer)))
@@ -197,6 +201,7 @@ require(
         if (newLevel != currentLevel) {
             currentLevel.removeActor(player);
         }
+
         newLevel.spawnPlayer(player, newLocation);
         setLevel(newLevel);
     }

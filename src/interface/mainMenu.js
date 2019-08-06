@@ -1,6 +1,6 @@
 define("MainMenu", [], function () {
 
-    const ButtonTypes = {"NULL" : 1, "NEWGAME": 2, "INSTRUCTIONS": 3};
+    const ButtonTypes = {"NULL" : 1, "NEWGAME": 2, "INSTRUCTIONS": 3, "SANDBOX": 10 };
 
     class MainMenu {
 
@@ -74,10 +74,11 @@ define("MainMenu", [], function () {
         }
 
         initiateMenu() {
+            this.sandboxButton = this.createMenuItem("MenuPlay", 112, 52, ButtonTypes.SANDBOX);
             this.playButton = this.createMenuItem("MenuPlay", 112, 52, ButtonTypes.NEWGAME);
             this.instructionsButton = this.createMenuItem("MenuInstructions", 324, 40, ButtonTypes.INSTRUCTIONS);
 
-            this.menuGrid = new MenuGrid([ [this.playButton, this.instructionsButton] ]);
+            this.menuGrid = new MenuGrid([ [this.playButton, this.sandboxButton, this.instructionsButton] ]);
             this.menuContainer = this.menuGrid.gridContainer;
         }
         createMenuItem(imageName, itemWidth, itemHeight, itemType) {
@@ -269,6 +270,13 @@ define("MainMenu", [], function () {
             }
             else if (this.itemType === ButtonTypes.INSTRUCTIONS) {
                 mainMenu.toggleInstructions();
+            }
+            
+            else if (this.itemType === ButtonTypes.SANDBOX) {
+                removeEventListener("keydown", mainMenu.onKeyDown);
+                removeEventListener("keyup", mainMenu.onKeyUp);
+                gameStatus = "Loading";
+                startingMap = "DevRoom";
             }
 
         }

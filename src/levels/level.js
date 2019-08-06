@@ -68,6 +68,39 @@ define("Level", [
             this.initMapObjects(this.levelObj["objects"]);
             this.initLevelData(this.levelObj["data"]);
         }
+        resetLevel() {
+            this.numOfCollectibles = 0;
+            this.numOfEnemies = 0;
+            this.enemiesRemaining = 0;
+            player.collectiblesGathered = 0;
+            player.highestCombo = 0;
+            gameScore = 0;
+            gameStatsDisplay.updateStats();
+            
+            for (let j = this.actors.length; j >= 0; j--) {
+                if (this.actors[j] instanceof Enemy)
+                    this.removeActor(this.actors[j]);
+            }
+            for (let k = this.props.length; k >= 0; k--) {
+                if (this.props[k] instanceof Collectible)
+                    this.removeProp(this.props[k]);
+            }
+
+            for (let i = 0; i < this.levelObj["objects"].length; i++) {
+                var newObject = objectFactory.createObject(this.levelObj["objects"][i]);
+
+                if (newObject instanceof Collectible) {
+                    this.numOfCollectibles += 1;
+                    this.addProp(newObject);
+                }
+                else if (newObject instanceof Enemy) {
+                    this.numOfEnemies += 1;
+                    this.addActor(newObject);
+                }
+            }
+
+            this.enemiesRemaining = this.numOfEnemies;
+        }
 
         initTileMap(tileMap) {
             for (let y = 0; y < this.mapSize.Y; y++) {
@@ -135,8 +168,10 @@ define("Level", [
                         this.numOfEnemies += 1;
                     this.addActor(newObject);
                 }
-                else if (newObject instanceof Transition)
+                else if (newObject instanceof Transition) {
                     this.mapTransitions.push(newObject);
+                    this.spriteLayer.addChild(newObject.spriteContainer);
+                }
 
             }
 

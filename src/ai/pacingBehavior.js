@@ -4,7 +4,7 @@ define("PacingBehavior", ['Point', 'EnemyBehavior'], function(Point, EnemyBehavi
         constructor(hostEnemy, enemyData) {
             super(hostEnemy, "Pacing");
 
-            this.horizontal = enemyData["horizontal"] != null ? enemyData["horizontal"] : true;
+            this.horizontal = enemyData["horizontal"] != null ? enemyData["horizontal"] == "true" : true;
             this.startDirection = enemyData["startDirection"] ? enemyData["startDirection"] : hostEnemy.orientation;
             this.currentDirection = this.startDirection;
             
@@ -27,7 +27,6 @@ define("PacingBehavior", ['Point', 'EnemyBehavior'], function(Point, EnemyBehavi
         }
 
         turnEnemyAround() {
-            
             if (this.horizontal) {
                 if (this.currentDirection === "left")
                     this.changeEnemyDirection("left", "right");

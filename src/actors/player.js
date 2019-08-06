@@ -292,7 +292,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             }
         }
         handleSlamStun() {
-            if (this.currentAttack == this.cancelFlip)
+            if (this.currentAttack == this.cancelFlip || this.currentAttack == this.comboFlip)
                 return;
             this.playSound("StunFloor", 0.5);
 
@@ -376,16 +376,8 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                 fullCollisions[i].handleInteraction(this);
                 
                 if (fullCollisions[i] instanceof Prop) {
-                    if (fullCollisions[i] instanceof Collectible) {
-                        this.collectiblesGathered += 1;
-                        this.playSound("Collectible", .5);
-                        gameStatsDisplay.updateStats();
-
-                        var collectibleEffect = new ParticleSystem("CollectibleEffect");
-                        collectibleEffect.effectAreaOrigin = fullCollisions[i].location;
-                        currentLevel.addParticleEffect(collectibleEffect);
-
-                        currentLevel.removeProp(fullCollisions[i]);
+                    if (fullCollisions[i] instanceof Collectible && this.respawnStatus === RespawnState.Alive) {
+                        this.getCollectible(fullCollisions[i]);
                     }
 
                     if (fullCollisions[i].fatalProp)
@@ -398,6 +390,18 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             }
         }
         handleCollidedBy(actor) { }
+
+        getCollectible(collectible) {
+            this.collectiblesGathered += 1;
+            this.playSound("Collectible", .5);
+            gameStatsDisplay.updateStats();
+
+            var collectibleEffect = new ParticleSystem("CollectibleEffect");
+            collectibleEffect.effectAreaOrigin = collectible.location;
+            currentLevel.addParticleEffect(collectibleEffect);
+
+            currentLevel.removeProp(collectible);
+        }
 
         giveDamage(damageObj) {
             if (damageObj instanceof Enemy) {
@@ -468,6 +472,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             this.respawnTimer = 0;
             this.respawnStatus = RespawnState.Respawning;
             transition = {map: currentLevel.name, location: currentLevel.levelSpawn.location};
+            currentLevel.resetLevel();
             
             var respawnEffect = new ParticleSystem("RespawnEffect");
             var respawnFXLocation = transition.location.get()

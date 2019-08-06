@@ -59,7 +59,7 @@ define("ObjectFactory", [
         },
 
         "dustBunny": {
-            "sprite": "DustBunny", "damageOnTouch": true, "controller": "paceController", "behavior": "Pacing", "horizontal": true,
+            "sprite": "DustBunny", "damageOnTouch": true, "controller": "paceController", "behavior": "Pacing", "horizontal": "true",
             "frames": { "width": 40, "height": 50, "regX": 0, "regY": 0, "count": 20 },
             "animations": {
                 left: [0, 1, "leftIdle", .1], right: [5, 6, "rightIdle", .1],
@@ -70,7 +70,7 @@ define("ObjectFactory", [
             "spriteCollision": new Point(22, 28), "spriteSize": new Point(40, 50), "spritePos": new Point(8, 18)
         },
         "flyingBat": {
-            "sprite": "FlyingBat", "damageOnTouch": true, "controller": "paceFlyingController", "behavior": "Pacing", "horizontal": false,
+            "sprite": "FlyingBat", "damageOnTouch": true, "controller": "paceFlyingController", "behavior": "Pacing", "horizontal": "false",
             "frames": { "width": 50, "height": 44, "regX": 0, "regY": 0, "count": 16 },
             "animations": {
                 left: [0, 3, "leftIdle", .1], right: [4, 7, "rightIdle", .1],
@@ -78,7 +78,7 @@ define("ObjectFactory", [
                 leftDeath: [8, 10, "leftDeath", .2], rightDeath: [12, 14, "rightDeath", .2]
             },
             "defaultAnimation": "leftIdle", "deathAnimation": "Death", "deathTimer": 30,
-            "spriteCollision": new Point(28, 30), "spriteSize": new Point(50, 44), "spritePos": new Point(10, 8)
+            "spriteCollision": new Point(22, 24), "spriteSize": new Point(50, 44), "spritePos": new Point(14, 14)
         },
 
         "chasingEnemy": {
@@ -126,6 +126,13 @@ define("ObjectFactory", [
             "sprite": "Jidan", "animations": { idle: [0, 5, "idle", .15 ] }, "defaultAnimation": "idle",
             "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0},
             "spriteCollision": new Point(16, 24), "spriteSize": new Point(32, 32), "spritePos": new Point(0, 0)
+        },
+        
+        "Wormhole": {
+            "type": "Transition", "passable": true,
+            "sprite": "Transition", "animations": { idle: [0, 2, "idle", .15 ] }, "defaultAnimation": "idle",
+            "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0, "count": 3},
+            "spriteCollision": new Point(32, 32), "spriteSize": new Point(32, 32), "spritePos": new Point(0, 0)
         }
 
     }
@@ -174,7 +181,7 @@ define("ObjectFactory", [
         
         createObject(objectMapData) {
             var objectType = this.getObjectProperty(objectMapData, {}, "type", "string", objectMapData.type);
-            
+
             if (objectList[objectType] != null)
                 return this.createPropObject(objectMapData);
 
@@ -278,10 +285,13 @@ define("ObjectFactory", [
         }
         
         createNewTransition(transitionMapData) {
+            var objectListData = objectList["Wormhole"];
+            var spriteData = this.getSpriteData({}, objectListData);
+
             var destinationMap = this.getMapProperty(transitionMapData.properties, "destination");
             var destinationLocation = this.parsePointValue(this.getMapProperty(transitionMapData.properties, "destinationLocation", "0,0"));
             destinationLocation = new Point(destinationLocation.X * tileSize, destinationLocation.Y * tileSize);
-            var newTransition = new Transition(this.getObjectLocation(transitionMapData), new Point(tileSize, tileSize), destinationMap, destinationLocation);
+            var newTransition = new Transition(this.getObjectLocation(transitionMapData), new Point(tileSize, tileSize), destinationMap, destinationLocation, spriteData);
 
             return newTransition;
         }
