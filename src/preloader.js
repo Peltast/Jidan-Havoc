@@ -125,7 +125,7 @@ function init() {
 
     totalMapsInGame = mapList.length + 3 + 5;
     totalFilesInGame = dialogueList.length + tileList.length + 4; // actionData.json, dialogue.json, particleEffects.json, backgrounds.json
-    startingMap = "Stage_2_2";
+    startingMap = "Stage_3_1";
 
     totalGameManifest = imageManifest.length + soundManifest.length + totalFilesInGame + totalMapsInGame;
 
@@ -159,6 +159,7 @@ function handleAssetsLoaded(event) {
     
     loadMapSeries(1, 3);
     loadMapSeries(2, 5);
+    loadMapSeries(3, 11);
 
     for (let j = 0; j < mapList.length; j++) {
         loadMap(mapList[j]);
