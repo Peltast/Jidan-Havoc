@@ -2,10 +2,8 @@ require(
     ['Point', 'Level', 'LevelParser', 'ObjectFactory', 'Player', 'DialogueBox', 'MainMenu', 'StatsDisplay'], 
     function(Point, Level, LevelParser, ObjectFactory, Player, DialogueBox, MainMenu, StatsDisplay) {
 
-    const GameState = { "Preloading": "Preloading", "Preloaded": "Preloaded", "Loading": "Loading", "Loaded": "Loaded" };
-
     $(function() {
-        gameStatus = GameState.Preloading;
+        gameStatus = GameState.PRELOADING;
         initGame();
     });
 
@@ -44,18 +42,18 @@ require(
             updatePreloader(totalMapsLoaded + totalFilesLoaded + assetsLoaded);
             return;
         }
-        else if (gameStatus === GameState.Preloading) {
-            gameStatus = GameState.Preloaded;
+        else if (gameStatus === GameState.PRELOADING) {
+            gameStatus = GameState.PRELOADED;
             mapDataKeys = Object.keys(mapData);
             addMainMenu();
         }
-        else if (gameStatus === GameState.Loading) {
+        else if (gameStatus === GameState.LOADING) {
             if (totalMapsParsed < mapDataKeys.length)
                 loadWorld();
             else
                 beginGame(startingMap);
         }
-        else if (gameStatus === GameState.Loaded) {
+        else if (gameStatus === GameState.LOADED) {
             updateGameMap();
         }
 

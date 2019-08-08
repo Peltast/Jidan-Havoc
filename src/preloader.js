@@ -1,4 +1,8 @@
 
+
+const GameState = { "PRELOADING": 1, "PRELOADED": 2, "LOADING": 3, "LOADED": 4 };
+const ButtonTypes = {"NULL" : 1, "NEWGAME": 2, "INSTRUCTIONS": 3, "SANDBOX": 10 };
+
 // Display variables
 var stage;
 var stageWidth;
@@ -96,6 +100,8 @@ function init() {
         {src: "ui/MenuSplash.png", id: "MenuSplash"}, {src: "ui/MenuTitle.png", id: "MenuTitle"}, {src: "ui/MenuSandbox.png", id: "MenuSandbox"},
         {src: "ui/MenuPlay.png", id: "MenuPlay"}, {src: "ui/MenuInstructions.png", id: "MenuInstructions"},
         {src: "ui/PlayerInstructions.png", id: "PlayerInstructions"},
+
+        {src: "ui/LevelSelectTile.png", id: "LevelSelectTile"}, {src: "ui/LevelSelectTileComplete.png", id: "LevelSelectTileComplete"}, {src: "ui/LevelSelectCollectible.png", id: "LevelSelectCollectible"},
         
         {src: "ui/CollectibleIcon.png", id: "CollectibleIcon"},
         

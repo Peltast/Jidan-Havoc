@@ -13,6 +13,8 @@ require.config({
       "collectible": "src/props/collectible",
       "transition": "src/levels/transition",
 
+      "menuItem": "src/interface/menuItem",
+      "menuGrid": "src/interface/menuGrid",
       "mainMenu": "src/interface/mainMenu",
       "statsDisplay": "src/interface/statsDisplay",
       "dialogueBox": "src/interface/dialogueBox",
@@ -36,9 +38,9 @@ require.config({
     }
 });
   
-requirejs(['point', 'mainMenu'], function() {
+requirejs(['point', 'menuItem', 'menuGrid'], function() {
 
-    requirejs(['gameObject', 'collisionBox', 'actorController', 'levelParser', 'particle', 'healthBar', 'statsDisplay', 'enemyBehavior'], function() {
+    requirejs(['mainMenu', 'gameObject', 'collisionBox', 'actorController', 'levelParser', 'particle', 'healthBar', 'statsDisplay', 'enemyBehavior'], function() {
 
         requirejs(['tile', 'actor', 'prop', 'transition', 'particleSystem', 'dialogueBox', 'pacingBehavior',], function() {
 

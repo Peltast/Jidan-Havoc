@@ -1,4 +1,4 @@
-define("MainMenu", [], function () {
+define("MainMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid) {
 
     const ButtonTypes = {"NULL" : 1, "NEWGAME": 2, "INSTRUCTIONS": 3, "SANDBOX": 10 };
 
@@ -74,20 +74,12 @@ define("MainMenu", [], function () {
         }
 
         initiateMenu() {
-            this.sandboxButton = this.createMenuItem("MenuPlay", 112, 52, ButtonTypes.SANDBOX);
-            this.playButton = this.createMenuItem("MenuPlay", 112, 52, ButtonTypes.NEWGAME);
-            this.instructionsButton = this.createMenuItem("MenuInstructions", 324, 40, ButtonTypes.INSTRUCTIONS);
+            this.sandboxButton = new MenuItem("MenuPlay", 112, 52, ButtonTypes.SANDBOX);
+            this.playButton = new MenuItem("MenuPlay", 112, 52, ButtonTypes.NEWGAME);
+            this.instructionsButton = new MenuItem("MenuInstructions", 324, 40, ButtonTypes.INSTRUCTIONS);
 
             this.menuGrid = new MenuGrid([ [this.playButton, this.sandboxButton, this.instructionsButton] ]);
             this.menuContainer = this.menuGrid.gridContainer;
-        }
-        createMenuItem(imageName, itemWidth, itemHeight, itemType) {
-            var itemImg = new createjs.SpriteSheet({
-                "images": [gameAssets[imageName]],
-                "frames": {"width": itemWidth, "height": itemHeight, "regX": 0, "regY": 0, "count": 1},
-                animations: { idle: 0 }
-            });
-            return new MenuItem(new createjs.Sprite(itemImg), itemType);
         }
         
         onKeyDown(event) {
@@ -148,137 +140,6 @@ define("MainMenu", [], function () {
             switch (keyCode) {
 
             }
-        }
-
-    }
-
-    class MenuGrid {
-
-        constructor(gridMatrix) {
-            this.gridMatrix = gridMatrix;
-            
-            this.gridContainer = new createjs.Container();
-            this.gridY;
-            this.yMargin = 20;
-            this.gridHeight = 0;
-
-            this.menuCursor;
-            this.selectionX = 0;
-            this.selectionY = 0;
-
-            this.createGrid();
-            this.createCursor();
-        }
-        createGrid() {
-            this.gridY = 240;
-
-            for (let x = 0; x < this.gridMatrix.length; x++) {
-                if (x == 0)
-                    this.createList(this.gridMatrix[x], stageWidth * 0.08);
-                else
-                    this.createList(this.gridMatrix[x], stageWidth * .74);
-            }
-
-        }
-        createList(buttonList, listX) {
-            var tempY = 0;
-            for (let y = 0; y < buttonList.length; y++) {
-                buttonList[y].image.y = this.gridY + tempY;
-                buttonList[y].image.x = stageWidth / 2 - buttonList[y].width / 2;//listX;
-                tempY += buttonList[y].height + this.yMargin;
-
-                this.gridHeight = Math.max(tempY, this.gridHeight);
-
-                this.gridContainer.addChild(buttonList[y].image);
-            }
-        }
-        createCursor() {
-            
-            var cursorImg = new createjs.SpriteSheet({
-                "images": [gameAssets["Player"]],
-                "frames": {"width": 40, "height": 44, "regX": 0, "regY": 0, "count": 208},
-                animations: {
-                    idle: [84, 89, "idle", 0.2]
-                }
-            });
-            this.menuCursor =  new createjs.Sprite(cursorImg);
-            this.menuCursor.gotoAndPlay("idle");
-
-            this.gridContainer.addChild(this.menuCursor);
-            this.updateCursorPosition();
-        }
-        updateCursorPosition() { 
-            var selection = this.gridMatrix[this.selectionX][this.selectionY];
-
-            this.menuCursor.x = selection.image.x - 50;
-            this.menuCursor.y = selection.image.y + selection.height / 2 - 22;
-        }
-
-        changeSelection(xDelta, yDelta) {
-
-            if (xDelta !== 0) {
-
-                if (xDelta < 0 && this.selectionX == 0)
-                    this.selectionX = this.gridMatrix.length - 1;
-                else if (xDelta > 0 && this.selectionX >= this.gridMatrix.length - 1)
-                    this.selectionX = 0;
-                else
-                    this.selectionX += xDelta;
-
-                this.selectionY = Math.min(this.selectionY, this.gridMatrix[this.selectionX].length - 1);
-                this.updateCursorPosition();
-            }
-            else if (yDelta !== 0) {
-
-                if (yDelta < 0 && this.selectionY == 0)
-                    this.selectionY = this.gridMatrix[this.selectionX].length - 1;
-                else if (yDelta > 0 && this.selectionY >= this.gridMatrix[this.selectionX].length - 1)
-                    this.selectionY = 0;
-                else
-                    this.selectionY += yDelta;
-                
-                this.updateCursorPosition();
-            }
-        }
-
-        activateSelection() {
-            if (this.gridMatrix[this.selectionX][this.selectionY])
-                this.gridMatrix[this.selectionX][this.selectionY].activate();
-        }
-
-    }
-
-    class MenuItem {
-
-        constructor(image, itemType) {
-            this.image = image;
-            this.itemType = itemType;
-
-            this.height = image.getBounds().height;
-            this.width = image.getBounds().width;
-        }
-
-        activate() {
-
-            if (this.itemType === ButtonTypes.NULL)
-                return;
-            
-            else if (this.itemType === ButtonTypes.NEWGAME) {
-                removeEventListener("keydown", mainMenu.onKeyDown);
-                removeEventListener("keyup", mainMenu.onKeyUp);
-                gameStatus = "Loading";
-            }
-            else if (this.itemType === ButtonTypes.INSTRUCTIONS) {
-                mainMenu.toggleInstructions();
-            }
-            
-            else if (this.itemType === ButtonTypes.SANDBOX) {
-                removeEventListener("keydown", mainMenu.onKeyDown);
-                removeEventListener("keyup", mainMenu.onKeyUp);
-                gameStatus = "Loading";
-                startingMap = "DevRoom";
-            }
-
         }
 
     }
