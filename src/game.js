@@ -1,6 +1,6 @@
 require( 
-    ['Point', 'Level', 'LevelParser', 'ObjectFactory', 'Player', 'DialogueBox', 'MainMenu', 'StatsDisplay'], 
-    function(Point, Level, LevelParser, ObjectFactory, Player, DialogueBox, MainMenu, StatsDisplay) {
+    ['Point', 'Level', 'LevelParser', 'ObjectFactory', 'Player', 'DialogueBox', 'MainMenu', 'LevelSelectMenu', 'StatsDisplay'], 
+    function(Point, Level, LevelParser, ObjectFactory, Player, DialogueBox, MainMenu, LevelSelectMenu, StatsDisplay) {
 
     $(function() {
         gameStatus = GameState.PRELOADING;
@@ -37,7 +37,6 @@ require(
     }
         
     function updateGame() {
-
         if (!finishedLoading()) {
             updatePreloader(totalMapsLoaded + totalFilesLoaded + assetsLoaded);
             return;
@@ -89,23 +88,26 @@ require(
     function beginGame(startMapName) {
         stage.removeChild(mainMenu.sceneContainer);
         stage.removeChild(mainMenu.menuContainer);
-        gameStatus = GameState.Loaded;
+        gameStatus = GameState.LOADED;
         
-        gameBG = new createjs.Shape();
-        gameBG.graphics.beginFill("#000000").drawRect(0, 0, stageWidth, stageHeight);
-        gameArea = new createjs.Container();
-        gameUI = createUI();
+        levelSelectMenu = new LevelSelectMenu();
+        stage.addChild(levelSelectMenu.menuContainer);
 
-        stage.addChild(gameBG);
-        stage.addChild(gameArea);
-        stage.addChild(gameUI);
+        // gameBG = new createjs.Shape();
+        // gameBG.graphics.beginFill("#000000").drawRect(0, 0, stageWidth, stageHeight);
+        // gameArea = new createjs.Container();
+        // gameUI = createUI();
 
-        var startLevel = gameWorld[startMapName];
-        startLevel.spawnPlayer(player, startLevel.levelSpawn.location);
-        setLevel(startLevel);
+        // stage.addChild(gameBG);
+        // stage.addChild(gameArea);
+        // stage.addChild(gameUI);
+
+        // var startLevel = gameWorld[startMapName];
+        // startLevel.spawnPlayer(player, startLevel.levelSpawn.location);
+        // setLevel(startLevel);
         
-        addEventListener("keydown", onKeyDown);
-        addEventListener("keyup", onKeyUp);
+        // addEventListener("keydown", onKeyDown);
+        // addEventListener("keyup", onKeyUp);
     }
 
     function createLevel(mapName) {
@@ -162,10 +164,12 @@ require(
             transition = null;
         }
 
-        updateUI();
-        checkScreenwrap();
-        centerScreen();
-        currentLevel.updateLevel();
+        if (currentLevel) {
+            updateUI();
+            checkScreenwrap();
+            centerScreen();
+            currentLevel.updateLevel();
+        }
     }
     function updateUI() {
 

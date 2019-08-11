@@ -1,7 +1,7 @@
 
 
 const GameState = { "PRELOADING": 1, "PRELOADED": 2, "LOADING": 3, "LOADED": 4 };
-const ButtonTypes = {"NULL" : 1, "NEWGAME": 2, "INSTRUCTIONS": 3, "SANDBOX": 10 };
+const ButtonTypes = {"NULL" : 1, "NEWGAME": 2, "INSTRUCTIONS": 3, "SANDBOX": 10, "LOADLEVEL": 4 };
 
 // Display variables
 var stage;
@@ -33,8 +33,6 @@ var totalGameManifest;
 var loadProgress = 0;
 var gameStatus;
 
-var mainMenu;
-var gameStarted = false;
 var startingMap;
 
 // Asset variables
@@ -57,12 +55,17 @@ var gameWorld = {};
 var player;
 var currentLevel;
 var objectFactory;
+var levelSeriesMatrix;
 
 // Global vars for relocating the player
 var transition = null;
 var currentCheckpoint = null;
 
 // UI global vars
+var currentMenu = null;
+var mainMenu;
+var levelSelectMenu;
+
 var currentStatement = null;
 var currentDialogue = null;
 var gameStatsDisplay;
@@ -127,8 +130,13 @@ function init() {
     tileList = [
         "World1"
     ];
-    dialogueList = [];
+    levelSeriesMatrix = [
+        [1, 3],
+        [2, 5],
+        [3, 11]
+    ];
 
+    dialogueList = [];
     totalMapsInGame = mapList.length + 3 + 5;
     totalFilesInGame = dialogueList.length + tileList.length + 4; // actionData.json, dialogue.json, particleEffects.json, backgrounds.json
     startingMap = "Stage_3_1";
@@ -163,9 +171,10 @@ function handleAssetsLoaded(event) {
         assetsLoaded += 1;
     }
     
-    loadMapSeries(1, 3);
-    loadMapSeries(2, 5);
-    loadMapSeries(3, 11);
+    for (let s = 0; s < levelSeriesMatrix.length; s++) {
+        var series = levelSeriesMatrix[s];
+        loadMapSeries(series[0], series[1]);
+    }
 
     for (let j = 0; j < mapList.length; j++) {
         loadMap(mapList[j]);
@@ -211,7 +220,7 @@ function loadFile(filePath, fileLibrary) {
 }
 function loadMapSeries(seriesNum, numOfLevels) {
     for (var i = 1; i <= numOfLevels; i++) {
-        var mapName = "Stage_" + seriesNum + "_" + i;
+        var mapName = getLevelName(seriesNum, i);
         loadMap(mapName);
     }
 }
@@ -234,4 +243,16 @@ function loadTileset(tilesetName) {
         totalFilesLoaded += 1;
         console.log(tilesetName + " failed to load");
     });
+}
+
+function getLevelName(seriesNum, levelNum) {
+    return "Stage_" + seriesNum + "_" + levelNum;
+}
+function getMapSeries(mapName) {
+    if (mapName.indexOf("Stage_") == 0)
+        return parseInt(mapName[6]);
+}
+function getMapLevel(mapName) {
+    if (mapName.indexOf("Stage_") == 0)
+        return parseInt(mapName[8]);
 }

@@ -24,18 +24,19 @@ define("MenuItem", [], function () {
             if (this.itemType === ButtonTypes.NULL)
                 return;
             
-            else if (this.itemType === ButtonTypes.NEWGAME) {
-                removeEventListener("keydown", mainMenu.onKeyDown);
-                removeEventListener("keyup", mainMenu.onKeyUp);
-                gameStatus = GameState.LOADING;
-            }
+
             else if (this.itemType === ButtonTypes.INSTRUCTIONS) {
                 mainMenu.toggleInstructions();
             }
             
+            else if (this.itemType === ButtonTypes.NEWGAME) {
+                removeEventListener("keydown", currentMenu.onKeyDown);
+                removeEventListener("keyup", currentMenu.onKeyUp);
+                gameStatus = GameState.LOADING;
+            }
             else if (this.itemType === ButtonTypes.SANDBOX) {
-                removeEventListener("keydown", mainMenu.onKeyDown);
-                removeEventListener("keyup", mainMenu.onKeyUp);
+                removeEventListener("keydown", currentMenu.onKeyDown);
+                removeEventListener("keyup", currentMenu.onKeyUp);
                 gameStatus = GameState.LOADING;
                 startingMap = "DevRoom";
             }

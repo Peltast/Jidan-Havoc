@@ -5,13 +5,11 @@ define("MainMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid) {
     class MainMenu {
 
         constructor() {
+
             this.instructionsShown = false;
             this.initiateScene();
             this.initiateMenu();
             this.initiateInstructions();
-
-            addEventListener("keydown", this.onKeyDown);
-            addEventListener("keyup", this.onKeyUp);
         }
 
         initiateScene() {
@@ -78,7 +76,7 @@ define("MainMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid) {
             this.playButton = new MenuItem("MenuPlay", 112, 52, ButtonTypes.NEWGAME);
             this.instructionsButton = new MenuItem("MenuInstructions", 324, 40, ButtonTypes.INSTRUCTIONS);
 
-            this.menuGrid = new MenuGrid([ [this.playButton, this.sandboxButton, this.instructionsButton] ]);
+            this.menuGrid = new MenuGrid([ [this.playButton, this.sandboxButton, this.instructionsButton] ], false, 20, 20, stageWidth / 2, 240);
             this.menuContainer = this.menuGrid.gridContainer;
         }
         
@@ -92,54 +90,10 @@ define("MainMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid) {
             var keyCode = event.keyCode;
             switch (keyCode) {
 
-                case 68: //d
-                mainMenu.menuGrid.changeSelection(1, 0);
-                    break;
-                case 39: //right arrow
-                    mainMenu.menuGrid.changeSelection(1, 0);
-                    break;
-                case 83: //s
-                    mainMenu.menuGrid.changeSelection(0, 1);
-                    break;
-                case 40: // down arrow
-                    mainMenu.menuGrid.changeSelection(0, 1);
-                    break;
-                case 65: //a
-                    mainMenu.menuGrid.changeSelection(-1, 0);
-                    break;
-                case 37: // left arrow
-                    mainMenu.menuGrid.changeSelection(-1, 0);
-                    break;
-                case 87: //w
-                    mainMenu.menuGrid.changeSelection(0, -1);
-                    break;
-                case 38: // up arrow
-                    mainMenu.menuGrid.changeSelection(0, -1);
-                    break;
-
-                case 13: // enter
-                    mainMenu.menuGrid.activateSelection();
-                    break;
-                case 32: // space
-                    mainMenu.menuGrid.activateSelection();
-                    break;
-                case 74: // j
-                    mainMenu.menuGrid.activateSelection();
-                    break;
-                case 88: // x
-                    mainMenu.menuGrid.activateSelection();
-                    break;
-                case 69: // e
-                    mainMenu.menuGrid.activateSelection();
-                    break;
             }
         }
         onKeyUp(event) {
-            
-            var keyCode = event.keyCode;
-            switch (keyCode) {
-
-            }
+            this.menuGrid.handleEvent(event);
         }
 
     }
