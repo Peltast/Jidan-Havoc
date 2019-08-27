@@ -4,10 +4,13 @@ define("MenuItem", [], function () {
 
         constructor(imageName, itemWidth, itemHeight, itemType) {
             this.itemType = itemType;
+            this.itemContainer = new createjs.Container();
 
             this.image = this.createItemImage(imageName, itemWidth, itemHeight);
             this.height = this.image.getBounds().height;
             this.width = this.image.getBounds().width;
+
+            this.itemContainer.addChild(this.image);
         }
 
         createItemImage(imageName, itemWidth, itemHeight) {

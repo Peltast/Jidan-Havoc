@@ -181,7 +181,6 @@ define("Level", [
             return new Point(objectData.x, objectData.y - tileSize);
         }
         initLevelData(levelData) {
-
             if (levelData["particleEffects"]) {
                 var levelEffects = levelData["particleEffects"].split(",");
                 for (let i = 0; i < levelEffects.length; i++) {
@@ -196,6 +195,8 @@ define("Level", [
             if (levelData["screenWrap"])
                 this.levelScreenWrap = levelData["screenWrap"] === "true";
 
+            if (levelData["scoreThresholds"])
+                this.createScoreThresholds(levelData["scoreThresholds"]);
         }
         createParticleSystemFromData(effectName) {
             var effect = new ParticleSystem(effectName);
@@ -260,6 +261,21 @@ define("Level", [
             }
 
             return bgShape;
+        }
+
+        createScoreThresholds(scoreThresholdStr) {
+            if (scoreThresholdStr.indexOf('') < 0)
+                return;
+
+            var thresholds = scoreThresholdStr.split(',');
+            if (thresholds.length != 3)
+                return;
+
+            this.scoreThresholds = [];
+            for (let i = 0; i < thresholds.length; i++) {
+                var newThreshold = parseInt(thresholds[i]);
+                this.scoreThresholds.push(newThreshold);
+            }
         }
 
         addProp(newProp) {

@@ -5,6 +5,7 @@ define("MenuGrid", [], function () {
         constructor(gridMatrix, horizontal = true, xMargin = 20, yMargin = 20, xOrigin = 0, yOrigin = 0) {
             
             this.gridMatrix = gridMatrix;
+            this.listLengths = [];
             this.gridContainer = new createjs.Container();
             
             this.horizontal = horizontal;
@@ -13,14 +14,14 @@ define("MenuGrid", [], function () {
             this.xOrigin = xOrigin;
             this.yOrigin = yOrigin;
 
-            this.gridWidth = 0;
-            this.gridHeight = 0;
-
             this.menuCursor;
+            this.menuCursorAlignment = "left";
+            this.orientation = "";
+            
             this.selectionX = 0;
             this.selectionY = 0;
 
-            this.createGrid();
+            this.drawGrid();
             this.createCursor();
             
             addEventListener("keydown", this.onKeyDown);
@@ -28,46 +29,70 @@ define("MenuGrid", [], function () {
             currentMenu = this;
         }
         
-        createGrid() {
+        drawGrid() {
+            this.gridHeight = 0;
+            this.gridWidth = 0;
 
             for (let i = 0; i < this.gridMatrix.length; i++) {
-                
-                this.createList(this.gridMatrix[i]);
+                this.drawList(this.gridMatrix[i]);
             }
-
         }
-        createList(buttonList) {
-            var listSize = 0;
+        drawList(buttonList) {
+            var listPosition = 0;
             var largestItem = 0;
+
             for (let j = 0; j < buttonList.length; j++) {
+                var button = buttonList[j];
 
-                if (this.horizontal) {
-                    buttonList[j].image.x = this.xOrigin + listSize - buttonList[j].width / 2;
-                    buttonList[j].image.y = this.yOrigin + this.gridHeight - buttonList[j].height / 2;
+                this.positionItemInGrid(button, listPosition);
+                listPosition += this.horizontal ? button.width + this.xMargin : button.height + this.yMargin;
+                largestItem = Math.max(largestItem, (this.horizontal ? button.height : button.width) );
 
-                    listSize += buttonList[j].width + this.xMargin;
-                    largestItem = Math.max(largestItem, buttonList[j].height);
-                }
-                else {
-                    buttonList[j].image.y = this.yOrigin + listSize - buttonList[j].height / 2;
-                    buttonList[j].image.x = this.xOrigin + this.gridWidth - buttonList[j].width / 2;
-
-                    listSize += buttonList[j].height + this.yMargin;
-                    largestItem = Math.max(largestItem, buttonList[j].width);
-                }
-
-                this.gridContainer.addChild(buttonList[j].image);
+                this.gridContainer.addChild(button.itemContainer);
             }
+            
+            this.listLengths.push(listPosition);
 
             if (this.horizontal) {
                 this.gridHeight += largestItem + this.yMargin;
-                this.gridWidth += listSize;
+                this.gridWidth = Math.max(this.gridWidth, listPosition);
             }
             else {
                 this.gridWidth += largestItem + this.xMargin;
-                this.gridHeight += listSize;
+                this.gridHeight = Math.max(this.gridHeight, listPosition);
             }
         }
+        positionItemInGrid(button, listPosition) {
+            if (this.horizontal) {
+                button.itemContainer.x = this.xOrigin + listPosition - button.width / 2;
+                button.itemContainer.y = this.yOrigin + this.gridHeight - button.height / 2;
+            }
+            else {
+                button.itemContainer.y = this.yOrigin + listPosition - button.height / 2;
+                button.itemContainer.x = this.xOrigin + this.gridWidth - button.width / 2;
+            }
+        }
+        
+        centerGridRows() {
+            for (let i = 0; i < this.gridMatrix.length; i ++) {
+                var rowSize = this.listLengths[i];
+                var rowPosition = 0;
+                
+                for (let j = 0; j < this.gridMatrix[i].length; j++) {
+                    var button = this.gridMatrix[i][j];
+                    this.centerItemInGrid(button, rowSize, rowPosition);
+                    rowPosition += this.horizontal ? button.width + this.xMargin : button.height + this.yMargin;
+                }
+            }
+            this.updateCursorPosition();
+        }
+        centerItemInGrid(button, rowSize, rowPosition) {
+            if (this.horizontal)
+                button.itemContainer.x = this.xOrigin + (this.gridWidth / 2 - rowSize / 2) + rowPosition  - button.width / 2;
+            else
+                button.itemContainer.y = this.yOrigin + (this.gridHeight / 2 - rowSize / 2) + rowPosition - button.height / 2;
+        }
+
         createCursor() {
             
             var cursorImg = new createjs.SpriteSheet({
@@ -85,9 +110,32 @@ define("MenuGrid", [], function () {
         }
         updateCursorPosition() { 
             var selection = this.gridMatrix[this.selectionX][this.selectionY];
+            
+            if (this.menuCursorAlignment == "left") {
+                this.menuCursor.x = selection.itemContainer.x - 50;
+                this.menuCursor.y = selection.itemContainer.y + selection.height / 2 - 22;
+            }
+            else if (this.menuCursorAlignment == "right") {
+                this.menuCursor.x = selection.itemContainer.x + 50;
+                this.menuCursor.y = selection.itemContainer.y + selection.height / 2 - 22;
+            }
+            else if (this.menuCursorAlignment == "top") {
+                this.menuCursor.x = selection.itemContainer.x + selection.width / 2 - 20;
+                this.menuCursor.y = selection.itemContainer.y - selection.height / 2 - 22;
+            }
+            else if (this.menuCursorAlignment == "bottom") {
+                this.menuCursor.x = selection.itemContainer.x + selection.width / 2 - 20;
+                this.menuCursor.y = selection.itemContainer.y - selection.height - 22;
+            }
+            else if (this.menuCursorAlignment == "center") {
+                this.menuCursor.x = selection.itemContainer.x + selection.width / 2 - 20;
+                this.menuCursor.y = selection.itemContainer.y + selection.height / 2 - 22;
+            }
+        }
 
-            this.menuCursor.x = selection.image.x - 50;
-            this.menuCursor.y = selection.image.y + selection.height / 2 - 22;
+        setCursorAlignment(alignmentStr) {
+            this.menuCursorAlignment = alignmentStr;
+            this.updateCursorPosition();
         }
         
         onKeyDown(event) {

@@ -24,12 +24,15 @@ require(
         preloader = new LoadBar(progress, destination);
         stage.addChild(preloader.loadBarContainer);
     }
+    function removePreloader(p) {
+        stage.removeChild(p.loadBarContainer);
+    }
     function updatePreloader(progress) {
         preloader.updateBarProgress(progress);
         stage.update();
     }
     function addMainMenu() {
-        stage.removeChild(preloader.loadBarContainer);
+        removePreloader(preloader);
 
         mainMenu = new MainMenu();
         stage.addChild(mainMenu.sceneContainer);
@@ -50,7 +53,7 @@ require(
             if (totalMapsParsed < mapDataKeys.length)
                 loadWorld();
             else
-                beginGame(startingMap);
+                beginGame();
         }
         else if (gameStatus === GameState.LOADED) {
             updateGameMap();
@@ -85,7 +88,8 @@ require(
         player = new Player();
     }
 
-    function beginGame(startMapName) {
+    function beginGame() {
+        removePreloader(preloader);
         stage.removeChild(mainMenu.sceneContainer);
         stage.removeChild(mainMenu.menuContainer);
         gameStatus = GameState.LOADED;
