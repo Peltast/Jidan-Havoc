@@ -2,8 +2,9 @@ define("MenuItem", [], function () {
 
     class MenuItem {
 
-        constructor(imageName, itemWidth, itemHeight, itemType) {
+        constructor(imageName, itemWidth, itemHeight, itemType, itemData = {}) {
             this.itemType = itemType;
+            this.itemData = itemData;
             this.itemContainer = new createjs.Container();
 
             this.image = this.createItemImage(imageName, itemWidth, itemHeight);
@@ -42,6 +43,17 @@ define("MenuItem", [], function () {
                 removeEventListener("keyup", currentMenu.onKeyUp);
                 gameStatus = GameState.LOADING;
                 startingMap = "DevRoom";
+            }
+
+            else if (this.itemType === ButtonTypes.LOADLEVEL) {
+                if (this.itemData["locked"])
+                    return;
+                if (this.itemData["level"]) {
+                    removeEventListener("keydown", currentMenu.onKeyDown);
+                    removeEventListener("keyup", currentMenu.onKeyUp);
+                    startingMap = this.itemData["level"];
+                    gameStatus = GameState.LEVELSELECTED;
+                }
             }
 
         }

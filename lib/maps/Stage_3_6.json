@@ -235,8 +235,8 @@
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":449.333333333333,
-                 "y":113.333333333333
+                 "x":449.333,
+                 "y":113.333
                 }, 
                 {
                  "gid":91,
@@ -248,7 +248,7 @@
                  "visible":true,
                  "width":32,
                  "x":504,
-                 "y":98.6666666666667
+                 "y":98.6667
                 }, 
                 {
                  "gid":91,
@@ -742,7 +742,7 @@
                  "visible":true,
                  "width":32,
                  "x":663,
-                 "y":1165.33333333333
+                 "y":1165.33
                 }, 
                 {
                  "gid":91,
@@ -765,8 +765,8 @@
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":725.666666666667,
-                 "y":1229.66666666667
+                 "x":725.667,
+                 "y":1229.67
                 }, 
                 {
                  "gid":91,
@@ -813,7 +813,7 @@
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":414.666666666667,
+                 "x":414.667,
                  "y":148
                 }, 
                 {
@@ -837,6 +837,12 @@
  "nextlayerid":13,
  "nextobjectid":180,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"scoreThresholds",
+         "type":"string",
+         "value":"1300,1800,2500"
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.2.4",
  "tileheight":32,

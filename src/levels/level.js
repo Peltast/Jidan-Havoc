@@ -24,12 +24,39 @@ define("Level", [
             this.levelSpawn;
             this.levelObj = { "tiles": tileMap, "objects": objectList, "data": levelData};
             this.createLevel();
+
+            this.completed = false;
+            this.rank = 0;
+            this.topScore = 0;
         }
         initTilesets() {
             for (var firstGID in this.tileSets) {
                 var parsedTileset = new TileSet(firstGID, this.tileSets[firstGID]);
                 this.tileSets[firstGID] = parsedTileset;
             }
+        }
+
+        loadLevelProgress(saveObj) {
+            if (saveObj) {
+                this.completed = saveObj.completed;
+                this.rank = parseInt(saveObj.rank);
+                this.topScore = parseInt(saveObj.topScore);
+            }
+
+            if (this.name.indexOf("4") >= 0) {
+                this.completed = true;
+            }
+            if (this.name.indexOf("5") >= 0) {
+                this.completed = true;
+                this.rank = 1;
+            }
+            if (this.name.indexOf("6") >= 0) {
+                this.completed = true;
+                this.rank = 2;
+            }
+        }
+        getLevelProgress() {
+            return { "completed": this.completed, "rank": this.rank, "topScore": this.topScore};
         }
 
         createLevel() {

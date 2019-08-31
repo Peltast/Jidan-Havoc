@@ -1,6 +1,6 @@
 
 
-const GameState = { "PRELOADING": 1, "PRELOADED": 2, "LOADING": 3, "LOADED": 4 };
+const GameState = { "PRELOADING": 1, "PRELOADED": 2, "LOADING": 3, "LOADED": 4, "LEVELSELECTED": 5 };
 const ButtonTypes = {"NULL" : 1, "NEWGAME": 2, "INSTRUCTIONS": 3, "SANDBOX": 10, "LOADLEVEL": 4 };
 
 // Display variables
@@ -52,10 +52,14 @@ var tileData = {};
 
 // Game global variables
 var gameWorld = {};
+var gameSaveState = {};
 var player;
 var currentLevel;
 var objectFactory;
 var levelSeriesMatrix;
+
+var levelsCompleted = 0;
+var ranksAchieved = 0;
 
 // Global vars for relocating the player
 var transition = null;
@@ -105,12 +109,13 @@ function init() {
         {src: "ui/PlayerInstructions.png", id: "PlayerInstructions"},
 
         {src: "ui/LevelSelectTile.png", id: "LevelSelectTile"}, {src: "ui/LevelSelectTileComplete.png", id: "LevelSelectTileComplete"}, {src: "ui/LevelSelectCollectible.png", id: "LevelSelectCollectible"},
-        
+        {src: "ui/LevelRankUnfilled.png", id: "LevelRankUnfilled"}, {src: "ui/LevelRankFilled.png", id: "LevelRankFilled"},
+        {src: "ui/LevelSelectTileLocked.png", id: "LevelSelectTileLocked"}, {src: "ui/LevelRankUnfilled.png", id: "LevelRankUnfilled"},
+
         {src: "ui/CollectibleIcon.png", id: "CollectibleIcon"},
         
         {src: "ui/Cursor.png", id: "Cursor"},
-        {src: "ui/HealthSlot.png", id: "HealthSlot"}, 
-        {src: "ui/HealthPoint.png", id: "HealthPoint"},
+        {src: "ui/HealthSlot.png", id: "HealthSlot"}, {src: "ui/HealthPoint.png", id: "HealthPoint"},
     ];
     soundManifest = [
         {src: "Walk.wav", id: "Walk"}, {src: "Jump.wav", id: "Jump"}, {src: "DoubleJump.wav", id: "DoubleJump"}, {src: "Land.wav", id: "Land"},

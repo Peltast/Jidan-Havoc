@@ -16,8 +16,40 @@ require(
         createjs.Ticker.addEventListener("tick", updateGame);
 
         this.dialogueBox = new DialogueBox();
+        loadGame();
 
         addPreloader(loadProgress, totalGameManifest);
+    }
+
+    function loadGame() {
+        gameSaveState = localStorage.getItem("jidanSaveState");
+        if (!gameSaveState)
+            gameSaveState = {};
+        else
+            gameSaveState = JSON.parse(gameSaveState);
+    }
+    function saveGame() {
+
+        var saveData = JSON.stringify(gameSaveState);
+        localStorage.setItem("jidanSaveState", saveData);
+    }
+
+    function getProgressData() {
+        var completionCount = 0;
+        var rankCount = 0;
+        for (var levelName in gameSaveState) {
+            level = gameWorld[levelName];
+            if (!level)
+                continue;
+
+            if (level.completed)
+                completionCount += 1;
+            if (level.rank >= 0)
+                rankCount += level.rank;
+        }
+
+        levelsCompleted = completionCount;
+        ranksAchieved = rankCount;
     }
 
     function addPreloader(progress, destination) {
@@ -55,6 +87,11 @@ require(
             else
                 beginGame();
         }
+
+        else if (gameStatus === GameState.LEVELSELECTED) {
+            launchLevelFromSelectMenu();
+        }
+        
         else if (gameStatus === GameState.LOADED) {
             updateGameMap();
         }
@@ -75,6 +112,10 @@ require(
         var area = createLevel(areaName);
         gameWorld[areaName] = area;
 
+        if (!gameSaveState[areaName])
+            gameSaveState[areaName] = { "completed": false, "rank": 0, "topScore": 0 };
+        area.loadLevelProgress(gameSaveState[areaName]);
+
         totalMapsParsed += 1;
         updatePreloader(totalMapsParsed);
     }
@@ -94,24 +135,33 @@ require(
         stage.removeChild(mainMenu.menuContainer);
         gameStatus = GameState.LOADED;
         
+        getProgressData();
+        
         levelSelectMenu = new LevelSelectMenu();
         stage.addChild(levelSelectMenu.menuContainer);
+    }
 
-        // gameBG = new createjs.Shape();
-        // gameBG.graphics.beginFill("#000000").drawRect(0, 0, stageWidth, stageHeight);
-        // gameArea = new createjs.Container();
-        // gameUI = createUI();
-
-        // stage.addChild(gameBG);
-        // stage.addChild(gameArea);
-        // stage.addChild(gameUI);
-
-        // var startLevel = gameWorld[startMapName];
-        // startLevel.spawnPlayer(player, startLevel.levelSpawn.location);
-        // setLevel(startLevel);
+    function launchLevelFromSelectMenu() {
         
-        // addEventListener("keydown", onKeyDown);
-        // addEventListener("keyup", onKeyUp);
+        stage.removeChild(levelSelectMenu.menuContainer);
+
+        gameBG = new createjs.Shape();
+        gameBG.graphics.beginFill("#000000").drawRect(0, 0, stageWidth, stageHeight);
+        gameArea = new createjs.Container();
+        gameUI = createUI();
+
+        stage.addChild(gameBG);
+        stage.addChild(gameArea);
+        stage.addChild(gameUI);
+
+        var startLevel = gameWorld[startingMap];
+        startLevel.spawnPlayer(player, startLevel.levelSpawn.location);
+        setLevel(startLevel);
+        
+        addEventListener("keydown", onKeyDown);
+        addEventListener("keyup", onKeyUp);
+
+        gameStatus = GameState.LOADED;
     }
 
     function createLevel(mapName) {

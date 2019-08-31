@@ -816,6 +816,18 @@
                  "width":32,
                  "x":210,
                  "y":281
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":195,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":480,
+                 "y":320
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -824,8 +836,14 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":195,
+ "nextobjectid":196,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"scoreThresholds",
+         "type":"string",
+         "value":"1300,1800,2500"
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.2.4",
  "tileheight":32,

@@ -567,6 +567,12 @@
  "nextlayerid":14,
  "nextobjectid":162,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"scoreThresholds",
+         "type":"string",
+         "value":"1300,1800,2500"
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.2.4",
  "tileheight":32,
