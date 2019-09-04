@@ -161,49 +161,36 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
         }
 
         addSingleRank(button, level) {
-            var rankPoint = this.createRankImage(level.rank > 0);
-            rankPoint.x = 12;
-            rankPoint.y = 30;
+            var rankPoint = this.createRankImage(12, 30, level.collectibleRank > 0);
             button.itemContainer.addChild(rankPoint);
         }
         addDoubleRank(button, level) {
-            var rankPointL = this.createRankImage(level.rank > 0);
-            rankPointL.x = -6;
-            rankPointL.y = 26;
-            var rankPointR = this.createRankImage(level.rank > 1);
-            rankPointR.x = 30;
-            rankPointR.y = 26;
+            var rankPointL = this.createRankImage(-6, 26, level.collectibleRank > 0);
+            var rankPointR = this.createRankImage(30, 26, level.enemyRank > 0);
 
             button.itemContainer.addChild(rankPointL, rankPointR);
         }
         addFullRank(button, level) {
-            var rankTopLeft = this.createRankImage(level.rank > 1);
-            rankTopLeft.x = -10;
-            rankTopLeft.y = 4;
-            var rankBottomLeft = this.createRankImage(level.rank > 3);
-            rankBottomLeft.x = -6;
-            rankBottomLeft.y = 26;
+            var rankTopLeft = this.createRankImage(-10, 4, level.collectibleRank > 0);
+            var rankTopRight = this.createRankImage(34, 4, level.enemyRank > 0);
 
-            var rankCenter = this.createRankImage(level.rank > 0);
-            rankCenter.x = 12;
-            rankCenter.y = 30;
-
-            var rankBottomRight = this.createRankImage(level.rank > 4);
-            rankBottomRight.x = 30;
-            rankBottomRight.y = 26;
-            var rankTopRight = this.createRankImage(level.rank > 2);
-            rankTopRight.x = 34;
-            rankTopRight.y = 4;
+            var rankBottomLeft = this.createRankImage(-6, 26, level.scoreRank > 0);
+            var rankCenter = this.createRankImage(12, 30, level.scoreRank > 1);
+            var rankBottomRight = this.createRankImage(30, 26, level.scoreRank > 2);
 
             button.itemContainer.addChild(rankTopLeft, rankBottomLeft, rankCenter, rankBottomRight, rankTopRight);
         }
-        createRankImage(completed = false) {
+        createRankImage(x, y, completed = false) {
             var imgName = completed ? "LevelRankFilled" : "LevelRankUnfilled";
-            var itemImg = new createjs.SpriteSheet({
+            var spriteSheet = new createjs.SpriteSheet({
                 "images": [gameAssets[imgName]],
                 "frames": {"width": 16, "height": 20, "regX": 0, "regY": 0, "count": 1}, animations: { idle: 0 }
             });
-            return new createjs.Sprite(itemImg);
+            var img = new createjs.Sprite(spriteSheet);
+            img.x = x;
+            img.y = y;
+
+            return img;
         }
 
         getLevel(seriesNum, levelNum) {

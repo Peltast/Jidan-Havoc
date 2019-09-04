@@ -471,12 +471,11 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
 
             this.respawnTimer = 0;
             this.respawnStatus = RespawnState.Respawning;
-            transition = {map: currentLevel.name, location: currentLevel.levelSpawn.location};
             currentLevel.resetLevel();
             
             var respawnEffect = new ParticleSystem("RespawnEffect");
-            var respawnFXLocation = transition.location.get()
-            respawnFXLocation.subtract(new Point(50, 50))
+            var respawnFXLocation = currentLevel.levelSpawn.location.get();
+            respawnFXLocation.subtract(new Point(50, 50));
             respawnEffect.effectAreaOrigin = respawnFXLocation;
 
             currentLevel.addParticleEffect(respawnEffect);

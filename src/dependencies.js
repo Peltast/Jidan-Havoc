@@ -17,6 +17,7 @@ require.config({
       "menuGrid": "src/interface/menuGrid",
       "mainMenu": "src/interface/mainMenu",
       "levelSelectMenu": "src/interface/levelSelectMenu",
+      "levelEndMenu": "src/interface/levelEndMenu",
 
       "statsDisplay": "src/interface/statsDisplay",
       "dialogueBox": "src/interface/dialogueBox",
@@ -42,7 +43,10 @@ require.config({
   
 requirejs(['point', 'menuItem', 'menuGrid'], function() {
 
-    requirejs(['mainMenu', 'levelSelectMenu', 'gameObject', 'collisionBox', 'actorController', 'levelParser', 'particle', 'healthBar', 'statsDisplay', 'enemyBehavior'], function() {
+    requirejs([
+        'mainMenu', 'levelSelectMenu', 'levelEndMenu', 'gameObject', 'collisionBox', 'actorController',
+        'levelParser', 'particle', 'healthBar', 'statsDisplay', 'enemyBehavior'
+    ], function() {
 
         requirejs(['tile', 'actor', 'prop', 'transition', 'particleSystem', 'dialogueBox', 'pacingBehavior',], function() {
 

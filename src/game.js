@@ -1,6 +1,6 @@
 require( 
-    ['Point', 'Level', 'LevelParser', 'ObjectFactory', 'Player', 'DialogueBox', 'MainMenu', 'LevelSelectMenu', 'StatsDisplay'], 
-    function(Point, Level, LevelParser, ObjectFactory, Player, DialogueBox, MainMenu, LevelSelectMenu, StatsDisplay) {
+    ['Point', 'Level', 'LevelParser', 'ObjectFactory', 'Player', 'DialogueBox', 'MainMenu', 'LevelSelectMenu', 'LevelEndMenu', 'StatsDisplay'], 
+    function(Point, Level, LevelParser, ObjectFactory, Player, DialogueBox, MainMenu, LevelSelectMenu, LevelEndMenu, StatsDisplay) {
 
     $(function() {
         gameStatus = GameState.PRELOADING;
@@ -29,7 +29,6 @@ require(
             gameSaveState = JSON.parse(gameSaveState);
     }
     function saveGame() {
-
         var saveData = JSON.stringify(gameSaveState);
         localStorage.setItem("jidanSaveState", saveData);
     }
@@ -44,8 +43,12 @@ require(
 
             if (level.completed)
                 completionCount += 1;
-            if (level.rank >= 0)
-                rankCount += level.rank;
+            if (level.collectibleRank > 0)
+                rankCount += 1;
+            if (level.enemyRank > 0)
+                rankCount += 1;
+            if (level.scoreRank > 0)
+                rankCount += level.scoreRank;
         }
 
         levelsCompleted = completionCount;
@@ -92,7 +95,7 @@ require(
             launchLevelFromSelectMenu();
         }
         
-        else if (gameStatus === GameState.LOADED) {
+        else if (gameStatus === GameState.RUNNING) {
             updateGameMap();
         }
 
@@ -112,8 +115,6 @@ require(
         var area = createLevel(areaName);
         gameWorld[areaName] = area;
 
-        if (!gameSaveState[areaName])
-            gameSaveState[areaName] = { "completed": false, "rank": 0, "topScore": 0 };
         area.loadLevelProgress(gameSaveState[areaName]);
 
         totalMapsParsed += 1;
@@ -128,12 +129,25 @@ require(
         objectFactory = new ObjectFactory(this.name);
         player = new Player();
     }
+    function createLevel(mapName) {
+        console.log("PARSING MAP " + mapName);
+
+        var levelParser = new LevelParser(mapName);
+        
+        var mapSize = levelParser.getLevelSize();
+        var tileLayer = levelParser.getLevelTileLayer();
+        var objectLayer = levelParser.getLevelObjectLayer();
+        var mapTileSet = levelParser.getLevelTileSets();
+        var mapProperties = levelParser.getCustomProperties();
+        
+        return new Level(tileLayer.data, objectLayer.objects, mapSize, mapTileSet, mapName, mapProperties);
+    }
 
     function beginGame() {
         removePreloader(preloader);
         stage.removeChild(mainMenu.sceneContainer);
         stage.removeChild(mainMenu.menuContainer);
-        gameStatus = GameState.LOADED;
+        gameStatus = GameState.RUNNING;
         
         getProgressData();
         
@@ -161,21 +175,7 @@ require(
         addEventListener("keydown", onKeyDown);
         addEventListener("keyup", onKeyUp);
 
-        gameStatus = GameState.LOADED;
-    }
-
-    function createLevel(mapName) {
-        console.log("PARSING MAP " + mapName);
-
-        var levelParser = new LevelParser(mapName);
-        
-        var mapSize = levelParser.getLevelSize();
-        var tileLayer = levelParser.getLevelTileLayer();
-        var objectLayer = levelParser.getLevelObjectLayer();
-        var mapTileSet = levelParser.getLevelTileSets();
-        var mapProperties = levelParser.getCustomProperties();
-        
-        return new Level(tileLayer.data, objectLayer.objects, mapSize, mapTileSet, mapName, mapProperties);
+        gameStatus = GameState.RUNNING;
     }
     function createUI() {
         gameUI = new createjs.Container();
@@ -187,6 +187,26 @@ require(
         // gameUI.addChild(healthBar.healthBarContainer);
 
         return gameUI;
+    }
+
+    function displayLevelEnd() {
+
+        levelEndDisplay = new LevelEndMenu();
+        gameUI.addChild(levelEndDisplay.menuContainer);
+
+        currentLevel.completed = true;
+        gameSaveState[currentLevel.name] = currentLevel.getLevelProgress();
+
+        saveGame();
+    }
+    function beginNextStage() {
+        gameStatus = GameState.RUNNING;
+
+        if (gameUI.contains(levelEndDisplay.menuContainer))
+            gameUI.removeChild(levelEndDisplay.menuContainer);
+
+        changeLevels(transition.map, transition.location);
+        transition = null;
     }
 
     function setLevel(level) {
@@ -213,9 +233,9 @@ require(
 
     function updateGameMap() {
 
-        if (transition != null) {
-            changeLevels(transition.map, transition.location);
-            transition = null;
+        if (transition != null && gameStatus == GameState.RUNNING) {
+            displayLevelEnd();
+            gameStatus = GameState.LEVELEND;
         }
 
         if (currentLevel) {
@@ -260,6 +280,8 @@ require(
 
         newLevel.spawnPlayer(player, newLocation);
         setLevel(newLevel);
+
+        player.respawnToAlive();
     }
 
     function centerScreen() {
@@ -324,123 +346,68 @@ require(
     
     //#region Input Handling
 
+    var spacebarHeld = false;
+    var spacebarPressed = false;
     function onKeyDown(event) {
         var keyCode = event.keyCode;
-        switch (keyCode) {
+        
+        if (gameStatus === GameState.RUNNING) {
 
-            case 68: //d
+            if (keyCode == 68 || keyCode == 39)             // d || right arrow
                 player.setActorDirection("right", true);
-                break;
-            case 39: //right arrow
-                player.setActorDirection("right", true);
-                break;
-                
-            case 65: //a
+            else if (keyCode == 65 || keyCode == 37)        // a || left arrow
                 player.setActorDirection("left", true);
-                break;
-            case 37: // left arrow
-                player.setActorDirection("left", true);
-                break;
                 
-            case 87: //w
+            else if (isJumpKey(keyCode))
                 player.jumpHold();
-                break;
-            case 38: // up arrow
-                player.jumpHold();
-                break;
-            case 13: // enter
-                player.jumpHold();
-                break;
-            case 32: // space
-                player.jumpHold();
-                break;
 
-            case 16: // shift
+            else if (isAttackKey(keyCode))
                 player.attack();
-                break;
-            case 74: // j
-                player.attack();
-                break;
-            case 69: // e
-                player.attack();
-                break;
-            case 90: // z
-                player.attack();
-                break;
-    
+                
+            if (keyCode == 32)
+                spacebarHeld = true;
         }
+
+        else if (gameStatus === GameState.LEVELEND) {
+            if (keyCode == 32 && !spacebarHeld)
+                spacebarPressed = true;
+        }
+
     }
     function onKeyUp(event) {
-        
         var keyCode = event.keyCode;
-        switch (keyCode) {
-            
-            case 68: // d
+        
+        if (gameStatus === GameState.RUNNING) {
+
+            if (keyCode == 68 || keyCode == 39)             // d || right arrow
                 player.setActorDirection("right", false);
-                break;
-            case 39: //right arrow
-                player.setActorDirection("right", false);
-                break;
+            else if (keyCode == 65 || keyCode == 37)        // a || left arrow
+                player.setActorDirection("left", false);
                 
-            case 65: // a
-                player.setActorDirection("left", false);
-                break;
-            case 37: // left arrow
-                player.setActorDirection("left", false);
-                break;
+            else if (isJumpKey(keyCode))
+                player.jumpRelease();
 
-            case 87: // w
-                player.jumpRelease();
-                break;
-            case 38: // up arrow
-                player.jumpRelease();
-                break;
-            case 13: // enter
-                player.jumpRelease();
-                break;
-            case 32: // space
-                player.jumpRelease();
-                break;
-            case 16: // shift
-                player.jumpRelease();
-                break;
-
-
-            case 84: // t
-                currentLevel.toggleHitboxDisplay();
-                break;
-            case 82: // r
+            else if (keyCode == 82)     //  r
                 resetCurrentLevel();
-                break;
-
-            // case 69:  // e
-            //     if (currentStatement === null)
-            //         player.interact();
-            //     else 
-            //         progressDialogueBox();
-            //     break;
-            // case 90: // z
-            //     if (currentStatement === null)
-            //         player.interact();
-            //     else
-            //         progressDialogueBox();
-            //     break;
-
         }
+
+        if (keyCode == 32)
+            spacebarHeld = false;
+
+        if (gameStatus === GameState.LEVELEND) {
+            if (keyCode == 32 && spacebarPressed) {
+                beginNextStage();
+                spacebarPressed = false;
+            }
+        }
+
     }
-    // function progressDialogueBox() {
-
-    //     if (this.dialogueBox.isFinished()) {
-    //         currentStatement = null;
-    //         currentDialogue = null;
-    //         gameUI.removeChild(this.dialogueBox.dialogueContainer);
-    //         this.dialogueBox.resetText();
-    //     }
-
-    //     this.dialogueBox.progressText();
-    // }
-
-    //#endregion
+    function isJumpKey(keyCode) {
+        return (keyCode == 87 || keyCode == 38 || keyCode == 13 || keyCode == 32);  //  w || up arrow || enter || space
+    }
+    function isAttackKey(keyCode) {
+        return (keyCode == 16 || keyCode == 74 || keyCode == 69 || keyCode == 90);  //  shift || j || e || z
+    }
 
 
     class LoadBar {

@@ -26,7 +26,9 @@ define("Level", [
             this.createLevel();
 
             this.completed = false;
-            this.rank = 0;
+            this.collectibleRank = 0;
+            this.enemyRank = 0;
+            this.scoreRank = 0;
             this.topScore = 0;
         }
         initTilesets() {
@@ -39,8 +41,19 @@ define("Level", [
         loadLevelProgress(saveObj) {
             if (saveObj) {
                 this.completed = saveObj.completed;
-                this.rank = parseInt(saveObj.rank);
                 this.topScore = parseInt(saveObj.topScore);
+                
+                this.collectibleRank = parseInt(saveObj.collectibleRank);
+                this.enemyRank = parseInt(saveObj.enemyRank);
+                this.scoreRank = parseInt(saveObj.scoreRank);
+            }
+            else {
+                this.completed = false;
+                this.topScore = 0;
+
+                this.collectibleRank = 0;
+                this.enemyRank = 0;
+                this.scoreRank = 0;
             }
 
             if (this.name.indexOf("4") >= 0) {
@@ -48,16 +61,52 @@ define("Level", [
             }
             if (this.name.indexOf("5") >= 0) {
                 this.completed = true;
-                this.rank = 1;
+                this.collectibleRank = 1;
             }
             if (this.name.indexOf("6") >= 0) {
                 this.completed = true;
-                this.rank = 2;
+                this.enemyRank = 1;
             }
         }
         getLevelProgress() {
-            return { "completed": this.completed, "rank": this.rank, "topScore": this.topScore};
+            return { 
+                "completed": this.completed, "topScore": this.topScore,
+                "collectibleRank": this.collectibleRank, "enemyRank": this.enemyRank, "scoreRank": this.scoreRank
+            };
         }
+
+        evaluatePlayerRanking() {
+            if (this.collectibleRank == 0 && this.isCollectibleRankAchieved())
+                this.collectibleRank = 1;
+            
+            if (this.numOfEnemies > 0 && this.enemyRank == 0 && this.isEnemyRankAchieved())
+                this.enemyRank = 1;
+
+            if (this.scoreThresholds) {
+                var playerRank = this.getScoreRank();
+                this.scoreRank = Math.max(this.scoreRank, playerRank);
+            }
+        }
+        isCollectibleRankAchieved() {
+            return (player.collectiblesGathered == this.numOfCollectibles);
+        }
+        isEnemyRankAchieved() {
+            return this.enemiesRemaining == 0;
+        }
+        getScoreRank() {
+            if (this.scoreThresholds) {
+                if (gameScore >= this.scoreThresholds[2])
+                    return 3;
+                else if (gameScore >= this.scoreThresholds[1])
+                    return 2;
+                else if (gameScore >= this.scoreThresholds[0])
+                    return 1;
+                else
+                    return 0;
+            }
+            else return 0;
+        }
+
 
         createLevel() {
 
@@ -102,7 +151,6 @@ define("Level", [
             player.collectiblesGathered = 0;
             player.highestCombo = 0;
             gameScore = 0;
-            gameStatsDisplay.updateStats();
             
             for (let j = this.actors.length; j >= 0; j--) {
                 if (this.actors[j] instanceof Enemy)
@@ -126,7 +174,10 @@ define("Level", [
                 }
             }
 
+            this.spawnPlayer(player, this.levelSpawn.location);
             this.enemiesRemaining = this.numOfEnemies;
+            
+            gameStatsDisplay.updateStats();
         }
 
         initTileMap(tileMap) {

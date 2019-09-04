@@ -1,6 +1,6 @@
 
 
-const GameState = { "PRELOADING": 1, "PRELOADED": 2, "LOADING": 3, "LOADED": 4, "LEVELSELECTED": 5 };
+const GameState = { "PRELOADING": 1, "PRELOADED": 2, "LOADING": 3, "RUNNING": 4, "LEVELSELECTED": 5, "LEVELPAUSED": 6, "LEVELEND": 7 };
 const ButtonTypes = {"NULL" : 1, "NEWGAME": 2, "INSTRUCTIONS": 3, "SANDBOX": 10, "LOADLEVEL": 4 };
 
 // Display variables
@@ -73,6 +73,7 @@ var levelSelectMenu;
 var currentStatement = null;
 var currentDialogue = null;
 var gameStatsDisplay;
+var levelEndDisplay;
 var gameScore;
 
 
@@ -111,6 +112,7 @@ function init() {
         {src: "ui/LevelSelectTile.png", id: "LevelSelectTile"}, {src: "ui/LevelSelectTileComplete.png", id: "LevelSelectTileComplete"}, {src: "ui/LevelSelectCollectible.png", id: "LevelSelectCollectible"},
         {src: "ui/LevelRankUnfilled.png", id: "LevelRankUnfilled"}, {src: "ui/LevelRankFilled.png", id: "LevelRankFilled"},
         {src: "ui/LevelSelectTileLocked.png", id: "LevelSelectTileLocked"}, {src: "ui/LevelRankUnfilled.png", id: "LevelRankUnfilled"},
+        {src: "ui/LevelEndIcon.png", id: "LevelEndIcon"},
 
         {src: "ui/CollectibleIcon.png", id: "CollectibleIcon"},
         
