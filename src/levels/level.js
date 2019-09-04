@@ -46,6 +46,9 @@ define("Level", [
                 this.collectibleRank = parseInt(saveObj.collectibleRank);
                 this.enemyRank = parseInt(saveObj.enemyRank);
                 this.scoreRank = parseInt(saveObj.scoreRank);
+
+                // this.enemyRank = 0;
+                // this.scoreRank = 0;
             }
             else {
                 this.completed = false;
@@ -55,21 +58,9 @@ define("Level", [
                 this.enemyRank = 0;
                 this.scoreRank = 0;
             }
-
-            if (this.name.indexOf("4") >= 0) {
-                this.completed = true;
-            }
-            if (this.name.indexOf("5") >= 0) {
-                this.completed = true;
-                this.collectibleRank = 1;
-            }
-            if (this.name.indexOf("6") >= 0) {
-                this.completed = true;
-                this.enemyRank = 1;
-            }
         }
         getLevelProgress() {
-            return { 
+            return {
                 "completed": this.completed, "topScore": this.topScore,
                 "collectibleRank": this.collectibleRank, "enemyRank": this.enemyRank, "scoreRank": this.scoreRank
             };
@@ -83,7 +74,7 @@ define("Level", [
                 this.enemyRank = 1;
 
             if (this.scoreThresholds) {
-                var playerRank = this.getScoreRank();
+                var playerRank = this.getScoreRank(gameScore);
                 this.scoreRank = Math.max(this.scoreRank, playerRank);
             }
         }
@@ -93,13 +84,13 @@ define("Level", [
         isEnemyRankAchieved() {
             return this.enemiesRemaining == 0;
         }
-        getScoreRank() {
+        getScoreRank(score) {
             if (this.scoreThresholds) {
-                if (gameScore >= this.scoreThresholds[2])
+                if (score >= this.scoreThresholds[2])
                     return 3;
-                else if (gameScore >= this.scoreThresholds[1])
+                else if (score >= this.scoreThresholds[1])
                     return 2;
-                else if (gameScore >= this.scoreThresholds[0])
+                else if (score >= this.scoreThresholds[0])
                     return 1;
                 else
                     return 0;
@@ -176,7 +167,7 @@ define("Level", [
 
             this.spawnPlayer(player, this.levelSpawn.location);
             this.enemiesRemaining = this.numOfEnemies;
-            
+
             gameStatsDisplay.updateStats();
         }
 

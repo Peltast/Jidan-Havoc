@@ -181,14 +181,14 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
             button.itemContainer.addChild(rankTopLeft, rankBottomLeft, rankCenter, rankBottomRight, rankTopRight);
         }
         createRankImage(x, y, completed = false) {
-            var imgName = completed ? "LevelRankFilled" : "LevelRankUnfilled";
             var spriteSheet = new createjs.SpriteSheet({
-                "images": [gameAssets[imgName]],
-                "frames": {"width": 16, "height": 20, "regX": 0, "regY": 0, "count": 1}, animations: { idle: 0 }
+                "images": [gameAssets["LevelRankIcon"]],
+                "frames": {"width": 16, "height": 20, "regX": 0, "regY": 0, "count": 2}, animations: { unfilled: 0, filled: 1 }
             });
             var img = new createjs.Sprite(spriteSheet);
             img.x = x;
             img.y = y;
+            img.gotoAndPlay(completed ? "filled" : "unfilled");
 
             return img;
         }

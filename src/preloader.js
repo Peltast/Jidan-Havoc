@@ -110,8 +110,7 @@ function init() {
         {src: "ui/PlayerInstructions.png", id: "PlayerInstructions"},
 
         {src: "ui/LevelSelectTile.png", id: "LevelSelectTile"}, {src: "ui/LevelSelectTileComplete.png", id: "LevelSelectTileComplete"}, {src: "ui/LevelSelectCollectible.png", id: "LevelSelectCollectible"},
-        {src: "ui/LevelRankUnfilled.png", id: "LevelRankUnfilled"}, {src: "ui/LevelRankFilled.png", id: "LevelRankFilled"},
-        {src: "ui/LevelSelectTileLocked.png", id: "LevelSelectTileLocked"}, {src: "ui/LevelRankUnfilled.png", id: "LevelRankUnfilled"},
+        {src: "ui/LevelRankIcon.png", id: "LevelRankIcon"}, {src: "ui/LevelSelectTileLocked.png", id: "LevelSelectTileLocked"}, {src: "ui/LevelRankUnfilled.png", id: "LevelRankUnfilled"},
         {src: "ui/LevelEndIcon.png", id: "LevelEndIcon"},
 
         {src: "ui/CollectibleIcon.png", id: "CollectibleIcon"},

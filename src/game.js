@@ -99,6 +99,11 @@ require(
             updateGameMap();
         }
 
+        else if (gameStatus === GameState.LEVELEND) {
+            if (levelEndDisplay)
+                levelEndDisplay.updateMenu();
+        }
+
         stage.update();
     }
     
@@ -204,6 +209,7 @@ require(
 
         if (gameUI.contains(levelEndDisplay.menuContainer))
             gameUI.removeChild(levelEndDisplay.menuContainer);
+        levelEndDisplay = null;
 
         changeLevels(transition.map, transition.location);
         transition = null;
@@ -395,7 +401,9 @@ require(
             spacebarHeld = false;
 
         if (gameStatus === GameState.LEVELEND) {
-            if (keyCode == 32 && spacebarPressed) {
+            if (!levelEndDisplay)
+                return;
+            if (keyCode == 32 && spacebarPressed && levelEndDisplay.isFinished()) {
                 beginNextStage();
                 spacebarPressed = false;
             }
