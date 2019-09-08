@@ -60,7 +60,8 @@ require(
         stage.addChild(preloader.loadBarContainer);
     }
     function removePreloader(p) {
-        stage.removeChild(p.loadBarContainer);
+        if (stage.contains(p.loadBarContainer))
+            stage.removeChild(p.loadBarContainer);
     }
     function updatePreloader(progress) {
         preloader.updateBarProgress(progress);
@@ -88,7 +89,7 @@ require(
             if (totalMapsParsed < mapDataKeys.length)
                 loadWorld();
             else
-                beginGame();
+                launchLevelSelect();
         }
 
         else if (gameStatus === GameState.LEVELSELECTED) {
@@ -148,14 +149,23 @@ require(
         return new Level(tileLayer.data, objectLayer.objects, mapSize, mapTileSet, mapName, mapProperties);
     }
 
-    function beginGame() {
+    function launchLevelSelect() {
+        if (currentLevel) {
+            removeCurrentLevel();
+
+            removeEventListener("keydown", onKeyDown);
+            removeEventListener("keyup", onKeyUp);
+            stage.removeChild(gameBG);
+            stage.removeChild(gameArea);
+            stage.removeChild(gameUI);
+        }
+        removeLevelEnd();
         removePreloader(preloader);
         stage.removeChild(mainMenu.sceneContainer);
         stage.removeChild(mainMenu.menuContainer);
-        gameStatus = GameState.RUNNING;
+        transition = null;
         
         getProgressData();
-        
         levelSelectMenu = new LevelSelectMenu();
         stage.addChild(levelSelectMenu.menuContainer);
     }
@@ -169,9 +179,7 @@ require(
         gameArea = new createjs.Container();
         gameUI = createUI();
 
-        stage.addChild(gameBG);
-        stage.addChild(gameArea);
-        stage.addChild(gameUI);
+        stage.addChild(gameBG, gameArea, gameUI);
 
         var startLevel = gameWorld[startingMap];
         startLevel.spawnPlayer(player, startLevel.levelSpawn.location);
@@ -204,12 +212,17 @@ require(
 
         saveGame();
     }
-    function beginNextStage() {
+    function removeLevelEnd() {
+        if (levelEndDisplay) {
+            if (gameUI.contains(levelEndDisplay.menuContainer))
+                gameUI.removeChild(levelEndDisplay.menuContainer);
+            levelEndDisplay = null;
+        }
+        
         gameStatus = GameState.RUNNING;
-
-        if (gameUI.contains(levelEndDisplay.menuContainer))
-            gameUI.removeChild(levelEndDisplay.menuContainer);
-        levelEndDisplay = null;
+    }
+    function beginNextStage() {
+        removeLevelEnd();
 
         changeLevels(transition.map, transition.location);
         transition = null;
@@ -218,8 +231,7 @@ require(
     function setLevel(level) {
         if (currentLevel != null) {
             if (gameArea.contains(currentLevel.levelContainer)) {
-                currentLevel.cleanUpLevel();
-                gameArea.removeChild(currentLevel.levelContainer);
+                removeCurrentLevel();
             }
         }
         if (currentLevel !== level)
@@ -235,6 +247,11 @@ require(
 
         if (!(gameArea.contains(level.levelContainer)))
             gameArea.addChild(level.levelContainer);
+    }
+    function removeCurrentLevel() {
+        currentLevel.cleanUpLevel();
+        gameArea.removeChild(currentLevel.levelContainer);
+        currentLevel = null;
     }
 
     function updateGameMap() {
@@ -252,12 +269,9 @@ require(
         }
     }
     function updateUI() {
-
-        // healthBar.updateAlpha();
         updateDialogueBox();
     }
     function updateDialogueBox() {
-
         if (currentStatement != null || currentDialogue != null) {
             if (!gameUI.contains(this.dialogueBox.dialogueContainer)) {
                 gameUI.addChild(this.dialogueBox.dialogueContainer);
@@ -267,7 +281,6 @@ require(
                 this.dialogueBox.setText(currentStatement, currentDialogue);
             }
         }
-        
         this.dialogueBox.update();
     }
     
@@ -403,12 +416,19 @@ require(
         if (gameStatus === GameState.LEVELEND) {
             if (!levelEndDisplay)
                 return;
-            if (keyCode == 32 && spacebarPressed && levelEndDisplay.isFinished()) {
-                beginNextStage();
-                spacebarPressed = false;
+            if (keyCode == 32 && spacebarPressed) {
+                if (levelEndDisplay.isFinished()) {
+                    beginNextStage();
+                    spacebarPressed = false;
+                }
+                else {
+                    levelEndDisplay.skipScoring();
+                }
             }
         }
 
+        if (keyCode == 27)     // esc
+            launchLevelSelect();
     }
     function isJumpKey(keyCode) {
         return (keyCode == 87 || keyCode == 38 || keyCode == 13 || keyCode == 32);  //  w || up arrow || enter || space

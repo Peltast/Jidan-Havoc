@@ -35,6 +35,23 @@ define("LevelEndMenu", ['Point'], function(Point) {
             return this.menuStage === RankingStage.FINISHED;
         }
 
+        skipScoring() {
+            this.finishCollectibleRanking();
+            this.addPhaseElements(1);
+
+            if (this.numOfStages > 1) {
+                this.finishEnemyRanking();
+                this.addPhaseElements(2);
+            }
+            if (this.numOfStages > 2) {
+                this.scoreValue.text = gameScore;
+                this.updateScoreRankingDisplay();
+                this.addPhaseElements(3);
+            }
+            
+            this.finishMenu();
+        }
+
         updateMenu() {
             this.timer += 1;
             
@@ -80,10 +97,13 @@ define("LevelEndMenu", ['Point'], function(Point) {
                 this.timer = 0;
                 this.menuStage = this.stageOrder[this.stageProgress];
 
-                var newImages = this.rankingStageImages[this.stageProgress];
-                for (let i = 0; i < newImages.length; i++)
-                    this.menuContainer.addChild(newImages[i]);
+                this.addPhaseElements(this.stageProgress);
             }
+        }
+        addPhaseElements(index) {
+            var newImages = this.rankingStageImages[index];
+            for (let i = 0; i < newImages.length; i++)
+                this.menuContainer.addChild(newImages[i]);
         }
         finishMenu() {
             this.timer = 0;
@@ -99,39 +119,59 @@ define("LevelEndMenu", ['Point'], function(Point) {
                 this.collectibleValue.text = this.collectibleStatCount + " / " + currentLevel.numOfCollectibles;
                 this.playSound("Collectible", 0.1);
 
-                if (this.collectibleStatCount == player.collectiblesGathered) {
-                    this.timer = 0;
-                    if (currentLevel.isCollectibleRankAchieved())
-                        this.fillRankIcon(this.collectibleRankIcon, this.parentCollectibleRankIcon);
-                }
+                if (this.collectibleStatCount == player.collectiblesGathered)
+                    this.finishCollectibleRanking();
             }
         }
+        finishCollectibleRanking() {
+            this.timer = 0;
+            this.collectibleValue.text = player.collectiblesGathered + " / " + currentLevel.numOfCollectibles;
+
+            if (currentLevel.isCollectibleRankAchieved())
+                this.fillRankIcon(this.collectibleRankIcon, this.parentCollectibleRankIcon);
+        }
+
         updateEnemyRanking() {
             if (this.timer % 6 == 0) {
                 this.enemyStatCount -= 1;
                 this.enemyValue.text = this.enemyStatCount;
                 this.playSound("Hit", 0.1);
 
-                if (this.enemyStatCount == currentLevel.enemiesRemaining) {
-                    this.timer = 0;
-                    if (currentLevel.isEnemyRankAchieved())
-                        this.fillRankIcon(this.enemyRankIcon, this.parentEnemyRankIcon);
-                }
+                if (this.enemyStatCount == currentLevel.enemiesRemaining)
+                    this.finishEnemyRanking();
             }
         }
+        finishEnemyRanking() {
+            this.timer = 0;
+            this.enemyValue.text = currentLevel.enemiesRemaining;
+
+            if (currentLevel.isEnemyRankAchieved())
+                this.fillRankIcon(this.enemyRankIcon, this.parentEnemyRankIcon);
+        }
+
         updateScoreRanking() {
             this.timer = 0;
 
-            this.scoreStatCount += 10;
+            var scoreIncrement = 10;
+            if (gameScore >= 6000)
+                scoreIncrement = 50;
+            else if (gameScore >= 3000)
+                scoreIncrement = 20;
+
+            this.scoreStatCount += scoreIncrement;
+            
             this.scoreValue.text = this.scoreStatCount;
-            if (this.scoreStatCount % 30 == 0)
+            if (this.scoreStatCount % (scoreIncrement * 3) == 0)
                 this.playSound("Combo1", 0.1);
 
-            if (currentLevel.getScoreRank(this.scoreStatCount) == 1 && this.scoreRankIcon1.currentAnimation == "unfilled")
+            this.updateScoreRankingDisplay();
+        }
+        updateScoreRankingDisplay() {
+            if (currentLevel.getScoreRank(this.scoreValue.text) >= 1 && this.scoreRankIcon1.currentAnimation == "unfilled")
                 this.fillRankIcon(this.scoreRankIcon1, this.rankBottomLeft);
-            else if (currentLevel.getScoreRank(this.scoreStatCount) == 2 && this.scoreRankIcon2.currentAnimation == "unfilled")
+            if (currentLevel.getScoreRank(this.scoreValue.text) >= 2 && this.scoreRankIcon2.currentAnimation == "unfilled")
                 this.fillRankIcon(this.scoreRankIcon2, this.rankCenter);
-            else if (currentLevel.getScoreRank(this.scoreStatCount) == 3 && this.scoreRankIcon3.currentAnimation == "unfilled")
+            if (currentLevel.getScoreRank(this.scoreValue.text) >= 3 && this.scoreRankIcon3.currentAnimation == "unfilled")
                 this.fillRankIcon(this.scoreRankIcon3, this.rankBottomRight);
         }
 

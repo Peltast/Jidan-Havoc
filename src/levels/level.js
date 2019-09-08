@@ -97,8 +97,7 @@ define("Level", [
             }
             else return 0;
         }
-
-
+        
         createLevel() {
 
             this.actors = [];
@@ -372,11 +371,10 @@ define("Level", [
             }
         }
         addActor(newActor) {
-            if (this.actors.includes(newActor))
-                return;
-
-            this.actors.push(newActor);
-            this.spriteLayer.addChild(newActor.spriteContainer);
+            if (!this.actors.includes(newActor))
+                this.actors.push(newActor);
+            if (!this.spriteLayer.contains(newActor.spriteContainer))
+                this.spriteLayer.addChild(newActor.spriteContainer);
         }
         removeActor(oldActor) {
             if (oldActor != null) {
