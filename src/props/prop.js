@@ -20,6 +20,7 @@ define("Prop", ['Point', 'GameObject'], function(Point, GameObject) {
             this.dialogue = propData["dialogue"] ? propData["dialogue"] : null;
 
             this.zPos = parseInt(propData["zPos"]) ? parseInt(propData["zPos"]) : 0;
+            this.layer = parseInt(propData["layer"]) ? parseInt(propData["layer"]) : 0;
             this.parallaxDistX = parseFloat(propData["parallaxDistX"]) ? parseFloat(propData["parallaxDistX"]) : 0;
             this.parallaxDistY = parseFloat(propData["parallaxDistY"]) ? parseFloat(propData["parallaxDistY"]) : 0;
             this.isParallax = (this.parallaxDistX !== 0 || this.parallaxDistY !== 0);

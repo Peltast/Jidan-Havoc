@@ -255,6 +255,7 @@ define("Level", [
                 }
             }
             if (levelData["background"]) {
+                console.log(levelData["background"]);
                 var levelBackground = backgroundLibrary[levelData["background"]];
                 if (levelBackground)
                     this.createBackgroundFromData(levelBackground);
@@ -284,18 +285,45 @@ define("Level", [
             var bgProps = bgData["props"];
             var bgShapes = bgData["shapes"];
 
-            if (bgProps) {
-                for (let j = 0; j < bgProps.length; j++) {
-                    var bgProp = this.createBackgroundProp(bgProps[j], centerXaxis, centerYaxis);
-                    this.addProp(bgProp);
-                }
-            }
             if (bgShapes) {
                 for (let k = 0; k < bgShapes.length; k++) {
                     var bgShape = this.createBackgroundShape(bgShapes[k]);
                     this.backgroundLayer.addChild(bgShape);
                 }
             }
+            
+            var backgroundObjects = [];
+            if (bgProps) {
+                for (let j = 0; j < bgProps.length; j++) {
+                    var bgProp = this.createBackgroundProp(bgProps[j], centerXaxis, centerYaxis);
+                    backgroundObjects = this.insertBackgroundPropSorted(bgProp, backgroundObjects);
+                }
+            }
+
+            for (let i = 0; i < backgroundObjects.length; i++) {
+                console.log("Adding prop " + backgroundObjects[i].spriteName);
+                this.addProp(backgroundObjects[i]);
+            }
+        }
+        insertBackgroundPropSorted(prop, propList) {
+            if (propList.length == 0) {
+                propList.push(prop);
+                return propList;
+            }
+
+            for (let i = 0; i < propList.length; i++) {
+                console.log(prop.layer + ", " + propList[i].layer);
+
+                if (prop.layer <= propList[i].layer) {
+                    propList.splice(i, 0, prop);
+                    break;
+                }
+                else if (i >= propList.length - 1) {
+                    propList.push(prop);
+                    break;
+                }
+            }
+            return propList;
         }
         createBackgroundProp(propData, centerXaxis, centerYaxis) {
             var propSize = objectFactory.parsePointValue(propData["size"]);
@@ -306,10 +334,13 @@ define("Level", [
                 propLocation.Y = propLocation.Y + ((this.mapSize.Y * tileSize / 2) - (propSize.Y / 2));
 
             var bgSpriteData = {
+                "spriteSheetImg": propData["sprite"],
                 "spriteImage": gameAssets[propData["sprite"]]
             };
+            console.log(propData["sprite"]);
+            console.log(propLocation);
             var objData = {
-                "background": "true",
+                "background": "true", "layer": propData["layer"],
                 "parallaxDistX": propData["parallaxDistX"], "parallaxDistY": propData["parallaxDistY"], "zPos": propData["zPos"]
             };
 
@@ -324,7 +355,7 @@ define("Level", [
                 var shapeSize = objectFactory.parsePointValue(shapeData["size"]);
             
             if (shapeData["shape"] === "rectangle") {
-                bgShape.graphics.beginFill(shapeData["color"]).drawRect(-tileSize * 4, 0, shapeSize.X, shapeSize.Y);
+                bgShape.graphics.beginFill(shapeData["color"]).drawRect(-tileSize * 4, 0, shapeSize.X + tileSize * 8, shapeSize.Y);
             }
 
             return bgShape;

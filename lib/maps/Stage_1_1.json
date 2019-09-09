@@ -423,6 +423,12 @@
  "nextlayerid":15,
  "nextobjectid":167,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"background",
+         "type":"string",
+         "value":"Plains"
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.2.4",
  "tileheight":32,

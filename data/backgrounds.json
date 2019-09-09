@@ -1,6 +1,28 @@
 
 
 {
+
+    "Plains": {
+        "centerXaxis": true,
+        
+        "shapes": [
+            {
+                "layer": 0, "size": "max", "shape": "rectangle", "color": "#9ec2e8"
+            }
+        ],
+        "props": [
+            {
+                "layer": 2, "sprite": "BGhills1", "size": "576,192", "location": "100, 130", "zPos":"0",
+                "parallaxDistX": 1, "parallaxDistY": 1
+            },
+            {
+                "layer": 1, "sprite": "BGhills2", "size": "352,96", "location": "100, 100", "zPos":"0",
+                "parallaxDistX": 0.90, "parallaxDistY": 1
+            }
+        ]
+    },
+
+
     "DregsBG": {
         "centerXaxis": true,
         "props": [

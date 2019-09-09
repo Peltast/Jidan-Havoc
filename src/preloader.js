@@ -106,6 +106,7 @@ function init() {
         {src: "actors/DustBunny.png", id: "DustBunny"}, {src: "actors/FlyingBat.png", id: "FlyingBat"}, {src: "actors/FloatingBug.png", id: "FloatingBug"},
 
         {src: "props/Jidan.png", id: "Jidan"}, {src: "props/Transition.png", id: "Transition"},
+        {src: "props/BGhills1.png", id: "BGhills1"}, {src: "props/BGhills2.png", id: "BGhills2"}, {src: "props/BGhills3.png", id: "BGhills3"},
         
         {src: "props/JidanBit.png", id: "JidanBit"}, {src: "props/DamageStars.png", id: "DamageStars"},
         {src: "props/DustParticle.png", id: "DustParticle"}, {src: "props/DustParticle2.png", id: "DustParticle2"}, {src: "props/DirtParticle.png", id: "DirtParticle"},
