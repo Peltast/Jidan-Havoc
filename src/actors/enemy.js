@@ -127,6 +127,13 @@ define("Enemy",
             this.deathScore.textAlign = "center";
             currentLevel.effectLayer.addChild(this.deathCombo, this.deathScore);
         }
+        removeScoreText() {
+            if (this.deathCombo && this.deathScore) {
+                if (currentLevel.effectLayer.contains(this.deathCombo)) {
+                    currentLevel.effectLayer.removeChild(this.deathCombo, this.deathScore);
+                }
+            }
+        }
 
         getKnockbackForce(damageSource) {
             var collision = this.getCollisionVector(damageSource);

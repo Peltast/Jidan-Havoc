@@ -1,5 +1,6 @@
 require.config({
     urlArgs: "bust=" + (new Date()).getTime(),
+    waitSeconds: 200,
     paths: {
 
       "point" : "src/gameObjects/point",

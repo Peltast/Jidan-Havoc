@@ -468,7 +468,7 @@
         {
          "name":"scoreThresholds",
          "type":"string",
-         "value":"1300,1800,2500"
+         "value":"900,1200,1800"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.2.4",

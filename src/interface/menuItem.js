@@ -49,13 +49,27 @@ define("MenuItem", [], function () {
                 if (this.itemData["locked"])
                     return;
                 if (this.itemData["level"]) {
-                    removeEventListener("keydown", currentMenu.onKeyDown);
-                    removeEventListener("keyup", currentMenu.onKeyUp);
-                    startingMap = this.itemData["level"];
-                    gameStatus = GameState.LEVELSELECTED;
+                    this.loadButtonLevel();
                 }
             }
 
+            else if (this.itemType === ButtonTypes.NEXTLEVEL) {
+                this.loadButtonLevel();
+            }
+            else if (this.itemType === ButtonTypes.RETRYLEVEL) {
+                this.loadButtonLevel();
+            }
+            else if (this.itemType === ButtonTypes.LEVELSELECT) {
+                gameStatus = GameState.LEVELEXIT;
+            }
+
+        }
+
+        loadButtonLevel() {
+            removeEventListener("keydown", currentMenu.onKeyDown);
+            removeEventListener("keyup", currentMenu.onKeyUp);
+            startingMap = this.itemData["level"];
+            gameStatus = GameState.LEVELSELECTED;
         }
 
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="65" height="18" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="163">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="65" height="18" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="167">
  <tileset firstgid="1" source="../tiles/World1.tsx"/>
  <layer id="14" name="Tile Layer 1" width="65" height="18">
   <data>
@@ -1213,5 +1213,8 @@
     <property name="destination" value="Stage_1_2"/>
    </properties>
   </object>
+  <object id="164" type="TutorialWalk" gid="5" x="256" y="288" width="32" height="32"/>
+  <object id="165" type="TutorialJump" gid="5" x="512" y="320" width="32" height="32"/>
+  <object id="166" type="TutorialDoubleJump" gid="5" x="768" y="224" width="32" height="32"/>
  </objectgroup>
 </map>

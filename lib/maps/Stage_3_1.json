@@ -665,6 +665,18 @@
                  "width":32,
                  "x":192,
                  "y":320
+                }, 
+                {
+                 "gid":5,
+                 "height":32,
+                 "id":171,
+                 "name":"",
+                 "rotation":0,
+                 "type":"TutorialCombo",
+                 "visible":true,
+                 "width":32,
+                 "x":544,
+                 "y":512
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -673,13 +685,13 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":171,
+ "nextobjectid":172,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"scoreThresholds",
          "type":"string",
-         "value":"1300,1800,2500"
+         "value":"1300,1800,2400"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.2.4",

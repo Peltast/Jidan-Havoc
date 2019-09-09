@@ -46,9 +46,6 @@ define("Level", [
                 this.collectibleRank = parseInt(saveObj.collectibleRank);
                 this.enemyRank = parseInt(saveObj.enemyRank);
                 this.scoreRank = parseInt(saveObj.scoreRank);
-
-                // this.enemyRank = 0;
-                // this.scoreRank = 0;
             }
             else {
                 this.completed = false;
@@ -143,8 +140,10 @@ define("Level", [
             gameScore = 0;
             
             for (let j = this.actors.length; j >= 0; j--) {
-                if (this.actors[j] instanceof Enemy)
+                if (this.actors[j] instanceof Enemy) {
+                    this.actors[j].removeScoreText();
                     this.removeActor(this.actors[j]);
+                }
             }
             for (let k = this.props.length; k >= 0; k--) {
                 if (this.props[k] instanceof Collectible)

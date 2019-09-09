@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="28" height="28" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="196">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="28" height="28" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="198">
  <properties>
-  <property name="scoreThresholds" value="1300,1800,2500"/>
+  <property name="scoreThresholds" value="12000,16000,19000"/>
  </properties>
  <tileset firstgid="1" source="../tiles/World1.tsx"/>
  <tileset firstgid="136" name="ObjectTileSet" tilewidth="32" tileheight="32" tilecount="18" columns="6">
@@ -609,10 +609,10 @@
    <tile gid="47"/>
    <tile gid="64"/>
    <tile gid="3"/>
+   <tile gid="32"/>
+   <tile gid="34"/>
    <tile gid="3"/>
    <tile gid="32"/>
-   <tile gid="33"/>
-   <tile gid="33"/>
    <tile gid="34"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -637,10 +637,10 @@
    <tile gid="81"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="3"/>
    <tile gid="47"/>
-   <tile gid="48"/>
-   <tile gid="48"/>
+   <tile gid="77"/>
+   <tile gid="78"/>
+   <tile gid="79"/>
    <tile gid="49"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -665,8 +665,8 @@
    <tile gid="81"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="3"/>
    <tile gid="62"/>
+   <tile gid="63"/>
    <tile gid="48"/>
    <tile gid="48"/>
    <tile gid="64"/>
@@ -818,7 +818,7 @@
   <object id="100" type="Jidan" gid="91" x="320" y="352" width="32" height="32"/>
   <object id="132" type="Transition" gid="2" x="768" y="544" width="32" height="32">
    <properties>
-    <property name="destination" value="Stage_4_1"/>
+    <property name="destination" value="Stage_1_1"/>
    </properties>
   </object>
   <object id="133" type="NPCWall" gid="4" x="256" y="608" width="32" height="32"/>
@@ -909,8 +909,8 @@
    </properties>
   </object>
   <object id="169" type="Jidan" gid="91" x="608" y="352" width="32" height="32"/>
-  <object id="170" type="Jidan" gid="91" x="512" y="416" width="32" height="32"/>
-  <object id="171" type="Jidan" gid="91" x="416" y="416" width="32" height="32"/>
+  <object id="170" type="Jidan" gid="91" x="511" y="432" width="32" height="32"/>
+  <object id="171" type="Jidan" gid="91" x="416" y="433" width="32" height="32"/>
   <object id="172" type="EnemySpawn" gid="76" x="480" y="576" width="32" height="32">
    <properties>
     <property name="enemyType" value="flyingBat"/>
@@ -935,14 +935,14 @@
     <property name="startDirection" value="right"/>
    </properties>
   </object>
-  <object id="176" type="Jidan" gid="91" x="352" y="480" width="32" height="32"/>
-  <object id="177" type="Jidan" gid="91" x="608" y="480" width="32" height="32"/>
-  <object id="178" type="Jidan" gid="91" x="466" y="575" width="32" height="32"/>
+  <object id="176" type="Jidan" gid="91" x="352" y="460" width="32" height="32"/>
+  <object id="177" type="Jidan" gid="91" x="607" y="468" width="32" height="32"/>
+  <object id="178" type="Jidan" gid="91" x="463" y="563" width="32" height="32"/>
   <object id="179" type="Jidan" gid="91" x="448" y="320" width="32" height="32"/>
-  <object id="180" type="Jidan" gid="91" x="480" y="512" width="32" height="32"/>
-  <object id="181" type="Jidan" gid="91" x="416" y="640" width="32" height="32"/>
+  <object id="180" type="Jidan" gid="91" x="465" y="505" width="32" height="32"/>
+  <object id="181" type="Jidan" gid="91" x="397" y="637" width="32" height="32"/>
   <object id="183" type="NPCWall" gid="4" x="352" y="608" width="32" height="32"/>
-  <object id="184" type="NPCWall" gid="4" x="384" y="672" width="32" height="32"/>
+  <object id="184" type="NPCWall" gid="4" x="352" y="672" width="32" height="32"/>
   <object id="185" type="NPCWall" gid="4" x="544" y="672" width="32" height="32"/>
   <object id="186" type="NPCWall" gid="4" x="576" y="608" width="32" height="32"/>
   <object id="187" type="NPCWall" gid="4" x="672" y="608" width="32" height="32"/>
@@ -954,5 +954,7 @@
   <object id="193" type="Jidan" gid="91" x="320" y="256" width="32" height="32"/>
   <object id="194" type="Jidan" gid="91" x="210" y="281" width="32" height="32"/>
   <object id="195" type="Jidan" gid="91" x="480" y="320" width="32" height="32"/>
+  <object id="196" type="NPCWall" gid="4" x="448" y="672" width="32" height="32"/>
+  <object id="197" type="Jidan" gid="91" x="496" y="638" width="32" height="32"/>
  </objectgroup>
 </map>

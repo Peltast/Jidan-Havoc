@@ -133,6 +133,47 @@ define("ObjectFactory", [
             "sprite": "Transition", "animations": { idle: [0, 2, "idle", .15 ] }, "defaultAnimation": "idle",
             "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0, "count": 3},
             "spriteCollision": new Point(32, 32), "spriteSize": new Point(32, 32), "spritePos": new Point(0, 0)
+        },
+        
+        "TutorialWalk": {
+            "type": "default", "passable": true, "orientation": "center",
+            "sprite": "TutorialWalk", "animations": { "idle": 0 }, "defaultAnimation": "idle",
+            "frames": {"width": 225, "height": 55, "regX": 0, "regY": 0}, "spriteSize": new Point(225, 55)
+        },
+        "TutorialJump": {
+            "type": "default", "passable": true, "orientation": "center",
+            "sprite": "TutorialJump", "animations": { "idle": 0 }, "defaultAnimation": "idle",
+            "frames": {"width": 196, "height": 56, "regX": 0, "regY": 0}, "spriteSize": new Point(196, 56)
+        },
+        "TutorialDoubleJump": {
+            "type": "default", "passable": true, "orientation": "center",
+            "sprite": "TutorialDoubleJump", "animations": { "idle": 0 }, "defaultAnimation": "idle",
+            "frames": {"width": 218, "height": 54, "regX": 0, "regY": 0}, "spriteSize": new Point(218, 54)
+        },
+        "TutorialReset": {
+            "type": "default", "passable": true, "orientation": "center",
+            "sprite": "TutorialReset", "animations": { "idle": 0 }, "defaultAnimation": "idle",
+            "frames": {"width": 272, "height": 41, "regX": 0, "regY": 0}, "spriteSize": new Point(272, 41)
+        },
+        "TutorialAttack": {
+            "type": "default", "passable": true, "orientation": "center",
+            "sprite": "TutorialAttack", "animations": { "idle": 0 }, "defaultAnimation": "idle",
+            "frames": {"width": 183, "height": 59, "regX": 0, "regY": 0}, "spriteSize": new Point(183, 59)
+        },
+        "TutorialLongAttack": {
+            "type": "default", "passable": true, "orientation": "center",
+            "sprite": "TutorialLongAttack", "animations": { "idle": 0 }, "defaultAnimation": "idle",
+            "frames": {"width": 241, "height": 63, "regX": 0, "regY": 0}, "spriteSize": new Point(241, 63)
+        },
+        "TutorialJumpAttack": {
+            "type": "default", "passable": true, "orientation": "center",
+            "sprite": "TutorialJumpAttack", "animations": { "idle": 0 }, "defaultAnimation": "idle",
+            "frames": {"width": 139, "height": 62, "regX": 0, "regY": 0}, "spriteSize": new Point(139, 62)
+        },
+        "TutorialCombo": {
+            "type": "default", "passable": true, "orientation": "center",
+            "sprite": "TutorialCombo", "animations": { "idle": 0 }, "defaultAnimation": "idle",
+            "frames": {"width": 332, "height": 103, "regX": 0, "regY": 0}, "spriteSize": new Point(332, 103)
         }
 
     }
@@ -210,7 +251,7 @@ define("ObjectFactory", [
             var propData = this.getObjectData(objectMapData, objectListData, [
                 "type", "visible", "fakeType", "fakeAnimation", "passable", "sound", "fatal", "zPos", 
                 "parallaxDistX", "parallaxDistY", "foreground", "background", "particleEffects",
-                "npcWall"
+                "npcWall", "orientation"
             ]);
 
             propData["dialogue"] = dialogueName ? dialogueLibrary[dialogueName] : null;

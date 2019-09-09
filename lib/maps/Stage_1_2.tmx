@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="33" height="35" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="153">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="33" height="35" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="155">
  <tileset firstgid="1" source="../tiles/World1.tsx"/>
  <tileset firstgid="136" name="ObjectTileSet" tilewidth="32" tileheight="32" tilecount="18" columns="6">
   <image source="../../../your-guide-to-the-afterlife/lib/images/ObjectTileSet.png" width="192" height="96"/>
@@ -1195,5 +1195,6 @@
   <object id="150" type="Jidan" gid="91" x="320" y="160" width="32" height="32"/>
   <object id="151" type="Jidan" gid="91" x="192" y="128" width="32" height="32"/>
   <object id="152" type="Jidan" gid="91" x="224" y="256" width="32" height="32"/>
+  <object id="154" type="TutorialReset" gid="5" x="404" y="1046" width="32" height="32"/>
  </objectgroup>
 </map>

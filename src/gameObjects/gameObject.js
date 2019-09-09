@@ -62,8 +62,8 @@ define("GameObject", ['Point'], function(Point) {
             }
 
             this.spriteContainer.addChild(this.sprite);
-            this.sprite.x = -this.spritePosition.X;
-            this.sprite.y = -this.spritePosition.Y;
+            this.sprite.x = Math.round(-this.spritePosition.X);
+            this.sprite.y = Math.round(-this.spritePosition.Y);
             this.spriteContainer.x = this.location.X;
             this.spriteContainer.y = this.location.Y;
             this.spriteContainer.setBounds(this.spritePosition.X, this.spritePosition.Y, this.spriteSize.X, this.spriteSize.Y + this.zPos);

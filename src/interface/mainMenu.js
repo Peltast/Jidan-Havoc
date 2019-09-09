@@ -13,7 +13,6 @@ define("MainMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid) {
         }
 
         initiateScene() {
-            
             this.sceneContainer = new createjs.Container();
             
             var backdropImg = new createjs.SpriteSheet({
@@ -26,11 +25,6 @@ define("MainMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid) {
                 "frames": {"width": 474, "height": 60, "regX": 0, "regY": 0, "count": 1},
                 animations: { idle: 0 }
             });
-            var sandboxImg = new createjs.SpriteSheet({
-                "images": [gameAssets["MenuSandbox"]],
-                "frames": {"width": 156, "height": 105, "regX": 0, "regY": 0, "count": 1},
-                animations: { idle: 0 }
-            });
             
             this.menuBackground = new createjs.Shape();
             this.menuBackground.graphics.beginFill("#000000").drawRect(0, 0, stageWidth * 2, stageHeight * 2);
@@ -38,12 +32,9 @@ define("MainMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid) {
             this.menuTitle = new createjs.Sprite(titleImg);
             this.menuTitle.x = stageWidth / 2 - 474 / 2;
             this.menuTitle.y = 40;
-            this.menuSandbox = new createjs.Sprite(sandboxImg);
-            this.menuSandbox.x = stageWidth / 2 - 156 / 2;
-            this.menuSandbox.y = 120;
             this.menuSplash = new createjs.Sprite(backdropImg);
 
-            this.sceneContainer.addChild(this.menuBackground, this.menuSplash, this.menuTitle, this.menuSandbox);
+            this.sceneContainer.addChild(this.menuBackground, this.menuSplash, this.menuTitle);
         }
         initiateInstructions() {
             
@@ -72,28 +63,11 @@ define("MainMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid) {
         }
 
         initiateMenu() {
-            this.sandboxButton = new MenuItem("MenuPlay", 112, 52, ButtonTypes.SANDBOX);
             this.playButton = new MenuItem("MenuPlay", 112, 52, ButtonTypes.NEWGAME);
             this.instructionsButton = new MenuItem("MenuInstructions", 324, 40, ButtonTypes.INSTRUCTIONS);
 
-            this.menuGrid = new MenuGrid([ [this.playButton, this.sandboxButton, this.instructionsButton] ], false, 20, 20, stageWidth / 2, 240);
+            this.menuGrid = new MenuGrid([ [this.playButton, this.instructionsButton] ], false, 20, 20, stageWidth / 2, 240);
             this.menuContainer = this.menuGrid.gridContainer;
-        }
-        
-        onKeyDown(event) {
-            if (mainMenu.instructionsShown) {
-                if (event.keyCode == 13 || event.keyCode == 32 || event.keyCode == 74 || event.keyCode == 88 || event.keyCode == 69)
-                    mainMenu.toggleInstructions();
-                return;
-            }
-            
-            var keyCode = event.keyCode;
-            switch (keyCode) {
-
-            }
-        }
-        onKeyUp(event) {
-            this.menuGrid.handleEvent(event);
         }
 
     }

@@ -1,8 +1,14 @@
-define("Prop", ['GameObject'], function(GameObject) {
+define("Prop", ['Point', 'GameObject'], function(Point, GameObject) {
 
     class Prop extends GameObject {
 
         constructor(location, size, passable, spriteData, propData) {
+
+            var orientation = propData["orientation"] ? propData["orientation"] : "";
+            if (orientation == "center") {
+                spriteData["spritePosition"] = new Point(spriteData["spriteSize"].X / 2, spriteData["spriteSize"].Y / 2);
+            }
+
             super(location, size, passable, spriteData, propData);
             
             this.type = propData["type"];

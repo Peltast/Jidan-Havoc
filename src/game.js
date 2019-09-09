@@ -50,7 +50,7 @@ require(
             if (level.scoreRank > 0)
                 rankCount += level.scoreRank;
         }
-
+        
         levelsCompleted = completionCount;
         ranksAchieved = rankCount;
     }
@@ -93,7 +93,7 @@ require(
         }
 
         else if (gameStatus === GameState.LEVELSELECTED) {
-            launchLevelFromSelectMenu();
+            launchLevel();
         }
         
         else if (gameStatus === GameState.RUNNING) {
@@ -103,6 +103,10 @@ require(
         else if (gameStatus === GameState.LEVELEND) {
             if (levelEndDisplay)
                 levelEndDisplay.updateMenu();
+        }
+
+        else if (gameStatus === GameState.LEVELEXIT) {
+            launchLevelSelect();
         }
 
         stage.update();
@@ -149,8 +153,9 @@ require(
         return new Level(tileLayer.data, objectLayer.objects, mapSize, mapTileSet, mapName, mapProperties);
     }
 
-    function launchLevelSelect() {
+    function clearGameState() {
         if (currentLevel) {
+            currentLevel.resetLevel();
             removeCurrentLevel();
 
             removeEventListener("keydown", onKeyDown);
@@ -159,21 +164,31 @@ require(
             stage.removeChild(gameArea);
             stage.removeChild(gameUI);
         }
+        if (levelSelectMenu) {
+            if (stage.contains(levelSelectMenu.menuContainer))
+                stage.removeChild(levelSelectMenu.menuContainer);
+        }
+
         removeLevelEnd();
         removePreloader(preloader);
+
         stage.removeChild(mainMenu.sceneContainer);
         stage.removeChild(mainMenu.menuContainer);
+
         transition = null;
+    }
+    
+    function launchLevelSelect() {
+        clearGameState();
         
         getProgressData();
         levelSelectMenu = new LevelSelectMenu();
         stage.addChild(levelSelectMenu.menuContainer);
     }
 
-    function launchLevelFromSelectMenu() {
+    function launchLevel() {
+        clearGameState();
         
-        stage.removeChild(levelSelectMenu.menuContainer);
-
         gameBG = new createjs.Shape();
         gameBG.graphics.beginFill("#000000").drawRect(0, 0, stageWidth, stageHeight);
         gameArea = new createjs.Container();
@@ -203,11 +218,16 @@ require(
     }
 
     function displayLevelEnd() {
+        var isFirstTimeCompletion = !currentLevel.completed;
+        currentLevel.completed = true;
+        if (!gameSaveState[currentLevel.name])
+            gameSaveState[currentLevel.name] = currentLevel.getLevelProgress();
+        
+        getProgressData();
 
-        levelEndDisplay = new LevelEndMenu();
+        levelEndDisplay = new LevelEndMenu(isFirstTimeCompletion);
         gameUI.addChild(levelEndDisplay.menuContainer);
 
-        currentLevel.completed = true;
         gameSaveState[currentLevel.name] = currentLevel.getLevelProgress();
 
         saveGame();
@@ -417,12 +437,9 @@ require(
             if (!levelEndDisplay)
                 return;
             if (keyCode == 32 && spacebarPressed) {
-                if (levelEndDisplay.isFinished()) {
-                    beginNextStage();
-                    spacebarPressed = false;
-                }
-                else {
+                if (!levelEndDisplay.isFinished()) {
                     levelEndDisplay.skipScoring();
+                    spacebarPressed = false;
                 }
             }
         }

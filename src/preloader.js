@@ -1,7 +1,13 @@
 
-
-const GameState = { "PRELOADING": 1, "PRELOADED": 2, "LOADING": 3, "RUNNING": 4, "LEVELSELECTED": 5, "LEVELPAUSED": 6, "LEVELEND": 7 };
-const ButtonTypes = {"NULL" : 1, "NEWGAME": 2, "INSTRUCTIONS": 3, "SANDBOX": 10, "LOADLEVEL": 4 };
+const GameState = { 
+    "PRELOADING": 1, "PRELOADED": 2, "LOADING": 3, "RUNNING": 4,
+    "LEVELSELECTED": 5, "LEVELPAUSED": 6, "LEVELEND": 7, "LEVELEXIT": 8
+};
+const ButtonTypes = {
+    "NULL" : 1, "NEWGAME": 2, "INSTRUCTIONS": 3, "LOADLEVEL": 4,
+    "NEXTLEVEL": 5, "RETRYLEVEL": 6, "LEVELSELECT": 7,
+    "SANDBOX": 100
+ };
 
 // Display variables
 var stage;
@@ -107,6 +113,8 @@ function init() {
 
         {src: "ui/MenuSplash.png", id: "MenuSplash"}, {src: "ui/MenuTitle.png", id: "MenuTitle"}, {src: "ui/MenuSandbox.png", id: "MenuSandbox"},
         {src: "ui/MenuPlay.png", id: "MenuPlay"}, {src: "ui/MenuInstructions.png", id: "MenuInstructions"},
+        {src: "ui/MenuNextLevel.png", id: "MenuNextLevel"}, {src: "ui/MenuNextLevelLocked.png", id: "MenuNextLevelLocked"},
+        {src: "ui/MenuRetryLevel.png", id: "MenuRetryLevel"}, {src: "ui/MenuLevelSelect.png", id: "MenuLevelSelect"},
         {src: "ui/PlayerInstructions.png", id: "PlayerInstructions"},
 
         {src: "ui/LevelSelectTile.png", id: "LevelSelectTile"}, {src: "ui/LevelSelectTileComplete.png", id: "LevelSelectTileComplete"}, {src: "ui/LevelSelectCollectible.png", id: "LevelSelectCollectible"},
@@ -114,6 +122,10 @@ function init() {
         {src: "ui/LevelEndIcon.png", id: "LevelEndIcon"},
 
         {src: "ui/CollectibleIcon.png", id: "CollectibleIcon"},
+
+        {src: "props/TutorialWalk.png", id: "TutorialWalk"}, {src: "props/TutorialJump.png", id: "TutorialJump"}, {src: "props/TutorialDoubleJump.png", id: "TutorialDoubleJump"},
+        {src: "props/TutorialReset.png", id: "TutorialReset"}, {src: "props/TutorialAttack.png", id: "TutorialAttack"}, {src: "props/TutorialLongAttack.png", id: "TutorialLongAttack"},
+        {src: "props/TutorialJumpAttack.png", id: "TutorialJumpAttack"}, {src: "props/TutorialCombo.png", id: "TutorialCombo"},
         
         {src: "ui/Cursor.png", id: "Cursor"},
         {src: "ui/HealthSlot.png", id: "HealthSlot"}, {src: "ui/HealthPoint.png", id: "HealthPoint"},
@@ -143,7 +155,7 @@ function init() {
     ];
 
     dialogueList = [];
-    totalMapsInGame = mapList.length + 3 + 5;
+    totalMapsInGame = mapList.length + 3 + 5 + 11;
     totalFilesInGame = dialogueList.length + tileList.length + 4; // actionData.json, dialogue.json, particleEffects.json, backgrounds.json
     startingMap = "Stage_3_1";
 

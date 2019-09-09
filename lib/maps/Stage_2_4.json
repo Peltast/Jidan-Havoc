@@ -501,6 +501,18 @@
                  "width":32,
                  "x":480,
                  "y":1280
+                }, 
+                {
+                 "gid":5,
+                 "height":32,
+                 "id":162,
+                 "name":"",
+                 "rotation":0,
+                 "type":"TutorialJumpAttack",
+                 "visible":true,
+                 "width":32,
+                 "x":224,
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -509,7 +521,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":162,
+ "nextobjectid":163,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",

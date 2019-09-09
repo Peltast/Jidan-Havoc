@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="24" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="162">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="24" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="163">
  <tileset firstgid="1" source="../tiles/World1.tsx"/>
  <tileset firstgid="136" name="ObjectTileSet" tilewidth="32" tileheight="32" tilecount="18" columns="6">
   <image source="../../../your-guide-to-the-afterlife/lib/images/ObjectTileSet.png" width="192" height="96"/>
@@ -1169,5 +1169,6 @@
   <object id="159" type="Jidan" gid="91" x="416" y="1184" width="32" height="32"/>
   <object id="160" type="Jidan" gid="91" x="416" y="1248" width="32" height="32"/>
   <object id="161" type="Jidan" gid="91" x="480" y="1280" width="32" height="32"/>
+  <object id="162" type="TutorialJumpAttack" gid="5" x="224" y="128" width="32" height="32"/>
  </objectgroup>
 </map>

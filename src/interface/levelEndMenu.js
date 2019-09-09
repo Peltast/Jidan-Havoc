@@ -1,11 +1,12 @@
-define("LevelEndMenu", ['Point'], function(Point) {
+define("LevelEndMenu", ['Point', 'MenuItem', 'MenuGrid'], function(Point, MenuItem, MenuGrid) {
 
     const RankingStage = {"START" : 1, "COLLECTIBLE": 2, "ENEMY": 3, "SCORE": 10, "FINISHED": 4 };
 
     class LevelEndMenu {
 
-        constructor() {
-            
+        constructor(isFirstTimeCompletion) {
+            this.isFirstTimeCompletion = isFirstTimeCompletion;
+
             this.drawScoreMenu();
 
             this.stageOrder = [RankingStage.START, RankingStage.COLLECTIBLE, RankingStage.ENEMY, RankingStage.SCORE];
@@ -77,13 +78,6 @@ define("LevelEndMenu", ['Point'], function(Point) {
                     this.progressMenuStage();
             }
 
-            else if (this.menuStage === RankingStage.FINISHED) {
-                if (this.timer >= 10) {
-                    this.timer = 0;
-                    this.continueText.alpha = (this.continueText.alpha == 1) ? 0.5 : 1;
-                }
-            }
-
         }
         progressMenuStage() {
             if (this.timer < 30)
@@ -109,9 +103,18 @@ define("LevelEndMenu", ['Point'], function(Point) {
             this.timer = 0;
             this.menuStage = RankingStage.FINISHED;
 
-            this.continueText = new createjs.Text( "press Space to continue", "32px Equipment", "#f5f4eb");
-            this.setTextFieldPos(stageWidth / 2 - this.continueText.getMeasuredWidth() / 2, stageHeight * 0.85, this.continueText);
-            this.menuContainer.addChild(this.continueText);
+            var levelSelect = new MenuItem("MenuLevelSelect", 160, 50, ButtonTypes.LEVELSELECT);
+            if (this.isNextLevelUnlocked())
+                var nextLevel = new MenuItem("MenuNextLevel", 138, 40, ButtonTypes.NEXTLEVEL, { "level": transition.map });
+            else
+                var nextLevel = new MenuItem("MenuNextLevelLocked", 138, 40, ButtonTypes.NULL);
+            var retryLevel = new MenuItem("MenuRetryLevel", 150, 40, ButtonTypes.RETRYLEVEL, { "level": currentLevel.name });
+
+            this.levelEndMenu = new MenuGrid([ [levelSelect, nextLevel, retryLevel] ], true, 40, 20, stageWidth * 0.2, stageHeight * 0.88);
+            this.levelEndMenu.setCursorAlignment("top");
+            this.levelEndMenu.changeSelection(1, 0);
+
+            this.menuContainer.addChild(this.levelEndMenu.gridContainer);
         }
         updateCollectibleRanking() {
             if (this.timer % 3 == 0) {
@@ -216,7 +219,7 @@ define("LevelEndMenu", ['Point'], function(Point) {
                     complete: [0, 7, "finished", 0.25], finished: 7
                 }
             }));
-            this.levelIcon.gotoAndPlay(currentLevel.completed ? "finished" : "complete");
+            this.levelIcon.gotoAndPlay(this.isFirstTimeCompletion ? "complete" : "finished");
             this.levelIconContainer.addChild(this.levelIcon);
             if (!currentLevel.completed)
                 this.playSound("Combo3", 0.2);
@@ -232,7 +235,7 @@ define("LevelEndMenu", ['Point'], function(Point) {
             }
 
             this.levelIconContainer.x = stageWidth / 2 - 78 / 2;
-            this.levelIconContainer.y = stageHeight * 0.25;
+            this.levelIconContainer.y = stageHeight * 0.22;
             this.menuContainer.addChild(this.levelIconContainer);
         }
         addSingleRank(level) {
@@ -272,7 +275,7 @@ define("LevelEndMenu", ['Point'], function(Point) {
 
         createPlayerStatistics() {
             var statsXpos = stageWidth * 0.3;
-            var statsYpos = stageHeight * 0.5;
+            var statsYpos = stageHeight * 0.45;
 
             this.drawCollectibleStat(statsXpos, statsYpos);
 
@@ -338,6 +341,36 @@ define("LevelEndMenu", ['Point'], function(Point) {
                 src: [soundRoot + soundAssets[soundName]], loop: false, volume: vol
             });
             soundInstance.play();
+        }
+
+        isNextLevelUnlocked() {
+            var parsedMapName = currentLevel.name.split('_');
+            if (parsedMapName.length < 3)
+                return true;
+            
+            var mapSeries = parseInt(parsedMapName[1]);
+            var mapNum = parseInt(parsedMapName[2]);
+
+            for (let i = 0; i < levelSeriesMatrix.length; i++) {
+                if (mapSeries == levelSeriesMatrix[i][0]) {
+                    var seriesLength = levelSeriesMatrix[i][1];
+                    
+                    if (mapNum < seriesLength)
+                        return true;
+                    else
+                        return this.isSeriesUnlocked(mapSeries + 1);
+                }
+            }
+            return true;
+        }
+        isSeriesUnlocked(seriesNumber) {
+            
+            if (seriesNumber == 2)
+                return levelsCompleted >= 3;
+            else if (seriesNumber == 3)
+                return ranksAchieved >= 10;
+            else
+                return true;
         }
 
     }
