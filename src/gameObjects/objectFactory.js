@@ -138,7 +138,7 @@ define("ObjectFactory", [
         "TutorialWalk": {
             "type": "default", "passable": true, "orientation": "center",
             "sprite": "TutorialWalk", "animations": { "idle": 0 }, "defaultAnimation": "idle",
-            "frames": {"width": 225, "height": 55, "regX": 0, "regY": 0}, "spriteSize": new Point(225, 55)
+            "frames": {"width": 228, "height": 56, "regX": 0, "regY": 0}, "spriteSize": new Point(225, 55)
         },
         "TutorialJump": {
             "type": "default", "passable": true, "orientation": "center",

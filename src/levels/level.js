@@ -1,8 +1,8 @@
 define("Level", [
 
-        'Point', 'Actor', 'Enemy', 'Prop', 'Collectible', 'Transition', 'ParticleSystem'], 
+        'Point', 'Actor', 'Enemy', 'Prop', 'ParallaxProp', 'Collectible', 'Transition', 'ParticleSystem'], 
     function (
-        Point, Actor, Enemy, Prop, Collectible, Transition, ParticleSystem
+        Point, Actor, Enemy, Prop, ParallaxProp, Collectible, Transition, ParticleSystem
     ) {
     
     tileAnimations =  { };
@@ -22,6 +22,9 @@ define("Level", [
             this.initTilesets();
             
             this.levelSpawn;
+
+            levelData["background"] = "Plains";
+
             this.levelObj = { "tiles": tileMap, "objects": objectList, "data": levelData};
             this.createLevel();
 
@@ -255,7 +258,6 @@ define("Level", [
                 }
             }
             if (levelData["background"]) {
-                console.log(levelData["background"]);
                 var levelBackground = backgroundLibrary[levelData["background"]];
                 if (levelBackground)
                     this.createBackgroundFromData(levelBackground);
@@ -279,7 +281,6 @@ define("Level", [
             this.addParticleEffect(effect);
         }
         createBackgroundFromData(bgData) {
-
             var centerXaxis = bgData["centerXaxis"];
             var centerYaxis = bgData["centerYaxis"];
             var bgProps = bgData["props"];
@@ -296,31 +297,27 @@ define("Level", [
             if (bgProps) {
                 for (let j = 0; j < bgProps.length; j++) {
                     var bgProp = this.createBackgroundProp(bgProps[j], centerXaxis, centerYaxis);
-                    backgroundObjects = this.insertBackgroundPropSorted(bgProp, backgroundObjects);
+                    if (bgProp)
+                        backgroundObjects = this.insertSortBackgroundProp(bgProp, backgroundObjects);
                 }
             }
-
             for (let i = 0; i < backgroundObjects.length; i++) {
-                console.log("Adding prop " + backgroundObjects[i].spriteName);
                 this.addProp(backgroundObjects[i]);
             }
         }
-        insertBackgroundPropSorted(prop, propList) {
-            if (propList.length == 0) {
+        insertSortBackgroundProp(prop, propList) {
+            if (propList.length == 0)
                 propList.push(prop);
-                return propList;
-            }
-
-            for (let i = 0; i < propList.length; i++) {
-                console.log(prop.layer + ", " + propList[i].layer);
-
-                if (prop.layer <= propList[i].layer) {
-                    propList.splice(i, 0, prop);
-                    break;
-                }
-                else if (i >= propList.length - 1) {
-                    propList.push(prop);
-                    break;
+            else {
+                for (let i = 0; i < propList.length; i++) {
+                    if (prop.layer <= propList[i].layer) {
+                        propList.splice(i, 0, prop);
+                        break;
+                    }
+                    else if (i >= propList.length - 1) {
+                        propList.push(prop);
+                        break;
+                    }
                 }
             }
             return propList;
@@ -337,14 +334,43 @@ define("Level", [
                 "spriteSheetImg": propData["sprite"],
                 "spriteImage": gameAssets[propData["sprite"]]
             };
-            console.log(propData["sprite"]);
-            console.log(propLocation);
-            var objData = {
-                "background": "true", "layer": propData["layer"],
-                "parallaxDistX": propData["parallaxDistX"], "parallaxDistY": propData["parallaxDistY"], "zPos": propData["zPos"]
-            };
+            propData["background"] = "true";
 
-            return new Prop(propLocation, propSize, true, bgSpriteData, objData);
+            if (propData["orientationX"])
+                propLocation.X += this.getPropOrientationOrigin(propData["orientationX"], true, propSize);
+            if (propData["orientationY"])
+                propLocation.Y += this.getPropOrientationOrigin(propData["orientationY"], false, propSize);
+            
+            if (propData["minimumMapHeight"]) {
+                var propHeightRequirement = parseInt(propData["minimumMapHeight"]) * tileSize;
+                if (this.totalMapSize.Y < propHeightRequirement)
+                    return null;
+            }
+            else if (propData["maxMapHeight"]) {
+                var propHeightRequirement = parseInt(propData["maxMapHeight"]) * tileSize;
+                if (this.totalMapSize.Y > propHeightRequirement)
+                    return null;
+            }
+
+            if (propData["dynamicParallax"] === true)
+                return new ParallaxProp(propLocation, propSize, true, bgSpriteData, propData, this.totalMapSize);
+            else
+                return new Prop(propLocation, propSize, true, bgSpriteData, propData);
+        }
+        getPropOrientationOrigin(orientation, xAxis, propSize) {
+            if (orientation == "left")
+                return 0;
+            else if (orientation == "right")
+                return this.totalMapSize.X - propSize.X;
+            else if (orientation == "top")
+                return 0;
+            else if (orientation == "bottom")
+                return this.totalMapSize.Y - propSize.Y;
+
+            else if (orientation == "center" && xAxis)
+                return this.totalMapSize.X / 2 - propSize.X / 2;
+            else if (orientation == "center" && !xAxis)
+                return this.totalMapSize.Y / 2 - propSize.Y / 2;
         }
         createBackgroundShape(shapeData) {
             var bgShape =  new createjs.Shape();
@@ -468,7 +494,7 @@ define("Level", [
                     this.removeParticleEffect(this.particleEffects[i], i);
             }
 
-            this.backgroundLayer.sortChildren(this.ZsortFunction);
+            // this.backgroundLayer.sortChildren(this.ZsortFunction);
             this.spriteLayer.sortChildren(this.ZsortFunction);
         }
         checkActorScreenBounds(actor) {
