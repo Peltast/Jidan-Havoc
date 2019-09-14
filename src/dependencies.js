@@ -11,7 +11,8 @@ require.config({
       "tile": "src/levels/tile",
       "actor": "src/actors/actor",
       "prop": "src/props/prop", 
-      "parallaxProp": "src/props/parallaxProp", "collectible": "src/props/collectible", "transition": "src/levels/transition",
+      "parallaxProp": "src/props/parallaxProp", "reactiveProp": "src/props/reactiveProp",
+      "collectible": "src/props/collectible", "transition": "src/levels/transition",
 
       "menuItem": "src/interface/menuItem", "menuGrid": "src/interface/menuGrid",
       "mainMenu": "src/interface/mainMenu", "levelSelectMenu": "src/interface/levelSelectMenu", "levelEndMenu": "src/interface/levelEndMenu",
@@ -39,9 +40,9 @@ requirejs(['point', 'menuItem', 'menuGrid'], function() {
         'levelParser', 'particle', 'healthBar', 'statsDisplay', 'enemyBehavior'
     ], function() {
 
-        requirejs(['tile', 'actor', 'prop', 'transition', 'particleSystem', 'dialogueBox', 'pacingBehavior',], function() {
+        requirejs(['tile', 'actor', 'prop', 'transition', 'particleSystem', 'dialogueBox', 'pacingBehavior'], function() {
 
-            requirejs(['enemy', 'attack', 'collectible', 'parallaxProp'], function() {
+            requirejs(['enemy', 'attack', 'collectible', 'parallaxProp', 'reactiveProp'], function() {
 
                 requirejs(['objectFactory', 'chargeAttack'], function() {
 

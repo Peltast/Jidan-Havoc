@@ -106,6 +106,7 @@ function init() {
         {src: "actors/DustBunny.png", id: "DustBunny"}, {src: "actors/FlyingBat.png", id: "FlyingBat"}, {src: "actors/FloatingBug.png", id: "FloatingBug"},
 
         {src: "props/Jidan.png", id: "Jidan"}, {src: "props/Transition.png", id: "Transition"},
+        {src: "props/Flower.png", id: "Flower"},
         {src: "props/BGhills1.png", id: "BGhills1"}, {src: "props/BGhills2.png", id: "BGhills2"}, {src: "props/BGhills3.png", id: "BGhills3"},
         {src: "props/BGclouds1.png", id: "BGclouds1"}, {src: "props/BGclouds2.png", id: "BGclouds2"}, {src: "props/BGclouds3.png", id: "BGclouds3"},
         {src: "props/BGcloudsMid1.png", id: "BGcloudsMid1"}, {src: "props/BGcloudsMid2.png", id: "BGcloudsMid2"},
@@ -154,11 +155,12 @@ function init() {
     levelSeriesMatrix = [
         [1, 3],
         [2, 5],
-        [3, 11]
+        [3, 11],
+        [4, 3]
     ];
 
     dialogueList = [];
-    totalMapsInGame = mapList.length + 3 + 5 + 11;
+    totalMapsInGame = mapList.length + 3 + 5 + 11 + 3;
     totalFilesInGame = dialogueList.length + tileList.length + 4; // actionData.json, dialogue.json, particleEffects.json, backgrounds.json
     startingMap = "Stage_3_1";
 

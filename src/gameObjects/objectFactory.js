@@ -1,12 +1,12 @@
 define("ObjectFactory", [
 
         'Point', 'Tile', 'Prop', 'Enemy', 'Transition', 'ParticleSystem',
-        'Collectible'
+        'Collectible', 'ReactiveProp'
     ], 
 
     function(
         Point, Tile, Prop, Enemy, Transition, ParticleSystem,
-        Collectible
+        Collectible, ReactiveProp
     ) {
 
     var npcList = {
@@ -97,23 +97,7 @@ define("ObjectFactory", [
     }
 
     var objectList = 
-    {   
-        "Flower": {
-            "type": "default", "passable": true,
-            "sprite": "Flower", "animations": { "idle": 0 }, "defaultAnimation": "idle",
-            "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0}
-        },
-        "Wall": {
-            "type": "default", "passable": false,
-            "sprite": "Flower", "animations": { "idle": 0 }, "defaultAnimation": "idle",
-            "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0}
-        },
-        "Teeth": {
-            "type": "default", "passable": false,
-            "sprite": "ParasiteTeeth", "animations": { idle: [0, 6, "idle", .15] }, "defaultAnimation": "idle",
-            "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0, "count": 7}, "randomStart": "true",
-            "fatal": true
-        },
+    {
         
         "NPCWall": {
             "type": "default", "passable": true, "visible": false, "npcWall": true,
@@ -126,6 +110,15 @@ define("ObjectFactory", [
             "sprite": "Jidan", "animations": { idle: [0, 5, "idle", .15 ] }, "defaultAnimation": "idle",
             "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0},
             "spriteCollision": new Point(16, 24), "spriteSize": new Point(32, 32), "spritePos": new Point(0, 0)
+        },
+
+        "Flower": {
+            "type": "reactive", "passable": true,
+            "sprite": "Flower", "animations": { 
+                idle: [0, 3, "idle", .15], moveRight: [4, 7, "idle", .2], moveLeft: [8, 11, "idle", .2]
+            }, 
+            "defaultAnimation": "idle", "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0, "count": 12},
+            "spriteCollision": new Point(24, 28), "spriteSize": new Point(24, 28), "spritePos": new Point(0, 0)
         },
         
         "Wormhole": {
@@ -263,6 +256,9 @@ define("ObjectFactory", [
                 console.log("ERROR: No image '" + spriteData["spriteSheetImg"] + "' found for prop '" + propType + "'");
             else if (propData["type"] === "collectible") {
                 newProp = new Collectible(location, size, propData["passable"], spriteData, propData);
+            }
+            else if (propData["type"] === "reactive") {
+                newProp = new ReactiveProp(location, size, propData["passable"], spriteData, propData);
             }
             else {
                 newProp = new Prop(location, size, propData["passable"], spriteData, propData);

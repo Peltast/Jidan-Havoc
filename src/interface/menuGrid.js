@@ -8,6 +8,8 @@ define("MenuGrid", [], function () {
             this.listLengths = [];
             this.gridContainer = new createjs.Container();
             
+            this.gridHeight = 0;
+            this.gridWidth = 0;
             this.horizontal = horizontal;
             this.xMargin = xMargin;
             this.yMargin = yMargin;
@@ -130,6 +132,10 @@ define("MenuGrid", [], function () {
             else if (this.menuCursorAlignment == "center") {
                 this.menuCursor.x = selection.itemContainer.x + selection.width / 2 - 20;
                 this.menuCursor.y = selection.itemContainer.y + selection.height / 2 - 22;
+            }
+            
+            if (this.gridHeight + this.yOrigin > stageHeight) {
+                this.gridContainer.y = stageHeight / 4 - (this.yOrigin + this.menuCursor.y) / 4;
             }
         }
 

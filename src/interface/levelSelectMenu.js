@@ -52,7 +52,7 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
                 }
             }
             
-            this.levelGrid = new MenuGrid(buttonGrid, true, 30, 50, 80, 80);
+            this.levelGrid = new MenuGrid(buttonGrid, true, 30, 50, 80, 110);
             this.levelGrid.setCursorAlignment("center");
             this.levelGrid.centerGridRows();
 
@@ -61,7 +61,6 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
             }
 
             this.levelGrid.gridContainer.x = 64;
-            this.levelGrid.gridContainer.y = 32;
             this.menuContainer.addChild(this.levelGrid.gridContainer);
         }
         createLevelRow(seriesNumber, levelNumber, rowLength) {
