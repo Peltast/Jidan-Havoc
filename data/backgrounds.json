@@ -26,11 +26,11 @@
 
             {
                 "layer": 3, "orientationX": "left", "orientationY": "top", "maxMapHeight": 20,
-                "sprite": "BGcloudsMid1", "size": "416, 224",
+                "sprite": "BGcloudsMid1", "size": "416, 224", "location": "0, -60",
                 "dynamicParallax": true, "parallaxDistX": 0.2, "parallaxDistY": 1
             },{
                 "layer": 4, "orientationX": "left", "orientationY": "top", "maxMapHeight": 20,
-                "sprite": "BGcloudsMid2", "size": "416, 224",
+                "sprite": "BGcloudsMid2", "size": "416, 224", "location": "0, -60",
                 "dynamicParallax": true, "parallaxDistX": 0.3, "parallaxDistY": 0.9
             },
             

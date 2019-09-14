@@ -90,13 +90,13 @@ define("Prop", ['Point', 'GameObject'], function(Point, GameObject) {
             
             if (this.parallaxDistX !== 0) {
                 this.spriteContainer.x = 
-                    Math.round(this.location.X - this.spritePosition.X) 
-                    - (currentLevel.screenPosition.X * (1 - this.parallaxDistX));
+                    Math.round((this.location.X - this.spritePosition.X)
+                    - (currentLevel.screenPosition.X * (1 - this.parallaxDistX)));
             }
             if (this.parallaxDistY !== 0) {
                 this.spriteContainer.y = 
-                    Math.round(this.location.Y - this.spritePosition.Y) 
-                    - (currentLevel.screenPosition.Y * (1 - this.parallaxDistY));
+                    Math.round((this.location.Y - this.spritePosition.Y)
+                    - (currentLevel.screenPosition.Y * (1 - this.parallaxDistY)));
             }            
         }
 

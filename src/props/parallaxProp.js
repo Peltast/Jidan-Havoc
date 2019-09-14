@@ -20,7 +20,7 @@ define("ParallaxProp", ['Prop'], function(Prop) {
                 
                 parallaxSprite.x = Math.round(-this.spritePosition.X);
                 parallaxSprite.y = Math.round(-this.spritePosition.Y);
-                parallaxSprite.x += Math.round(this.spriteSize.X * i) - i;
+                parallaxSprite.x += Math.round(this.spriteSize.X * i);
                 
                 this.spriteContainer.addChild(parallaxSprite);
             }
