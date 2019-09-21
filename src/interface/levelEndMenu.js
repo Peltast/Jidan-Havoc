@@ -137,7 +137,7 @@ define("LevelEndMenu", ['Point', 'MenuItem', 'MenuGrid'], function(Point, MenuIt
         updateEnemyRanking() {
             if (this.timer % 6 == 0) {
                 this.enemyStatCount -= 1;
-                this.enemyValue.text = this.enemyStatCount;
+                this.enemyValue.text = (currentLevel.numOfEnemies - this.enemyStatCount) + " / " + currentLevel.numOfEnemies;
                 this.playSound("Hit", 0.1);
 
                 if (this.enemyStatCount == currentLevel.enemiesRemaining)
@@ -146,7 +146,7 @@ define("LevelEndMenu", ['Point', 'MenuItem', 'MenuGrid'], function(Point, MenuIt
         }
         finishEnemyRanking() {
             this.timer = 0;
-            this.enemyValue.text = currentLevel.enemiesRemaining;
+            this.enemyValue.text = (currentLevel.numOfEnemies - currentLevel.enemiesRemaining) + " / " + currentLevel.numOfEnemies;
 
             if (currentLevel.isEnemyRankAchieved())
                 this.fillRankIcon(this.enemyRankIcon, this.parentEnemyRankIcon);
@@ -308,7 +308,7 @@ define("LevelEndMenu", ['Point', 'MenuItem', 'MenuGrid'], function(Point, MenuIt
                 "images": [gameAssets["SleepingEnemy"]], "frames": { "width": 44, "height": 36, "regX": 0, "regY": 0, "count": 1 }, animations: { idle: 0 }
             });
             this.enemyIcon = new createjs.Sprite(enemyImg);
-            this.enemyValue = new createjs.Text( currentLevel.numOfEnemies, "32px Equipment", "#f5f4eb");
+            this.enemyValue = new createjs.Text( (currentLevel.numOfEnemies - currentLevel.enemiesRemaining) + " / " + currentLevel.numOfEnemies, "32px Equipment", "#f5f4eb");
             this.enemyValue.textBaseline = "middle";
 
             this.enemyIcon.x = statsXpos;
@@ -323,8 +323,7 @@ define("LevelEndMenu", ['Point', 'MenuItem', 'MenuGrid'], function(Point, MenuIt
             
             this.scoreValue = new createjs.Text( 0, "32px Equipment", "#f5f4eb");
             this.setTextFieldPos(statsXpos + this.scoreTxt.getMeasuredWidth(), statsYpos, this.scoreValue);
-
-            var scoreAchieved = currentLevel.getScoreRank();
+            
             this.scoreRankIcon1 = this.createRankImage(stageWidth * 0.6, statsYpos + 8);
             this.scoreRankIcon2 = this.createRankImage(stageWidth * 0.6 + 26, statsYpos + 8);
             this.scoreRankIcon3 = this.createRankImage(stageWidth * 0.6 + 52, statsYpos + 8);

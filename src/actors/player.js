@@ -236,6 +236,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             else
                 return false;
         }
+        isInAttack() {
+            return (this.currentAttack == this.aerialAttack || this.currentAttack == this.chargeAttack || this.currentAttack == this.chargeAttackWeak);
+        }
         
         setGrounded() {
             super.setGrounded();

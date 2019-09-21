@@ -21,6 +21,7 @@ define("Prop", ['Point', 'GameObject'], function(Point, GameObject) {
 
             this.zPos = parseInt(propData["zPos"]) ? parseInt(propData["zPos"]) : 0;
             this.layer = parseInt(propData["layer"]) ? parseInt(propData["layer"]) : 0;
+            this.alpha = parseFloat(propData["alpha"]) ? parseFloat(propData["alpha"]) : 1;
             this.parallaxDistX = parseFloat(propData["parallaxDistX"]) ? parseFloat(propData["parallaxDistX"]) : 0;
             this.parallaxDistY = parseFloat(propData["parallaxDistY"]) ? parseFloat(propData["parallaxDistY"]) : 0;
             this.isParallax = (this.parallaxDistX !== 0 || this.parallaxDistY !== 0);
@@ -36,6 +37,8 @@ define("Prop", ['Point', 'GameObject'], function(Point, GameObject) {
             this.spriteContainer.setBounds(this.spritePosition.X, this.spritePosition.Y, this.spriteSize.X, this.spriteSize.Y + this.zPos);
             if (!this.visible)
                 this.spriteContainer.alpha = 0;
+            else
+                this.spriteContainer.alpha = this.alpha;
         }
         randomizeAnimationFrame() {
             

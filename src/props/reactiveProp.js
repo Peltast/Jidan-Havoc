@@ -1,4 +1,4 @@
-define("ReactiveProp", ['Point', 'Prop'], function(Point, Prop) {
+define("ReactiveProp", ['Point', 'Prop', 'ParticleSystem'], function(Point, Prop, ParticleSystem) {
 
     class ReactiveProp extends Prop {
 
@@ -18,13 +18,24 @@ define("ReactiveProp", ['Point', 'Prop'], function(Point, Prop) {
 
             if (this.collidingWplayer) {
                 var collidingThisTick = super.checkCollision(player, false);
+
                 if (!collidingThisTick) {
                     this.collidingWplayer = false;
+                    
+                    if (Math.abs(player.velocity.X) > 2) {
+                        if (player.velocity.X > 0)
+                            this.sprite.gotoAndPlay(this.rightAnimation);
+                        else
+                            this.sprite.gotoAndPlay(this.leftAnimation);
+                    }
+                }
 
-                    if (player.orientation === "right")
-                        this.sprite.gotoAndPlay(this.rightAnimation);
-                    else if (player.orientation === "left")
-                        this.sprite.gotoAndPlay(this.leftAnimation);
+                else if (player.hitBoxes.length > 0) {
+                    var petals = new ParticleSystem("FlowerPetalEffect");
+                    petals.effectAreaOrigin = new Point(this.location.X, this.location.Y);
+
+                    currentLevel.addParticleEffect(petals);
+                    currentLevel.removeProp(this);
                 }
             }
         }

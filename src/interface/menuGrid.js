@@ -134,7 +134,7 @@ define("MenuGrid", [], function () {
                 this.menuCursor.y = selection.itemContainer.y + selection.height / 2 - 22;
             }
             
-            if (this.gridHeight + this.yOrigin > stageHeight) {
+            if (this.gridHeight + this.yOrigin > stageHeight && this.centeredVertically) {
                 this.gridContainer.y = stageHeight / 4 - (this.yOrigin + this.menuCursor.y) / 4;
             }
         }
@@ -142,6 +142,9 @@ define("MenuGrid", [], function () {
         setCursorAlignment(alignmentStr) {
             this.menuCursorAlignment = alignmentStr;
             this.updateCursorPosition();
+        }
+        centerGridVertically() {
+            this.centeredVertically = true;
         }
         
         onKeyDown(event) {

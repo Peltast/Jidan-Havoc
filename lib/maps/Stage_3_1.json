@@ -675,8 +675,68 @@
                  "type":"TutorialCombo",
                  "visible":true,
                  "width":32,
+                 "x":516,
+                 "y":524
+                }, 
+                {
+                 "gid":106,
+                 "height":32,
+                 "id":172,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Flower",
+                 "visible":true,
+                 "width":32,
+                 "x":704,
+                 "y":608
+                }, 
+                {
+                 "gid":106,
+                 "height":32,
+                 "id":173,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Flower",
+                 "visible":true,
+                 "width":32,
+                 "x":850,
+                 "y":480
+                }, 
+                {
+                 "gid":106,
+                 "height":32,
+                 "id":174,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Flower",
+                 "visible":true,
+                 "width":32,
+                 "x":1152,
+                 "y":256
+                }, 
+                {
+                 "gid":106,
+                 "height":32,
+                 "id":175,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Flower",
+                 "visible":true,
+                 "width":32,
+                 "x":672,
+                 "y":160
+                }, 
+                {
+                 "gid":106,
+                 "height":32,
+                 "id":176,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Flower",
+                 "visible":true,
+                 "width":32,
                  "x":544,
-                 "y":512
+                 "y":224
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -685,7 +745,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":172,
+ "nextobjectid":177,
  "orientation":"orthogonal",
  "properties":[
         {

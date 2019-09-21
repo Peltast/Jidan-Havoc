@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="148">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="155">
  <tileset firstgid="1" source="../tiles/World1.tsx"/>
  <tileset firstgid="136" name="ObjectTileSet" tilewidth="32" tileheight="32" tilecount="18" columns="6">
   <image source="../../../your-guide-to-the-afterlife/lib/images/ObjectTileSet.png" width="192" height="96"/>
@@ -1235,5 +1235,12 @@
   <object id="145" type="Jidan" gid="91" x="512" y="672" width="32" height="32"/>
   <object id="146" type="Jidan" gid="91" x="640" y="672" width="32" height="32"/>
   <object id="147" type="Jidan" gid="91" x="448" y="416" width="32" height="32"/>
+  <object id="148" type="Flower" gid="106" x="192" y="608" width="32" height="32"/>
+  <object id="149" type="Flower" gid="106" x="216" y="608" width="32" height="32"/>
+  <object id="150" type="Flower" gid="106" x="240" y="608" width="32" height="32"/>
+  <object id="151" type="Flower" gid="106" x="263" y="608" width="32" height="32"/>
+  <object id="152" type="Flower" gid="106" x="168" y="608" width="32" height="32"/>
+  <object id="153" type="Flower" gid="106" x="544" y="288" width="32" height="32"/>
+  <object id="154" type="Flower" gid="106" x="800" y="288" width="32" height="32"/>
  </objectgroup>
 </map>

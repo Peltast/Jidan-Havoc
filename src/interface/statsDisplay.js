@@ -40,7 +40,7 @@ define("StatsDisplay", ['Point'], function(Point) {
                 "images": [gameAssets["SleepingEnemy"]], "frames": { "width": 44, "height": 36, "regX": 0, "regY": 0, "count": 1 }, animations: { idle: 0 }
             });
             this.enemyIcon = new createjs.Sprite(enemyImg);
-            this.enemyValue = new createjs.Text( currentLevel.enemiesRemaining, "32px Equipment", "#f5f4eb");
+            this.enemyValue = new createjs.Text( (currentLevel.numOfEnemies - currentLevel.enemiesRemaining) + "/" + currentLevel.numOfEnemies, "32px Equipment", "#f5f4eb");
 
             this.enemyIcon.x = Math.round(this.origin.X - 6);
             this.enemyIcon.y = currentYpos;
@@ -65,7 +65,7 @@ define("StatsDisplay", ['Point'], function(Point) {
 
             this.collectibleValue.text = player.collectiblesGathered + "/" + currentLevel.numOfCollectibles;
 
-            this.enemyValue.text = currentLevel.enemiesRemaining;
+            this.enemyValue.text = (currentLevel.numOfEnemies - currentLevel.enemiesRemaining) + "/" + currentLevel.numOfEnemies;
         }
 
         

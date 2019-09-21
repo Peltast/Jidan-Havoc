@@ -55,6 +55,7 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
             this.levelGrid = new MenuGrid(buttonGrid, true, 30, 50, 80, 110);
             this.levelGrid.setCursorAlignment("center");
             this.levelGrid.centerGridRows();
+            this.levelGrid.centerGridVertically();
 
             for (let i = 0; i < levelSeriesMatrix.length; i++) {
                 this.createLockImage(levelSeriesMatrix[i][0], this.seriesRowIndices[i]);

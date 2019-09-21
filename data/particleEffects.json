@@ -248,6 +248,19 @@
         }]
     },
     
+    "FlowerPetalEffect": {
+        "oneOff" : true, "numOfParticles": 6,
+
+        "particles": [{
+            "sprite": "FlowerPetal",
+            "frames": { "width": 16, "height": 12, "regX": 0, "regY": 0, "count": 5 },
+            "animations": "{ \"idle\": { \"frames\": [0, 1, 2, 1, 0, 3, 4, 3], \"next\": \"idle\", \"speed\": 0.2 } }",
+            "defaultAnimation": "idle", "randomStartFrame": false,
+
+            "lifeSpan": "60~120", "startVelocity": "-2.1~2.1,-1.6~-0.5", "targetVelocity": "0,2", "acceleration": ".02,.02", "maxSpeed": "5~15"
+        }]
+    },
+
     "DirtEffect": {
         "oneOff" : true, "foreground": true, "numOfParticles": 6,
 

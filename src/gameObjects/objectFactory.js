@@ -78,7 +78,7 @@ define("ObjectFactory", [
                 leftDeath: [8, 10, "leftDeath", .2], rightDeath: [12, 14, "rightDeath", .2]
             },
             "defaultAnimation": "leftIdle", "deathAnimation": "Death", "deathTimer": 30,
-            "spriteCollision": new Point(22, 24), "spriteSize": new Point(50, 44), "spritePos": new Point(14, 14)
+            "spriteCollision": new Point(22, 24), "spriteSize": new Point(50, 44), "spritePos": new Point(14, 14), "origin": new Point(0, 6)
         },
 
         "chasingEnemy": {
@@ -275,13 +275,15 @@ define("ObjectFactory", [
 
             var enemyData = this.getObjectData(enemyMapData, enemyListData, [ 
                 "damageOnTouch", "behavior", "controller", "orientation", "defaultAnimation", "deathAnimation", "deathTimer",
-                "horizontal", "startDirection"
+                "horizontal", "startDirection", "origin"
                 ]
             );
             var spriteData = this.getSpriteData(enemyMapData, enemyListData);
 
             var newEnemy = new Enemy(spriteData["spriteCollision"], spriteData, enemyData);
             newEnemy.location = this.getObjectLocation(enemyMapData);
+            if (enemyData["origin"])
+                newEnemy.location.add(enemyData["origin"]);
 
             return newEnemy;
         }

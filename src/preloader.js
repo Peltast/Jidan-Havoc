@@ -72,6 +72,8 @@ var transition = null;
 var currentCheckpoint = null;
 
 // UI global vars
+var pauseGame;
+var unpauseGame;
 var currentMenu = null;
 var mainMenu;
 var levelSelectMenu;
@@ -106,7 +108,7 @@ function init() {
         {src: "actors/DustBunny.png", id: "DustBunny"}, {src: "actors/FlyingBat.png", id: "FlyingBat"}, {src: "actors/FloatingBug.png", id: "FloatingBug"},
 
         {src: "props/Jidan.png", id: "Jidan"}, {src: "props/Transition.png", id: "Transition"},
-        {src: "props/Flower.png", id: "Flower"},
+        {src: "props/Flower.png", id: "Flower"}, {src: "props/FlowerPetal.png", id: "FlowerPetal"},
         {src: "props/BGhills1.png", id: "BGhills1"}, {src: "props/BGhills2.png", id: "BGhills2"}, {src: "props/BGhills3.png", id: "BGhills3"},
         {src: "props/BGclouds1.png", id: "BGclouds1"}, {src: "props/BGclouds2.png", id: "BGclouds2"}, {src: "props/BGclouds3.png", id: "BGclouds3"},
         {src: "props/BGcloudsMid1.png", id: "BGcloudsMid1"}, {src: "props/BGcloudsMid2.png", id: "BGcloudsMid2"},
@@ -154,7 +156,7 @@ function init() {
     ];
     levelSeriesMatrix = [
         [1, 3],
-        [2, 5],
+        [2, 6],
         [3, 11],
         [4, 3]
     ];
@@ -168,12 +170,18 @@ function init() {
 
     assetLoader = new createjs.LoadQueue(false);
     assetLoader.addEventListener("complete", handleAssetsLoaded);
-    loadSounds();
     assetLoader.loadManifest(imageManifest, true, imageRoot);
     
     gameCanvas.setAttribute("tabindex", "0");
     gameCanvas.addEventListener("mouseover", function(event) {
         gameCanvas.focus();
+    }, false);
+    
+    gameCanvas.addEventListener("focusout", function(event) {
+        pauseGame = true;
+    }, false);
+    gameCanvas.addEventListener("focus", function(event) {
+        unpauseGame = true;
     }, false);
 }
 
@@ -214,6 +222,7 @@ function handleAssetsLoaded(event) {
         loadFile(dialogueRoot + dialogueList[d], dialogueLibrary);
     }
 
+    loadSounds();
 }
 function loadSounds() {
     for (let j = 0; j < soundManifest.length; j++) {

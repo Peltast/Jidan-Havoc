@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="26" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="153">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="26" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="155">
  <properties>
   <property name="scoreThresholds" value="1700,1900,2100"/>
  </properties>
@@ -865,5 +865,7 @@
   <object id="150" type="Jidan" gid="91" x="352" y="224" width="32" height="32"/>
   <object id="151" type="Jidan" gid="91" x="576" y="416" width="32" height="32"/>
   <object id="152" type="Jidan" gid="91" x="608" y="384" width="32" height="32"/>
+  <object id="153" type="Flower" gid="106" x="637" y="544" width="32" height="32"/>
+  <object id="154" type="Flower" gid="106" x="667" y="544" width="32" height="32"/>
  </objectgroup>
 </map>

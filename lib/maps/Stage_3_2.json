@@ -417,6 +417,30 @@
                  "width":32,
                  "x":608,
                  "y":384
+                }, 
+                {
+                 "gid":106,
+                 "height":32,
+                 "id":153,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Flower",
+                 "visible":true,
+                 "width":32,
+                 "x":637,
+                 "y":544
+                }, 
+                {
+                 "gid":106,
+                 "height":32,
+                 "id":154,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Flower",
+                 "visible":true,
+                 "width":32,
+                 "x":667,
+                 "y":544
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -425,7 +449,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":153,
+ "nextobjectid":155,
  "orientation":"orthogonal",
  "properties":[
         {

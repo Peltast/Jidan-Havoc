@@ -11,6 +11,7 @@ require(
     var gameBG;
     var gameArea;
     var gameUI;
+    var pauseScreen;
 
     function initGame() {
         createjs.Ticker.addEventListener("tick", updateGame);
@@ -97,7 +98,18 @@ require(
         }
         
         else if (gameStatus === GameState.RUNNING) {
-            updateGameMap();
+            if (pauseGame) {
+                pauseGame = false;
+                if (gameUI)
+                    gameUI.addChild(pauseScreen);
+            }
+            else if (unpauseGame) {
+                unpauseGame = false;
+                if (gameUI)
+                    gameUI.removeChild(pauseScreen);
+            }
+            else
+                updateGameMap();
         }
 
         else if (gameStatus === GameState.LEVELEND) {
@@ -207,6 +219,10 @@ require(
     }
     function createUI() {
         gameUI = new createjs.Container();
+        
+        pauseScreen = new createjs.Shape();
+        pauseScreen.graphics.beginFill("#000000").drawRect(0, 0, stageWidth, stageHeight);
+        pauseScreen.alpha = 0.5;
 
         gameStatsDisplay = new StatsDisplay();
         gameUI.addChild(gameStatsDisplay.statsContainer);
@@ -428,6 +444,9 @@ require(
 
             else if (keyCode == 82)     //  r
                 resetCurrentLevel();
+
+            else if (keyCode == 84)     //  t
+                currentLevel.toggleHitboxDisplay();
         }
 
         if (keyCode == 32)

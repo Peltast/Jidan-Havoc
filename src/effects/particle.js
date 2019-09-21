@@ -106,7 +106,7 @@ define("Particle", ['Point'], function(Point) {
             this.sprite = new createjs.Sprite(this.spriteSheet);
 
             var startAnimation = parsedAnimations[this.defaultAnimation];
-            if (startAnimation.length > 0)
+            if (startAnimation.length > 0 || startAnimation.frames)
                 this.sprite.gotoAndPlay(this.defaultAnimation);
             else
                 this.sprite.gotoAndStop(this.defaultAnimation);
