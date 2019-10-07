@@ -108,14 +108,10 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
                     "images": [gameAssets["LevelSelectTileComplete"]],
                     "frames": {"width": 40, "height": 40, "regX": 0, "regY": 0, "count": 1}, animations: { idle: 0 }
                 }));
-                levelReqText.x = 32
-                levelReqImage.x = 42 + levelReqText.getMeasuredWidth();
-
-                var yPos = this.levelGrid.gridMatrix[rowIndex][0].itemContainer.y + 32;
-                levelReqText.y = yPos;
-                levelReqImage.y = yPos;
+                levelReqImage.x = -this.levelGrid.gridMatrix[rowIndex][0].itemContainer.x;
+                levelReqText.x = levelReqImage.x - 10 - levelReqText.getMeasuredWidth();
                 
-                this.menuContainer.addChild(levelReqText, levelReqImage);
+                this.levelGrid.gridMatrix[rowIndex][0].itemContainer.addChild(levelReqText, levelReqImage);
             }
             else if (seriesNumber == 3) {
 
@@ -124,14 +120,10 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
                     "images": [gameAssets["LevelSelectCollectible"]],
                     "frames": {"width": 28, "height": 38, "regX": 0, "regY": 0, "count": 1}, animations: { idle: 0 }
                 }));
-                rankReqText.x = 32;
-                rankReqImage.x = 42 + rankReqText.getMeasuredWidth();
+                rankReqImage.x = -this.levelGrid.gridMatrix[rowIndex][0].itemContainer.x;
+                rankReqText.x =  rankReqImage.x - 10 - rankReqText.getMeasuredWidth();
                 
-                var yPos = this.levelGrid.gridMatrix[rowIndex][0].itemContainer.y + 32;
-                rankReqText.y = yPos;
-                rankReqImage.y = yPos;
-
-                this.menuContainer.addChild(rankReqText, rankReqImage);
+                this.levelGrid.gridMatrix[rowIndex][0].itemContainer.addChild(rankReqText, rankReqImage);
             }
 
         }

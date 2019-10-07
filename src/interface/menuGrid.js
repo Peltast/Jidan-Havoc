@@ -145,6 +145,7 @@ define("MenuGrid", [], function () {
         }
         centerGridVertically() {
             this.centeredVertically = true;
+            this.updateCursorPosition();
         }
         
         onKeyDown(event) {

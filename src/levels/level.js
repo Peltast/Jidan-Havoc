@@ -78,6 +78,24 @@ define("Level", [
                 this.scoreRank = Math.max(this.scoreRank, playerRank);
             }
         }
+        getCurrentRanking() {
+            return (
+                this.collectibleRank > 0 ? 1 : 0) +
+                (this.enemyRankRank > 0 ? 1 : 0) +
+                this.scoreRank
+            ;
+        }
+        getPlayerRanking() {
+            var newRank = 0;
+            if (this.isCollectibleRankAchieved())
+                newRank += 1;
+            if (this.numOfEnemies > 0 && this.isEnemyRankAchieved())
+                newRank += 1;
+            if (this.scoreThresholds)
+                newRank += this.getScoreRank(gameScore);
+
+            return newRank;
+        }
         isCollectibleRankAchieved() {
             return (player.collectiblesGathered == this.numOfCollectibles);
         }

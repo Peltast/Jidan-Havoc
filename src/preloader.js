@@ -158,11 +158,14 @@ function init() {
         [1, 3],
         [2, 6],
         [3, 11],
-        [4, 3]
+        [4, 6]
     ];
 
     dialogueList = [];
-    totalMapsInGame = mapList.length + 3 + 5 + 11 + 3;
+    totalMapsInGame = mapList.length;
+    for (var i = 0; i < levelSeriesMatrix.length; i++)
+        totalMapsInGame += levelSeriesMatrix[i][1];
+    
     totalFilesInGame = dialogueList.length + tileList.length + 4; // actionData.json, dialogue.json, particleEffects.json, backgrounds.json
     startingMap = "Stage_3_1";
 

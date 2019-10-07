@@ -66,6 +66,8 @@ define("MenuItem", [], function () {
         }
 
         loadButtonLevel() {
+            unpauseGame = true;
+            
             removeEventListener("keydown", currentMenu.onKeyDown);
             removeEventListener("keyup", currentMenu.onKeyUp);
             startingMap = this.itemData["level"];

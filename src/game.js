@@ -98,16 +98,18 @@ require(
         }
         
         else if (gameStatus === GameState.RUNNING) {
-            if (pauseGame) {
+            
+            if (unpauseGame) {
                 pauseGame = false;
-                if (gameUI)
-                    gameUI.addChild(pauseScreen);
-            }
-            else if (unpauseGame) {
                 unpauseGame = false;
                 if (gameUI)
                     gameUI.removeChild(pauseScreen);
             }
+            else if (pauseGame && gameUI) {
+                if (!gameUI.contains(pauseScreen))
+                    gameUI.addChild(pauseScreen);
+            }
+            
             else
                 updateGameMap();
         }
@@ -235,11 +237,18 @@ require(
 
     function displayLevelEnd() {
         var isFirstTimeCompletion = !currentLevel.completed;
+        
         currentLevel.completed = true;
+
         if (!gameSaveState[currentLevel.name])
             gameSaveState[currentLevel.name] = currentLevel.getLevelProgress();
         
         getProgressData();
+
+        var currentRanking = currentLevel.getCurrentRanking();
+        var newRanking = currentLevel.getPlayerRanking();
+        if (newRanking > currentRanking)
+            ranksAchieved += newRanking - currentRanking;
 
         levelEndDisplay = new LevelEndMenu(isFirstTimeCompletion);
         gameUI.addChild(levelEndDisplay.menuContainer);

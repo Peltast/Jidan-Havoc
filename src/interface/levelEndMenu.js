@@ -294,7 +294,7 @@ define("LevelEndMenu", ['Point', 'MenuItem', 'MenuGrid'], function(Point, MenuIt
                 "images": [gameAssets["CollectibleIcon"]], "frames": {"width": 34, "height": 34, "regX": 0, "regY": 0, "count": 1}, animations: { idle: 0 }
             });
             this.collectibleIcon = new createjs.Sprite(collectibleImg);
-            this.collectibleValue = new createjs.Text( "0" + " / " + currentLevel.numOfCollectibles, "32px Equipment", "#f5f4eb");
+            this.collectibleValue = new createjs.Text( "0 / " + currentLevel.numOfCollectibles, "32px Equipment", "#f5f4eb");
             this.collectibleValue.textBaseline = "middle";
 
             this.collectibleIcon.x = Math.round(statsXpos);
@@ -308,7 +308,7 @@ define("LevelEndMenu", ['Point', 'MenuItem', 'MenuGrid'], function(Point, MenuIt
                 "images": [gameAssets["SleepingEnemy"]], "frames": { "width": 44, "height": 36, "regX": 0, "regY": 0, "count": 1 }, animations: { idle: 0 }
             });
             this.enemyIcon = new createjs.Sprite(enemyImg);
-            this.enemyValue = new createjs.Text( (currentLevel.numOfEnemies - currentLevel.enemiesRemaining) + " / " + currentLevel.numOfEnemies, "32px Equipment", "#f5f4eb");
+            this.enemyValue = new createjs.Text( ("0 / " + currentLevel.numOfEnemies), "32px Equipment", "#f5f4eb");
             this.enemyValue.textBaseline = "middle";
 
             this.enemyIcon.x = statsXpos;

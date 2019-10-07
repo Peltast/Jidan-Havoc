@@ -63,7 +63,7 @@
             }, {
                 "layer": 1, "orientationX": "left", "orientationY": "bottom",
                 "sprite": "BGhills3", "size": "224, 388",
-                "dynamicParallax": true, "parallaxDistX": 0.10, "parallaxDistY": 1
+                "dynamicParallax": true, "parallaxDistX": 0.10, "parallaxDistY": 1, "alpha": 0.9
             }
             
         ]
