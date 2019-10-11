@@ -44,11 +44,11 @@ define("Level", [
         loadLevelProgress(saveObj) {
             if (saveObj) {
                 this.completed = saveObj.completed;
-                this.topScore = parseInt(saveObj.topScore);
+                this.topScore = parseInt(saveObj.topScore) || 0;
                 
-                this.collectibleRank = parseInt(saveObj.collectibleRank);
-                this.enemyRank = parseInt(saveObj.enemyRank);
-                this.scoreRank = parseInt(saveObj.scoreRank);
+                this.collectibleRank = parseInt(saveObj.collectibleRank) || 0;
+                this.enemyRank = parseInt(saveObj.enemyRank) || 0;
+                this.scoreRank = parseInt(saveObj.scoreRank) || 0;
             }
             else {
                 this.completed = false;
