@@ -68,7 +68,7 @@
                         {
                          "name":"destination",
                          "type":"string",
-                         "value":"Stage_3_1"
+                         "value":"Stage_2_7"
                         }],
                  "rotation":0,
                  "type":"Transition",

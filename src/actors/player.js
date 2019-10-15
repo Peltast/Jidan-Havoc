@@ -499,51 +499,6 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             soundInstance.play();
         }
 
-
-        /* Damage/health/knockback logic from YGttA  */
-        
-        // updateImmunity() {
-        //     if (this.iFrames > 0) {
-        //         this.iFrames -= 1;
-
-        //         if (this.iFrames === 0)
-        //             this.spriteContainer.alpha = 1;
-        //     }
-        // }
-
-        // takeDamage(damageSource) {
-        //     if (this.iFrames > 0) {
-        //         return;
-        //     }
-
-        //     player.currentHealth -= 1;
-        //     healthBar.takeDamage();
-                
-        //     if (player.currentHealth <= 0) {
-        //         this.respawnPlayer();
-        //         this.iFrames = this.maxIFrames;
-        //         player.currentHealth = player.maxHealth;
-        //         healthBar.updateHealthBar();
-        //     }
-        //     else {
-        //         this.knockbackPlayer(damageSource);
-        //     }
-        // }
-        // knockbackPlayer(damageSource) {
-        //     this.spriteContainer.alpha = .5;
-        //     this.iFrames = this.maxIFrames;
-
-        //     var collision = this.getCollisionVector(damageSource);
-        //     var knockbackAngle = Math.atan2(collision.Y, collision.X);
-        //     var knockbackForce = new Point( Math.cos(knockbackAngle), Math.sin(knockbackAngle) );
-        //     knockbackForce.normalize();
-        //     knockbackForce.multiply(new Point(15, 15));
-            
-        //     this.velocity.add(knockbackForce);
-        //     this.updatePosition(true);
-        //     this.updatePosition(false);
-        // }
-
     }
     
     return Player;

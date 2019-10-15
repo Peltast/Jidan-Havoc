@@ -84,6 +84,10 @@ var gameStatsDisplay;
 var levelEndDisplay;
 var gameScore;
 
+// Sound global vars
+var soundPlayer;
+var levelTheme;
+
 
 $(function() { 
     init(); 
@@ -137,6 +141,8 @@ function init() {
         {src: "ui/HealthSlot.png", id: "HealthSlot"}, {src: "ui/HealthPoint.png", id: "HealthPoint"},
     ];
     soundManifest = [
+        {src: "GreenMountains.wav", id: "GreenMountains" },
+
         {src: "Walk.wav", id: "Walk"}, {src: "Jump.wav", id: "Jump"}, {src: "DoubleJump.wav", id: "DoubleJump"}, {src: "Land.wav", id: "Land"},
         {src: "Windup.wav", id: "Windup"}, {src: "Attack.wav", id: "Attack"}, {src: "Hit.wav", id: "Hit"}, {src: "Death.wav", id: "Death"},
         {src: "Miss.wav", id: "Miss"}, {src: "StunFloor.wav", id: "StunFloor"}, {src: "StunWall.wav", id: "StunWall"}, 
@@ -156,9 +162,9 @@ function init() {
     ];
     levelSeriesMatrix = [
         [1, 3],
-        [2, 6],
+        [2, 7],
         [3, 11],
-        [4, 6]
+        [4, 10]
     ];
 
     dialogueList = [];
@@ -167,7 +173,7 @@ function init() {
         totalMapsInGame += levelSeriesMatrix[i][1];
     
     totalFilesInGame = dialogueList.length + tileList.length + 4; // actionData.json, dialogue.json, particleEffects.json, backgrounds.json
-    startingMap = "Stage_3_1";
+    startingMap = "";
 
     totalGameManifest = imageManifest.length + soundManifest.length + totalFilesInGame + totalMapsInGame;
 

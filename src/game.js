@@ -194,6 +194,11 @@ require(
     
     function launchLevelSelect() {
         clearGameState();
+
+        if (levelTheme) {
+            soundPlayer.fade(1, 0, 1000, levelTheme);
+            levelTheme = null;
+        }
         
         getProgressData();
         levelSelectMenu = new LevelSelectMenu();
@@ -202,6 +207,14 @@ require(
 
     function launchLevel() {
         clearGameState();
+        
+        if (!soundPlayer) {
+            soundPlayer = new Howl({
+                src: [soundRoot + soundAssets["GreenMountains"]], loop: true, volume: 0.5
+            });
+        }
+        if (!levelTheme)
+            levelTheme = soundPlayer.play();
         
         gameBG = new createjs.Shape();
         gameBG.graphics.beginFill("#000000").drawRect(0, 0, stageWidth, stageHeight);
