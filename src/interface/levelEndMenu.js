@@ -336,6 +336,9 @@ define("LevelEndMenu", ['Point', 'MenuItem', 'MenuGrid'], function(Point, MenuIt
         }
         
         playSound(soundName, vol) {
+            if (!soundEffectsOn)
+                return;
+
             var soundInstance = new Howl({
                 src: [soundRoot + soundAssets[soundName]], loop: false, volume: vol
             });

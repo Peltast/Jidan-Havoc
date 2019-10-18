@@ -493,6 +493,9 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
         }
 
         playSound(soundName, vol) {
+            if (!soundEffectsOn)
+                return;
+            
             var soundInstance = new Howl({
                 src: [soundRoot + soundAssets[soundName]], loop: false, volume: vol
             });

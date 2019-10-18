@@ -135,7 +135,7 @@ define("MenuGrid", [], function () {
             }
             
             if (this.gridHeight + this.yOrigin > stageHeight && this.centeredVertically) {
-                this.gridContainer.y = stageHeight / 4 - (this.yOrigin + this.menuCursor.y) / 4;
+                this.gridContainer.y = this.yOrigin + (stageHeight - this.gridHeight - 80) * ((this.menuCursor.y + 40) / this.gridHeight);
             }
         }
 

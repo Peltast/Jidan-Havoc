@@ -9,10 +9,16 @@ define("StatsDisplay", ['Point'], function(Point) {
             this.xMargin = 10;
 
             this.statsContainer = new createjs.Container();
+            
+            this.initiateSoundUI();
         }
 
         initiateStatDisplay() {
-            this.statsContainer.removeAllChildren();
+            this.statsContainer.removeChild(
+                this.scoreTxt, this.scoreValue,
+                this.collectibleIcon, this.collectibleValue,
+                this.enemyIcon, this.enemyValue
+            );
             var currentYpos = 0;
 
             this.scoreTxt = new createjs.Text( "score: ", "32px Equipment", "#f5f4eb");
@@ -52,6 +58,45 @@ define("StatsDisplay", ['Point'], function(Point) {
                 this.collectibleIcon, this.collectibleValue,
                 this.enemyIcon, this.enemyValue
             );
+        }
+
+        initiateSoundUI() {
+            var buttonSize = 32;
+
+            var soundBtnImg = new createjs.SpriteSheet({
+                "images": [gameAssets["SoundButton"]], "frames": {"width": buttonSize, "height": buttonSize, "regX": 0, "regY": 0, "count": 2}, animations: { on: 0, off: 1 }
+            });
+            this.soundButton = new createjs.Sprite(soundBtnImg);
+            this.soundButton.x = stageWidth - buttonSize * 3.5;
+            this.soundButton.y = buttonSize / 2;
+
+            this.soundButton.gotoAndPlay( soundEffectsOn ? "on" : "off");
+            this.soundButton.addEventListener("click", function(event) { 
+                soundEffectsOn = !soundEffectsOn;
+                event.target.gotoAndPlay( soundEffectsOn ? "on" : "off");
+            });
+            
+            var musicBtnImg = new createjs.SpriteSheet({
+                "images": [gameAssets["MusicButton"]], "frames": {"width": buttonSize, "height": buttonSize, "regX": 0, "regY": 0, "count": 2}, animations: { on: 0, off: 1 }
+            });
+            this.musicButton = new createjs.Sprite(musicBtnImg);
+            this.musicButton.x = stageWidth - buttonSize * 2;
+            this.musicButton.y = buttonSize / 2;
+
+            this.musicButton.gotoAndPlay( musicOn ? "on" : "off");
+            this.musicButton.addEventListener("click", function(event) { 
+                musicOn = !musicOn; 
+                event.target.gotoAndPlay( musicOn ? "on" : "off");
+
+                if (!musicOn)
+                    soundPlayer.pause(levelTheme);
+                else if (levelTheme)
+                    soundPlayer.play(levelTheme);
+                else
+                    levelTheme = soundPlayer.play();
+            });
+
+            this.statsContainer.addChild(this.soundButton, this.musicButton);
         }
 
         setTextFieldPos(x, y, txt) {

@@ -195,7 +195,7 @@ require(
     function launchLevelSelect() {
         clearGameState();
 
-        if (levelTheme) {
+        if (levelTheme && musicOn) {
             soundPlayer.fade(1, 0, 1000, levelTheme);
             levelTheme = null;
         }
@@ -213,8 +213,12 @@ require(
                 src: [soundRoot + soundAssets["GreenMountains"]], loop: true, volume: 0.5
             });
         }
-        if (!levelTheme)
+        if (!levelTheme && musicOn) {
             levelTheme = soundPlayer.play();
+
+            // if (!musicOn)
+            //     soundPlayer.pause(levelTheme);
+        }
         
         gameBG = new createjs.Shape();
         gameBG.graphics.beginFill("#000000").drawRect(0, 0, stageWidth, stageHeight);

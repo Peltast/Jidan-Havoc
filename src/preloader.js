@@ -87,6 +87,8 @@ var gameScore;
 // Sound global vars
 var soundPlayer;
 var levelTheme;
+var soundEffectsOn = true;
+var musicOn = true;
 
 
 $(function() { 
@@ -130,12 +132,14 @@ function init() {
         {src: "ui/LevelSelectTile.png", id: "LevelSelectTile"}, {src: "ui/LevelSelectTileComplete.png", id: "LevelSelectTileComplete"}, {src: "ui/LevelSelectCollectible.png", id: "LevelSelectCollectible"},
         {src: "ui/LevelRankIcon.png", id: "LevelRankIcon"}, {src: "ui/LevelSelectTileLocked.png", id: "LevelSelectTileLocked"}, {src: "ui/LevelRankUnfilled.png", id: "LevelRankUnfilled"},
         {src: "ui/LevelEndIcon.png", id: "LevelEndIcon"},
+        {src: "ui/MusicButton.png", id: "MusicButton"}, {src: "ui/SoundButton.png", id: "SoundButton"},
 
         {src: "ui/CollectibleIcon.png", id: "CollectibleIcon"},
 
         {src: "props/TutorialWalk.png", id: "TutorialWalk"}, {src: "props/TutorialJump.png", id: "TutorialJump"}, {src: "props/TutorialDoubleJump.png", id: "TutorialDoubleJump"},
         {src: "props/TutorialReset.png", id: "TutorialReset"}, {src: "props/TutorialAttack.png", id: "TutorialAttack"}, {src: "props/TutorialLongAttack.png", id: "TutorialLongAttack"},
         {src: "props/TutorialJumpAttack.png", id: "TutorialJumpAttack"}, {src: "props/TutorialCombo.png", id: "TutorialCombo"},
+        {src: "props/TutorialCancel.png", id: "TutorialCancel"}, {src: "props/TutorialCancelCombo.png", id: "TutorialCancelCombo"},
         
         {src: "ui/Cursor.png", id: "Cursor"},
         {src: "ui/HealthSlot.png", id: "HealthSlot"}, {src: "ui/HealthPoint.png", id: "HealthPoint"},
@@ -163,8 +167,9 @@ function init() {
     levelSeriesMatrix = [
         [1, 3],
         [2, 7],
-        [3, 11],
-        [4, 10]
+        [3, 7],
+        [4, 10],
+        [5, 4]
     ];
 
     dialogueList = [];

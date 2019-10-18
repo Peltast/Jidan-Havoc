@@ -52,7 +52,7 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
                 }
             }
             
-            this.levelGrid = new MenuGrid(buttonGrid, true, 30, 50, 80, 110);
+            this.levelGrid = new MenuGrid(buttonGrid, true, 30, 50, 80, 60);
             this.levelGrid.setCursorAlignment("center");
             this.levelGrid.centerGridRows();
             this.levelGrid.centerGridVertically();

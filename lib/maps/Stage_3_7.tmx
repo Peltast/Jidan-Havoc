@@ -1407,7 +1407,7 @@
   <object id="100" type="Jidan" gid="91" x="256" y="416" width="32" height="32"/>
   <object id="132" type="Transition" gid="2" x="1632" y="512" width="32" height="32">
    <properties>
-    <property name="destination" value="Stage_3_8"/>
+    <property name="destination" value="Stage_4_1"/>
    </properties>
   </object>
   <object id="134" type="EnemySpawn" gid="31" x="832" y="416" width="32" height="32">
