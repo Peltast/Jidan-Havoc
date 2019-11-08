@@ -9,8 +9,8 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             var playerSpriteData = {
                 "spriteImage": gameAssets["Player"],
                 "spriteCollision": new Point(24, 30),
-                "spriteSize": new Point(40, 44),
-                "spritePosition": new Point(8, 10)
+                "spriteSize": new Point(48, 48),
+                "spritePosition": new Point(12, 12)
             };
             super(playerSpriteData["spriteCollision"], playerSpriteData, {});
             this.mass = 100;
@@ -44,40 +44,47 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             this.currentAttack = null;
         }
         initiateSprite() {
+            var y = 8;
+
             var spriteSheet = new createjs.SpriteSheet({
                 "images": [this.spriteSheetImg],
-                "frames": {"width": this.spriteSize.X, "height": this.spriteSize.Y, "regX": 0, "regY": 0, "count": 208},
+                "frames": {"width": this.spriteSize.X, "height": this.spriteSize.Y, "regX": 0, "regY": 0, "count": 160},
                 animations: {
-                    right: [0, 2, "right", .1],
-                    left: [3, 5, "left", .1],
+                    right: [0, 6, "right", .2],
+                    left: [y, y + 6, "left", .2],
 
-                    rightWalk: [6, 9, "rightWalk", .1],
-                    leftWalk: [12, 15, "leftWalk", .1],
+                    rightWalk: [2 * y, 2 * y + 6, "rightWalk", .2],
+                    leftWalk: [3 * y, 3 * y + 6, "leftWalk", .2],
                     
-                    leftJump: 18, rightJump: 19,
-                    leftFall: 20, rightFall: 21,
-
-                    leftDeath: { frames: [24, 25, 26, 27, 11], next: "leftEmpty", speed: 0.25 }, rightDeath: { frames: [24, 25, 26, 27, 11], next: "rightEmpty", speed: 0.25 },
-
-                    Slam: [30, 34, "leftSlam", .25],
-                    leftSlamStun: [36, 37, "leftSlamStun", .08], rightSlamStun: [38, 39, "rightSlamStun", .08],
-
-                    rightChargeWindup: [22, 23, "rightChargeWindup", .01], rightCharge: [42, 46, "rightCharge", .25],
-                    leftChargeWindup: [28, 29, "finished", .01], leftCharge: [48, 52, "leftCharge", .25],
-
-                    rightChargeSlide: [54, 58, "rightChargeSlideFinished", .2], rightChargeSlideFinished: 58,
-                    leftChargeSlide: [60, 64, "leftChargeSlideFinished", .2], leftChargeSlideFinished: 64,
-                    rightKnockback: [66, 67, "rightKnockback", .16], leftKnockback: [68, 69, "leftKnockback", .16],
-
-                    rightFlip: { frames: [72, 73, 74, 75, 76, 76, 77, 77], next: "rightFlipFinished", speed: 0.2 }, rightFlipFinished: 77,
-                    leftFlip: { frames: [78, 79, 80, 81, 82, 82, 83, 83], next: "leftFlipFinished", speed: 0.2 }, leftFlipFinished: 83,
-                    rightCancelFlip: { frames: [72, 70, 73, 74, 75, 76, 76, 77, 77], next: "rightFlipFinished", speed: 0.2 },
-                    leftCancelFlip: { frames: [78, 71, 79, 80, 81, 82, 82, 83, 83], next: "leftFlipFinished", speed: 0.2 },
-                    rightFrontFlip: [84, 89, "rightFrontFlipFinished", 0.2], rightFrontFlipFinished: 89,
-                    leftFrontFlip: [90, 95, "leftFrontFlipFinished", 0.2], leftFrontFlipFinished: 95,
+                    rightJump: [4 * y, 4 * y + 3, "rightJumpEnd", .3], rightJumpEnd: 4 * y + 3, rightFall: 2 * y,
+                    rightImpact: [4 * y + 3, 4 * y + 7, "right", .4],
                     
-                    leftEmpty: 11, rightEmpty: 11,
-                    finished: 27
+                    leftJump: [5 * y, 5 * y + 3, "leftJumpEnd", .3], leftJumpEnd: 5 * y + 3, leftFall: 3 * y,
+                    leftImpact: [5 * y + 3, 5 * y + 7, "left", .4],
+
+                    rightChargeWindup: [6 * y, 6 * y + 4, "rightChargeWindupEnd", .4], rightChargeWindupEnd: 6 * y + 4,
+                    leftChargeWindup: [7 * y, 7 * y + 4, "leftChargeWindupEnd", .4], leftChargeWindupEnd: 7 * y + 4,
+                    rightCharge: [8 * y, 8 * y + 5, "rightCharge", .25],
+                    leftCharge: [9 * y, 9 * y + 5, "leftCharge", .25],
+
+                    rightChargeSlide: [10 * y, 10 * y + 4, "rightChargeSlideEnd", .2], rightChargeSlideEnd: 10 * y + 4,
+                    leftChargeSlide: [11 * y, 11 * y + 4, "leftChargeSlideEnd", .2], leftChargeSlideEnd: 11 * y + 4,
+                    rightKnockback: [10 * y + 6, 10 * y + 7, "rightKnockback", .16], leftKnockback: [11 * y + 6, 11 * y + 7, "leftKnockback", .16],
+
+                    Slam: [12 * y, 12 * y + 5, "leftSlam", .25],
+                    rightSlamStun: [13 * y, 13 * y + 4, "rightSlamStunEnd", .25], leftSlamStun: [14 * y, 14 * y + 4, "leftSlamStunEnd", .25],
+                    rightSlamStunEnd: [13 * y + 3, 13 * y + 4, "rightSlamStunEnd", .12], leftSlamStunEnd: [14 * y + 3, 14 * y + 4, "leftSlamStunEnd", .12],
+
+                    rightFlip: [15 * y, 15 * y + 4, "rightFlipEnd", 0.20], rightFlipEnd: { frames: [125, 126, 126], next: "rightFlipEnd", speed: 0.1 },
+                    leftFlip: [16 * y, 16 * y + 4, "leftFlipEnd", 0.15], leftFlipEnd: [16 * y + 5, 16 * y + 6, "leftFlipEnd", 0.05],
+                    rightCancelFlip: { frames: [120, 127, 121, 122, 123, 124], next: "rightFlipEnd", speed: 0.2 },
+                    leftCancelFlip: { frames: [128, 135, 129, 130, 131, 132], next: "leftFlipEnd", speed: 0.2 },
+                    
+                    rightFrontFlip: [17 * y, 17 * y + 6, "rightFrontFlipEnd", 0.2], rightFrontFlipEnd: 17 * y + 6,
+                    leftFrontFlip: [18 * y, 18 * y + 6, "leftFrontFlipEnd", 0.2], leftFrontFlipEnd: 18 * y + 6,
+
+                    leftDeath: [19 * y, 19 * y + 5, "empty", 0.3], rightDeath: [19 * y, 19 * y + 5, "empty", 0.3],
+                    empty: 7, finished: 7
                 }
             });
 
@@ -142,6 +149,8 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                 else 
                     this.state = "Walk";
             }
+            else if (this.state === "Impact" && !this.sprite.currentAnimation.includes("Impact"))
+                this.state = "";
         }
         enactNewState() {
             if (!this.currentController.setAnimation && this.respawnStatus == RespawnState.Alive && (this.sprite.currentAnimation == "leftFlip" || this.sprite.currentAnimation == "rightFlip"))
@@ -241,7 +250,12 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
         }
         
         setGrounded() {
+            var initiallyGrounded = this.onGround;
+
             super.setGrounded();
+            
+            if (!initiallyGrounded)
+                this.state = "Impact";
 
             if (this.onGround) {
                 this.highestCombo = Math.max(this.highestCombo, this.comboCount);

@@ -99,7 +99,10 @@ function(       GameObject, Point, CollisionBox, ActorController) {
 
                 var animation = this.orientation + this.state;
                 if (this.currentController.setAnimation) {
-                    if (this.sprite.currentAnimation === this.currentController.setAnimation || this.sprite.currentAnimation === this.currentController.setAnimation + "Finished")
+                    if (this.sprite.currentAnimation === this.currentController.setAnimation || 
+                        this.sprite.currentAnimation === this.currentController.setAnimation + "Finished" ||
+                        this.sprite.currentAnimation === this.currentController.setAnimation + "End"
+                    )
                         return;
                     else
                         animation = this.state;
