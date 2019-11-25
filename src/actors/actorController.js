@@ -37,6 +37,7 @@ define("ActorController", ['Point'], function(Point) {
             this.resetVelocity = motionData["resetVelocity"] != null ? motionData["resetVelocity"] : false;
             this.resetVerticalVel = motionData["resetVerticalVel"] != null ? motionData["resetVerticalVel"] : false;
             this.acceptInput = motionData["acceptInput"] != null ? motionData["acceptInput"] : true;
+            this.locksOrientation = motionData["locksOrientation"] != null ? motionData["locksOrientation"] : false;
             this.inheritJumps = motionData["inheritJumps"] != null ? motionData["inheritJumps"] : true;
             this.setAnimation = motionData["setAnimation"];
         }

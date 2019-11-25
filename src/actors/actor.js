@@ -57,11 +57,15 @@ function(       GameObject, Point, CollisionBox, ActorController) {
 
             if (this.goingLeft && this.currentController.acceptInput) {
                 this.targetVelocity.X = -this.currentController.maxSpeed;
-                this.orientation = "left";
+
+                if (!this.currentController.locksOrientation)
+                    this.orientation = "left";
             }
             else if (this.goingRight && this.currentController.acceptInput) {
                 this.targetVelocity.X = this.currentController.maxSpeed;
-                this.orientation = "right";
+                
+                if (!this.currentController.locksOrientation)
+                    this.orientation = "right";
             }
             else
                 this.targetVelocity.X = -this.velocity.X;
@@ -99,8 +103,7 @@ function(       GameObject, Point, CollisionBox, ActorController) {
 
                 var animation = this.orientation + this.state;
                 if (this.currentController.setAnimation) {
-                    if (this.sprite.currentAnimation === this.currentController.setAnimation || 
-                        this.sprite.currentAnimation === this.currentController.setAnimation + "Finished" ||
+                    if (this.sprite.currentAnimation === this.currentController.setAnimation ||
                         this.sprite.currentAnimation === this.currentController.setAnimation + "End"
                     )
                         return;

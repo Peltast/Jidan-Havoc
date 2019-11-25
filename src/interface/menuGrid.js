@@ -99,9 +99,9 @@ define("MenuGrid", [], function () {
             
             var cursorImg = new createjs.SpriteSheet({
                 "images": [gameAssets["Player"]],
-                "frames": {"width": 40, "height": 44, "regX": 0, "regY": 0, "count": 208},
+                "frames": {"width": 48, "height": 48, "regX": 0, "regY": 0, "count": 160},
                 animations: {
-                    idle: [84, 89, "idle", 0.2]
+                    idle: [136, 141, "idle", 0.2]
                 }
             });
             this.menuCursor =  new createjs.Sprite(cursorImg);
@@ -112,30 +112,32 @@ define("MenuGrid", [], function () {
         }
         updateCursorPosition() { 
             var selection = this.gridMatrix[this.selectionX][this.selectionY];
-            
+            var halfAdjust = 24;
+            var fullAdjust = 52;
+
             if (this.menuCursorAlignment == "left") {
-                this.menuCursor.x = selection.itemContainer.x - 50;
-                this.menuCursor.y = selection.itemContainer.y + selection.height / 2 - 22;
+                this.menuCursor.x = selection.itemContainer.x - fullAdjust;
+                this.menuCursor.y = selection.itemContainer.y + selection.height / 2 - halfAdjust;
             }
             else if (this.menuCursorAlignment == "right") {
-                this.menuCursor.x = selection.itemContainer.x + 50;
-                this.menuCursor.y = selection.itemContainer.y + selection.height / 2 - 22;
+                this.menuCursor.x = selection.itemContainer.x + fullAdjust;
+                this.menuCursor.y = selection.itemContainer.y + selection.height / 2 - halfAdjust;
             }
             else if (this.menuCursorAlignment == "top") {
-                this.menuCursor.x = selection.itemContainer.x + selection.width / 2 - 20;
-                this.menuCursor.y = selection.itemContainer.y - selection.height / 2 - 22;
+                this.menuCursor.x = selection.itemContainer.x + selection.width / 2 - halfAdjust;
+                this.menuCursor.y = selection.itemContainer.y - selection.height / 2 - halfAdjust;
             }
             else if (this.menuCursorAlignment == "bottom") {
-                this.menuCursor.x = selection.itemContainer.x + selection.width / 2 - 20;
-                this.menuCursor.y = selection.itemContainer.y - selection.height - 22;
+                this.menuCursor.x = selection.itemContainer.x + selection.width / 2 - halfAdjust;
+                this.menuCursor.y = selection.itemContainer.y - selection.height - halfAdjust;
             }
             else if (this.menuCursorAlignment == "center") {
-                this.menuCursor.x = selection.itemContainer.x + selection.width / 2 - 20;
-                this.menuCursor.y = selection.itemContainer.y + selection.height / 2 - 22;
+                this.menuCursor.x = selection.itemContainer.x + selection.width / 2 - halfAdjust;
+                this.menuCursor.y = selection.itemContainer.y + selection.height / 2 - halfAdjust;
             }
             
             if (this.gridHeight + this.yOrigin > stageHeight && this.centeredVertically) {
-                this.gridContainer.y = this.yOrigin + (stageHeight - this.gridHeight - 80) * ((this.menuCursor.y + 40) / this.gridHeight);
+                this.gridContainer.y = this.yOrigin + Math.round((stageHeight - this.gridHeight - 80) * ((this.menuCursor.y + 40) / this.gridHeight));
             }
         }
 

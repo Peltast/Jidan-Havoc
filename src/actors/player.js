@@ -56,11 +56,11 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                     rightWalk: [2 * y, 2 * y + 6, "rightWalk", .2],
                     leftWalk: [3 * y, 3 * y + 6, "leftWalk", .2],
                     
-                    rightJump: [4 * y, 4 * y + 3, "rightJumpEnd", .3], rightJumpEnd: 4 * y + 3, rightFall: 2 * y,
-                    rightImpact: [4 * y + 3, 4 * y + 7, "right", .4],
+                    rightJump: [4 * y, 4 * y + 3, "rightJumpEnd", .2], rightJumpEnd: 4 * y + 3, rightFall: 2 * y,
+                    rightImpact: [4 * y + 3, 4 * y + 7, "rightImpactEnd", .4], rightImpactEnd: 0,
                     
-                    leftJump: [5 * y, 5 * y + 3, "leftJumpEnd", .3], leftJumpEnd: 5 * y + 3, leftFall: 3 * y,
-                    leftImpact: [5 * y + 3, 5 * y + 7, "left", .4],
+                    leftJump: [5 * y, 5 * y + 3, "leftJumpEnd", .2], leftJumpEnd: 5 * y + 3, leftFall: 3 * y,
+                    leftImpact: [5 * y + 3, 5 * y + 7, "leftImpactEnd", .4], leftImpactEnd: y,
 
                     rightChargeWindup: [6 * y, 6 * y + 4, "rightChargeWindupEnd", .4], rightChargeWindupEnd: 6 * y + 4,
                     leftChargeWindup: [7 * y, 7 * y + 4, "leftChargeWindupEnd", .4], leftChargeWindupEnd: 7 * y + 4,
@@ -75,8 +75,8 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                     rightSlamStun: [13 * y, 13 * y + 4, "rightSlamStunEnd", .25], leftSlamStun: [14 * y, 14 * y + 4, "leftSlamStunEnd", .25],
                     rightSlamStunEnd: [13 * y + 3, 13 * y + 4, "rightSlamStunEnd", .12], leftSlamStunEnd: [14 * y + 3, 14 * y + 4, "leftSlamStunEnd", .12],
 
-                    rightFlip: [15 * y, 15 * y + 4, "rightFlipEnd", 0.20], rightFlipEnd: { frames: [125, 126, 126], next: "rightFlipEnd", speed: 0.1 },
-                    leftFlip: [16 * y, 16 * y + 4, "leftFlipEnd", 0.15], leftFlipEnd: [16 * y + 5, 16 * y + 6, "leftFlipEnd", 0.05],
+                    rightFlip: [15 * y, 15 * y + 4, "rightFlipEnd", 0.20], rightFlipEnd: [15 * y + 5, 15 * y + 6, "rightFall", 0.1],
+                    leftFlip: [16 * y, 16 * y + 4, "leftFlipEnd", 0.15], leftFlipEnd: [16 * y + 5, 16 * y + 6, "leftFall", 0.1],
                     rightCancelFlip: { frames: [120, 127, 121, 122, 123, 124], next: "rightFlipEnd", speed: 0.2 },
                     leftCancelFlip: { frames: [128, 135, 129, 130, 131, 132], next: "leftFlipEnd", speed: 0.2 },
                     
@@ -141,7 +141,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
         }
         setMotionState() {
 
-            if (!this.onGround && this.velocity.Y > 0 && (this.sprite.currentAnimation !== "leftFlip" && this.sprite.currentAnimation !== "rightFlip" ))
+            if (!this.onGround && this.velocity.Y > 0 && !this.sprite.currentAnimation.includes("Flip"))
                 this.state = "Fall";
             else if (this.state === "" || this.state === "Walk") {
                 if (this.targetVelocity.X == 0 && this.targetVelocity.Y == 0)
@@ -149,7 +149,7 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
                 else 
                     this.state = "Walk";
             }
-            else if (this.state === "Impact" && !this.sprite.currentAnimation.includes("Impact"))
+            else if (this.state === "Impact" && this.sprite.currentAnimation.includes("ImpactEnd"))
                 this.state = "";
         }
         enactNewState() {
