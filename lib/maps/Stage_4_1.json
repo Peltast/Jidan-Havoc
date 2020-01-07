@@ -159,29 +159,6 @@
                  "y":320
                 }, 
                 {
-                 "gid":61,
-                 "height":32,
-                 "id":142,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"dustBunny"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"left"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":1344,
-                 "y":288
-                }, 
-                {
                  "gid":46,
                  "height":32,
                  "id":143,
@@ -559,6 +536,29 @@
                  "width":32,
                  "x":192,
                  "y":320
+                }, 
+                {
+                 "gid":31,
+                 "height":32,
+                 "id":171,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"sleepingEnemy"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"left"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":1344,
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -567,7 +567,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":171,
+ "nextobjectid":172,
  "orientation":"orthogonal",
  "properties":[
         {

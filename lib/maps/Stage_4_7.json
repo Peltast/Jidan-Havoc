@@ -1,15 +1,16 @@
-{ "height":20,
+{ "compressionlevel":0,
+ "height":50,
  "infinite":false,
  "layers":[
         {
-         "data":[3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 67, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 32, 34, 3, 32, 78, 34, 3, 32, 34, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 77, 78, 79, 48, 77, 78, 79, 49, 3, 3, 3, 32, 78, 34, 3, 32, 34, 3, 32, 34, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 63, 48, 48, 48, 63, 48, 49, 3, 3, 3, 62, 48, 77, 78, 79, 48, 77, 79, 49, 3, 32, 34, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 65, 3, 3, 3, 3, 3, 62, 64, 3, 47, 48, 49, 3, 62, 64, 3, 67, 3, 3, 62, 48, 48, 48, 48, 48, 48, 77, 78, 79, 49, 3, 32, 34, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 32, 79, 49, 3, 3, 3, 3, 3, 3, 3, 3, 62, 63, 64, 3, 3, 3, 3, 3, 3, 3, 3, 62, 63, 63, 63, 63, 63, 63, 63, 48, 77, 78, 79, 49, 3, 32, 34, 3, 32, 78, 34, 3, 32, 78, 79, 48, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 62, 63, 63, 48, 77, 78, 79, 49, 3, 62, 48, 77, 78, 79, 48, 63, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 48, 48, 49, 3, 3, 62, 63, 48, 63, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 62, 63, 48, 63, 64, 3, 3, 3, 3, 66, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 66, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-         "height":20,
+         "data":[3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 32, 78, 33, 33, 33, 34, 3, 3, 3, 3, 3, 3, 32, 33, 33, 34, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 48, 63, 63, 49, 3, 3, 3, 3, 3, 3, 47, 48, 48, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 49, 3, 3, 81, 3, 3, 3, 3, 3, 3, 47, 48, 48, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 62, 48, 49, 3, 3, 81, 3, 3, 3, 3, 3, 3, 47, 48, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 64, 3, 3, 81, 3, 3, 3, 3, 3, 3, 47, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 66, 3, 3, 3, 66, 3, 3, 3, 3, 3, 3, 66, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 32, 33, 33, 34, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 48, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 66, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 32, 33, 33, 34, 3, 3, 3, 3, 32, 33, 33, 34, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 62, 48, 48, 49, 3, 3, 3, 3, 47, 48, 48, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 62, 48, 49, 3, 3, 3, 3, 47, 48, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 62, 49, 3, 3, 3, 3, 47, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 66, 3, 3, 3, 3, 66, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 32, 33, 33, 34, 3, 3, 3, 3, 3, 32, 33, 33, 34, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 48, 49, 3, 3, 3, 3, 3, 47, 48, 48, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 48, 49, 3, 3, 3, 3, 3, 47, 48, 48, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 48, 49, 3, 3, 3, 3, 3, 47, 48, 48, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 62, 48, 48, 49, 3, 3, 3, 3, 3, 47, 48, 48, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 62, 48, 49, 3, 3, 3, 3, 3, 47, 48, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 62, 49, 3, 3, 3, 3, 3, 47, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 66, 3, 3, 3, 3, 3, 66, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 65, 3, 65, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 81, 3, 81, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 80, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+         "height":50,
          "id":12,
          "name":"Tile Layer 1",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":45,
+         "width":30,
          "x":0,
          "y":0
         }, 
@@ -33,8 +34,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":224,
-                 "y":192
+                 "x":192,
+                 "y":256
                 }, 
                 {
                  "gid":76,
@@ -50,7 +51,7 @@
                         {
                          "name":"horizontal",
                          "type":"string",
-                         "value":"false"
+                         "value":"true"
                         }, 
                         {
                          "name":"orientation",
@@ -60,95 +61,14 @@
                         {
                          "name":"startDirection",
                          "type":"string",
-                         "value":"up"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":416,
-                 "y":192
-                }, 
-                {
-                 "gid":31,
-                 "height":32,
-                 "id":51,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"sleepingEnemy"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"right"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":512,
-                 "y":224
-                }, 
-                {
-                 "gid":16,
-                 "height":32,
-                 "id":78,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"floatingBug"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
                          "value":"left"
                         }],
                  "rotation":0,
                  "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
-                 "x":608,
-                 "y":192
-                }, 
-                {
-                 "gid":46,
-                 "height":32,
-                 "id":94,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"chasingEnemy"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"right"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":96,
-                 "y":192
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":100,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":160,
-                 "y":160
+                 "x":450.666666666667,
+                 "y":1032
                 }, 
                 {
                  "gid":2,
@@ -165,31 +85,19 @@
                  "type":"Transition",
                  "visible":true,
                  "width":32,
-                 "x":1344,
-                 "y":224
+                 "x":448,
+                 "y":1376
                 }, 
                 {
-                 "gid":4,
+                 "gid":16,
                  "height":32,
-                 "id":133,
-                 "name":"",
-                 "rotation":0,
-                 "type":"NPCWall",
-                 "visible":true,
-                 "width":32,
-                 "x":384,
-                 "y":192
-                }, 
-                {
-                 "gid":46,
-                 "height":32,
-                 "id":134,
+                 "id":135,
                  "name":"",
                  "properties":[
                         {
                          "name":"enemyType",
                          "type":"string",
-                         "value":"chasingEnemy"
+                         "value":"floatingBug"
                         }, 
                         {
                          "name":"orientation",
@@ -200,13 +108,132 @@
                  "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
-                 "x":357,
-                 "y":191
+                 "x":448,
+                 "y":224
+                }, 
+                {
+                 "gid":16,
+                 "height":32,
+                 "id":136,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"floatingBug"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"left"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":1424,
+                 "y":-32
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":143,
+                 "name":"",
+                 "rotation":0,
+                 "type":"NPCWall",
+                 "visible":true,
+                 "width":32,
+                 "x":512,
+                 "y":256
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":144,
+                 "name":"",
+                 "rotation":0,
+                 "type":"NPCWall",
+                 "visible":true,
+                 "width":32,
+                 "x":672,
+                 "y":256
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":145,
+                 "name":"",
+                 "rotation":0,
+                 "type":"NPCWall",
+                 "visible":true,
+                 "width":32,
+                 "x":1456,
+                 "y":-32
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":159,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":1280,
+                 "y":-64
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":160,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":1328,
+                 "y":0
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":161,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":1392,
+                 "y":-32
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":162,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":1439,
+                 "y":-64
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":181,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":256,
+                 "y":256
                 }, 
                 {
                  "gid":46,
                  "height":32,
-                 "id":135,
+                 "id":182,
                  "name":"",
                  "properties":[
                         {
@@ -224,94 +251,12 @@
                  "visible":true,
                  "width":32,
                  "x":640,
-                 "y":224
-                }, 
-                {
-                 "gid":4,
-                 "height":32,
-                 "id":136,
-                 "name":"",
-                 "rotation":0,
-                 "type":"NPCWall",
-                 "visible":true,
-                 "width":32,
-                 "x":64,
-                 "y":192
-                }, 
-                {
-                 "gid":4,
-                 "height":32,
-                 "id":137,
-                 "name":"",
-                 "rotation":0,
-                 "type":"NPCWall",
-                 "visible":true,
-                 "width":32,
-                 "x":448,
-                 "y":224
-                }, 
-                {
-                 "gid":4,
-                 "height":32,
-                 "id":138,
-                 "name":"",
-                 "rotation":0,
-                 "type":"NPCWall",
-                 "visible":true,
-                 "width":32,
-                 "x":1056,
-                 "y":320
-                }, 
-                {
-                 "gid":46,
-                 "height":32,
-                 "id":139,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"chasingEnemy"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"left"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":736,
-                 "y":224
-                }, 
-                {
-                 "gid":46,
-                 "height":32,
-                 "id":140,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"chasingEnemy"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"left"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":832,
                  "y":256
                 }, 
                 {
                  "gid":46,
                  "height":32,
-                 "id":141,
+                 "id":183,
                  "name":"",
                  "properties":[
                         {
@@ -328,13 +273,13 @@
                  "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
-                 "x":928,
-                 "y":288
+                 "x":640,
+                 "y":512
                 }, 
                 {
                  "gid":46,
                  "height":32,
-                 "id":142,
+                 "id":184,
                  "name":"",
                  "properties":[
                         {
@@ -351,13 +296,13 @@
                  "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
-                 "x":1248,
-                 "y":320
+                 "x":608,
+                 "y":736
                 }, 
                 {
                  "gid":46,
                  "height":32,
-                 "id":143,
+                 "id":185,
                  "name":"",
                  "properties":[
                         {
@@ -374,13 +319,85 @@
                  "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
-                 "x":1024,
-                 "y":320
+                 "x":640,
+                 "y":992
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":186,
+                 "name":"",
+                 "rotation":0,
+                 "type":"NPCWall",
+                 "visible":true,
+                 "width":32,
+                 "x":512,
+                 "y":512
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":187,
+                 "name":"",
+                 "rotation":0,
+                 "type":"NPCWall",
+                 "visible":true,
+                 "width":32,
+                 "x":672,
+                 "y":512
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":188,
+                 "name":"",
+                 "rotation":0,
+                 "type":"NPCWall",
+                 "visible":true,
+                 "width":32,
+                 "x":512,
+                 "y":736
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":189,
+                 "name":"",
+                 "rotation":0,
+                 "type":"NPCWall",
+                 "visible":true,
+                 "width":32,
+                 "x":672,
+                 "y":736
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":190,
+                 "name":"",
+                 "rotation":0,
+                 "type":"NPCWall",
+                 "visible":true,
+                 "width":32,
+                 "x":512,
+                 "y":992
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":191,
+                 "name":"",
+                 "rotation":0,
+                 "type":"NPCWall",
+                 "visible":true,
+                 "width":32,
+                 "x":672,
+                 "y":992
                 }, 
                 {
                  "gid":31,
                  "height":32,
-                 "id":145,
+                 "id":192,
                  "name":"",
                  "properties":[
                         {
@@ -391,322 +408,523 @@
                         {
                          "name":"orientation",
                          "type":"string",
+                         "value":"left"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":320,
+                 "y":256
+                }, 
+                {
+                 "gid":16,
+                 "height":32,
+                 "id":193,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"floatingBug"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
                          "value":"right"
                         }],
                  "rotation":0,
                  "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
-                 "x":1088,
-                 "y":320
-                }, 
-                {
-                 "gid":16,
-                 "height":32,
-                 "id":146,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"floatingBug"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"left"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":704,
-                 "y":192
-                }, 
-                {
-                 "gid":16,
-                 "height":32,
-                 "id":147,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"floatingBug"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"left"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":768,
-                 "y":224
-                }, 
-                {
-                 "gid":16,
-                 "height":32,
-                 "id":148,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"floatingBug"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"left"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":864,
-                 "y":256
-                }, 
-                {
-                 "gid":16,
-                 "height":32,
-                 "id":149,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"floatingBug"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"left"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":960,
+                 "x":448,
                  "y":288
                 }, 
                 {
-                 "gid":91,
+                 "gid":16,
                  "height":32,
-                 "id":150,
+                 "id":194,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"floatingBug"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"left"
+                        }],
                  "rotation":0,
-                 "type":"Jidan",
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":476,
+                 "y":512
+                }, 
+                {
+                 "gid":16,
+                 "height":32,
+                 "id":195,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"floatingBug"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"right"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":384,
+                 "y":509.333333333333
+                }, 
+                {
+                 "gid":16,
+                 "height":32,
+                 "id":196,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"floatingBug"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"left"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":461,
+                 "y":729.000166666667
+                }, 
+                {
+                 "gid":46,
+                 "height":32,
+                 "id":198,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"chasingEnemy"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"right"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
                  "x":288,
-                 "y":160
+                 "y":736
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":199,
+                 "name":"",
+                 "rotation":0,
+                 "type":"NPCWall",
+                 "visible":true,
+                 "width":32,
+                 "x":256,
+                 "y":736
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":200,
+                 "name":"",
+                 "rotation":0,
+                 "type":"NPCWall",
+                 "visible":true,
+                 "width":32,
+                 "x":416,
+                 "y":736
+                }, 
+                {
+                 "gid":46,
+                 "height":32,
+                 "id":201,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"chasingEnemy"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"right"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":256,
+                 "y":992
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":202,
+                 "name":"",
+                 "rotation":0,
+                 "type":"NPCWall",
+                 "visible":true,
+                 "width":32,
+                 "x":224,
+                 "y":992
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":203,
+                 "name":"",
+                 "rotation":0,
+                 "type":"NPCWall",
+                 "visible":true,
+                 "width":32,
+                 "x":384,
+                 "y":992
+                }, 
+                {
+                 "gid":16,
+                 "height":32,
+                 "id":204,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"floatingBug"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"left"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":446.666666666667,
+                 "y":977.333333333333
                 }, 
                 {
                  "gid":91,
                  "height":32,
-                 "id":151,
+                 "id":205,
                  "name":"",
                  "rotation":0,
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":448,
-                 "y":160
+                 "x":320,
+                 "y":224
                 }, 
                 {
                  "gid":91,
                  "height":32,
-                 "id":152,
+                 "id":206,
                  "name":"",
                  "rotation":0,
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
                  "x":384,
-                 "y":192
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":153,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":512,
-                 "y":192
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":154,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":576,
-                 "y":192
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":155,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":672,
-                 "y":192
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":156,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":576,
                  "y":224
                 }, 
                 {
                  "gid":91,
                  "height":32,
-                 "id":157,
+                 "id":207,
                  "name":"",
                  "rotation":0,
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":672,
-                 "y":224
+                 "x":452,
+                 "y":193.333333333333
                 }, 
                 {
                  "gid":91,
                  "height":32,
-                 "id":158,
+                 "id":208,
                  "name":"",
                  "rotation":0,
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":768,
-                 "y":256
+                 "x":453.333333333333,
+                 "y":261.333333333333
                 }, 
                 {
                  "gid":91,
                  "height":32,
-                 "id":159,
+                 "id":209,
                  "name":"",
                  "rotation":0,
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":864,
-                 "y":288
+                 "x":534.666666666667,
+                 "y":216
                 }, 
                 {
                  "gid":91,
                  "height":32,
-                 "id":160,
+                 "id":210,
                  "name":"",
                  "rotation":0,
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":960,
-                 "y":320
+                 "x":504,
+                 "y":294.666666666667
                 }, 
                 {
                  "gid":91,
                  "height":32,
-                 "id":161,
+                 "id":211,
                  "name":"",
                  "rotation":0,
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":960,
-                 "y":256
+                 "x":492,
+                 "y":350.666666666667
                 }, 
                 {
                  "gid":91,
                  "height":32,
-                 "id":162,
+                 "id":212,
                  "name":"",
                  "rotation":0,
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":864,
-                 "y":224
+                 "x":482.666666666667,
+                 "y":433.333333333333
                 }, 
                 {
                  "gid":91,
                  "height":32,
-                 "id":163,
+                 "id":213,
                  "name":"",
                  "rotation":0,
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":768,
-                 "y":192
+                 "x":416,
+                 "y":512
                 }, 
                 {
                  "gid":91,
                  "height":32,
-                 "id":164,
+                 "id":214,
                  "name":"",
                  "rotation":0,
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":1056,
-                 "y":288
+                 "x":392,
+                 "y":473.333333333333
                 }, 
                 {
                  "gid":91,
                  "height":32,
-                 "id":165,
+                 "id":215,
                  "name":"",
                  "rotation":0,
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":1152,
-                 "y":320
+                 "x":529,
+                 "y":478
                 }, 
                 {
                  "gid":91,
                  "height":32,
-                 "id":166,
+                 "id":216,
                  "name":"",
                  "rotation":0,
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":1216,
-                 "y":288
+                 "x":504,
+                 "y":559
                 }, 
                 {
                  "gid":91,
                  "height":32,
-                 "id":167,
+                 "id":217,
                  "name":"",
                  "rotation":0,
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":1280,
-                 "y":256
+                 "x":492,
+                 "y":595
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":218,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":471,
+                 "y":629
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":219,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":471,
+                 "y":689
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":220,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":541,
+                 "y":698
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":221,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":417,
+                 "y":733
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":222,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":396,
+                 "y":698
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":223,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":454,
+                 "y":847
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":224,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":451,
+                 "y":1006
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":225,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":402,
+                 "y":991
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":226,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":500,
+                 "y":990
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":227,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":448,
+                 "y":1196
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":228,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":448,
+                 "y":1238
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":229,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":449,
+                 "y":1284
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -715,7 +933,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":168,
+ "nextobjectid":230,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -724,7 +942,7 @@
          "value":"1300,1800,2400"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.2.4",
+ "tiledversion":"1.3.1",
  "tileheight":32,
  "tilesets":[
         {
@@ -747,5 +965,5 @@
  "tilewidth":32,
  "type":"map",
  "version":1.2,
- "width":45
+ "width":30
 }
