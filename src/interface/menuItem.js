@@ -37,12 +37,14 @@ define("MenuItem", [], function () {
                 removeEventListener("keydown", currentMenu.onKeyDown);
                 removeEventListener("keyup", currentMenu.onKeyUp);
                 gameStatus = GameState.LOADING;
+
+                soundManager.playSound("StartGame", 0.6);
             }
             else if (this.itemType === ButtonTypes.SANDBOX) {
                 removeEventListener("keydown", currentMenu.onKeyDown);
                 removeEventListener("keyup", currentMenu.onKeyUp);
                 gameStatus = GameState.LOADING;
-                startingMap = "DevRoom";
+                currentMap = "DevRoom";
             }
 
             else if (this.itemType === ButtonTypes.LOADLEVEL) {
@@ -70,7 +72,7 @@ define("MenuItem", [], function () {
             
             removeEventListener("keydown", currentMenu.onKeyDown);
             removeEventListener("keyup", currentMenu.onKeyUp);
-            startingMap = this.itemData["level"];
+            currentMap = this.itemData["level"];
             gameStatus = GameState.LEVELSELECTED;
         }
 

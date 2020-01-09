@@ -1,4 +1,12 @@
 { "compressionlevel":0,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"Stage_5_3.json"
+        }
+    },
  "height":28,
  "infinite":false,
  "layers":[
@@ -58,7 +66,7 @@
                         {
                          "name":"destination",
                          "type":"string",
-                         "value":"Stage_5_3"
+                         "value":"Stage_5_4"
                         }],
                  "rotation":0,
                  "type":"Transition",

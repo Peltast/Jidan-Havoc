@@ -112,7 +112,7 @@ define("LevelEndMenu", ['Point', 'MenuItem', 'MenuGrid'], function(Point, MenuIt
 
             this.levelEndMenu = new MenuGrid([ [levelSelect, nextLevel, retryLevel] ], true, 40, 20, stageWidth * 0.2, stageHeight * 0.88);
             this.levelEndMenu.setCursorAlignment("top");
-            this.levelEndMenu.changeSelection(1, 0);
+            this.levelEndMenu.changeSelection(1, 0, true);
 
             this.menuContainer.addChild(this.levelEndMenu.gridContainer);
         }
@@ -120,7 +120,7 @@ define("LevelEndMenu", ['Point', 'MenuItem', 'MenuGrid'], function(Point, MenuIt
             if (this.timer % 3 == 0) {
                 this.collectibleStatCount += 1;
                 this.collectibleValue.text = this.collectibleStatCount + " / " + currentLevel.numOfCollectibles;
-                this.playSound("Collectible", 0.1);
+                this.playSound("Collectible", 0.2);
 
                 if (this.collectibleStatCount == player.collectiblesGathered)
                     this.finishCollectibleRanking();
@@ -138,7 +138,7 @@ define("LevelEndMenu", ['Point', 'MenuItem', 'MenuGrid'], function(Point, MenuIt
             if (this.timer % 6 == 0) {
                 this.enemyStatCount -= 1;
                 this.enemyValue.text = (currentLevel.numOfEnemies - this.enemyStatCount) + " / " + currentLevel.numOfEnemies;
-                this.playSound("Hit", 0.1);
+                this.playSound("Hit", 0.2);
 
                 if (this.enemyStatCount == currentLevel.enemiesRemaining)
                     this.finishEnemyRanking();
@@ -165,7 +165,7 @@ define("LevelEndMenu", ['Point', 'MenuItem', 'MenuGrid'], function(Point, MenuIt
             
             this.scoreValue.text = this.scoreStatCount;
             if (this.scoreStatCount % (scoreIncrement * 3) == 0)
-                this.playSound("Combo1", 0.1);
+                this.playSound("Combo1", 0.2);
 
             this.updateScoreRankingDisplay();
         }
@@ -183,10 +183,10 @@ define("LevelEndMenu", ['Point', 'MenuItem', 'MenuGrid'], function(Point, MenuIt
 
             if (parentIconImg.currentAnimation == "unfilled") {
                 parentIconImg.gotoAndPlay("filled");
-                this.playSound("Combo4", 0.3);
+                this.playSound("Combo4", 0.5);
             }
             else
-                this.playSound("Combo3", 0.2);
+                this.playSound("Combo3", 0.3);
         }
         
         drawScoreMenu() {
@@ -222,7 +222,7 @@ define("LevelEndMenu", ['Point', 'MenuItem', 'MenuGrid'], function(Point, MenuIt
             this.levelIcon.gotoAndPlay(this.isFirstTimeCompletion ? "complete" : "finished");
             this.levelIconContainer.addChild(this.levelIcon);
             if (!currentLevel.completed)
-                this.playSound("Combo3", 0.2);
+                this.playSound("Combo3", 0.4);
 
             if (currentLevel.scoreThresholds) {
                 this.addFullRank(currentLevel);

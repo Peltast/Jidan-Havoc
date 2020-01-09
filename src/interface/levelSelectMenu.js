@@ -7,6 +7,9 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
 
             this.rowMax = 7;
             this.seriesRowIndices = [];
+            this.seriesLocks = {
+                "2": 3, "3": 10, "4": 30, "5": 60
+            };
 
             this.initiateStageButtons();
             this.addCollectibleStatus();
@@ -71,7 +74,7 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
 
             for (let l = 0; l < rowLength; l++) {
                 var level = this.getLevel(seriesNumber, levelNumber);
-
+                
                 var buttonImageName = level.completed ? "LevelSelectTileComplete" : "LevelSelectTile";
                 if (!unlocked)
                     buttonImageName = "LevelSelectTileLocked";
@@ -89,11 +92,12 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
         }
 
         isSeriesUnlocked(seriesNumber) {
-
             if (seriesNumber == 2)
                 return levelsCompleted >= 3;
-            else if (seriesNumber == 3)
-                return ranksAchieved >= 10;
+            else if (this.seriesLocks[seriesNumber]) {
+                var ranksNeeded = this.seriesLocks[seriesNumber];
+                return ranksAchieved >= ranksNeeded;
+            }
             else
                 return true;
         }
@@ -102,30 +106,20 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
             if (this.isSeriesUnlocked(seriesNumber))
                 return;
             
-            if (seriesNumber == 2) {
-                var levelReqText = new createjs.Text("3", "32px Equipment", "#dc534b");
-                var levelReqImage = new createjs.Sprite(new createjs.SpriteSheet({
-                    "images": [gameAssets["LevelSelectTileComplete"]],
-                    "frames": {"width": 40, "height": 40, "regX": 0, "regY": 0, "count": 1}, animations: { idle: 0 }
-                }));
-                levelReqImage.x = -this.levelGrid.gridMatrix[rowIndex][0].itemContainer.x;
-                levelReqText.x = levelReqImage.x - 10 - levelReqText.getMeasuredWidth();
-                
-                this.levelGrid.gridMatrix[rowIndex][0].itemContainer.addChild(levelReqText, levelReqImage);
-            }
-            else if (seriesNumber == 3) {
-
-                var rankReqText = new createjs.Text("10", "32px Equipment", "#dc534b");
-                var rankReqImage = new createjs.Sprite(new createjs.SpriteSheet({
-                    "images": [gameAssets["LevelSelectCollectible"]],
-                    "frames": {"width": 28, "height": 38, "regX": 0, "regY": 0, "count": 1}, animations: { idle: 0 }
-                }));
-                rankReqImage.x = -this.levelGrid.gridMatrix[rowIndex][0].itemContainer.x;
-                rankReqText.x =  rankReqImage.x - 10 - rankReqText.getMeasuredWidth();
-                
-                this.levelGrid.gridMatrix[rowIndex][0].itemContainer.addChild(rankReqText, rankReqImage);
-            }
-
+            if (this.seriesLocks[seriesNumber])
+                this.drawLockImages(rowIndex, this.seriesLocks[seriesNumber]);
+        }
+        drawLockImages(rowIndex, lockNumber) {
+        
+            var rankReqText = new createjs.Text(lockNumber, "32px Equipment", "#dc534b");
+            var rankReqImage = new createjs.Sprite(new createjs.SpriteSheet({
+                "images": [gameAssets["LevelSelectCollectible"]],
+                "frames": {"width": 28, "height": 38, "regX": 0, "regY": 0, "count": 1}, animations: { idle: 0 }
+            }));
+            rankReqImage.x = -this.levelGrid.gridMatrix[rowIndex][0].itemContainer.x;
+            rankReqText.x =  rankReqImage.x - 10 - rankReqText.getMeasuredWidth();
+            
+            this.levelGrid.gridMatrix[rowIndex][0].itemContainer.addChild(rankReqText, rankReqImage);
         }
 
         addLevelNumber(button, seriesNum, levelNum) {

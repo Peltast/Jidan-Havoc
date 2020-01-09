@@ -1,15 +1,24 @@
-{ "height":28,
+{ "compressionlevel":0,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"Stage_5_4.json"
+        }
+    },
+ "height":26,
  "infinite":false,
  "layers":[
         {
-         "data":[3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 32, 78, 34, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 62, 63, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 65, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 32, 34, 3, 3, 3, 3, 3, 3, 3, 3, 32, 34, 3, 3, 3, 81, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 49, 3, 3, 3, 3, 3, 3, 3, 3, 47, 49, 3, 3, 3, 81, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 64, 3, 32, 34, 3, 32, 34, 3, 3, 62, 49, 3, 3, 3, 81, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 81, 3, 3, 47, 77, 78, 79, 49, 3, 3, 3, 81, 3, 3, 3, 81, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 81, 3, 3, 62, 63, 48, 48, 64, 3, 3, 3, 81, 3, 3, 3, 81, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 81, 3, 3, 3, 3, 47, 49, 3, 3, 3, 3, 81, 3, 3, 3, 81, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 81, 3, 3, 3, 3, 47, 64, 3, 3, 3, 3, 81, 3, 3, 3, 81, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 81, 3, 3, 3, 3, 81, 3, 3, 3, 3, 3, 81, 3, 3, 3, 81, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 81, 3, 3, 3, 3, 81, 3, 3, 3, 3, 3, 81, 3, 3, 3, 81, 3, 3, 3],
-         "height":28,
+         "data":[3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 32, 33, 33, 33, 33, 78, 78, 34, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 63, 63, 63, 63, 63, 64, 3, 3, 3, 3, 65, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 32, 79, 64, 3, 3, 3, 3, 3, 3, 3, 3, 67, 3, 81, 3, 3, 3, 67, 3, 3, 3, 3, 3, 3, 3, 3, 47, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 81, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 32, 79, 64, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 66, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 67, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 49, 3, 3, 3, 3, 67, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 49, 3, 3, 3, 3, 3, 3, 3, 67, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 49, 3, 65, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 62, 49, 3, 81, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 80, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 48, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 62, 48, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 47, 49, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+         "height":26,
          "id":11,
          "name":"Tile Layer 1",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":28,
+         "width":26,
          "x":0,
          "y":0
         }, 
@@ -33,64 +42,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":160,
+                 "x":288,
                  "y":288
-                }, 
-                {
-                 "gid":76,
-                 "height":32,
-                 "id":40,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"flyingBat"
-                        }, 
-                        {
-                         "name":"horizontal",
-                         "type":"string",
-                         "value":"false"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"right"
-                        }, 
-                        {
-                         "name":"startDirection",
-                         "type":"string",
-                         "value":"down"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":416,
-                 "y":416
-                }, 
-                {
-                 "gid":61,
-                 "height":32,
-                 "id":82,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"dustBunny"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"left"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":320,
-                 "y":608
                 }, 
                 {
                  "gid":91,
@@ -101,8 +54,8 @@
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":320,
-                 "y":352
+                 "x":384,
+                 "y":288
                 }, 
                 {
                  "gid":2,
@@ -119,20 +72,8 @@
                  "type":"Transition",
                  "visible":true,
                  "width":32,
-                 "x":768,
-                 "y":544
-                }, 
-                {
-                 "gid":4,
-                 "height":32,
-                 "id":133,
-                 "name":"",
-                 "rotation":0,
-                 "type":"NPCWall",
-                 "visible":true,
-                 "width":32,
-                 "x":256,
-                 "y":608
+                 "x":160,
+                 "y":640
                 }, 
                 {
                  "gid":16,
@@ -154,8 +95,31 @@
                  "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
-                 "x":512,
-                 "y":352
+                 "x":544,
+                 "y":288
+                }, 
+                {
+                 "gid":16,
+                 "height":32,
+                 "id":135,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"floatingBug"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"left"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":448,
+                 "y":320
                 }, 
                 {
                  "gid":16,
@@ -177,8 +141,8 @@
                  "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
-                 "x":608,
-                 "y":416
+                 "x":640,
+                 "y":320
                 }, 
                 {
                  "gid":16,
@@ -200,8 +164,31 @@
                  "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
-                 "x":512,
-                 "y":480
+                 "x":544,
+                 "y":384
+                }, 
+                {
+                 "gid":16,
+                 "height":32,
+                 "id":138,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"floatingBug"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"left"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":448,
+                 "y":448
                 }, 
                 {
                  "gid":16,
@@ -223,8 +210,8 @@
                  "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
-                 "x":608,
-                 "y":544
+                 "x":640,
+                 "y":448
                 }, 
                 {
                  "gid":16,
@@ -247,7 +234,99 @@
                  "visible":true,
                  "width":32,
                  "x":544,
+                 "y":480
+                }, 
+                {
+                 "gid":16,
+                 "height":32,
+                 "id":148,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"floatingBug"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"left"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":448,
+                 "y":544
+                }, 
+                {
+                 "gid":16,
+                 "height":32,
+                 "id":149,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"floatingBug"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"right"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":640,
+                 "y":544
+                }, 
+                {
+                 "gid":16,
+                 "height":32,
+                 "id":150,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"floatingBug"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"right"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":544,
                  "y":576
+                }, 
+                {
+                 "gid":16,
+                 "height":32,
+                 "id":155,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enemyType",
+                         "type":"string",
+                         "value":"floatingBug"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"right"
+                        }],
+                 "rotation":0,
+                 "type":"EnemySpawn",
+                 "visible":true,
+                 "width":32,
+                 "x":352,
+                 "y":468
                 }, 
                 {
                  "gid":16,
@@ -269,8 +348,8 @@
                  "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
-                 "x":416,
-                 "y":352
+                 "x":352,
+                 "y":544
                 }, 
                 {
                  "gid":16,
@@ -286,14 +365,14 @@
                         {
                          "name":"orientation",
                          "type":"string",
-                         "value":"left"
+                         "value":"right"
                         }],
                  "rotation":0,
                  "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
-                 "x":320,
-                 "y":384
+                 "x":352,
+                 "y":621
                 }, 
                 {
                  "gid":16,
@@ -309,14 +388,14 @@
                         {
                          "name":"orientation",
                          "type":"string",
-                         "value":"left"
+                         "value":"right"
                         }],
                  "rotation":0,
                  "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
-                 "x":416,
-                 "y":480
+                 "x":256,
+                 "y":512
                 }, 
                 {
                  "gid":16,
@@ -332,14 +411,14 @@
                         {
                          "name":"orientation",
                          "type":"string",
-                         "value":"left"
+                         "value":"right"
                         }],
                  "rotation":0,
                  "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
-                 "x":288,
-                 "y":480
+                 "x":256,
+                 "y":608
                 }, 
                 {
                  "gid":16,
@@ -361,110 +440,104 @@
                  "type":"EnemySpawn",
                  "visible":true,
                  "width":32,
-                 "x":384,
-                 "y":576
+                 "x":448,
+                 "y":640
                 }, 
                 {
-                 "gid":61,
+                 "gid":91,
+                 "height":32,
+                 "id":161,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":480,
+                 "y":288
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":162,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":544,
+                 "y":352
+                }, 
+                {
+                 "gid":91,
                  "height":32,
                  "id":163,
                  "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"dustBunny"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"right"
-                        }],
                  "rotation":0,
-                 "type":"EnemySpawn",
+                 "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":608,
-                 "y":608
+                 "x":544,
+                 "y":448
                 }, 
                 {
-                 "gid":61,
+                 "gid":91,
                  "height":32,
                  "id":164,
                  "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"dustBunny"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"left"
-                        }],
                  "rotation":0,
-                 "type":"EnemySpawn",
+                 "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":512,
-                 "y":672
+                 "x":608,
+                 "y":320
                 }, 
                 {
-                 "gid":61,
+                 "gid":91,
+                 "height":32,
+                 "id":165,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":640,
+                 "y":512
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":166,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":608,
+                 "y":576
+                }, 
+                {
+                 "gid":91,
                  "height":32,
                  "id":167,
                  "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"dustBunny"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"right"
-                        }],
                  "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":416,
-                 "y":672
-                }, 
-                {
-                 "gid":76,
-                 "height":32,
-                 "id":168,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"flyingBat"
-                        }, 
-                        {
-                         "name":"horizontal",
-                         "type":"string",
-                         "value":"false"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"left"
-                        }, 
-                        {
-                         "name":"startDirection",
-                         "type":"string",
-                         "value":"up"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
+                 "type":"Jidan",
                  "visible":true,
                  "width":32,
                  "x":512,
-                 "y":416
+                 "y":576
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":168,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":448,
+                 "y":480
                 }, 
                 {
                  "gid":91,
@@ -475,20 +548,8 @@
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":608,
-                 "y":352
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":170,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":511,
-                 "y":432
+                 "x":448,
+                 "y":576
                 }, 
                 {
                  "gid":91,
@@ -499,359 +560,56 @@
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":416,
-                 "y":433
+                 "x":320,
+                 "y":524
                 }, 
                 {
-                 "gid":76,
+                 "gid":91,
                  "height":32,
                  "id":172,
                  "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"flyingBat"
-                        }, 
-                        {
-                         "name":"horizontal",
-                         "type":"string",
-                         "value":"true"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"left"
-                        }, 
-                        {
-                         "name":"startDirection",
-                         "type":"string",
-                         "value":"left"
-                        }],
                  "rotation":0,
-                 "type":"EnemySpawn",
+                 "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":480,
-                 "y":576
+                 "x":256,
+                 "y":480
                 }, 
                 {
-                 "gid":76,
+                 "gid":91,
                  "height":32,
                  "id":173,
                  "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"flyingBat"
-                        }, 
-                        {
-                         "name":"horizontal",
-                         "type":"string",
-                         "value":"false"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"left"
-                        }, 
-                        {
-                         "name":"startDirection",
-                         "type":"string",
-                         "value":"down"
-                        }],
                  "rotation":0,
-                 "type":"EnemySpawn",
+                 "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":608,
-                 "y":480
+                 "x":256,
+                 "y":576
                 }, 
                 {
-                 "gid":76,
+                 "gid":91,
+                 "height":32,
+                 "id":174,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":384,
+                 "y":621
+                }, 
+                {
+                 "gid":91,
                  "height":32,
                  "id":175,
                  "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"flyingBat"
-                        }, 
-                        {
-                         "name":"horizontal",
-                         "type":"string",
-                         "value":"true"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"left"
-                        }, 
-                        {
-                         "name":"startDirection",
-                         "type":"string",
-                         "value":"right"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":352,
-                 "y":480
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":176,
-                 "name":"",
                  "rotation":0,
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":352,
-                 "y":460
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":177,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":607,
-                 "y":468
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":178,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":463,
-                 "y":563
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":179,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":448,
-                 "y":320
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":180,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":465,
-                 "y":505
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":181,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":397,
-                 "y":637
-                }, 
-                {
-                 "gid":4,
-                 "height":32,
-                 "id":183,
-                 "name":"",
-                 "rotation":0,
-                 "type":"NPCWall",
-                 "visible":true,
-                 "width":32,
-                 "x":352,
-                 "y":608
-                }, 
-                {
-                 "gid":4,
-                 "height":32,
-                 "id":184,
-                 "name":"",
-                 "rotation":0,
-                 "type":"NPCWall",
-                 "visible":true,
-                 "width":32,
-                 "x":352,
-                 "y":672
-                }, 
-                {
-                 "gid":4,
-                 "height":32,
-                 "id":185,
-                 "name":"",
-                 "rotation":0,
-                 "type":"NPCWall",
-                 "visible":true,
-                 "width":32,
-                 "x":544,
-                 "y":672
-                }, 
-                {
-                 "gid":4,
-                 "height":32,
-                 "id":186,
-                 "name":"",
-                 "rotation":0,
-                 "type":"NPCWall",
-                 "visible":true,
-                 "width":32,
-                 "x":576,
-                 "y":608
-                }, 
-                {
-                 "gid":4,
-                 "height":32,
-                 "id":187,
-                 "name":"",
-                 "rotation":0,
-                 "type":"NPCWall",
-                 "visible":true,
-                 "width":32,
-                 "x":672,
-                 "y":608
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":188,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":352,
-                 "y":544
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":189,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":557,
-                 "y":532
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":190,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":234,
-                 "y":236
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":191,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":320,
-                 "y":192
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":192,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":270,
-                 "y":201
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":193,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":320,
-                 "y":256
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":194,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":210,
-                 "y":281
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":195,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":480,
-                 "y":320
-                }, 
-                {
-                 "gid":4,
-                 "height":32,
-                 "id":196,
-                 "name":"",
-                 "rotation":0,
-                 "type":"NPCWall",
-                 "visible":true,
-                 "width":32,
-                 "x":448,
-                 "y":672
-                }, 
-                {
-                 "gid":91,
-                 "height":32,
-                 "id":197,
-                 "name":"",
-                 "rotation":0,
-                 "type":"Jidan",
-                 "visible":true,
-                 "width":32,
-                 "x":496,
-                 "y":638
+                 "x":384,
+                 "y":469
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -860,16 +618,16 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":198,
+ "nextobjectid":176,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"scoreThresholds",
          "type":"string",
-         "value":"12000,16000,19000"
+         "value":"3800,7000,13000"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.2.4",
+ "tiledversion":"1.3.1",
  "tileheight":32,
  "tilesets":[
         {
@@ -892,5 +650,5 @@
  "tilewidth":32,
  "type":"map",
  "version":1.2,
- "width":28
+ "width":26
 }

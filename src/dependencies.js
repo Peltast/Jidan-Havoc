@@ -14,6 +14,7 @@ require.config({
       "parallaxProp": "src/props/parallaxProp", "reactiveProp": "src/props/reactiveProp",
       "collectible": "src/props/collectible", "transition": "src/levels/transition",
 
+      "soundManager": "src/interface/soundManager",
       "menuItem": "src/interface/menuItem", "menuGrid": "src/interface/menuGrid",
       "mainMenu": "src/interface/mainMenu", "levelSelectMenu": "src/interface/levelSelectMenu", "levelEndMenu": "src/interface/levelEndMenu",
       "statsDisplay": "src/interface/statsDisplay",
@@ -33,12 +34,11 @@ require.config({
     }
 });
   
-requirejs(['point', 'menuItem', 'menuGrid'], function() {
+requirejs(['point', 'menuItem', 'menuGrid', 'soundManager'], function() {
 
     requirejs([
         'mainMenu', 'levelSelectMenu', 'levelEndMenu', 'gameObject', 'collisionBox', 'actorController',
-        'levelParser', 'particle', 'healthBar', 'statsDisplay', 'enemyBehavior'
-    ], function() {
+        'levelParser', 'particle', 'healthBar', 'statsDisplay', 'enemyBehavior'], function() {
 
         requirejs(['tile', 'actor', 'prop', 'transition', 'particleSystem', 'dialogueBox', 'pacingBehavior'], function() {
 

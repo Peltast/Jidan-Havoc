@@ -39,8 +39,6 @@ var totalGameManifest;
 var loadProgress = 0;
 var gameStatus;
 
-var startingMap;
-
 // Asset variables
 var dialogueLibrary = {};
 var particleEffectLibrary = {};
@@ -58,6 +56,7 @@ var tileData = {};
 
 // Game global variables
 var gameWorld = {};
+var currentMap;
 var gameSaveState = {};
 var player;
 var currentLevel;
@@ -85,8 +84,7 @@ var levelEndDisplay;
 var gameScore;
 
 // Sound global vars
-var soundPlayer;
-var levelTheme;
+var soundManager;
 var soundEffectsOn = true;
 var musicOn = true;
 
@@ -145,7 +143,9 @@ function init() {
         {src: "ui/HealthSlot.png", id: "HealthSlot"}, {src: "ui/HealthPoint.png", id: "HealthPoint"},
     ];
     soundManifest = [
-        {src: "GreenMountains.wav", id: "GreenMountains" },
+        {src: "KLL_Love_Code_Lite_2_Loop.wav", id: "LoveCodeLite2" }, {src: "From hearsay.wav", id: "From hearsay" }, {src: "The red cripple.wav", id: "The red cripple" },
+
+        {src: "StartGame.wav", id: "StartGame"}, {src: "MoveCursor.wav", id: "MoveCursor" },
 
         {src: "Walk.wav", id: "Walk"}, {src: "Jump.wav", id: "Jump"}, {src: "DoubleJump.wav", id: "DoubleJump"}, {src: "Land.wav", id: "Land"},
         {src: "Windup.wav", id: "Windup"}, {src: "Attack.wav", id: "Attack"}, {src: "Hit.wav", id: "Hit"}, {src: "Death.wav", id: "Death"},
@@ -178,7 +178,7 @@ function init() {
         totalMapsInGame += levelSeriesMatrix[i][1];
     
     totalFilesInGame = dialogueList.length + tileList.length + 4; // actionData.json, dialogue.json, particleEffects.json, backgrounds.json
-    startingMap = "";
+    currentMap = "";
 
     totalGameManifest = imageManifest.length + soundManifest.length + totalFilesInGame + totalMapsInGame;
 
@@ -243,7 +243,7 @@ function loadSounds() {
         soundAssets[soundManifest[j].id] = soundManifest[j].src + "?v=" + Math.round(1000 * Math.random(1000));
         var sound = new Howl({
             src: [soundRoot + soundAssets[soundManifest[j].id]],
-            loop: true,
+            loop: false,
             volume: 0,
             stereo: 0
         });

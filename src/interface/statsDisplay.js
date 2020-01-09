@@ -89,11 +89,9 @@ define("StatsDisplay", ['Point'], function(Point) {
                 event.target.gotoAndPlay( musicOn ? "on" : "off");
 
                 if (!musicOn)
-                    soundPlayer.pause(levelTheme);
-                else if (levelTheme)
-                    soundPlayer.play(levelTheme);
+                    soundManager.pauseCurrentMusic();
                 else
-                    levelTheme = soundPlayer.play();
+                    soundManager.playMusic(soundManager.currentSound);
             });
 
             this.statsContainer.addChild(this.soundButton, this.musicButton);

@@ -211,10 +211,10 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             if (this.currentAttack == this.cancelFlip)
                 this.currentAttack.endAttack(this);
             
-            this.playSound( this.onGround ? "Jump" : "DoubleJump", 0.5);
+            // this.playSound( this.onGround ? "Jump" : "DoubleJump", 0.5);
 
             if (this.onGround) {
-                this.playSound("Jump", 0.5);
+                this.playSound("Jump", 0.4);
                 this.state = "Jump";
                 this.onGround = false;
 

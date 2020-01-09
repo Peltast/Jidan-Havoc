@@ -19,6 +19,8 @@ define("MenuGrid", [], function () {
             this.menuCursor;
             this.menuCursorAlignment = "left";
             this.orientation = "";
+            this.cooldownLength = 150;
+            this.lastUpdate = Date.now();
             
             this.selectionX = 0;
             this.selectionY = 0;
@@ -180,12 +182,23 @@ define("MenuGrid", [], function () {
             }
         }
 
-        changeSelection(xDelta, yDelta) {
+        changeSelection(xDelta, yDelta, forceSelection = false) {
             if (this.horizontal) {
                 var t = yDelta;
                 yDelta = xDelta;
                 xDelta = t;
             }
+
+            var delta = Date.now() - this.lastUpdate;
+            if (delta > this.cooldownLength || forceSelection) {
+                this.lastUpdate = Date.now();
+            }
+            else {
+                return;
+            }
+
+            if (!forceSelection)
+                soundManager.playSound("MoveCursor", 0.4);
 
             if (xDelta !== 0) {
 
@@ -197,6 +210,7 @@ define("MenuGrid", [], function () {
                     this.selectionX += xDelta;
 
                 this.selectionY = Math.min(this.selectionY, this.gridMatrix[this.selectionX].length - 1);
+                
                 this.updateCursorPosition();
             }
             else if (yDelta !== 0) {

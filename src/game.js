@@ -1,6 +1,6 @@
 require( 
-    ['Point', 'Level', 'LevelParser', 'ObjectFactory', 'Player', 'DialogueBox', 'MainMenu', 'LevelSelectMenu', 'LevelEndMenu', 'StatsDisplay'], 
-    function(Point, Level, LevelParser, ObjectFactory, Player, DialogueBox, MainMenu, LevelSelectMenu, LevelEndMenu, StatsDisplay) {
+    ['Point', 'Level', 'LevelParser', 'ObjectFactory', 'Player', 'DialogueBox', 'MainMenu', 'LevelSelectMenu', 'LevelEndMenu', 'StatsDisplay', 'SoundManager'], 
+    function(Point, Level, LevelParser, ObjectFactory, Player, DialogueBox, MainMenu, LevelSelectMenu, LevelEndMenu, StatsDisplay, SoundManager) {
 
     $(function() {
         gameStatus = GameState.PRELOADING;
@@ -16,6 +16,7 @@ require(
     function initGame() {
         createjs.Ticker.addEventListener("tick", updateGame);
 
+        soundManager = new SoundManager();
         this.dialogueBox = new DialogueBox();
         loadGame();
 
@@ -74,6 +75,8 @@ require(
         mainMenu = new MainMenu();
         stage.addChild(mainMenu.sceneContainer);
         stage.addChild(mainMenu.menuContainer);
+        
+        soundManager.playMusic("LoveCodeLite2");
     }
         
     function updateGame() {
@@ -195,30 +198,20 @@ require(
     function launchLevelSelect() {
         clearGameState();
 
-        if (levelTheme && musicOn) {
-            soundPlayer.fade(1, 0, 1000, levelTheme);
-            levelTheme = null;
-        }
+        soundManager.playMusic("LoveCodeLite2");
         
         getProgressData();
         levelSelectMenu = new LevelSelectMenu();
         stage.addChild(levelSelectMenu.menuContainer);
     }
-
+    
     function launchLevel() {
         clearGameState();
         
-        if (!soundPlayer) {
-            soundPlayer = new Howl({
-                src: [soundRoot + soundAssets["GreenMountains"]], loop: true, volume: 0.5
-            });
-        }
-        if (!levelTheme && musicOn) {
-            levelTheme = soundPlayer.play();
-
-            // if (!musicOn)
-            //     soundPlayer.pause(levelTheme);
-        }
+        if (getMapSeries(currentMap) < 4)
+            soundManager.playMusic("From hearsay");
+        else
+            soundManager.playMusic("The red cripple");
         
         gameBG = new createjs.Shape();
         gameBG.graphics.beginFill("#000000").drawRect(0, 0, stageWidth, stageHeight);
@@ -227,7 +220,7 @@ require(
 
         stage.addChild(gameBG, gameArea, gameUI);
 
-        var startLevel = gameWorld[startingMap];
+        var startLevel = gameWorld[currentMap];
         startLevel.spawnPlayer(player, startLevel.levelSpawn.location);
         setLevel(startLevel);
         
@@ -236,6 +229,11 @@ require(
 
         gameStatus = GameState.RUNNING;
     }
+    function getMapSeries(mapName) {
+        if (mapName.indexOf("Stage_") == 0)
+            return parseInt(mapName[6]);
+    }
+
     function createUI() {
         gameUI = new createjs.Container();
         
@@ -245,9 +243,6 @@ require(
 
         gameStatsDisplay = new StatsDisplay();
         gameUI.addChild(gameStatsDisplay.statsContainer);
-
-        // healthBar = new HealthBar();
-        // gameUI.addChild(healthBar.healthBarContainer);
 
         return gameUI;
     }
