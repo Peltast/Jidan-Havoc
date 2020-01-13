@@ -11,6 +11,7 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
                 "2": 3, "3": 10, "4": 30, "5": 60
             };
 
+            this.initiateBackground();
             this.initiateStageButtons();
             this.addCollectibleStatus();
         }
@@ -34,6 +35,36 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
             collectibleStatusTxt.x = 32 + collectibleCountTxt.getMeasuredWidth() + 50;
 
             this.menuContainer.addChild(collectibleCountTxt, collectibleStatusImg, collectibleStatusTxt);
+        }
+
+        initiateBackground() {
+
+            this.backgroundDim = new createjs.Shape();
+            this.backgroundDim.graphics.beginFill("#191028").drawRect(0, 0, stageWidth * 2, stageHeight * 2);
+            this.backgroundDim.alpha = 0.7;
+
+            this.bgHeight = 1980;
+            var bgTower = new createjs.SpriteSheet({
+                "images": [gameAssets["MenuTower"]],
+                "frames": {"width": 640, "height": this.bgHeight, "regX": 0, "regY": 0, "count": 1},
+                animations: { idle: 0 }
+            });
+
+            this.towerA = new createjs.Sprite(bgTower);
+            this.towerB = new createjs.Sprite(bgTower);
+            this.towerB.y = this.bgHeight;
+
+            this.menuContainer.addChild(this.towerA, this.towerB, this.backgroundDim);
+        }
+
+        update() {
+            this.towerA.y -= 1;
+            this.towerB.y -= 1;
+
+            if (this.towerA.y <= -this.bgHeight)
+                this.towerA.y = this.bgHeight;
+            if (this.towerB.y <= -this.bgHeight)
+                this.towerB.y = this.bgHeight;
         }
 
         initiateStageButtons() {
@@ -107,15 +138,24 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
                 return;
             
             if (this.seriesLocks[seriesNumber])
-                this.drawLockImages(rowIndex, this.seriesLocks[seriesNumber]);
+                this.drawLockImages(rowIndex, this.seriesLocks[seriesNumber], seriesNumber !== 2);
         }
-        drawLockImages(rowIndex, lockNumber) {
+        drawLockImages(rowIndex, lockNumber, isRankLock) {
         
             var rankReqText = new createjs.Text(lockNumber, "32px Equipment", "#dc534b");
-            var rankReqImage = new createjs.Sprite(new createjs.SpriteSheet({
-                "images": [gameAssets["LevelSelectCollectible"]],
-                "frames": {"width": 28, "height": 38, "regX": 0, "regY": 0, "count": 1}, animations: { idle: 0 }
-            }));
+            var rankReqImage;
+            if (isRankLock) {
+                rankReqImage = new createjs.Sprite(new createjs.SpriteSheet({
+                    "images": [gameAssets["LevelSelectCollectible"]],
+                    "frames": {"width": 28, "height": 38, "regX": 0, "regY": 0, "count": 1}, animations: { idle: 0 }
+                }));
+            }
+            else {
+                rankReqImage = new createjs.Sprite(new createjs.SpriteSheet({
+                    "images": [gameAssets["LevelSelectTileComplete"]],
+                    "frames": {"width": 40, "height": 40, "regX": 0, "regY": 0, "count": 1}, animations: { idle: 0 }
+                }));
+            }
             rankReqImage.x = -this.levelGrid.gridMatrix[rowIndex][0].itemContainer.x;
             rankReqText.x =  rankReqImage.x - 10 - rankReqText.getMeasuredWidth();
             

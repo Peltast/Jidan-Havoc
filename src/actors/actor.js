@@ -99,6 +99,9 @@ function(       GameObject, Point, CollisionBox, ActorController) {
         enactNewState() {
             if (this.priorOrientation !== this.orientation || this.priorState !== this.state) {
                 this.priorOrientation = this.orientation;
+
+                if (this.state === this.priorState && this.priorState.includes("Flip"))
+                    return;
                 this.priorState = this.state;
 
                 var animation = this.orientation + this.state;

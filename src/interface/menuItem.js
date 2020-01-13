@@ -32,6 +32,9 @@ define("MenuItem", [], function () {
             else if (this.itemType === ButtonTypes.INSTRUCTIONS) {
                 mainMenu.toggleInstructions();
             }
+            else if (this.itemType === ButtonTypes.CREDITS) {
+                mainMenu.toggleCredits();
+            }
             
             else if (this.itemType === ButtonTypes.NEWGAME) {
                 removeEventListener("keydown", currentMenu.onKeyDown);
@@ -56,7 +59,11 @@ define("MenuItem", [], function () {
             }
 
             else if (this.itemType === ButtonTypes.NEXTLEVEL) {
-                this.loadButtonLevel();
+                var nextLevel = this.itemData.level;
+                if (!nextLevel)
+                    gameStatus = GameState.LEVELEXIT;
+                else
+                    this.loadButtonLevel();
             }
             else if (this.itemType === ButtonTypes.RETRYLEVEL) {
                 this.loadButtonLevel();

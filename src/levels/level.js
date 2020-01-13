@@ -591,6 +591,7 @@ define("Level", [
         spawnPlayer(player, location) {
             this.addActor(player);
             player.location = new Point(location.X, location.Y);
+            player.resetPlayer();
         }
 
 

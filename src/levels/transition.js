@@ -10,7 +10,10 @@ define("Transition", ['GameObject'], function(GameObject) {
         }
 
         handleInteraction(player) {
-            transition = { map: this.destinationMap, location: gameWorld[this.destinationMap].levelSpawn.location };
+            if (!gameWorld[this.destinationMap])
+                transition = { map: null, location: null};
+            else
+                transition = { map: this.destinationMap, location: gameWorld[this.destinationMap].levelSpawn.location };
 
             player.setActorDirection("left", false);
             player.setActorDirection("right", false);

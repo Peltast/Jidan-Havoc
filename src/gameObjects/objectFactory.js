@@ -124,8 +124,8 @@ define("ObjectFactory", [
         "Wormhole": {
             "type": "Transition", "passable": true,
             "sprite": "Transition", "animations": { idle: [0, 2, "idle", .15 ] }, "defaultAnimation": "idle",
-            "frames": {"width": 32, "height": 32, "regX": 0, "regY": 0, "count": 3},
-            "spriteCollision": new Point(32, 32), "spriteSize": new Point(32, 32), "spritePos": new Point(0, 0)
+            "frames": {"width": 36, "height": 36, "regX": 0, "regY": 0, "count": 3},
+            "spriteCollision": new Point(32, 32), "spriteSize": new Point(36, 36), "spritePos": new Point(2, 2)
         },
         
         "TutorialWalk": {

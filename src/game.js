@@ -84,10 +84,13 @@ require(
             updatePreloader(totalMapsLoaded + totalFilesLoaded + assetsLoaded);
             return;
         }
-        else if (gameStatus === GameState.PRELOADING) {
+        else if (gameStatus === GameState.PRELOADING && !mainMenu) {
             gameStatus = GameState.PRELOADED;
             mapDataKeys = Object.keys(mapData);
             addMainMenu();
+        }
+        else if (gameStatus === GameState.PRELOADED) {
+            mainMenu.update();
         }
         else if (gameStatus === GameState.LOADING) {
             if (totalMapsParsed < mapDataKeys.length)
@@ -124,6 +127,10 @@ require(
 
         else if (gameStatus === GameState.LEVELEXIT) {
             launchLevelSelect();
+        }
+
+        else if (gameStatus === GameState.LEVELSELECT) {
+            levelSelectMenu.update();
         }
 
         stage.update();
@@ -203,8 +210,10 @@ require(
         getProgressData();
         levelSelectMenu = new LevelSelectMenu();
         stage.addChild(levelSelectMenu.menuContainer);
+
+        gameStatus = GameState.LEVELSELECT;
     }
-    
+
     function launchLevel() {
         clearGameState();
         
@@ -470,9 +479,6 @@ require(
                 currentLevel.toggleHitboxDisplay();
         }
 
-        if (keyCode == 32)
-            spacebarHeld = false;
-
         if (gameStatus === GameState.LEVELEND) {
             if (!levelEndDisplay)
                 return;
@@ -482,6 +488,11 @@ require(
                     spacebarPressed = false;
                 }
             }
+        }
+
+        if (keyCode == 32) {
+            spacebarHeld = false;
+            spacebarPressed = false;
         }
 
         if (keyCode == 27)     // esc
@@ -510,32 +521,36 @@ require(
             this.loadBarContainer = new createjs.Container();
             
             this.barBG = new createjs.Shape();
-            this.barBG.graphics.beginFill("#272744").drawRect(0, 0, this.barWidth, this.barHeight);
+            this.barBG.graphics.beginFill("#642dad").drawRect(0, 0, this.barWidth, this.barHeight);
             this.barOutline = new createjs.Shape();
-            this.barOutline.graphics.setStrokeStyle(2).beginStroke("#fbf5ef").drawRect(0, 0, this.barWidth, this.barHeight);
+            this.barOutline.graphics.setStrokeStyle(2).beginStroke("#e9d8a1").drawRect(0, 0, this.barWidth, this.barHeight);
             this.barBG.x = this.barOutline.x = Math.round(stageWidth / 2 - this.barWidth / 2);
             this.barBG.y = this.barOutline.y = Math.round(stageHeight * 0.6);
             
             this.barProgress = new createjs.Shape();
-            this.barProgress.graphics.beginFill("#6dffe4").drawRect(0, 0, this.barWidth - 16, this.barHeight - 16);
+            this.barProgress.graphics.beginFill("#e9d8a1").drawRect(0, 0, this.barWidth - 16, this.barHeight - 16);
             this.barProgress.x = this.barOutline.x + 8;
             this.barProgress.y = this.barOutline.y + 8;
             
             this.barFill = new createjs.Shape();
-            this.barFill.graphics.beginFill("#6dffe4").drawRect(0, 0, this.barWidth - 16, this.barHeight - 16);
+            this.barFill.graphics.beginFill("#e9d8a1").drawRect(0, 0, this.barWidth - 16, this.barHeight - 16);
             this.barFill.x = this.barOutline.x + 8;
             this.barFill.y = this.barOutline.y + 8;
             this.barFill.mask = this.barProgress;
 
-            this.percentText = new createjs.Text(Math.round(100 * this.progress / this.destination) + "%", "32px Equipment", "#6dffe4")
-            this.progressText = new createjs.Text( "(" + this.progress + " / " + this.destination + ")", "24px Equipment", "#6dffe4");
+            this.percentText = new createjs.Text(Math.round(100 * this.progress / this.destination) + "%", "32px Equipment", "#e9d8a1");
+            this.percentTextOutline = new createjs.Text(Math.round(100 * this.progress / this.destination) + "%", "32px Equipment", "#642dad");
+            this.percentTextOutline.outline = 6;
+            this.progressText = new createjs.Text( "(" + this.progress + " / " + this.destination + ")", "24px Equipment", "#e9d8a1");
 
             this.percentText.x = Math.round(stageWidth / 2 - this.percentText.getMeasuredWidth() / 2);
             this.progressText.x = this.percentText.x + this.percentText.getMeasuredWidth() + 30;
             this.percentText.y = this.barBG.y - this.percentText.getMeasuredLineHeight() - 20;
             this.progressText.y = this.percentText.y + Math.round(this.percentText.getMeasuredLineHeight() - this.progressText.getMeasuredLineHeight());
+            this.percentTextOutline.x = this.percentText.x;
+            this.percentTextOutline.y = this.percentText.y;
 
-            this.loadBarContainer.addChild(this.percentText, this.progressText, this.barBG, this.barOutline, this.barProgress);
+            this.loadBarContainer.addChild(this.percentTextOutline, this.percentText, this.progressText, this.barBG, this.barOutline, this.barProgress);
             this.updateBarProgress(this.progress);
         }
 
@@ -544,6 +559,7 @@ require(
 
             this.barProgress.scaleX = this.progress / this.destination;
             this.percentText.text = Math.round(100 * this.progress / this.destination) + "%";
+            this.percentTextOutline.text = Math.round(100 * this.progress / this.destination) + "%";
             this.progressText.text = "(" + this.progress + " / " + this.destination + ")";
         }
     }

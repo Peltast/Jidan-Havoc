@@ -1,11 +1,11 @@
 
 const GameState = { 
     "PRELOADING": 1, "PRELOADED": 2, "LOADING": 3, "RUNNING": 4,
-    "LEVELSELECTED": 5, "LEVELPAUSED": 6, "LEVELEND": 7, "LEVELEXIT": 8
+    "LEVELSELECTED": 5, "LEVELPAUSED": 6, "LEVELEND": 7, "LEVELEXIT": 8, "LEVELSELECT": 9
 };
 const ButtonTypes = {
-    "NULL" : 1, "NEWGAME": 2, "INSTRUCTIONS": 3, "LOADLEVEL": 4,
-    "NEXTLEVEL": 5, "RETRYLEVEL": 6, "LEVELSELECT": 7,
+    "NULL" : 1, "NEWGAME": 2, "INSTRUCTIONS": 3, "INSTRUCTIONS": 8,
+    "LOADLEVEL": 4, "NEXTLEVEL": 5, "RETRYLEVEL": 6, "LEVELSELECT": 7,
     "SANDBOX": 100
  };
 
@@ -96,6 +96,7 @@ $(function() {
 function init() {
 
     stage = new createjs.Stage("gameCanvas", { "antialias" : false });
+    stage.enableMouseOver();
     stageWidth = 640;
     stageHeight = 480;
     createjs.Ticker.framerate = 60;
@@ -121,11 +122,12 @@ function init() {
         {src: "props/DustParticle.png", id: "DustParticle"}, {src: "props/DustParticle2.png", id: "DustParticle2"}, {src: "props/DirtParticle.png", id: "DirtParticle"},
         {src: "props/DashLinesH.png", id: "DashLinesH"}, {src: "props/DashLinesV.png", id: "DashLinesV"}, {src: "props/CancelLines.png", id: "CancelLines"},
 
-        {src: "ui/MenuSplash.png", id: "MenuSplash"}, {src: "ui/MenuTitle.png", id: "MenuTitle"}, {src: "ui/MenuSandbox.png", id: "MenuSandbox"},
-        {src: "ui/MenuPlay.png", id: "MenuPlay"}, {src: "ui/MenuInstructions.png", id: "MenuInstructions"},
+        {src: "ui/MenuSplash.png", id: "MenuSplash"}, {src: "ui/MenuTower.png", id: "MenuTower"},  {src: "ui/MenuTitle.png", id: "MenuTitle"},
+        {src: "ui/MenuPlay.png", id: "MenuPlay"}, {src: "ui/MenuInstructions.png", id: "MenuInstructions"}, {src: "ui/MenuCredits.png", id: "MenuCredits"},
         {src: "ui/MenuNextLevel.png", id: "MenuNextLevel"}, {src: "ui/MenuNextLevelLocked.png", id: "MenuNextLevelLocked"},
         {src: "ui/MenuRetryLevel.png", id: "MenuRetryLevel"}, {src: "ui/MenuLevelSelect.png", id: "MenuLevelSelect"},
         {src: "ui/PlayerInstructions.png", id: "PlayerInstructions"},
+        {src: "ui/Credits1.png", id: "Credits1"}, {src: "ui/Credits2.png", id: "Credits2"}, {src: "ui/Credits2Hover.png", id: "Credits2Hover"},
 
         {src: "ui/LevelSelectTile.png", id: "LevelSelectTile"}, {src: "ui/LevelSelectTileComplete.png", id: "LevelSelectTileComplete"}, {src: "ui/LevelSelectCollectible.png", id: "LevelSelectCollectible"},
         {src: "ui/LevelRankIcon.png", id: "LevelRankIcon"}, {src: "ui/LevelSelectTileLocked.png", id: "LevelSelectTileLocked"}, {src: "ui/LevelRankUnfilled.png", id: "LevelRankUnfilled"},

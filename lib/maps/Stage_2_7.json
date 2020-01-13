@@ -1,4 +1,5 @@
-{ "height":56,
+{ "compressionlevel":0,
+ "height":56,
  "infinite":false,
  "layers":[
         {
@@ -134,52 +135,6 @@
                  "visible":true,
                  "width":32,
                  "x":544,
-                 "y":576
-                }, 
-                {
-                 "gid":16,
-                 "height":32,
-                 "id":138,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"floatingBug"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"left"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":896,
-                 "y":704
-                }, 
-                {
-                 "gid":16,
-                 "height":32,
-                 "id":139,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"enemyType",
-                         "type":"string",
-                         "value":"floatingBug"
-                        }, 
-                        {
-                         "name":"orientation",
-                         "type":"string",
-                         "value":"right"
-                        }],
-                 "rotation":0,
-                 "type":"EnemySpawn",
-                 "visible":true,
-                 "width":32,
-                 "x":960,
                  "y":576
                 }, 
                 {
@@ -583,8 +538,8 @@
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":704,
-                 "y":832
+                 "x":752,
+                 "y":817.333333333333
                 }, 
                 {
                  "gid":91,
@@ -595,8 +550,8 @@
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":746,
-                 "y":787
+                 "x":787.333333333333,
+                 "y":764.333333333333
                 }, 
                 {
                  "gid":91,
@@ -607,8 +562,8 @@
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":864,
-                 "y":704
+                 "x":672,
+                 "y":832
                 }, 
                 {
                  "gid":91,
@@ -619,8 +574,8 @@
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":896,
-                 "y":672
+                 "x":960,
+                 "y":704
                 }, 
                 {
                  "gid":91,
@@ -667,8 +622,8 @@
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":960,
-                 "y":544
+                 "x":864,
+                 "y":576
                 }, 
                 {
                  "gid":91,
@@ -787,8 +742,44 @@
                  "type":"Jidan",
                  "visible":true,
                  "width":32,
-                 "x":768,
-                 "y":736
+                 "x":846.666666666667,
+                 "y":718.666666666667
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":190,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":928,
+                 "y":576
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":191,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":793.333333333333,
+                 "y":533.333333333333
+                }, 
+                {
+                 "gid":91,
+                 "height":32,
+                 "id":192,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Jidan",
+                 "visible":true,
+                 "width":32,
+                 "x":1088,
+                 "y":640
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -797,10 +788,10 @@
          "y":0
         }],
  "nextlayerid":16,
- "nextobjectid":190,
+ "nextobjectid":193,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.2.4",
+ "tiledversion":"1.3.1",
  "tileheight":32,
  "tilesets":[
         {

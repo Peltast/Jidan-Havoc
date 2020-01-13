@@ -211,8 +211,6 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             if (this.currentAttack == this.cancelFlip)
                 this.currentAttack.endAttack(this);
             
-            // this.playSound( this.onGround ? "Jump" : "DoubleJump", 0.5);
-
             if (this.onGround) {
                 this.playSound("Jump", 0.4);
                 this.state = "Jump";
@@ -469,6 +467,17 @@ define("Player", ['Actor', 'Tile', 'Prop', 'Collectible', 'Enemy', 'Point', 'Par
             this.state = "Death";
             this.enactNewState();
             this.setController(this.deathController);
+        }
+        resetPlayer() {
+            if (this.currentAttack) {
+                this.currentAttack.endAttack(this);
+                this.currentController.reset();
+                this.currentAttack = null;
+            }
+            
+            this.orientation = "right";
+            this.state = "";
+            this.setController(this.defaultController);
         }
         
         updateRespawn() {
