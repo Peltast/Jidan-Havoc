@@ -177,6 +177,11 @@ define("ObjectFactory", [
             "type": "default", "passable": true, "orientation": "center",
             "sprite": "TutorialCancelCombo", "animations": { "idle": 0 }, "defaultAnimation": "idle",
             "frames": {"width": 320, "height": 172, "regX": 0, "regY": 0}, "spriteSize": new Point(320, 172)
+        },
+        "TutorialSandbox": {
+            "type": "default", "passable": true, "orientation": "center",
+            "sprite": "TutorialSandbox", "animations": { "idle": 0 }, "defaultAnimation": "idle",
+            "frames": {"width": 314, "height": 86, "regX": 0, "regY": 0}, "spriteSize": new Point(314, 86)
         }
 
     }

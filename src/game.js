@@ -217,10 +217,14 @@ require(
     function launchLevel() {
         clearGameState();
         
-        if (getMapSeries(currentMap) < 4)
+        if (getMapSeries(currentMap) == 1)
+            soundManager.playMusic("Always alert");
+        else if (getMapSeries(currentMap) < 4)
             soundManager.playMusic("From hearsay");
-        else
+        else if (getMapSeries(currentMap) < 6)
             soundManager.playMusic("The red cripple");
+        else
+            soundManager.playMusic("LoveCodeFull");
         
         gameBG = new createjs.Shape();
         gameBG.graphics.beginFill("#000000").drawRect(0, 0, stageWidth, stageHeight);

@@ -105,7 +105,7 @@ function init() {
     
     imageManifest = [
         {src: "tiles/CoreTileset.png", id: "CoreTileset"},
-        {src: "tiles/World1Tiles.png", id: "World1"},
+        {src: "tiles/World1Tiles.png", id: "World1"}, {src: "tiles/World3Tiles.png", id: "World3"},
 
         {src: "actors/Player.png", id: "Player"},
 
@@ -139,13 +139,14 @@ function init() {
         {src: "props/TutorialWalk.png", id: "TutorialWalk"}, {src: "props/TutorialJump.png", id: "TutorialJump"}, {src: "props/TutorialDoubleJump.png", id: "TutorialDoubleJump"},
         {src: "props/TutorialReset.png", id: "TutorialReset"}, {src: "props/TutorialAttack.png", id: "TutorialAttack"}, {src: "props/TutorialLongAttack.png", id: "TutorialLongAttack"},
         {src: "props/TutorialJumpAttack.png", id: "TutorialJumpAttack"}, {src: "props/TutorialCombo.png", id: "TutorialCombo"},
-        {src: "props/TutorialCancel.png", id: "TutorialCancel"}, {src: "props/TutorialCancelCombo.png", id: "TutorialCancelCombo"},
+        {src: "props/TutorialCancel.png", id: "TutorialCancel"}, {src: "props/TutorialCancelCombo.png", id: "TutorialCancelCombo"}, {src: "props/TutorialSandbox.png", id: "TutorialSandbox"},
         
         {src: "ui/Cursor.png", id: "Cursor"},
         {src: "ui/HealthSlot.png", id: "HealthSlot"}, {src: "ui/HealthPoint.png", id: "HealthPoint"},
     ];
     soundManifest = [
-        {src: "KLL_Love_Code_Lite_2_Loop.wav", id: "LoveCodeLite2" }, {src: "From hearsay.wav", id: "From hearsay" }, {src: "The red cripple.wav", id: "The red cripple" },
+        {src: "KLL_Love_Code_Lite_2_Loop.ogg", id: "LoveCodeLite2" }, {src: "KLL_Love_Code_FULL_Loop.ogg", id: "LoveCodeFull" },
+        {src: "Always alert.ogg", id: "Always alert" }, {src: "From hearsay.ogg", id: "From hearsay" }, {src: "The red cripple.ogg", id: "The red cripple" },
 
         {src: "StartGame.wav", id: "StartGame"}, {src: "MoveCursor.wav", id: "MoveCursor" },
 
@@ -164,14 +165,15 @@ function init() {
         "DevRoom"
     ];
     tileList = [
-        "World1"
+        "World1", "World3"
     ];
     levelSeriesMatrix = [
         [1, 3],
         [2, 7],
         [3, 7],
         [4, 12],
-        [5, 7]
+        [5, 7],
+        [6, 1]
     ];
 
     dialogueList = [];
