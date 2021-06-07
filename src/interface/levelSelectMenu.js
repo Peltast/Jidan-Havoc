@@ -8,7 +8,7 @@ define("LevelSelectMenu", ['MenuItem', 'MenuGrid'], function (MenuItem, MenuGrid
             this.rowMax = 7;
             this.seriesRowIndices = [];
             this.seriesLocks = {
-                "2": 3, "3": 10, "4": 30, "5": 60
+                "2": 3, "3": 10, "4": 30, "5": 45, "6": 87
             };
 
             this.initiateBackground();

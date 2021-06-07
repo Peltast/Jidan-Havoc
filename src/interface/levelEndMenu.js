@@ -371,6 +371,12 @@ define("LevelEndMenu", ['Point', 'MenuItem', 'MenuGrid'], function(Point, MenuIt
                 return levelsCompleted >= 3;
             else if (seriesNumber == 3)
                 return ranksAchieved >= 10;
+            else if (seriesNumber == 4)
+                return ranksAchieved >= 30;
+            else if (seriesNumber == 5)
+                return ranksAchieved >= 45;
+            else if (seriesNumber == 6)
+                return ranksAchieved >= 87;
             else
                 return true;
         }

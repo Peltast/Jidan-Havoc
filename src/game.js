@@ -13,6 +13,8 @@ require(
     var gameUI;
     var pauseScreen;
 
+    var lastFrameTimestamp;    
+
     function initGame() {
         createjs.Ticker.addEventListener("tick", updateGame);
 
@@ -291,12 +293,6 @@ require(
         
         gameStatus = GameState.RUNNING;
     }
-    function beginNextStage() {
-        removeLevelEnd();
-
-        changeLevels(transition.map, transition.location);
-        transition = null;
-    }
 
     function setLevel(level) {
         if (currentLevel != null) {
@@ -322,6 +318,12 @@ require(
         currentLevel.cleanUpLevel();
         gameArea.removeChild(currentLevel.levelContainer);
         currentLevel = null;
+    }
+    function resetCurrentLevel() {
+        gameArea.removeChild(currentLevel.levelContainer);
+        currentLevel.createLevel();
+        currentLevel.spawnPlayer(player, currentLevel.levelSpawn.location);
+        setLevel(currentLevel);
     }
 
     function updateGameMap() {
@@ -354,24 +356,6 @@ require(
         this.dialogueBox.update();
     }
     
-    function resetCurrentLevel() {
-        gameArea.removeChild(currentLevel.levelContainer);
-        currentLevel.createLevel();
-        currentLevel.spawnPlayer(player, currentLevel.levelSpawn.location);
-        setLevel(currentLevel);
-    }
-    function changeLevels(newMap, newLocation) {
-        var newLevel = gameWorld[newMap];
-
-        if (newLevel != currentLevel) {
-            currentLevel.removeActor(player);
-        }
-
-        newLevel.spawnPlayer(player, newLocation);
-        setLevel(newLevel);
-
-        player.respawnToAlive();
-    }
 
     function centerScreen() {
         var totalMapSize = new Point(currentLevel.mapSize.X * tileSize * gameScale, currentLevel.mapSize.Y * tileSize * gameScale);

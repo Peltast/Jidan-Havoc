@@ -18,12 +18,8 @@
                 "layer": 2, "orientationX": "left", "orientationY": "top", "minimumMapHeight": 25,
                 "sprite": "BGclouds2", "size": "384, 256",
                 "dynamicParallax": true, "parallaxDistX": 0.15, "parallaxDistY": 0.75, "alpha" : 0.4
-            }, {
-                "layer": 3, "orientationX": "left", "orientationY": "top", "minimumMapHeight": 25,
-                "sprite": "BGclouds3", "size": "384, 256",
-                "dynamicParallax": true, "parallaxDistX": 0.25, "parallaxDistY": 0.6, "alpha" : 0.4
             },
-
+            
             {
                 "layer": 3, "orientationX": "left", "orientationY": "top", "maxMapHeight": 20,
                 "sprite": "BGcloudsMid1", "size": "416, 224", "location": "0, -60",
@@ -38,14 +34,6 @@
                 "layer": 3, "orientationX": "left", "orientationY": "center", "minimumMapHeight": 35,
                 "sprite": "BGcloudsMid1", "size": "416, 224", "location": "0, -300",
                 "dynamicParallax": true, "parallaxDistX": 0.2, "parallaxDistY": 0.9, "alpha" : 0.5
-            },{
-                "layer": 4, "orientationX": "left", "orientationY": "center", "minimumMapHeight": 35,
-                "sprite": "BGcloudsMid2", "size": "416, 224", "location": "0, -300",
-                "dynamicParallax": true, "parallaxDistX": 0.3, "parallaxDistY": 0.8, "alpha" : 0.5
-            },{
-                "layer": 3, "orientationX": "left", "orientationY": "center", "minimumMapHeight": 25,
-                "sprite": "BGcloudsMid1", "size": "416, 224", "location": "0, -60",
-                "dynamicParallax": true, "parallaxDistX": 0.2, "parallaxDistY": 1, "alpha" : 0.5
             },{
                 "layer": 4, "orientationX": "left", "orientationY": "center", "minimumMapHeight": 25,
                 "sprite": "BGcloudsMid2", "size": "416, 224", "location": "0, -60",

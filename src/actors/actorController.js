@@ -3,6 +3,7 @@ define("ActorController", ['Point'], function(Point) {
     class ActorController {
         
         constructor(motionData) {
+            this.name = motionData["name"];
 
             this.acceleration = motionData["acceleration"];
             this.deceleration = motionData["deceleration"];

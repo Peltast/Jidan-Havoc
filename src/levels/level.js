@@ -217,6 +217,7 @@ define("Level", [
 
                 this.tiles.push(tileRow);
             }
+            this.tileLayer.cache(0, 0, this.mapSize.X * tileSize, this.mapSize.Y * tileSize);
         }
         fetchTileset(tileID) {
             var defaultGID;
@@ -498,7 +499,7 @@ define("Level", [
 
         updateLevel() {
             this.updateTileDisplay();
-
+            
             this.actors.forEach((actor) => {
                 this.checkActorScreenBounds(actor);
                 actor.updateActor();
@@ -574,6 +575,7 @@ define("Level", [
                     this.tileLayer.addChild(this.tiles[y][x].spriteContainer);
                 }
             }
+            this.tileLayer.cache(0, 0, this.mapSize.X * tileSize, this.mapSize.Y * tileSize);
         }
 
         ZsortFunction(objectA, objectB) {

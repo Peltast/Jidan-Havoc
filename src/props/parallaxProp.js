@@ -27,7 +27,8 @@ define("ParallaxProp", ['Prop'], function(Prop) {
             
             this.spriteContainer.setBounds
                 (this.spritePosition.X, this.spritePosition.Y, this.spriteSize.X * numOfSprites, this.spriteSize.Y + this.zPos);
-
+            
+            this.spriteContainer.cache(this.spritePosition.X, this.spritePosition.Y, this.spriteSize.X * numOfSprites, this.spriteSize.Y + this.zPos);
         }
 
 

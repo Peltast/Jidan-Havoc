@@ -28,7 +28,7 @@ define("LevelParser", ['Point'], function(Point) {
         }
         getLevelTileLayer() {
             for (let i = 0; i < this.parseData.layers.length; i++) {
-                if (this.parseData.layers[i].type = "tilelayer")
+                if (this.parseData.layers[i].type == "tilelayer")
                     return this.parseData.layers[i];
             }
             return this.parseData.layers[0];

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="34" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="168">
+ <editorsettings>
+  <export target="Stage_4_4.json" format="json"/>
+ </editorsettings>
  <properties>
-  <property name="scoreThresholds" value="1300,1800,2400"/>
+  <property name="scoreThresholds" value="1600,2400,3400"/>
  </properties>
  <tileset firstgid="1" source="../tiles/World1.tsx"/>
  <tileset firstgid="136" name="ObjectTileSet" tilewidth="32" tileheight="32" tilecount="18" columns="6">
@@ -461,7 +464,7 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="81"/>
+   <tile gid="66"/>
    <tile gid="3"/>
    <tile gid="66"/>
    <tile gid="3"/>
@@ -495,7 +498,7 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="66"/>
+   <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -1392,7 +1395,7 @@
   <object id="100" type="Jidan" gid="91" x="352" y="384" width="32" height="32"/>
   <object id="132" type="Transition" gid="2" x="320" y="992" width="32" height="32">
    <properties>
-    <property name="destination" value="Stage_4_5"/>
+    <property name="destination" value="Stage_5_1"/>
    </properties>
   </object>
   <object id="133" type="NPCWall" gid="4" x="192" y="512" width="32" height="32"/>

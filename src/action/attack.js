@@ -38,7 +38,7 @@ define("Attack", ['Point', 'CollisionBox', 'ActorController', 'ParticleSystem'],
                 });   
             }
 
-            return new AttackPhase(phaseController, phaseHitboxes, phaseData);
+            return new AttackPhase(phaseName, phaseController, phaseHitboxes, phaseData);
         }
 
         beginAttack(hostActor) {
@@ -99,12 +99,16 @@ define("Attack", ['Point', 'CollisionBox', 'ActorController', 'ParticleSystem'],
             return this.phases[this.currentIndex].comboPiece;
         }
 
+        getPhaseName() {
+            return this.currentPhase ? this.currentIndex + ", " + this.currentPhase.name : "null";
+        }
+
     }
 
     class AttackPhase {
 
-        constructor(controller, hitboxes, phaseData) {
-
+        constructor(name, controller, hitboxes, phaseData) {
+            this.name = name;
             this.controller = controller;
             this.hitboxes = hitboxes;
 

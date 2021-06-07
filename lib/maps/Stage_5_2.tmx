@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="46" height="36" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="433">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="26" height="26" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="176">
+ <editorsettings>
+  <export target="Stage_5_4.json" format="json"/>
+ </editorsettings>
  <properties>
-  <property name="scoreThresholds" value="1300,1800,2400"/>
+  <property name="scoreThresholds" value="3800,7000,13000"/>
  </properties>
  <tileset firstgid="1" source="../tiles/World1.tsx"/>
  <tileset firstgid="136" name="ObjectTileSet" tilewidth="32" tileheight="32" tilecount="18" columns="6">
   <image source="../../../your-guide-to-the-afterlife/lib/images/ObjectTileSet.png" width="192" height="96"/>
  </tileset>
- <layer id="12" name="Tile Layer 1" width="46" height="36">
+ <layer id="11" name="Tile Layer 1" width="26" height="26">
   <data>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -247,217 +250,13 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="67"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="67"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="32"/>
-   <tile gid="34"/>
-   <tile gid="3"/>
    <tile gid="32"/>
    <tile gid="33"/>
-   <tile gid="34"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="32"/>
    <tile gid="33"/>
+   <tile gid="33"/>
+   <tile gid="33"/>
+   <tile gid="78"/>
+   <tile gid="78"/>
    <tile gid="34"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -476,22 +275,34 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="67"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="47"/>
-   <tile gid="49"/>
    <tile gid="3"/>
    <tile gid="47"/>
    <tile gid="48"/>
+   <tile gid="63"/>
+   <tile gid="63"/>
+   <tile gid="63"/>
+   <tile gid="63"/>
+   <tile gid="63"/>
+   <tile gid="64"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="65"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="32"/>
+   <tile gid="79"/>
    <tile gid="64"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -501,9 +312,22 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
+   <tile gid="67"/>
    <tile gid="3"/>
-   <tile gid="62"/>
-   <tile gid="48"/>
+   <tile gid="81"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="67"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="47"/>
    <tile gid="49"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -516,6 +340,7 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
+   <tile gid="81"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -527,15 +352,7 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="62"/>
-   <tile gid="77"/>
-   <tile gid="78"/>
+   <tile gid="32"/>
    <tile gid="79"/>
    <tile gid="64"/>
    <tile gid="3"/>
@@ -549,240 +366,7 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="62"/>
-   <tile gid="64"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="62"/>
-   <tile gid="48"/>
-   <tile gid="64"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
    <tile gid="66"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="32"/>
-   <tile gid="34"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="65"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="62"/>
-   <tile gid="64"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="66"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="32"/>
-   <tile gid="33"/>
-   <tile gid="34"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -795,7 +379,6 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="47"/>
-   <tile gid="48"/>
    <tile gid="49"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -821,27 +404,7 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="32"/>
-   <tile gid="33"/>
-   <tile gid="34"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
    <tile gid="47"/>
-   <tile gid="48"/>
    <tile gid="49"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -856,26 +419,7 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="47"/>
-   <tile gid="48"/>
-   <tile gid="64"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
+   <tile gid="67"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -887,111 +431,7 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="47"/>
-   <tile gid="48"/>
-   <tile gid="64"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="62"/>
-   <tile gid="64"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="62"/>
    <tile gid="49"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="65"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="66"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="66"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -1016,28 +456,8 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="32"/>
-   <tile gid="33"/>
-   <tile gid="34"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
+   <tile gid="47"/>
+   <tile gid="49"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -1059,28 +479,10 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="32"/>
-   <tile gid="33"/>
-   <tile gid="33"/>
-   <tile gid="34"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="47"/>
-   <tile gid="48"/>
    <tile gid="49"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -1105,10 +507,17 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="62"/>
-   <tile gid="63"/>
-   <tile gid="63"/>
-   <tile gid="64"/>
+   <tile gid="3"/>
+   <tile gid="47"/>
+   <tile gid="49"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -1126,20 +535,7 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="47"/>
-   <tile gid="48"/>
    <tile gid="49"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="65"/>
    <tile gid="3"/>
@@ -1164,106 +560,8 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="62"/>
-   <tile gid="48"/>
-   <tile gid="49"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="66"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="32"/>
-   <tile gid="33"/>
-   <tile gid="34"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
    <tile gid="62"/>
    <tile gid="49"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="65"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="62"/>
-   <tile gid="63"/>
-   <tile gid="64"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="81"/>
    <tile gid="3"/>
@@ -1272,7 +570,6 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="66"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -1290,6 +587,9 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
+   <tile gid="47"/>
+   <tile gid="80"/>
+   <tile gid="49"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -1311,16 +611,17 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="66"/>
    <tile gid="3"/>
    <tile gid="3"/>
+   <tile gid="47"/>
+   <tile gid="48"/>
+   <tile gid="49"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="65"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -1338,6 +639,9 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
+   <tile gid="62"/>
+   <tile gid="48"/>
+   <tile gid="49"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -1362,289 +666,8 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="66"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="65"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="66"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
+   <tile gid="47"/>
+   <tile gid="49"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -1668,210 +691,126 @@
   </data>
  </layer>
  <objectgroup id="3" name="Object Layer 1">
-  <object id="267" gid="2" x="288" y="832" width="32" height="32">
+  <object id="10" gid="2" x="288" y="288" width="32" height="32">
    <properties>
     <property name="type" value="LevelSpawn"/>
    </properties>
   </object>
-  <object id="270" type="NPCWall" gid="4" x="768" y="288" width="32" height="32"/>
-  <object id="289" type="Transition" gid="2" x="866.667" y="602.667" width="32" height="32">
+  <object id="100" type="Jidan" gid="91" x="384" y="288" width="32" height="32"/>
+  <object id="132" type="Transition" gid="2" x="160.999" y="643.996" width="32" height="32">
    <properties>
     <property name="destination" value="Stage_5_3"/>
    </properties>
   </object>
-  <object id="311" type="EnemySpawn" gid="46" x="96" y="512" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="chasingEnemy"/>
-    <property name="orientation" value="right"/>
-   </properties>
-  </object>
-  <object id="318" type="EnemySpawn" gid="76" x="448" y="288" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="flyingBat"/>
-    <property name="horizontal" value="false"/>
-    <property name="orientation" value="left"/>
-    <property name="startDirection" value="up"/>
-   </properties>
-  </object>
-  <object id="321" type="EnemySpawn" gid="16" x="297.333" y="668" width="32" height="32">
+  <object id="134" type="EnemySpawn" gid="16" x="544" y="288" width="32" height="32">
    <properties>
     <property name="enemyType" value="floatingBug"/>
     <property name="orientation" value="right"/>
    </properties>
   </object>
-  <object id="326" type="EnemySpawn" gid="31" x="352" y="448" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="sleepingEnemy"/>
-    <property name="orientation" value="right"/>
-   </properties>
-  </object>
-  <object id="333" type="Jidan" gid="91" x="337.333" y="752" width="32" height="32"/>
-  <object id="361" type="EnemySpawn" gid="61" x="416" y="704" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="dustBunny"/>
-    <property name="orientation" value="left"/>
-   </properties>
-  </object>
-  <object id="362" type="EnemySpawn" gid="16" x="236" y="477.333" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="floatingBug"/>
-    <property name="orientation" value="right"/>
-   </properties>
-  </object>
-  <object id="363" type="EnemySpawn" gid="76" x="576" y="256" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="flyingBat"/>
-    <property name="horizontal" value="false"/>
-    <property name="orientation" value="left"/>
-    <property name="startDirection" value="up"/>
-   </properties>
-  </object>
-  <object id="364" type="EnemySpawn" gid="46" x="704" y="288" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="chasingEnemy"/>
-    <property name="orientation" value="left"/>
-   </properties>
-  </object>
-  <object id="365" type="NPCWall" gid="4" x="544" y="288" width="32" height="32"/>
-  <object id="366" type="NPCWall" gid="4" x="480" y="704" width="32" height="32"/>
-  <object id="367" type="NPCWall" gid="4" x="352" y="704" width="32" height="32"/>
-  <object id="368" type="NPCWall" gid="4" x="192" y="512" width="32" height="32"/>
-  <object id="369" type="NPCWall" gid="4" x="64" y="512" width="32" height="32"/>
-  <object id="370" type="EnemySpawn" gid="46" x="1120" y="288" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="chasingEnemy"/>
-    <property name="orientation" value="left"/>
-   </properties>
-  </object>
-  <object id="371" type="NPCWall" gid="4" x="1024" y="288" width="32" height="32"/>
-  <object id="372" type="NPCWall" gid="4" x="1152" y="288" width="32" height="32"/>
-  <object id="373" type="EnemySpawn" gid="16" x="1142.67" y="249.333" width="32" height="32">
+  <object id="135" type="EnemySpawn" gid="16" x="448" y="320" width="32" height="32">
    <properties>
     <property name="enemyType" value="floatingBug"/>
     <property name="orientation" value="left"/>
    </properties>
   </object>
-  <object id="374" type="EnemySpawn" gid="61" x="1248" y="416" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="dustBunny"/>
-    <property name="orientation" value="left"/>
-   </properties>
-  </object>
-  <object id="375" type="NPCWall" gid="4" x="1184" y="416" width="32" height="32"/>
-  <object id="376" type="NPCWall" gid="4" x="1280" y="416" width="32" height="32"/>
-  <object id="377" type="NPCWall" gid="4" x="1056" y="544" width="32" height="32"/>
-  <object id="378" type="NPCWall" gid="4" x="1184" y="544" width="32" height="32"/>
-  <object id="379" type="NPCWall" gid="4" x="1184" y="704" width="32" height="32"/>
-  <object id="380" type="NPCWall" gid="4" x="1344" y="704" width="32" height="32"/>
-  <object id="381" type="EnemySpawn" gid="61" x="1120" y="544" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="dustBunny"/>
-    <property name="orientation" value="left"/>
-   </properties>
-  </object>
-  <object id="382" type="EnemySpawn" gid="61" x="1280" y="704" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="dustBunny"/>
-    <property name="orientation" value="left"/>
-   </properties>
-  </object>
-  <object id="383" type="EnemySpawn" gid="16" x="1162.67" y="849.333" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="floatingBug"/>
-    <property name="orientation" value="left"/>
-   </properties>
-  </object>
-  <object id="384" type="EnemySpawn" gid="16" x="1021.33" y="889.333" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="floatingBug"/>
-    <property name="orientation" value="left"/>
-   </properties>
-  </object>
-  <object id="385" type="EnemySpawn" gid="16" x="902.667" y="994.667" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="floatingBug"/>
-    <property name="orientation" value="left"/>
-   </properties>
-  </object>
-  <object id="386" type="EnemySpawn" gid="31" x="736" y="896" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="sleepingEnemy"/>
-    <property name="orientation" value="right"/>
-   </properties>
-  </object>
-  <object id="387" type="EnemySpawn" gid="31" x="672" y="832" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="sleepingEnemy"/>
-    <property name="orientation" value="right"/>
-   </properties>
-  </object>
-  <object id="389" type="EnemySpawn" gid="31" x="896" y="768" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="sleepingEnemy"/>
-    <property name="orientation" value="left"/>
-   </properties>
-  </object>
-  <object id="390" type="EnemySpawn" gid="31" x="768" y="704" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="sleepingEnemy"/>
-    <property name="orientation" value="right"/>
-   </properties>
-  </object>
-  <object id="391" type="EnemySpawn" gid="31" x="672" y="672" width="32" height="32">
-   <properties>
-    <property name="enemyType" value="sleepingEnemy"/>
-    <property name="orientation" value="left"/>
-   </properties>
-  </object>
-  <object id="392" type="EnemySpawn" gid="16" x="790.667" y="806.667" width="32" height="32">
+  <object id="136" type="EnemySpawn" gid="16" x="640" y="320" width="32" height="32">
    <properties>
     <property name="enemyType" value="floatingBug"/>
     <property name="orientation" value="right"/>
    </properties>
   </object>
-  <object id="394" type="Jidan" gid="91" x="384" y="672" width="32" height="32"/>
-  <object id="395" type="Jidan" gid="91" x="320" y="640" width="32" height="32"/>
-  <object id="396" type="Jidan" gid="91" x="256" y="640" width="32" height="32"/>
-  <object id="397" type="Jidan" gid="91" x="224" y="576" width="32" height="32"/>
-  <object id="398" type="Jidan" gid="91" x="194.667" y="520" width="32" height="32"/>
-  <object id="399" type="Jidan" gid="91" x="270.667" y="452" width="32" height="32"/>
-  <object id="400" type="Jidan" gid="91" x="352" y="416" width="32" height="32"/>
-  <object id="401" type="Jidan" gid="91" x="384" y="320" width="32" height="32"/>
-  <object id="402" type="Jidan" gid="91" x="461.333" y="288" width="32" height="32"/>
-  <object id="403" type="Jidan" gid="91" x="509.333" y="266.667" width="32" height="32"/>
-  <object id="404" type="Jidan" gid="91" x="593.333" y="258.667" width="32" height="32"/>
-  <object id="405" type="Jidan" gid="91" x="644" y="285.333" width="32" height="32"/>
-  <object id="406" type="Jidan" gid="91" x="736" y="288" width="32" height="32"/>
-  <object id="407" type="Jidan" gid="91" x="808" y="226.667" width="32" height="32"/>
-  <object id="408" type="Jidan" gid="91" x="888" y="245.333" width="32" height="32"/>
-  <object id="409" type="Jidan" gid="91" x="956" y="220" width="32" height="32"/>
-  <object id="410" type="Jidan" gid="91" x="1049.33" y="284" width="32" height="32"/>
-  <object id="411" type="Jidan" gid="91" x="1152" y="224" width="32" height="32"/>
-  <object id="412" type="Jidan" gid="91" x="1216" y="377.333" width="32" height="32"/>
-  <object id="413" type="Jidan" gid="91" x="1144" y="509.333" width="32" height="32"/>
-  <object id="414" type="Jidan" gid="91" x="1224" y="670.667" width="32" height="32"/>
-  <object id="415" type="Jidan" gid="91" x="1214.67" y="600" width="32" height="32"/>
-  <object id="416" type="Jidan" gid="91" x="1158.67" y="448" width="32" height="32"/>
-  <object id="417" type="Jidan" gid="91" x="1166.67" y="738.667" width="32" height="32"/>
-  <object id="418" type="Jidan" gid="91" x="1162.67" y="809.333" width="32" height="32"/>
-  <object id="419" type="Jidan" gid="91" x="1112" y="892" width="32" height="32"/>
-  <object id="420" type="Jidan" gid="91" x="1026.67" y="858.667" width="32" height="32"/>
-  <object id="421" type="Jidan" gid="91" x="994.667" y="994.667" width="32" height="32"/>
-  <object id="422" type="Jidan" gid="91" x="906.667" y="965.333" width="32" height="32"/>
-  <object id="423" type="Jidan" gid="91" x="832" y="1024" width="32" height="32"/>
-  <object id="424" type="Jidan" gid="91" x="736" y="864" width="32" height="32"/>
-  <object id="425" type="Jidan" gid="91" x="704" y="832" width="32" height="32"/>
-  <object id="426" type="Jidan" gid="91" x="800" y="768" width="32" height="32"/>
-  <object id="427" type="Jidan" gid="91" x="896" y="736" width="32" height="32"/>
-  <object id="428" type="Jidan" gid="91" x="768" y="672" width="32" height="32"/>
-  <object id="429" type="Jidan" gid="91" x="672" y="640" width="32" height="32"/>
-  <object id="430" type="EnemySpawn" gid="16" x="776" y="616" width="32" height="32">
+  <object id="137" type="EnemySpawn" gid="16" x="544" y="384" width="32" height="32">
+   <properties>
+    <property name="enemyType" value="floatingBug"/>
+    <property name="orientation" value="left"/>
+   </properties>
+  </object>
+  <object id="138" type="EnemySpawn" gid="16" x="448" y="448" width="32" height="32">
+   <properties>
+    <property name="enemyType" value="floatingBug"/>
+    <property name="orientation" value="left"/>
+   </properties>
+  </object>
+  <object id="139" type="EnemySpawn" gid="16" x="640" y="448" width="32" height="32">
    <properties>
     <property name="enemyType" value="floatingBug"/>
     <property name="orientation" value="right"/>
    </properties>
   </object>
-  <object id="431" type="Jidan" gid="91" x="780" y="586.667" width="32" height="32"/>
-  <object id="432" type="Jidan" gid="91" x="826.667" y="560" width="32" height="32"/>
+  <object id="140" type="EnemySpawn" gid="16" x="544" y="480" width="32" height="32">
+   <properties>
+    <property name="enemyType" value="floatingBug"/>
+    <property name="orientation" value="right"/>
+   </properties>
+  </object>
+  <object id="148" type="EnemySpawn" gid="16" x="448" y="544" width="32" height="32">
+   <properties>
+    <property name="enemyType" value="floatingBug"/>
+    <property name="orientation" value="left"/>
+   </properties>
+  </object>
+  <object id="149" type="EnemySpawn" gid="16" x="640" y="544" width="32" height="32">
+   <properties>
+    <property name="enemyType" value="floatingBug"/>
+    <property name="orientation" value="right"/>
+   </properties>
+  </object>
+  <object id="150" type="EnemySpawn" gid="16" x="544" y="576" width="32" height="32">
+   <properties>
+    <property name="enemyType" value="floatingBug"/>
+    <property name="orientation" value="right"/>
+   </properties>
+  </object>
+  <object id="155" type="EnemySpawn" gid="16" x="352" y="468" width="32" height="32">
+   <properties>
+    <property name="enemyType" value="floatingBug"/>
+    <property name="orientation" value="right"/>
+   </properties>
+  </object>
+  <object id="156" type="EnemySpawn" gid="16" x="352" y="544" width="32" height="32">
+   <properties>
+    <property name="enemyType" value="floatingBug"/>
+    <property name="orientation" value="right"/>
+   </properties>
+  </object>
+  <object id="157" type="EnemySpawn" gid="16" x="352" y="621" width="32" height="32">
+   <properties>
+    <property name="enemyType" value="floatingBug"/>
+    <property name="orientation" value="right"/>
+   </properties>
+  </object>
+  <object id="158" type="EnemySpawn" gid="16" x="256" y="512" width="32" height="32">
+   <properties>
+    <property name="enemyType" value="floatingBug"/>
+    <property name="orientation" value="right"/>
+   </properties>
+  </object>
+  <object id="159" type="EnemySpawn" gid="16" x="256" y="608" width="32" height="32">
+   <properties>
+    <property name="enemyType" value="floatingBug"/>
+    <property name="orientation" value="right"/>
+   </properties>
+  </object>
+  <object id="160" type="EnemySpawn" gid="16" x="448" y="640" width="32" height="32">
+   <properties>
+    <property name="enemyType" value="floatingBug"/>
+    <property name="orientation" value="right"/>
+   </properties>
+  </object>
+  <object id="161" type="Jidan" gid="91" x="480" y="288" width="32" height="32"/>
+  <object id="162" type="Jidan" gid="91" x="544" y="352" width="32" height="32"/>
+  <object id="163" type="Jidan" gid="91" x="544" y="448" width="32" height="32"/>
+  <object id="164" type="Jidan" gid="91" x="608" y="320" width="32" height="32"/>
+  <object id="165" type="Jidan" gid="91" x="640" y="512" width="32" height="32"/>
+  <object id="166" type="Jidan" gid="91" x="608" y="576" width="32" height="32"/>
+  <object id="167" type="Jidan" gid="91" x="512" y="576" width="32" height="32"/>
+  <object id="168" type="Jidan" gid="91" x="448" y="480" width="32" height="32"/>
+  <object id="169" type="Jidan" gid="91" x="448" y="576" width="32" height="32"/>
+  <object id="171" type="Jidan" gid="91" x="320" y="524" width="32" height="32"/>
+  <object id="172" type="Jidan" gid="91" x="256" y="480" width="32" height="32"/>
+  <object id="173" type="Jidan" gid="91" x="256" y="576" width="32" height="32"/>
+  <object id="174" type="Jidan" gid="91" x="384" y="621" width="32" height="32"/>
+  <object id="175" type="Jidan" gid="91" x="384" y="469" width="32" height="32"/>
  </objectgroup>
 </map>

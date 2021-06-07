@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="28" height="28" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="198">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="28" height="28" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="198">
+ <editorsettings>
+  <export target="Stage_5_5.json" format="json"/>
+ </editorsettings>
  <properties>
   <property name="scoreThresholds" value="12000,16000,19000"/>
  </properties>
@@ -818,7 +821,7 @@
   <object id="100" type="Jidan" gid="91" x="320" y="352" width="32" height="32"/>
   <object id="132" type="Transition" gid="2" x="768" y="544" width="32" height="32">
    <properties>
-    <property name="destination" value="Stage_5_5"/>
+    <property name="destination" value="Stage_6_1"/>
    </properties>
   </object>
   <object id="133" type="NPCWall" gid="4" x="256" y="608" width="32" height="32"/>
